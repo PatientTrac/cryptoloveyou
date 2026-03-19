@@ -1,0 +1,36 @@
+/**
+ * Detection Modal
+ */
+.detect-modal .ts-modal-container {
+	width: 600px;
+	padding: 50px 45px;
+	text-align: center;
+}
+
+.detect-modal .heading {
+	margin-top: 12px;
+	margin-bottom: 18px;
+	font-size: 28px;
+	line-height: 1.3;
+	font-weight: 700;
+}
+
+.detect-modal .message {
+	font-size: 15px;
+	margin-top: 4px;
+	margin-bottom: 0;
+}
+
+.detect-modal .message p:last-child {
+	margin-bottom: 0;
+}
+
+.detect-modal .stop-icon {
+	color: rgb(211, 14, 14);
+}
+
+.detect-modal .buttons {
+	margin-top: 22px;
+	display: flex;
+	justify-content: center;
+}

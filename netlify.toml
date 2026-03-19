@@ -1,25 +1,76 @@
 [build]
-  # Publish directory (if you have a built site, otherwise set to the root)
   publish = "."
-
-  # Functions directory
+  command = "echo 'Static site - no build needed'"
   functions = "netlify/functions"
 
-# Function configuration
+[[redirects]]
+  from = "/wp-admin/*"
+  to = "/404.html"
+  status = 404
+
+[[redirects]]
+  from = "/wp-login.php"
+  to = "/404.html"
+  status = 404
+
+# API endpoints for Netlify Functions
+[[redirects]]
+  from = "/api/*"
+  to = "/.netlify/functions/:splat"
+  status = 200
+
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options = "DENY"
+    X-XSS-Protection = "1; mode=block"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "geolocation=(), microphone=(), camera=()"
+
+[[headers]]
+  for = "/wp-content/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.png"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+[[headers]]
+  for = "/*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+
+# CORS for API functions
+[[headers]]
+  for = "/.netlify/functions/*"
+  [headers.values]
+    Access-Control-Allow-Origin = "*"
+    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type"
+
 [functions]
-  # Set Node.js version
+  directory = "netlify/functions"
   node_bundler = "esbuild"
 
-  # External node modules that shouldn't be bundled
-  external_node_modules = ["@supabase/supabase-js"]
-
-# Environment variables (configure these in Netlify UI)
-# SUPABASE_URL = "https://kibgrvomourbyyepidli.supabase.co"
-# SUPABASE_ANON_KEY = "your-anon-key-here"
-
-# Redirect rules (optional - for SPA routing if needed)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-  force = false
+[dev]
+  framework = "#static"
+  targetPort = 8000
+  port = 8888
