@@ -1,0 +1,53 @@
+.spc-el-tabs {
+	margin-top: 10px;
+	margin-bottom: 18px;
+}
+
+.spc-el-add-layout {
+	border-radius: 3px;
+}
+
+.spc-el-add-layout .ui-dialog-titlebar {
+	padding: 10px 25px;
+	height: auto;
+	font-size: 16px;
+}
+
+.spc-el-add-layout .ui-dialog-titlebar-close {
+	top: 8px;
+	right: 6px;
+}
+
+.spc-el-add-layout-content {
+	min-width: 500px;
+	max-width: 95vw;
+	padding: 30px 25px;
+}
+
+.spc-modal-form-field {
+	display: flex;
+	flex-direction: column;
+	margin-bottom: 20px;
+}
+
+.spc-modal-form-field label {
+	margin-bottom: 3px;
+}
+
+.spc-modal-form-field select,
+.spc-modal-form-field input {
+	width: 100%;
+	max-width: 700px;
+	padding: 6px 12px;
+	border-radius: 3px;
+}
+
+.spc-el-add-layout .form-buttons {
+	text-align: center;
+}
+
+.spc-el-add-layout .button-hero {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 3px;
+}

@@ -1,0 +1,103 @@
+/**
+ * ThemeSphere Modal CSS
+ */
+.ts-modal {
+	display: none;
+	position: relative;
+	z-index: 10001;
+}
+
+.ts-modal.is-open {
+	display: block;
+}
+
+.ts-modal-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.6);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	outline: none;
+}
+
+.ts-modal[aria-hidden=false] .ts-modal-overlay {
+	animation: fade-in-up-lg .3s ease-in-out;
+}
+
+.ts-modal[aria-hidden=true] .ts-modal-overlay {
+	animation: fade-in .3s ease-in-out;
+	animation-direction: reverse;
+}
+
+.ts-modal-container {
+	position: relative;
+	background-color: #fff;
+	padding: 30px;
+	max-width: 98vw;
+	max-height: 98vh;
+	border-radius: 4px;
+	overflow-y: auto;
+}
+
+.ts-modal-header {
+	display: flex;
+}
+
+.ts-modal .close-btn {
+	position: absolute;
+	top: 8px;
+	right: 9px;
+	padding: 10px;
+	height: auto;
+	line-height: 1;
+	background: none;
+	border: 0;
+	box-shadow: none;
+	color: #777;
+	font-size: 1.1em;
+}
+
+.ts-modal .close-btn:hover {
+	color: #000;
+}
+
+.ts-modal .close-btn:before {
+	content: "\2715";
+}
+
+@keyframes fade-in-up-lg {
+	from {
+		opacity: 0;
+		transform: translate3d(0, 8px, 0);
+	}
+
+	to {
+		opacity: 1;
+		transform: none;
+	}
+}
+
+@keyframes fade-in {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 1;
+	}
+}
+
+.visuallyhidden {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}

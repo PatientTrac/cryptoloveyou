@@ -1,0 +1,130 @@
+.classic-slider {
+  --grid-gutter: 25px;
+}
+.classic-slider .cat-labels {
+  margin-left: 20px;
+  top: 0;
+}
+.classic-slider .cat-labels a {
+  padding: 0 14px;
+  line-height: 30px;
+}
+.classic-slider .large .cat-labels {
+  margin-left: 7px;
+}
+.classic-slider .the-date {
+  color: #d3dbdf;
+  display: block;
+  text-transform: uppercase;
+  font-size: 11px;
+}
+.classic-slider .slider {
+  opacity: 0;
+}
+.classic-slider .slider h3 {
+  position: relative;
+  float: left;
+}
+.classic-slider .slider h3 a {
+  color: #fff;
+  font-size: 18px;
+  line-height: 2;
+}
+.classic-slider .slider .wp-post-image {
+  height: 100%;
+}
+.classic-slider .slider .caption,
+.classic-slider .featured .caption {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  padding: 14px 20px 17px 20px;
+  box-sizing: border-box;
+}
+.classic-slider .pages {
+  position: absolute;
+  max-width: 100%;
+  width: 100%;
+  bottom: 0;
+  padding-top: 10px; /* allow the mouse pointer a little room */
+  z-index: 99;
+  left: 0;
+  padding-top: 10px;
+  overflow: hidden;
+}
+.classic-slider .pages a {
+  float: left;
+  height: 4px;
+  width: 19.658119658%;
+  background: #72879c;
+  margin-left: 0.284900285%;
+  box-sizing: border-box;
+}
+.classic-slider .pages:hover a {
+  height: 8px;
+}
+.classic-slider .pages a:hover {
+  opacity: 0.6;
+}
+.classic-slider .pages .flex-active {
+  background: var(--c-main);
+}
+.classic-slider .blocks {
+  padding-left: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 4.2%;
+}
+@media (max-width: 940px) {
+  .classic-slider .blocks {
+    display: none;
+  }
+}
+.classic-slider .blocks article {
+  position: relative;
+}
+.classic-slider .blocks .large {
+  grid-column: 1/-1;
+}
+.classic-slider .blocks h3 {
+  position: absolute;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  width: 100%;
+  padding: 10px;
+  font-size: var(--title-size-xs);
+  line-height: 1.5;
+}
+.classic-slider .blocks h3 a {
+  color: #fff;
+}
+.classic-slider .blocks .small h3 {
+  padding: 20px 10px 8px 10px;
+}
+.classic-slider .slides .image-link,
+.classic-slider .blocks .image-link {
+  display: block;
+  overflow: hidden;
+  -webkit-transform: translate3d(0, 0, 0);
+}
+.classic-slider .slides img,
+.classic-slider .blocks .image-link img {
+  transition: all 0.6s;
+}
+.classic-slider .blocks article:hover img,
+.classic-slider .slides .flex-active-slide:hover img {
+  -webkit-transform: translate3d(0, 0, 0);
+  -webkit-perspective: 0;
+  -webkit-backface-visibility: hidden;
+  transform: scale(1.1);
+  opacity: 0.9;
+}
+.classic-slider .slider .caption,
+.classic-slider .blocks h3, .classic-slider .featured .caption {
+  background: linear-gradient(to bottom, rgba(25, 35, 45, 0) 0%, rgba(0, 0, 0, 0.8) 100%);
+  text-shadow: 0px 1px 1px #000;
+}
+.classic-slider .flexslider .slides > li {
+  position: relative;
+}
