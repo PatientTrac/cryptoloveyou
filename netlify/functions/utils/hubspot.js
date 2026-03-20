@@ -21,13 +21,21 @@ export function getHubSpotClient() {
 export async function syncContactToHubSpot(contactData) {
   const hubspot = getHubSpotClient()
 
+  // Only use standard HubSpot properties that definitely exist
   const properties = {
     email: contactData.email,
     firstname: contactData.name?.split(' ')[0] || contactData.name,
     lastname: contactData.name?.split(' ').slice(1).join(' ') || '',
-    message: contactData.message,
-    hs_lead_status: 'NEW',
-    contact_source: contactData.source || 'contact_page'
+    hs_lead_status: 'NEW'
+  }
+
+  // Add custom properties if they might exist (won't fail if they don't)
+  if (contactData.message) {
+    properties.message = contactData.message
+  }
+
+  if (contactData.source) {
+    properties.contact_source = contactData.source
   }
 
   try {
@@ -65,51 +73,5 @@ export async function syncContactToHubSpot(contactData) {
   } catch (error) {
     console.error('HubSpot sync error:', error)
     throw new Error(`Failed to sync contact to HubSpot: ${error.message}`)
-  }
-}
-
-/**
- * Create a deal in HubSpot (for affiliate tracking - Phase 3)
- * @param {Object} dealData - Deal information
- * @returns {Promise<Object>} - HubSpot deal response
- */
-export async function createDeal(dealData) {
-  const hubspot = getHubSpotClient()
-
-  const properties = {
-    dealname: dealData.dealName,
-    amount: dealData.amount || '0',
-    dealstage: dealData.stage || 'appointmentscheduled',
-    pipeline: dealData.pipeline || 'default',
-    hubspot_owner_id: dealData.ownerId
-  }
-
-  try {
-    const response = await hubspot.crm.deals.basicApi.create({ properties })
-    return response
-  } catch (error) {
-    console.error('HubSpot deal creation error:', error)
-    throw error
-  }
-}
-
-/**
- * Associate contact with deal
- * @param {string} contactId - HubSpot contact ID
- * @param {string} dealId - HubSpot deal ID
- */
-export async function associateContactWithDeal(contactId, dealId) {
-  const hubspot = getHubSpotClient()
-
-  try {
-    await hubspot.crm.contacts.associationsApi.create(
-      contactId,
-      'deals',
-      dealId,
-      'contact_to_deal'
-    )
-  } catch (error) {
-    console.error('Association error:', error)
-    throw error
   }
 }

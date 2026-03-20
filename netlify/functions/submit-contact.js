@@ -89,7 +89,12 @@ export const handler = async (event, context) => {
 
     // Step 2: Sync to HubSpot (async, don't wait for completion)
     // This allows the user to get a fast response
-    syncToHubSpotAsync(contact)
+    // Only sync if HubSpot is configured
+    if (process.env.HUBSPOT_API_KEY && !process.env.HUBSPOT_API_KEY.includes('YOUR_')) {
+        await syncToHubSpotAsync(contact)
+    } else {
+      console.log('HubSpot not configured - skipping sync')
+    }
 
     // Return success response
     return {
@@ -123,6 +128,8 @@ export const handler = async (event, context) => {
 async function syncToHubSpotAsync(contact) {
   try {
     console.log('Syncing contact to HubSpot...')
+    console.log('Contact data:', JSON.stringify({ email: contact.email, name: contact.name }))
+
     const hubspotResult = await syncContactToHubSpot({
       email: contact.email,
       name: contact.name,
@@ -137,7 +144,9 @@ async function syncToHubSpotAsync(contact) {
     console.log('Updated Supabase with HubSpot ID')
 
   } catch (error) {
-    console.error('HubSpot sync failed (non-critical):', error)
+    console.error('HubSpot sync failed (non-critical):', error.message)
+    console.error('Error type:', error.name)
+    console.error('Stack trace:', error.stack)
     // Don't throw error - contact is already saved to Supabase
     // This can be retried later via a cron job or webhook
   }
