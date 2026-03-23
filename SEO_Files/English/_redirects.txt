@@ -1,0 +1,37 @@
+# === LANGUAGE REDIRECTS (already working) ===
+/          /en/           302   Language=en
+/          /fr/           302   Language=fr
+/          /de/           302   Language=de
+/          /pt/           302   Language=pt
+/          /es/           302   Language=es
+/          /zh/           302   Language=zh
+/          /ru/           302   Language=ru
+
+/*         /en/:splat     302   Language=en
+/*         /fr/:splat     302   Language=fr
+/*         /de/:splat     302   Language=de
+/*         /pt/:splat     302   Language=pt
+/*         /es/:splat     302   Language=es
+/*         /zh/:splat     302   Language=zh
+/*         /ru/:splat     302   Language=ru
+
+/*         /en/:splat     200   # fallback
+
+# === CLEAN URLS FOR NEW PAGES (no .html) ===
+/best-ai-crypto-projects-2026          /en/best-ai-crypto-projects-2026.html          301
+/best-ai-crypto-projects-2026/*        /en/best-ai-crypto-projects-2026.html          301
+
+/how-to-buy-crypto-2026                /en/how-to-buy-crypto-2026.html                301
+/how-to-buy-crypto-2026/*              /en/how-to-buy-crypto-2026.html                301
+
+/best-crypto-wallets-2026              /en/best-crypto-wallets-2026.html              301
+/best-crypto-wallets-2026/*            /en/best-crypto-wallets-2026.html              301
+
+/best-crypto-exchanges-2026            /en/best-crypto-exchanges-2026.html            301
+/best-crypto-exchanges-2026/*          /en/best-crypto-exchanges-2026.html            301
+
+/make-money-with-ai-crypto-2026        /en/make-money-with-ai-crypto-2026.html        301
+/make-money-with-ai-crypto-2026/*      /en/make-money-with-ai-crypto-2026.html        301
+
+/crypto-tax-guide-2026                 /en/crypto-tax-guide-2026.html                 301
+/crypto-tax-guide-2026/*               /en/crypto-tax-guide-2026.html                 301

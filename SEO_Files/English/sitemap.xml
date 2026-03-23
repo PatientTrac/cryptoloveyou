@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://cryptoloveyou.com/en/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://cryptoloveyou.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://cryptoloveyou.com/de/"/>
+    <xhtml:link rel="alternate" hreflang="pt" href="https://cryptoloveyou.com/pt/"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://cryptoloveyou.com/es/"/>
+    <xhtml:link rel="alternate" hreflang="zh" href="https://cryptoloveyou.com/zh/"/>
+    <xhtml:link rel="alternate" hreflang="ru" href="https://cryptoloveyou.com/ru/"/>
+  </url>
+
+  <!-- Best AI Crypto Projects 2026 -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/best-ai-crypto-projects-2026.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- How to Buy Crypto 2026 -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/how-to-buy-crypto-2026.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Best Crypto Wallets 2026 -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/best-crypto-wallets-2026.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Best Crypto Exchanges 2026 -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/best-crypto-exchanges-2026.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Make Money with AI & Crypto 2026 -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/make-money-with-ai-crypto-2026.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <!-- Crypto Tax Guide 2026 -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/crypto-tax-guide-2026.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+
+  <!-- Legal pages (shortened – add the rest the same way) -->
+  <url>
+    <loc>https://cryptoloveyou.com/en/affiliate-disclosure.html</loc>
+    <lastmod>2026-03-22</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

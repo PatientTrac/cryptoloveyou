@@ -1,0 +1,120 @@
+# === FORCE REMOVE .html EXTENSION (MUST BE FIRST) ===
+/en/about-us.html            /en/about-us                      301!
+/en/privacy-policy.html      /en/privacy-policy                301!
+/en/affiliate-disclosure.html /en/affiliate-disclosure         301!
+/de/about-us.html            /de/about-us                      301!
+/de/privacy-policy.html      /de/privacy-policy                301!
+/de/affiliate-disclosure.html /de/affiliate-disclosure         301!
+/fr/about-us.html            /fr/about-us                      301!
+/fr/privacy-policy.html      /fr/privacy-policy                301!
+/fr/affiliate-disclosure.html /fr/affiliate-disclosure         301!
+/es/about-us.html            /es/about-us                      301!
+/es/privacy-policy.html      /es/privacy-policy                301!
+/es/affiliate-disclosure.html /es/affiliate-disclosure         301!
+/pt/about-us.html            /pt/about-us                      301!
+/pt/privacy-policy.html      /pt/privacy-policy                301!
+/pt/affiliate-disclosure.html /pt/affiliate-disclosure         301!
+/zh/about-us.html            /zh/about-us                      301!
+/zh/privacy-policy.html      /zh/privacy-policy                301!
+/zh/affiliate-disclosure.html /zh/affiliate-disclosure         301!
+/ru/about-us.html            /ru/about-us                      301!
+/ru/privacy-policy.html      /ru/privacy-policy                301!
+/ru/affiliate-disclosure.html /ru/affiliate-disclosure         301!
+
+# === LOCALE HOME = MAIN SITE (same index.html as /) ===
+# Until real translations exist, /fr/, /de/, … show the same homepage as /. /en/ is NOT listed — see below.
+/fr          /index.html   200!
+/fr/         /index.html   200!
+/de          /index.html   200!
+/de/         /index.html   200!
+/pt          /index.html   200!
+/pt/         /index.html   200!
+/es          /index.html   200!
+/es/         /index.html   200!
+/zh          /index.html   200!
+/zh/         /index.html   200!
+/ru          /index.html   200!
+/ru/         /index.html   200!
+
+# === LOCALE ABOUT / LEGAL — extensionless URLs (rewrite, URL stays clean) ===
+/en/about-us                 /en/about-us.html                 200
+/en/about-us/                /en/about-us.html                 200
+/en/privacy-policy           /en/privacy-policy.html           200
+/en/privacy-policy/          /en/privacy-policy.html           200
+/en/affiliate-disclosure     /en/affiliate-disclosure.html     200
+/en/affiliate-disclosure/    /en/affiliate-disclosure.html     200
+/de/about-us                 /de/about-us.html                 200
+/de/about-us/                /de/about-us.html                 200
+/de/privacy-policy           /de/privacy-policy.html           200
+/de/privacy-policy/          /de/privacy-policy.html           200
+/de/affiliate-disclosure     /de/affiliate-disclosure.html     200
+/de/affiliate-disclosure/    /de/affiliate-disclosure.html     200
+/fr/about-us                 /fr/about-us.html                 200
+/fr/about-us/                /fr/about-us.html                 200
+/fr/privacy-policy           /fr/privacy-policy.html           200
+/fr/privacy-policy/          /fr/privacy-policy.html           200
+/fr/affiliate-disclosure     /fr/affiliate-disclosure.html     200
+/fr/affiliate-disclosure/    /fr/affiliate-disclosure.html     200
+/es/about-us                 /es/about-us.html                 200
+/es/about-us/                /es/about-us.html                 200
+/es/privacy-policy           /es/privacy-policy.html           200
+/es/privacy-policy/          /es/privacy-policy.html           200
+/es/affiliate-disclosure     /es/affiliate-disclosure.html     200
+/es/affiliate-disclosure/    /es/affiliate-disclosure.html     200
+/pt/about-us                 /pt/about-us.html                 200
+/pt/about-us/                /pt/about-us.html                 200
+/pt/privacy-policy           /pt/privacy-policy.html           200
+/pt/privacy-policy/          /pt/privacy-policy.html           200
+/pt/affiliate-disclosure     /pt/affiliate-disclosure.html     200
+/pt/affiliate-disclosure/    /pt/affiliate-disclosure.html     200
+/zh/about-us                 /zh/about-us.html                 200
+/zh/about-us/                /zh/about-us.html                 200
+/zh/privacy-policy           /zh/privacy-policy.html           200
+/zh/privacy-policy/          /zh/privacy-policy.html           200
+/zh/affiliate-disclosure     /zh/affiliate-disclosure.html     200
+/zh/affiliate-disclosure/    /zh/affiliate-disclosure.html     200
+/ru/about-us                 /ru/about-us.html                 200
+/ru/about-us/                /ru/about-us.html                 200
+/ru/privacy-policy           /ru/privacy-policy.html           200
+/ru/privacy-policy/          /ru/privacy-policy.html           200
+/ru/affiliate-disclosure     /ru/affiliate-disclosure.html     200
+/ru/affiliate-disclosure/    /ru/affiliate-disclosure.html     200
+
+# === LANGUAGE REDIRECTS ===
+# Main English homepage is "/" (root index.html). Do NOT redirect / → /en/ (client SEO hub lives at /en/ separately).
+# No "!" on / — language redirects apply when no static file wins (same as client doc).
+/          /fr/           302   Language=fr
+/          /de/           302   Language=de
+/          /pt/           302   Language=pt
+/          /es/           302   Language=es
+/          /zh/           302   Language=zh
+/          /ru/           302   Language=ru
+
+/*         /en/:splat     302   Language=en
+/*         /fr/:splat     302   Language=fr
+/*         /de/:splat     302   Language=de
+/*         /pt/:splat     302   Language=pt
+/*         /es/:splat     302   Language=es
+/*         /zh/:splat     302   Language=zh
+/*         /ru/:splat     302   Language=ru
+
+/*         /en/:splat     200   # fallback
+
+# === CLEAN URLS FOR SEO PAGES (no .html) ===
+/best-ai-crypto-projects-2026          /en/best-ai-crypto-projects-2026.html          301
+/best-ai-crypto-projects-2026/*        /en/best-ai-crypto-projects-2026.html          301
+
+/how-to-buy-crypto-2026                /en/how-to-buy-crypto-2026.html                301
+/how-to-buy-crypto-2026/*              /en/how-to-buy-crypto-2026.html                301
+
+/best-crypto-wallets-2026              /en/best-crypto-wallets-2026.html              301
+/best-crypto-wallets-2026/*            /en/best-crypto-wallets-2026.html              301
+
+/best-crypto-exchanges-2026            /en/best-crypto-exchanges-2026.html            301
+/best-crypto-exchanges-2026/*          /en/best-crypto-exchanges-2026.html            301
+
+/make-money-with-ai-crypto-2026        /en/make-money-with-ai-crypto-2026.html        301
+/make-money-with-ai-crypto-2026/*      /en/make-money-with-ai-crypto-2026.html        301
+
+/crypto-tax-guide-2026                 /en/crypto-tax-guide-2026.html                 301
+/crypto-tax-guide-2026/*               /en/crypto-tax-guide-2026.html                 301
