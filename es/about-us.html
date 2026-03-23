@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>À Propos | CryptoLoveYou.com</title>
+    <title>Sobre Nosotros | CryptoLoveYou.com</title>
     <link rel="icon" type="image/png" href="/favicon-16x16.png" sizes="16x16">
     <link rel="icon" type="image/png" href="/favicon-32x32.png" sizes="32x32">
     <link rel="apple-touch-icon" href="/apple-touch-icon.png">
@@ -23,17 +23,17 @@
 <body class="bg-zinc-950 text-white font-sans">
     <nav class="border-b border-zinc-800 bg-zinc-950 py-4">
         <div class="max-w-6xl mx-auto px-6 flex justify-between items-center">
-            <a href="/fr/" class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent">CryptoLoveYou</a>
+            <a href="/es/" class="text-2xl font-bold bg-gradient-to-r from-purple-500 to-cyan-400 bg-clip-text text-transparent">CryptoLoveYou</a>
             <div class="flex items-center gap-8 text-sm">
-                <a href="/fr/" class="hover:text-cyan-400">Accueil</a>
-                <a href="/fr/about-us" class="text-cyan-400">À Propos</a>
-                <a href="/fr/affiliate-disclosure" class="hover:text-cyan-400">Divulgation</a>
-                <a href="/fr/privacy-policy" class="hover:text-cyan-400">Confidentialité</a>
+                <a href="/es/" class="hover:text-cyan-400">Inicio</a>
+                <a href="/es/about-us" class="text-cyan-400">Sobre Nosotros</a>
+                <a href="/es/affiliate-disclosure" class="hover:text-cyan-400">Divulgación</a>
+                <a href="/es/privacy-policy" class="hover:text-cyan-400">Privacidad</a>
 
                 <!-- Language Selector -->
                 <div class="relative group">
                     <button class="flex items-center gap-2 px-3 py-2 rounded-lg hover:bg-zinc-800 transition">
-                        <span>🇫🇷 FR</span>
+                        <span>🇪🇸 ES</span>
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>
                         </svg>
@@ -66,28 +66,43 @@
         </div>
     </nav>
 
+    <script>
+        function setLanguage(lang) {
+            document.cookie = `nf_lang=${lang}; path=/; max-age=31536000`;
+        }
+    </script>
+
     <main class="max-w-4xl mx-auto px-6 py-16">
-        <h1 class="text-5xl font-bold mb-8 text-center">À Propos de CryptoLoveYou</h1>
+        <h1 class="text-5xl font-bold mb-8 text-center">Sobre CryptoLoveYou</h1>
+        <p class="text-center text-zinc-400 mb-12">Tu destino para noticias de cripto e IA</p>
 
-        <div class="prose prose-invert max-w-none text-lg leading-relaxed">
-            <p class="text-2xl">CryptoLoveYou.com est votre destination de référence pour les dernières actualités sur les cryptomonnaies et l'intelligence artificielle, les guides pour débutants, l'analyse des prix et le contenu "Gagner de l'argent avec l'IA".</p>
+        <div class="prose prose-invert max-w-none text-base leading-relaxed">
+            <h2 class="text-2xl font-semibold">¿Quiénes Somos?</h2>
+            <p><strong>CryptoLoveYou.com</strong> es tu destino para las últimas noticias sobre criptomonedas e inteligencia artificial, guías para principiantes, análisis de precios y contenido "Gana Dinero con IA".</p>
 
-            <h2 class="text-3xl font-semibold mt-12">Qui Nous Sommes</h2>
-            <p><strong>CryptoLoveYou.com</strong> est fièrement exploité par <strong>AegisIQ Limited</strong>, une société de développement basée à Hong Kong spécialisée dans les médias numériques, l'éducation blockchain et les plateformes de contenu alimentées par l'IA.</p>
+            <p class="mt-6">Operado con orgullo por <strong>AegisIQ Limited</strong>, una empresa de desarrollo con sede en Hong Kong especializada en medios digitales, educación blockchain y contenido impulsado por IA.</p>
 
-            <h2 class="text-3xl font-semibold mt-12">Notre Mission</h2>
-            <p>Nous croyons que la crypto et l'IA devraient être simples, accessibles et passionnantes pour tous - des débutants complets aux enthousiastes expérimentés. Notre équipe propose un contenu honnête, opportun et éducatif chaque jour.</p>
+            <h2 class="text-2xl font-semibold mt-10">Nuestra Misión</h2>
+            <p>Creemos que las criptomonedas y la IA deben ser simples, accesibles y emocionantes para todos—desde principiantes absolutos hasta entusiastas experimentados.</p>
 
-            <h2 class="text-3xl font-semibold mt-12">Juridique &amp; Contact</h2>
-            <p>Société: AegisIQ Limited (Hong Kong)<br>
-               Email: <a href="mailto:info@cryptoloveyou.io" class="text-cyan-400">info@cryptoloveyou.io</a></p>
+            <h2 class="text-2xl font-semibold mt-10">¿Qué Ofrecemos?</h2>
+            <ul class="list-disc pl-6">
+                <li>Noticias diarias de Bitcoin, Ethereum, altcoins e IA</li>
+                <li>Guías paso a paso para principiantes</li>
+                <li>Análisis de mercado y tendencias de precios</li>
+                <li>Estrategias probadas para ganar dinero con IA y cripto</li>
+            </ul>
+
+            <h2 class="text-2xl font-semibold mt-10">Contacto</h2>
+            <p>Empresa: <strong>AegisIQ Limited</strong> (Hong Kong)<br>
+            Email: <a href="mailto:info@cryptoloveyou.io" class="text-cyan-400 hover:underline">info@cryptoloveyou.io</a></p>
         </div>
     </main>
 
     <footer class="bg-zinc-900 border-t border-zinc-800 py-8 text-center text-sm text-zinc-500">
-        © 2026 CryptoLoveYou.com | Exploité par <strong>AegisIQ Limited</strong>, Hong Kong<br>
-        <a href="/fr/privacy-policy" class="hover:text-white">Politique de Confidentialité</a> •
-        <a href="/fr/affiliate-disclosure" class="hover:text-white">Divulgation d'Affiliation</a>
+        © 2026 CryptoLoveYou.com | Operado por <strong>AegisIQ Limited</strong>, Hong Kong<br>
+        <a href="/es/privacy-policy" class="hover:text-white">Política de Privacidad</a> •
+        <a href="/es/affiliate-disclosure" class="hover:text-white">Divulgación de Afiliados</a>
     </footer>
 </body>
 </html>
