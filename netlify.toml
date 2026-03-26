@@ -69,6 +69,10 @@
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
+  included_files = ["templates/**"]
+
+[functions."scheduled-trending-seo"]
+  schedule = "0 9 * * *"
 
 [dev]
   framework = "#static"

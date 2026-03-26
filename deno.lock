@@ -13,8 +13,12 @@
       "dependencies": [
         "npm:@hubspot/api-client@^11.1.0",
         "npm:@supabase/supabase-js@^2.39.7",
+        "npm:dotenv@^17.3.1",
+        "npm:handlebars@^4.7.8",
+        "npm:marked@^11.1.1",
         "npm:netlify-cli@^17.15.2",
-        "npm:node-fetch@^3.3.2"
+        "npm:node-fetch@^3.3.2",
+        "npm:simple-git@^3.22.0"
       ]
     }
   }

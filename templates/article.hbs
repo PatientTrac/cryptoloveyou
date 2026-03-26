@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en-US" class="s-light site-s-light">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+	<!-- SEO Meta Tags -->
+	<title>{{metaTitle}}</title>
+	<meta name="description" content="{{metaDescription}}">
+	<link rel="canonical" href="/{{slug}}/">
+
+	<!-- Open Graph / Facebook -->
+	<meta property="og:locale" content="en_US">
+	<meta property="og:type" content="article">
+	<meta property="og:title" content="{{metaTitle}}">
+	<meta property="og:description" content="{{metaDescription}}">
+	<meta property="og:url" content="/{{slug}}/">
+	<meta property="og:site_name" content="Crypto Love You">
+	<meta property="article:published_time" content="{{publishedAt}}">
+	{{#if featuredImage}}
+	<meta property="og:image" content="{{featuredImage}}">
+	<meta property="og:image:width" content="1280">
+	<meta property="og:image:height" content="720">
+	<meta property="og:image:type" content="image/jpeg">
+	{{/if}}
+
+	<!-- Twitter Meta Tags -->
+	<meta name="twitter:card" content="summary_large_image">
+	<meta name="twitter:title" content="{{metaTitle}}">
+	<meta name="twitter:description" content="{{metaDescription}}">
+	{{#if featuredImage}}
+	<meta name="twitter:image" content="{{featuredImage}}">
+	{{/if}}
+
+	<!-- Schema.org Structured Data -->
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@graph": [
+			{
+				"@type": "Article",
+				"@id": "/{{slug}}/",
+				"headline": "{{title}}",
+				"description": "{{summary}}",
+				"image": "{{featuredImage}}",
+				"datePublished": "{{publishedAt}}",
+				"dateModified": "{{publishedAt}}",
+				"author": {
+					"@type": "Person",
+					"name": "CryptoExpert"
+				},
+				"publisher": {
+					"@type": "Organization",
+					"name": "Crypto Love You",
+					"logo": {
+						"@type": "ImageObject",
+						"url": "/wp-content/uploads/2025/09/cryptoloveyou-logo.png"
+					}
+				},
+				"mainEntityOfPage": {
+					"@type": "WebPage",
+					"@id": "/{{slug}}/"
+				}
+			},
+			{
+				"@type": "BreadcrumbList",
+				"itemListElement": [
+					{
+						"@type": "ListItem",
+						"position": 1,
+						"name": "Home",
+						"item": "/"
+					},
+					{
+						"@type": "ListItem",
+						"position": 2,
+						"name": "{{title}}"
+					}
+				]
+			}
+		]
+	}
+	</script>
+
+	<!-- Stylesheets -->
+	<link rel="stylesheet" href="/wp-content/themes/smart-mag/style.css?ver=10.3.0" type="text/css" media="all">
+	<link rel="stylesheet" href="/wp-includes/css/dist/block-library/style.min.css?ver=6.9.1" type="text/css" media="all">
+
+	<style>
+		:root {
+			--c-main: #e89b2d;
+			--c-main-rgb: 232,155,45;
+			--title-font: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+			--h-font: "Inter", system-ui, -apple-system, "Segoe UI", Arial, sans-serif;
+			--main-width: 1240px;
+		}
+		.s-dark body {
+			background-color: #111c2d;
+		}
+		.post-content {
+			font-size: 18px;
+			line-height: 1.8;
+			color: #333;
+		}
+		.post-content h2 {
+			margin-top: 2em;
+			margin-bottom: 1em;
+			font-size: 28px;
+			font-weight: 600;
+		}
+		.post-content h3 {
+			margin-top: 1.5em;
+			margin-bottom: 0.75em;
+			font-size: 22px;
+			font-weight: 600;
+		}
+		.post-content p {
+			margin-bottom: 1.5em;
+		}
+		.post-content ul, .post-content ol {
+			margin-bottom: 1.5em;
+			padding-left: 2em;
+		}
+		.post-content li {
+			margin-bottom: 0.5em;
+		}
+		.affiliate-cta {
+			background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+			color: white;
+			padding: 20px 30px;
+			border-radius: 8px;
+			text-align: center;
+			margin: 30px 0;
+			text-decoration: none;
+			display: inline-block;
+			font-weight: 600;
+			transition: transform 0.2s;
+		}
+		.affiliate-cta:hover {
+			transform: translateY(-2px);
+			box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+		}
+	</style>
+</head>
+
+<body class="wp-singular post-template-default single single-post right-sidebar post-layout-modern has-lb has-lb-sm ts-img-hov-fade layout-normal">
+
+<div class="main-wrap">
+
+	<!-- Header Navigation -->
+	<div class="smart-head smart-head-a smart-head-main" id="smart-head">
+		<div class="smart-head-row smart-head-top s-dark smart-head-row-full">
+			<div class="inner wrap">
+				<div class="items items-left">
+					<div class="nav-wrap">
+						<nav class="navigation navigation-small nav-hov-a">
+							<ul class="menu">
+								<li><a href="/privacy-policy/">Privacy Policy</a></li>
+								<li><a href="/terms-of-service/">Terms Of Service</a></li>
+								<li><a href="/social-media-disclaimer/">Social Media Disclaimer</a></li>
+								<li><a href="/dmca-compliance/">DMCA Compliance</a></li>
+								<li><a href="/anti-spam-policy/">Anti-Spam Policy</a></li>
+							</ul>
+						</nav>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="smart-head-row smart-head-mid s-dark smart-head-row-full">
+			<div class="inner wrap">
+				<div class="items items-left">
+					<div class="ts-logo">
+						<a href="/" class="logo-link" aria-label="Crypto Love You">
+							<img src="/wp-content/uploads/2025/09/cryptoloveyou-logo.png" alt="Crypto Love You" width="200">
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Main Content Area -->
+	<div class="site-content" id="main-content">
+		<div class="ts-contain wrap cf">
+			<div class="ts-row">
+				<div class="col-8 main-content s-post-contain">
+
+					<!-- Article Header -->
+					<div class="the-post-header s-head-modern s-head-modern-a">
+						<div class="post-meta post-meta-a post-meta-left post-meta-single has-below">
+							<div class="post-meta-items meta-above">
+								<span class="meta-item cat-labels">
+									<a href="/category/{{category}}/" class="category" rel="category">{{categoryLabel}}</a>
+								</span>
+							</div>
+							<h1 class="is-title post-title">{{title}}</h1>
+							<div class="post-meta-items meta-below">
+								<span class="meta-item has-next-icon date">
+									<time class="post-date" datetime="{{publishedAt}}">{{publishedDate}}</time>
+								</span>
+								<span class="meta-item read-time has-icon">
+									<i class="tsi tsi-clock"></i>{{readTime}} Min Read
+								</span>
+							</div>
+						</div>
+
+						<!-- Social Share Buttons -->
+						<div class="post-share post-share-b spc-social-colors post-share-b1">
+							<a href="https://www.facebook.com/sharer.php?u=%2F{{slug}}%2F" class="cf service s-facebook service-lg" title="Share on Facebook" target="_blank" rel="nofollow noopener">
+								<i class="tsi tsi-facebook"></i>
+								<span class="label">Facebook</span>
+							</a>
+							<a href="https://twitter.com/intent/tweet?url=%2F{{slug}}%2F&text={{encodedTitle}}" class="cf service s-twitter service-lg" title="Share on X (Twitter)" target="_blank" rel="nofollow noopener">
+								<i class="tsi tsi-twitter"></i>
+								<span class="label">Twitter</span>
+							</a>
+							<a href="https://www.linkedin.com/shareArticle?mini=true&url=%2F{{slug}}%2F" class="cf service s-linkedin service-sm" title="Share on LinkedIn" target="_blank" rel="nofollow noopener">
+								<i class="tsi tsi-linkedin"></i>
+								<span class="label">LinkedIn</span>
+							</a>
+						</div>
+					</div>
+
+					<!-- Featured Image -->
+					{{#if featuredImage}}
+					<div class="single-featured">
+						<div class="featured">
+							<a href="{{featuredImage}}" class="image-link media-ratio ar-bunyad-main" title="{{title}}">
+								<img src="{{featuredImage}}" class="attachment-bunyad-main wp-post-image" alt="{{title}}" width="814" height="532" loading="eager">
+							</a>
+						</div>
+					</div>
+					{{/if}}
+
+					<!-- Article Content -->
+					<div class="the-post s-post-cover">
+						<article class="post type-post status-publish">
+							<div class="post-content-wrap">
+								<div class="post-content cf entry-content content-spacious">
+
+									<!-- Main Article Content (Markdown converted to HTML) -->
+									{{{htmlContent}}}
+
+									<!-- Affiliate CTAs (if provided) -->
+									{{#if affiliateLinks}}
+									<div class="affiliate-section">
+										{{#each affiliateLinks}}
+										<a href="{{url}}" class="affiliate-cta" target="_blank" rel="nofollow noopener">
+											{{text}}
+										</a>
+										{{/each}}
+									</div>
+									{{/if}}
+
+								</div>
+							</div>
+						</article>
+					</div>
+
+					<!-- Bottom Social Share -->
+					<div class="post-share-bot">
+						<span class="info">Share.</span>
+						<span class="share-links spc-social spc-social-colors spc-social-bg">
+							<a href="https://www.facebook.com/sharer.php?u=%2F{{slug}}%2F" class="cf service s-facebook" target="_blank" rel="nofollow noopener">
+								<i class="tsi tsi-facebook"></i>
+							</a>
+							<a href="https://twitter.com/intent/tweet?url=%2F{{slug}}%2F&text={{encodedTitle}}" class="cf service s-twitter" target="_blank" rel="nofollow noopener">
+								<i class="tsi tsi-twitter"></i>
+							</a>
+							<a href="https://www.linkedin.com/shareArticle?mini=true&url=%2F{{slug}}%2F" class="cf service s-linkedin" target="_blank" rel="nofollow noopener">
+								<i class="tsi tsi-linkedin"></i>
+							</a>
+						</span>
+					</div>
+
+				</div>
+
+				<!-- Sidebar -->
+				<aside class="col-4 sidebar sticky-sidebar">
+					<div class="sidebar-inner">
+						<!-- Ad Placement -->
+						<div class="widget widget-ad">
+							<a href="/go/ledger" target="_blank" rel="nofollow">
+								<img src="/wp-content/uploads/2025/09/ledger_dark_728_90.webp" alt="Ledger Hardware Wallet" loading="lazy">
+							</a>
+						</div>
+					</div>
+				</aside>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Footer -->
+	<footer class="main-footer s-dark">
+		<div class="upper-footer">
+			<div class="ts-contain wrap cf">
+				<div class="footer-text">
+					<p>&copy; {{currentYear}} Crypto Love You. All rights reserved.</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+
+</div>
+
+<!-- Analytics placeholder -->
+{{#if analytics}}
+{{{analytics}}}
+{{/if}}
+
+</body>
+</html>

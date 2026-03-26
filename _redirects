@@ -118,3 +118,10 @@
 
 /crypto-tax-guide-2026                 /en/crypto-tax-guide-2026.html                 301
 /crypto-tax-guide-2026/*               /en/crypto-tax-guide-2026.html                 301
+
+# === PHASE 2: AI ARTICLE GENERATION & AFFILIATE TRACKING ===
+# Affiliate click tracking (redirect with tracking)
+/aff/:platform  /.netlify/functions/track-affiliate-click?platform=:platform  302
+
+# Dynamic sitemap (includes old + new AI articles)
+/sitemap.xml    /.netlify/functions/generate-sitemap    200

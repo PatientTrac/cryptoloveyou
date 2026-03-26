@@ -1,0 +1,63 @@
+{
+  "version": 1,
+  "updated_at": "2026-03-25",
+  "platforms": {
+    "binance": {
+      "category": "exchange",
+      "tags": ["exchange", "trading", "staking"],
+      "priority": 1,
+      "env_key": "BINANCE_AFFILIATE_URL",
+      "default_cta": "Get started on Binance",
+      "risk_level": "medium"
+    },
+    "coinbase": {
+      "category": "exchange",
+      "tags": ["exchange", "beginner", "staking"],
+      "priority": 2,
+      "env_key": "COINBASE_AFFILIATE_URL",
+      "default_cta": "Get started on Coinbase",
+      "risk_level": "medium"
+    },
+    "bybit": {
+      "category": "exchange",
+      "tags": ["exchange", "trading", "earn"],
+      "priority": 3,
+      "env_key": "BYBIT_AFFILIATE_URL",
+      "default_cta": "Explore Bybit Earn",
+      "risk_level": "high"
+    },
+    "okx": {
+      "category": "exchange",
+      "tags": ["exchange", "trading", "earn"],
+      "priority": 4,
+      "env_key": "OKX_AFFILIATE_URL",
+      "default_cta": "Explore OKX",
+      "risk_level": "high"
+    },
+    "kraken": {
+      "category": "exchange",
+      "tags": ["exchange", "security", "staking"],
+      "priority": 5,
+      "env_key": "KRAKEN_AFFILIATE_URL",
+      "default_cta": "Get started on Kraken",
+      "risk_level": "medium"
+    },
+    "ledger": {
+      "category": "wallet",
+      "tags": ["wallet", "hardware", "security"],
+      "priority": 1,
+      "env_key": "LEDGER_AFFILIATE_URL",
+      "default_cta": "Buy a Ledger wallet",
+      "risk_level": "low"
+    },
+    "trezor": {
+      "category": "wallet",
+      "tags": ["wallet", "hardware", "security"],
+      "priority": 2,
+      "env_key": "TREZOR_AFFILIATE_URL",
+      "default_cta": "Buy a Trezor wallet",
+      "risk_level": "low"
+    }
+  }
+}
+
