@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <title>{{metaTitle}}</title>
+  <meta name="description" content="{{metaDescription}}">
+  <link rel="canonical" href="/{{slug}}/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{metaTitle}}">
+  <meta property="og:description" content="{{metaDescription}}">
+  <meta property="og:url" content="/{{slug}}/">
+  <meta property="og:site_name" content="CryptoLoveYou.com">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{metaTitle}}">
+  <meta name="twitter:description" content="{{metaDescription}}">
+
+  <link rel="stylesheet" href="/wp-content/themes/smart-mag/style.css?ver=10.3.0" type="text/css" media="all">
+  <link rel="stylesheet" href="/wp-includes/css/dist/block-library/style.min.css?ver=6.9.1" type="text/css" media="all">
+
+  <style>
+    :root { --c-main: #e89b2d; }
+    body { background: #0d1623; color: #e8ecf2; font-family: Inter, system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
+    .wrap { max-width: 980px; margin: 0 auto; padding: 32px 20px; }
+    .card { background: #11223d; border: 1px solid #2a3f5f; border-radius: 12px; padding: 22px; }
+    h1 { font-size: 34px; line-height: 1.2; margin: 0 0 10px; }
+    h2 { font-size: 22px; margin: 26px 0 10px; }
+    h3 { font-size: 18px; margin: 18px 0 10px; }
+    p { font-size: 17px; line-height: 1.7; margin: 0 0 14px; color: #d6dbe4; }
+    ul { margin: 10px 0 14px 18px; }
+    li { margin-bottom: 8px; color: #d6dbe4; }
+    a { color: #87b6ff; }
+    .meta { display:flex; flex-wrap:wrap; gap:10px; font-size: 13px; color:#aeb7c7; margin: 10px 0 18px; }
+    .pill { padding: 4px 10px; border-radius: 999px; background:#0b1a30; border:1px solid #2a3f5f; }
+    .ctaRow { display:flex; gap:10px; flex-wrap:wrap; margin-top: 14px; }
+    .cta { display:inline-block; padding: 12px 16px; border-radius: 10px; background: var(--c-main); color:#0d1623; font-weight: 800; text-decoration:none; }
+    .ctaSecondary { background: transparent; border: 1px solid #2a3f5f; color:#e8ecf2; }
+    .disclaimer { margin-top: 18px; font-size: 13px; color:#aeb7c7; }
+    .disclaimer strong { color:#e8ecf2; }
+    .grid { display:grid; grid-template-columns: 1fr; gap: 14px; }
+    @media (min-width: 920px) { .grid { grid-template-columns: 1.25fr 0.75fr; } }
+    .box { background:#0b1a30; border:1px solid #2a3f5f; border-radius: 12px; padding: 14px; }
+    .muted { color:#aeb7c7; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>{{title}}</h1>
+
+      <div class="meta">
+        {{#if lastUpdated}}<span class="pill">Last updated: {{lastUpdated}}</span>{{/if}}
+        {{#if platform}}
+          {{#if platform.name}}<span class="pill">{{platform.name}}</span>{{/if}}
+          {{#if platform.key}}<span class="pill">Key: <code>{{platform.key}}</code></span>{{/if}}
+        {{/if}}
+      </div>
+
+      <div class="ctaRow">
+        {{#each ctas}}
+          <a class="cta {{#if (eq type "secondary")}}ctaSecondary{{/if}}" href="/aff/{{platform}}?article={{../slug}}">{{text}}</a>
+        {{/each}}
+      </div>
+
+      <div class="grid" style="margin-top:18px;">
+        <div>
+          <h2>What it is</h2>
+          <p>{{sections.what_it_is}}</p>
+
+          {{#if sections.key_features.length}}
+            <h2>Key features</h2>
+            <ul>
+              {{#each sections.key_features}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+
+          {{#if sections.how_to.length}}
+            <h2>How to get started</h2>
+            <ol>
+              {{#each sections.how_to}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ol>
+          {{/if}}
+
+          {{#if sections.risks.length}}
+            <h2>Risks to consider</h2>
+            <ul>
+              {{#each sections.risks}}
+                <li>{{this}}</li>
+              {{/each}}
+            </ul>
+          {{/if}}
+
+          {{#if sections.conclusion}}
+            <h2>Conclusion</h2>
+            <p>{{sections.conclusion}}</p>
+          {{/if}}
+        </div>
+
+        <aside>
+          {{#if sections.trust_factors.length}}
+            <div class="box">
+              <h3>Trust factors</h3>
+              <ul>
+                {{#each sections.trust_factors}}
+                  <li>{{this}}</li>
+                {{/each}}
+              </ul>
+            </div>
+          {{/if}}
+
+          {{#if sections.alternatives.length}}
+            <div class="box" style="margin-top:14px;">
+              <h3>Alternatives</h3>
+              <ul>
+                {{#each sections.alternatives}}
+                  <li><a href="{{href}}">{{name}}</a></li>
+                {{/each}}
+              </ul>
+            </div>
+          {{/if}}
+
+          {{#if internal_links.length}}
+            <div class="box" style="margin-top:14px;">
+              <h3>Explore more</h3>
+              <ul>
+                {{#each internal_links}}
+                  <li><a href="{{this}}">{{this}}</a></li>
+                {{/each}}
+              </ul>
+              <p class="muted" style="margin:10px 0 0;">Tip: start with the comparison page to pick the best option for your risk level.</p>
+            </div>
+          {{/if}}
+        </aside>
+      </div>
+
+      <p class="disclaimer">
+        <strong>Disclosure:</strong> Some links may be affiliate links. <strong>Not financial advice.</strong> Crypto and DeFi involve risk; always do your own research.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+

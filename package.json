@@ -17,9 +17,13 @@
   "author": "Crypto Love You",
   "license": "MIT",
   "dependencies": {
-    "@supabase/supabase-js": "^2.39.7",
     "@hubspot/api-client": "^11.1.0",
-    "node-fetch": "^3.3.2"
+    "@supabase/supabase-js": "^2.39.7",
+    "dotenv": "^17.3.1",
+    "handlebars": "^4.7.8",
+    "marked": "^11.1.1",
+    "node-fetch": "^3.3.2",
+    "simple-git": "^3.22.0"
   },
   "devDependencies": {
     "netlify-cli": "^17.15.2"

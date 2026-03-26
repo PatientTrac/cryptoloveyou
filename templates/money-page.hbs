@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
+
+  <title>{{metaTitle}}</title>
+  <meta name="description" content="{{metaDescription}}">
+  <link rel="canonical" href="/{{slug}}/">
+
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="{{metaTitle}}">
+  <meta property="og:description" content="{{metaDescription}}">
+  <meta property="og:url" content="/{{slug}}/">
+  <meta property="og:site_name" content="CryptoLoveYou.com">
+
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{{metaTitle}}">
+  <meta name="twitter:description" content="{{metaDescription}}">
+
+  <link rel="stylesheet" href="/wp-content/themes/smart-mag/style.css?ver=10.3.0" type="text/css" media="all">
+  <link rel="stylesheet" href="/wp-includes/css/dist/block-library/style.min.css?ver=6.9.1" type="text/css" media="all">
+
+  <style>
+    :root { --c-main: #e89b2d; }
+    body { background: #0d1623; color: #e8ecf2; font-family: Inter, system-ui, -apple-system, Segoe UI, Arial, sans-serif; }
+    .wrap { max-width: 1080px; margin: 0 auto; padding: 32px 20px; }
+    .card { background: #11223d; border: 1px solid #2a3f5f; border-radius: 12px; padding: 22px; }
+    h1 { font-size: 34px; line-height: 1.2; margin: 0 0 10px; }
+    h2 { font-size: 22px; margin: 26px 0 10px; }
+    p { font-size: 17px; line-height: 1.7; margin: 0 0 14px; color: #d6dbe4; }
+    a { color: #87b6ff; }
+    .meta { display:flex; flex-wrap:wrap; gap:10px; font-size: 13px; color:#aeb7c7; margin: 10px 0 18px; }
+    .pill { padding: 4px 10px; border-radius: 999px; background:#0b1a30; border:1px solid #2a3f5f; }
+    .ctaRow { display:flex; gap:10px; flex-wrap:wrap; margin: 14px 0 18px; }
+    .cta { display:inline-block; padding: 12px 16px; border-radius: 10px; background: var(--c-main); color:#0d1623; font-weight: 800; text-decoration:none; }
+    .ctaSecondary { background: transparent; border: 1px solid #2a3f5f; color:#e8ecf2; }
+    .tableWrap { overflow:auto; border:1px solid #2a3f5f; border-radius: 12px; }
+    table { width:100%; border-collapse: collapse; min-width: 720px; }
+    th, td { text-align:left; padding: 12px; border-bottom: 1px solid #2a3f5f; vertical-align: top; }
+    th { background:#0b1a30; color:#e8ecf2; position: sticky; top: 0; }
+    .rowCta a { display:inline-block; padding: 10px 12px; border-radius: 10px; background: var(--c-main); color:#0d1623; font-weight: 800; text-decoration:none; }
+    ul { margin: 10px 0 14px 18px; }
+    li { margin-bottom: 8px; color: #d6dbe4; }
+    .faq { background:#0b1a30; border:1px solid #2a3f5f; border-radius: 12px; padding: 14px; margin: 10px 0; }
+    .faq strong { color:#e8ecf2; }
+    .disclaimer { margin-top: 18px; font-size: 13px; color:#aeb7c7; }
+    .disclaimer strong { color:#e8ecf2; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <div class="card">
+      <h1>{{title}}</h1>
+
+      <div class="meta">
+        {{#if lastUpdated}}<span class="pill">Last updated: {{lastUpdated}}</span>{{/if}}
+        {{#if tags.length}}<span class="pill">Tags: {{join tags ", "}}</span>{{/if}}
+      </div>
+
+      {{#if ctas.length}}
+      <div class="ctaRow">
+        {{#each ctas}}
+          <a class="cta {{#if (eq type "secondary")}}ctaSecondary{{/if}}" href="/aff/{{platform}}?article={{../slug}}">{{text}}</a>
+        {{/each}}
+      </div>
+      {{/if}}
+
+      <p>{{sections.intro}}</p>
+
+      <h2>Comparison</h2>
+      <p>Quick comparisons below are meant to help you choose based on your goals and risk tolerance. Metrics that change frequently are labeled as “varies”.</p>
+
+      <div class="tableWrap">
+        <table>
+          <thead>
+            <tr>
+              {{#each comparison_table.columns}}
+                <th>{{this}}</th>
+              {{/each}}
+              <th>Action</th>
+            </tr>
+          </thead>
+          <tbody>
+            {{#each comparison_table.rows}}
+              <tr>
+                {{#each ../comparison_table.columns}}
+                  <td>{{lookup ../cells this}}</td>
+                {{/each}}
+                <td class="rowCta">
+                  {{#if cta}}
+                    <a href="/aff/{{cta.platform}}?article={{../../slug}}">{{cta.text}}</a>
+                  {{else}}
+                    <a href="/aff/{{platform}}?article={{../../slug}}">Get started</a>
+                  {{/if}}
+                </td>
+              </tr>
+            {{/each}}
+          </tbody>
+        </table>
+      </div>
+
+      {{#if sections.safety_checklist.length}}
+        <h2>Safety checklist</h2>
+        <ul>
+          {{#each sections.safety_checklist}}
+            <li>{{this}}</li>
+          {{/each}}
+        </ul>
+      {{/if}}
+
+      <h2>Risk analysis</h2>
+      <p>{{sections.risk_analysis}}</p>
+
+      {{#if faqs.length}}
+        <h2>FAQ</h2>
+        {{#each faqs}}
+          <div class="faq">
+            <p><strong>{{q}}</strong></p>
+            <p>{{a}}</p>
+          </div>
+        {{/each}}
+      {{/if}}
+
+      <h2>Final recommendation</h2>
+      <p>{{sections.final_recommendation}}</p>
+
+      {{#if internal_links.length}}
+        <h2>Explore more</h2>
+        <ul>
+          {{#each internal_links}}
+            <li><a href="{{this}}">{{this}}</a></li>
+          {{/each}}
+        </ul>
+      {{/if}}
+
+      <p class="disclaimer">
+        <strong>Disclosure:</strong> Some links may be affiliate links. <strong>Not financial advice.</strong> Yield and DeFi involve smart-contract and market risk; only allocate what you can afford to lose.
+      </p>
+    </div>
+  </div>
+</body>
+</html>
+
