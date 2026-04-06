@@ -1,0 +1,304 @@
+import { getSupabaseClient } from './utils/supabase.js'
+
+function corsHeaders() {
+  return {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type, Authorization, X-Admin-Key',
+    'Access-Control-Allow-Methods': 'GET, POST, PATCH, OPTIONS',
+    'Content-Type': 'application/json'
+  }
+}
+
+function requireAdminKey(event) {
+  const expected = process.env.ADMIN_API_KEY
+  if (!expected || String(expected).trim().length < 16) {
+    return { ok: false, error: 'Server misconfiguration: ADMIN_API_KEY not set (min 16 chars)' }
+  }
+
+  const auth = event.headers?.authorization || event.headers?.Authorization || ''
+  const bearer = auth.startsWith('Bearer ') ? auth.slice(7).trim() : ''
+  const headerKey = event.headers?.['x-admin-key'] || event.headers?.['X-Admin-Key'] || ''
+  const qsKey = event.queryStringParameters?.apiKey || ''
+
+  const provided = bearer || headerKey || qsKey
+  if (!provided || provided !== expected) {
+    return { ok: false, error: 'Unauthorized' }
+  }
+  return { ok: true }
+}
+
+function isSupabaseConfigured() {
+  try {
+    getSupabaseClient()
+    return true
+  } catch {
+    return false
+  }
+}
+
+export const handler = async (event) => {
+  const headers = corsHeaders()
+
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers, body: '' }
+  }
+
+  const auth = requireAdminKey(event)
+  if (!auth.ok) {
+    return {
+      statusCode: 401,
+      headers,
+      body: JSON.stringify({ error: auth.error })
+    }
+  }
+
+  if (!isSupabaseConfigured()) {
+    return {
+      statusCode: 503,
+      headers,
+      body: JSON.stringify({ error: 'Supabase not configured' })
+    }
+  }
+
+  const supabase = getSupabaseClient()
+  const qs = event.queryStringParameters || {}
+  const resource = qs.resource || 'help'
+
+  try {
+    if (event.httpMethod === 'GET' && resource === 'help') {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({
+          ok: true,
+          endpoints: {
+            'GET ?resource=clicks': 'List clicks (from, to, platform, article_slug, limit)',
+            'GET ?resource=aggregates': 'Aggregates (from, to, groupBy=platform|day|article_slug)',
+            'GET ?resource=partners': 'List affiliate_partners rows',
+            'POST ?resource=partners': 'Create partner (JSON body)',
+            'PATCH ?resource=partners&id=<uuid>': 'Update partner',
+            'PATCH ?resource=click&id=<uuid>': 'Mark conversion (JSON body)'
+          }
+        })
+      }
+    }
+
+    if (event.httpMethod === 'GET' && resource === 'clicks') {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(await listClicks(supabase, qs))
+      }
+    }
+
+    if (event.httpMethod === 'GET' && resource === 'aggregates') {
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify(await getAggregates(supabase, qs))
+      }
+    }
+
+    if (event.httpMethod === 'GET' && resource === 'partners') {
+      const { data, error } = await supabase
+        .from('affiliate_partners')
+        .select('*')
+        .order('platform_key', { ascending: true })
+
+      if (error) throw error
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ ok: true, partners: data || [] })
+      }
+    }
+
+    if (event.httpMethod === 'POST' && resource === 'partners') {
+      const body = JSON.parse(event.body || '{}')
+      const platform_key = String(body.platform_key || '').trim().toLowerCase()
+      const affiliate_url = String(body.affiliate_url || '').trim()
+      const label = body.label != null ? String(body.label) : null
+      const active = body.active !== false
+
+      if (!platform_key || !affiliate_url) {
+        return {
+          statusCode: 400,
+          headers,
+          body: JSON.stringify({ error: 'platform_key and affiliate_url are required' })
+        }
+      }
+
+      const row = {
+        platform_key,
+        affiliate_url,
+        label,
+        active,
+        updated_at: new Date().toISOString()
+      }
+
+      const { data, error } = await supabase
+        .from('affiliate_partners')
+        .upsert([row], { onConflict: 'platform_key' })
+        .select()
+        .single()
+
+      if (error) throw error
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ ok: true, partner: data, upserted: true })
+      }
+    }
+
+    if (event.httpMethod === 'PATCH' && resource === 'partners') {
+      const id = qs.id
+      if (!id) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'id query param required' }) }
+      }
+      const body = JSON.parse(event.body || '{}')
+      const patch = {}
+      if (body.affiliate_url != null) patch.affiliate_url = String(body.affiliate_url).trim()
+      if (body.label !== undefined) patch.label = body.label === null ? null : String(body.label)
+      if (body.active !== undefined) patch.active = Boolean(body.active)
+      patch.updated_at = new Date().toISOString()
+
+      const { data, error } = await supabase
+        .from('affiliate_partners')
+        .update(patch)
+        .eq('id', id)
+        .select()
+        .single()
+
+      if (error) throw error
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ ok: true, partner: data })
+      }
+    }
+
+    if (event.httpMethod === 'PATCH' && resource === 'click') {
+      const id = qs.id
+      if (!id) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'id query param required' }) }
+      }
+      const body = JSON.parse(event.body || '{}')
+      const converted = body.converted !== false
+      const conversion_value =
+        body.conversion_value != null ? Number(body.conversion_value) : null
+
+      const patch = {
+        converted,
+        converted_at: converted ? new Date().toISOString() : null,
+        conversion_value: conversion_value != null && !Number.isNaN(conversion_value) ? conversion_value : null
+      }
+
+      const { data, error } = await supabase
+        .from('affiliate_clicks')
+        .update(patch)
+        .eq('id', id)
+        .select()
+        .single()
+
+      if (error) throw error
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ ok: true, click: data })
+      }
+    }
+
+    return {
+      statusCode: 404,
+      headers,
+      body: JSON.stringify({ error: 'Unknown resource or method' })
+    }
+  } catch (err) {
+    console.error('admin-affiliate error:', err)
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({
+        error: err.message || 'Internal error',
+        hint: err.hint || (err.code === '42P01' ? 'Run Supabase migration 005_affiliate_partners.sql' : undefined)
+      })
+    }
+  }
+}
+
+async function listClicks(supabase, qs) {
+  const limit = Math.min(parseInt(qs.limit || '500', 10) || 500, 5000)
+  let q = supabase.from('affiliate_clicks').select('*')
+
+  if (qs.from) {
+    q = q.gte('clicked_at', new Date(qs.from).toISOString())
+  }
+  if (qs.to) {
+    const t = new Date(qs.to)
+    t.setHours(23, 59, 59, 999)
+    q = q.lte('clicked_at', t.toISOString())
+  }
+  if (qs.platform) {
+    q = q.eq('affiliate_platform', qs.platform.trim().toLowerCase())
+  }
+  if (qs.article_slug) {
+    q = q.eq('article_slug', qs.article_slug.trim())
+  }
+
+  q = q.order('clicked_at', { ascending: false }).limit(limit)
+
+  const { data, error } = await q
+  if (error) throw error
+  return { ok: true, clicks: data || [], count: (data || []).length }
+}
+
+async function getAggregates(supabase, qs) {
+  const from = qs.from ? new Date(qs.from).toISOString() : null
+  const to = qs.to ? new Date(qs.to) : new Date()
+  if (qs.to) {
+    to.setHours(23, 59, 59, 999)
+  }
+  const toIso = to.toISOString()
+
+  const groupBy = (qs.groupBy || 'platform').toLowerCase()
+  const maxRows = 8000
+
+  let q = supabase
+    .from('affiliate_clicks')
+    .select('id, affiliate_platform, article_slug, clicked_at, converted, conversion_value')
+    .order('clicked_at', { ascending: false })
+    .limit(maxRows)
+
+  if (from) q = q.gte('clicked_at', from)
+  q = q.lte('clicked_at', toIso)
+
+  const { data, error } = await q
+  if (error) throw error
+  const rows = data || []
+
+  /** @type {Record<string, number>} */
+  const buckets = {}
+  for (const row of rows) {
+    let key
+    if (groupBy === 'day') {
+      key = String(row.clicked_at || '').slice(0, 10) || 'unknown'
+    } else if (groupBy === 'article_slug') {
+      key = row.article_slug || '(none)'
+    } else {
+      key = row.affiliate_platform || 'unknown'
+    }
+    buckets[key] = (buckets[key] || 0) + 1
+  }
+
+  const sorted = Object.entries(buckets)
+    .map(([key, count]) => ({ key, count }))
+    .sort((a, b) => b.count - a.count)
+
+  return {
+    ok: true,
+    groupBy,
+    totalClicks: rows.length,
+    truncated: rows.length >= maxRows,
+    aggregates: sorted
+  }
+}

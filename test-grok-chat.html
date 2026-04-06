@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test Grok Chat</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-zinc-950 text-white p-8">
+    <div class="max-w-2xl mx-auto">
+        <h1 class="text-3xl font-bold mb-6">Grok Chat API Test</h1>
+
+        <div class="bg-zinc-900 rounded-lg p-6 mb-6">
+            <h2 class="text-xl font-semibold mb-4">Send Test Message</h2>
+            <form id="testForm" class="space-y-4">
+                <div>
+                    <label class="block mb-2">Message:</label>
+                    <input type="text" id="messageInput" value="What is Bittensor?"
+                           class="w-full bg-zinc-800 border border-zinc-700 rounded px-4 py-2 text-white">
+                </div>
+                <button type="submit"
+                        class="bg-gradient-to-r from-cyan-500 to-purple-600 text-white px-6 py-2 rounded font-semibold hover:opacity-90">
+                    Send Test Message
+                </button>
+            </form>
+        </div>
+
+        <div class="bg-zinc-900 rounded-lg p-6">
+            <h2 class="text-xl font-semibold mb-4">Response:</h2>
+            <div id="response" class="text-gray-300 whitespace-pre-wrap">
+                Waiting for test...
+            </div>
+        </div>
+
+        <div class="mt-6 text-sm text-gray-500">
+            <p><strong>Expected:</strong> The Grok API should respond with information about Bittensor.</p>
+            <p><strong>API Endpoint:</strong> /.netlify/functions/grok-chat</p>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('testForm').addEventListener('submit', async (e) => {
+            e.preventDefault();
+
+            const message = document.getElementById('messageInput').value;
+            const responseDiv = document.getElementById('response');
+
+            responseDiv.textContent = 'Sending request to Grok API...';
+            responseDiv.className = 'text-yellow-400 whitespace-pre-wrap';
+
+            try {
+                const response = await fetch('/.netlify/functions/grok-chat', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ message })
+                });
+
+                const data = await response.json();
+
+                if (response.ok) {
+                    responseDiv.textContent = '✅ SUCCESS!\n\nGrok Response:\n' + data.reply;
+                    responseDiv.className = 'text-green-400 whitespace-pre-wrap';
+                } else {
+                    responseDiv.textContent = '❌ ERROR\n\nStatus: ' + response.status + '\n' + JSON.stringify(data, null, 2);
+                    responseDiv.className = 'text-red-400 whitespace-pre-wrap';
+                }
+            } catch (error) {
+                responseDiv.textContent = '❌ NETWORK ERROR\n\n' + error.message;
+                responseDiv.className = 'text-red-400 whitespace-pre-wrap';
+            }
+        });
+    </script>
+</body>
+</html>

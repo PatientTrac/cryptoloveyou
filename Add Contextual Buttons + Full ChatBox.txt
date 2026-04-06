@@ -1,0 +1,86 @@
+<!-- GROK FUTURISTIC CHATBOX -->
+<div id="grok-chat-container" class="fixed bottom-6 right-6 z-[9999]">
+    <button onclick="toggleChat()" class="relative w-16 h-16 flex items-center justify-center group">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full animate-ping opacity-30"></div>
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full animate-ping opacity-20 animation-delay-700"></div>
+        <div class="relative w-14 h-14 bg-zinc-950 rounded-full flex items-center justify-center shadow-[0_0_30px_10px] shadow-cyan-400/60 animate-[spin_25s_linear_infinite]">
+            <span class="text-4xl">🌀</span>
+        </div>
+    </button>
+
+    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-96 h-[560px] bg-zinc-900 border border-cyan-400/60 rounded-3xl shadow-2xl flex flex-col overflow-hidden">
+        <div class="bg-gradient-to-r from-cyan-500 to-purple-600 px-5 py-4 flex items-center gap-3">
+            <div class="w-9 h-9 bg-white/20 rounded-2xl flex items-center justify-center text-3xl">🌀</div>
+            <div>
+                <h3 class="font-bold text-white">Grok by xAI</h3>
+                <p class="text-xs text-cyan-100">Crypto • AI • Future</p>
+            </div>
+            <button onclick="toggleChat()" class="ml-auto text-3xl text-white/80 hover:text-white">×</button>
+        </div>
+
+        <div id="chat-messages" class="flex-1 p-5 overflow-y-auto space-y-4 bg-zinc-950"></div>
+
+        <!-- Contextual Quick Buttons -->
+        <div class="px-5 pb-3 flex flex-wrap gap-2 border-t border-zinc-700 bg-zinc-900">
+            <button onclick="sendQuickPrompt('What are the best AI crypto projects in 2026?')" class="text-xs bg-zinc-800 hover:bg-cyan-900 px-4 py-2 rounded-3xl">AI Crypto Projects</button>
+            <button onclick="sendQuickPrompt('How do I buy crypto safely in 2026?')" class="text-xs bg-zinc-800 hover:bg-cyan-900 px-4 py-2 rounded-3xl">How to Buy Crypto</button>
+            <button onclick="sendQuickPrompt('What are the best crypto wallets in 2026?')" class="text-xs bg-zinc-800 hover:bg-cyan-900 px-4 py-2 rounded-3xl">Best Wallets</button>
+            <button onclick="sendQuickPrompt('How can I make money with AI and crypto?')" class="text-xs bg-zinc-800 hover:bg-cyan-900 px-4 py-2 rounded-3xl">Make Money with AI</button>
+            <button onclick="sendQuickPrompt('Explain crypto taxes in 2026')" class="text-xs bg-zinc-800 hover:bg-cyan-900 px-4 py-2 rounded-3xl">Crypto Taxes 2026</button>
+        </div>
+
+        <form onsubmit="sendMessage(event)" class="p-4 border-t border-zinc-700 bg-zinc-900 flex gap-2">
+            <input id="user-input" type="text" placeholder="Ask Grok anything about crypto or AI..." class="flex-1 bg-zinc-800 border border-transparent focus:border-cyan-400 rounded-3xl px-5 py-3 text-sm outline-none">
+            <button type="submit" class="bg-gradient-to-r from-cyan-500 to-purple-600 px-7 rounded-3xl font-semibold text-sm">Send</button>
+        </form>
+    </div>
+</div>
+
+<script>
+function toggleChat() {
+    const win = document.getElementById('chat-window');
+    win.classList.toggle('hidden');
+}
+
+async function sendMessage(e) {
+    e.preventDefault();
+    const input = document.getElementById('user-input');
+    const text = input.value.trim();
+    if (!text) return;
+
+    addMessage('user', text);
+    input.value = '';
+
+    const typing = addMessage('bot', '🌀 Grok is thinking...');
+
+    const res = await fetch('/.netlify/functions/grok-chat', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ message: text })
+    });
+
+    const data = await res.json();
+    typing.remove();
+    addMessage('bot', data.reply);
+}
+
+function sendQuickPrompt(prompt) {
+    toggleChat();
+    setTimeout(() => {
+        const input = document.getElementById('user-input');
+        input.value = prompt;
+        const fakeEvent = { preventDefault: () => {} };
+        sendMessage(fakeEvent);
+    }, 300);
+}
+
+function addMessage(sender, text) {
+    const container = document.getElementById('chat-messages');
+    const div = document.createElement('div');
+    div.className = sender === 'user' ? 'flex justify-end' : 'flex justify-start';
+    div.innerHTML = `<div class="${sender === 'user' ? 'bg-gradient-to-r from-cyan-500 to-purple-600' : 'bg-zinc-800'} max-w-[85%] px-5 py-3 rounded-3xl text-sm">${text}</div>`;
+    container.appendChild(div);
+    container.scrollTop = container.scrollHeight;
+    return div;
+}
+</script>

@@ -100,6 +100,29 @@ export const handler = async (event, context) => {
  * Get affiliate URL from registry, environment variables, or fallbacks
  */
 async function getAffiliateUrl(platform, customAffiliateId = null) {
+  if (isSupabaseConfigured()) {
+    try {
+      const supabase = getSupabaseClient()
+      const { data: partner } = await supabase
+        .from('affiliate_partners')
+        .select('affiliate_url')
+        .eq('platform_key', platform)
+        .eq('active', true)
+        .maybeSingle()
+
+      if (partner?.affiliate_url) {
+        let affiliateUrl = String(partner.affiliate_url).trim()
+        if (customAffiliateId && affiliateUrl) {
+          affiliateUrl = affiliateUrl.replace(/\{aid\}/g, customAffiliateId)
+        }
+        return affiliateUrl
+      }
+    } catch (e) {
+      // Table may not exist yet; fall through to env/registry
+      console.warn('affiliate_partners lookup skipped:', e.message)
+    }
+  }
+
   const registry = await readAffiliateRegistry()
   const regEntry = registry?.platforms?.[platform]
   const envKey = regEntry?.env_key || `${platform.toUpperCase().replace(/-/g, '_')}_AFFILIATE_URL`

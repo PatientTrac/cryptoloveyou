@@ -63,8 +63,13 @@
   for = "/.netlify/functions/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
-    Access-Control-Allow-Methods = "GET, POST, OPTIONS"
-    Access-Control-Allow-Headers = "Content-Type"
+    Access-Control-Allow-Methods = "GET, POST, PATCH, OPTIONS"
+    Access-Control-Allow-Headers = "Content-Type, Authorization, X-Admin-Key"
+
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 [functions]
   directory = "netlify/functions"

@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="robots" content="noindex, nofollow">
+  <title>Affiliate admin — CryptoLoveYou</title>
+  <style>
+    :root { --bg: #0d1623; --card: #11223d; --border: #2a3f5f; --text: #e8ecf2; --muted: #aeb7c7; --accent: #e89b2d; }
+    * { box-sizing: border-box; }
+    body { margin: 0; font-family: Inter, system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
+    header { padding: 16px 24px; border-bottom: 1px solid var(--border); display: flex; flex-wrap: wrap; align-items: center; gap: 12px; justify-content: space-between; }
+    h1 { margin: 0; font-size: 1.25rem; }
+    main { max-width: 1200px; margin: 0 auto; padding: 24px; }
+    .card { background: var(--card); border: 1px solid var(--border); border-radius: 12px; padding: 20px; margin-bottom: 20px; }
+    label { display: block; font-size: 0.8rem; color: var(--muted); margin-bottom: 4px; }
+    input, select, button, textarea { font: inherit; }
+    input[type="text"], input[type="password"], input[type="date"], select, textarea {
+      width: 100%; max-width: 320px; padding: 8px 12px; border-radius: 8px; border: 1px solid var(--border); background: #0b1a30; color: var(--text);
+    }
+    button { cursor: pointer; padding: 10px 16px; border-radius: 8px; border: none; background: var(--accent); color: #0d1623; font-weight: 700; }
+    button.secondary { background: transparent; border: 1px solid var(--border); color: var(--text); }
+    .row { display: flex; flex-wrap: wrap; gap: 16px; align-items: flex-end; margin-bottom: 16px; }
+    .tabs { display: flex; gap: 8px; margin-bottom: 16px; flex-wrap: wrap; }
+    .tabs button { background: transparent; color: var(--text); border: 1px solid var(--border); }
+    .tabs button.active { background: var(--accent); color: #0d1623; border-color: var(--accent); }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+    th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+    th { color: var(--muted); font-weight: 600; }
+    .err { color: #f87171; font-size: 0.9rem; }
+    .hint { color: var(--muted); font-size: 0.85rem; margin-top: 8px; }
+    .truncate { max-width: 200px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Affiliate admin</h1>
+    <div class="row" style="margin:0;">
+      <div>
+        <label for="apiKey">ADMIN_API_KEY</label>
+        <input type="password" id="apiKey" placeholder="Paste key (stored in session only)" autocomplete="off" style="max-width:280px;">
+      </div>
+      <button type="button" id="saveKey">Save in session</button>
+    </div>
+  </header>
+  <main>
+    <p class="hint">This page is not indexed. Use the same <code>ADMIN_API_KEY</code> as in Netlify environment variables. API: <code>/api/admin-affiliate</code></p>
+
+    <div class="tabs" role="tablist">
+      <button type="button" class="tab active" data-panel="overview">Overview</button>
+      <button type="button" class="tab" data-panel="clicks">Clicks</button>
+      <button type="button" class="tab" data-panel="partners">Partner URLs</button>
+    </div>
+
+    <div id="panel-overview" class="panel active">
+      <div class="card">
+        <h2 style="margin-top:0;">Aggregates</h2>
+        <div class="row">
+          <div>
+            <label for="aggFrom">From</label>
+            <input type="date" id="aggFrom">
+          </div>
+          <div>
+            <label for="aggTo">To</label>
+            <input type="date" id="aggTo">
+          </div>
+          <div>
+            <label for="groupBy">Group by</label>
+            <select id="groupBy">
+              <option value="platform">Platform</option>
+              <option value="day">Day</option>
+              <option value="article_slug">Article slug</option>
+            </select>
+          </div>
+          <button type="button" id="loadAgg">Load</button>
+        </div>
+        <p id="aggMeta" class="hint"></p>
+        <div id="aggErr" class="err"></div>
+        <table id="aggTable">
+          <thead><tr><th>Key</th><th>Clicks</th></tr></thead>
+          <tbody></tbody>
+        </table>
+      </div>
+    </div>
+
+    <div id="panel-clicks" class="panel">
+      <div class="card">
+        <h2 style="margin-top:0;">Recent clicks</h2>
+        <div class="row">
+          <div>
+            <label for="cFrom">From</label>
+            <input type="date" id="cFrom">
+          </div>
+          <div>
+            <label for="cTo">To</label>
+            <input type="date" id="cTo">
+          </div>
+          <div>
+            <label for="cPlatform">Platform</label>
+            <input type="text" id="cPlatform" placeholder="e.g. binance">
+          </div>
+          <div>
+            <label for="cLimit">Limit</label>
+            <input type="text" id="cLimit" value="500" style="max-width:80px;">
+          </div>
+          <button type="button" id="loadClicks">Load</button>
+          <button type="button" class="secondary" id="exportCsv">Export CSV</button>
+        </div>
+        <div id="clickErr" class="err"></div>
+        <div style="overflow:auto;">
+          <table id="clickTable">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Platform</th>
+                <th>Article</th>
+                <th>Converted</th>
+                <th>IP</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+            <tbody></tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+
+    <div id="panel-partners" class="panel">
+      <div class="card">
+        <h2 style="margin-top:0;">Partner URLs (DB override)</h2>
+        <p class="hint">When active, these redirect targets override env vars for <code>/aff/:platform</code>. Run migration <code>005_affiliate_partners.sql</code> in Supabase first.</p>
+        <button type="button" id="loadPartners">Refresh list</button>
+        <div id="partnerErr" class="err"></div>
+        <table id="partnerTable" style="margin-top:16px;">
+          <thead>
+            <tr><th>Key</th><th>URL</th><th>Label</th><th>Active</th><th></th></tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+        <h3>Add / update</h3>
+        <div class="row">
+          <div>
+            <label for="pKey">platform_key</label>
+            <input type="text" id="pKey" placeholder="binance">
+          </div>
+          <div style="flex:1; min-width:240px;">
+            <label for="pUrl">affiliate_url</label>
+            <input type="text" id="pUrl" placeholder="https://..." style="max-width:100%;">
+          </div>
+          <div>
+            <label for="pLabel">label</label>
+            <input type="text" id="pLabel" placeholder="optional">
+          </div>
+          <button type="button" id="savePartner">Save</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <script>
+    const API = () => `${window.location.origin}/api/admin-affiliate`;
+
+    function getKey() {
+      return sessionStorage.getItem('ADMIN_API_KEY') || '';
+    }
+
+    function authHeaders() {
+      const k = getKey();
+      if (!k) throw new Error('Set ADMIN_API_KEY above');
+      return { Authorization: 'Bearer ' + k, 'Content-Type': 'application/json' };
+    }
+
+    async function apiGet(params) {
+      const u = new URL(API());
+      Object.entries(params).forEach(([k, v]) => { if (v != null && v !== '') u.searchParams.set(k, v); });
+      const res = await fetch(u.toString(), { headers: authHeaders() });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || res.statusText);
+      return body;
+    }
+
+    async function apiPatch(resource, id, json) {
+      const u = new URL(API());
+      u.searchParams.set('resource', resource);
+      u.searchParams.set('id', id);
+      const res = await fetch(u.toString(), {
+        method: 'PATCH',
+        headers: authHeaders(),
+        body: JSON.stringify(json)
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || res.statusText);
+      return body;
+    }
+
+    async function apiPostPartners(json) {
+      const u = new URL(API());
+      u.searchParams.set('resource', 'partners');
+      const res = await fetch(u.toString(), {
+        method: 'POST',
+        headers: authHeaders(),
+        body: JSON.stringify(json)
+      });
+      const body = await res.json().catch(() => ({}));
+      if (!res.ok) throw new Error(body.error || res.statusText);
+      return body;
+    }
+
+    document.getElementById('saveKey').onclick = () => {
+      const v = document.getElementById('apiKey').value.trim();
+      if (v) sessionStorage.setItem('ADMIN_API_KEY', v);
+    };
+    if (sessionStorage.getItem('ADMIN_API_KEY')) {
+      document.getElementById('apiKey').placeholder = '(saved in session)';
+    }
+
+    document.querySelectorAll('.tab').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tab').forEach((b) => b.classList.remove('active'));
+        document.querySelectorAll('.panel').forEach((p) => p.classList.remove('active'));
+        btn.classList.add('active');
+        document.getElementById('panel-' + btn.dataset.panel).classList.add('active');
+      });
+    });
+
+    function setDefaultDates() {
+      const to = new Date();
+      const from = new Date(to);
+      from.setDate(from.getDate() - 7);
+      document.getElementById('aggTo').valueAsDate = to;
+      document.getElementById('aggFrom').valueAsDate = from;
+      document.getElementById('cTo').valueAsDate = to;
+      document.getElementById('cFrom').valueAsDate = from;
+    }
+    setDefaultDates();
+
+    document.getElementById('loadAgg').onclick = async () => {
+      const err = document.getElementById('aggErr');
+      err.textContent = '';
+      try {
+        const from = document.getElementById('aggFrom').value;
+        const to = document.getElementById('aggTo').value;
+        const groupBy = document.getElementById('groupBy').value;
+        const data = await apiGet({ resource: 'aggregates', from, to, groupBy });
+        document.getElementById('aggMeta').textContent =
+          `Total in window: ${data.totalClicks}${data.truncated ? ' (truncated at 8000 rows — narrow date range)' : ''}`;
+        const tb = document.querySelector('#aggTable tbody');
+        tb.innerHTML = '';
+        (data.aggregates || []).forEach((row) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `<td>${escapeHtml(row.key)}</td><td>${row.count}</td>`;
+          tb.appendChild(tr);
+        });
+      } catch (e) {
+        err.textContent = e.message;
+      }
+    };
+
+    let lastClicks = [];
+
+    document.getElementById('loadClicks').onclick = async () => {
+      const err = document.getElementById('clickErr');
+      err.textContent = '';
+      try {
+        const from = document.getElementById('cFrom').value;
+        const to = document.getElementById('cTo').value;
+        const platform = document.getElementById('cPlatform').value.trim();
+        const limit = document.getElementById('cLimit').value.trim() || '500';
+        const data = await apiGet({ resource: 'clicks', from, to, platform, limit });
+        lastClicks = data.clicks || [];
+        const tb = document.querySelector('#clickTable tbody');
+        tb.innerHTML = '';
+        lastClicks.forEach((row) => {
+          const tr = document.createElement('tr');
+          const id = row.id;
+          tr.innerHTML = `
+            <td>${escapeHtml(String(row.clicked_at || ''))}</td>
+            <td>${escapeHtml(row.affiliate_platform || '')}</td>
+            <td class="truncate" title="${escapeAttr(row.article_slug || '')}">${escapeHtml(row.article_slug || '—')}</td>
+            <td>${row.converted ? 'yes' : 'no'}</td>
+            <td class="truncate">${escapeHtml(row.ip_address || '')}</td>
+            <td><button type="button" class="secondary mark-conv" data-id="${escapeAttr(id)}">Mark converted</button></td>`;
+          tb.appendChild(tr);
+        });
+        tb.querySelectorAll('.mark-conv').forEach((b) => {
+          b.onclick = async () => {
+            try {
+              await apiPatch('click', b.getAttribute('data-id'), { converted: true, conversion_value: null });
+              b.textContent = 'OK';
+              b.disabled = true;
+            } catch (e) {
+              alert(e.message);
+            }
+          };
+        });
+      } catch (e) {
+        err.textContent = e.message;
+      }
+    };
+
+    document.getElementById('exportCsv').onclick = () => {
+      if (!lastClicks.length) {
+        alert('Load clicks first');
+        return;
+      }
+      const cols = ['clicked_at', 'affiliate_platform', 'article_slug', 'converted', 'conversion_value', 'ip_address', 'referrer', 'affiliate_url'];
+      const lines = [cols.join(',')];
+      lastClicks.forEach((row) => {
+        lines.push(cols.map((c) => csvEscape(row[c])).join(','));
+      });
+      const blob = new Blob([lines.join('\n')], { type: 'text/csv' });
+      const a = document.createElement('a');
+      a.href = URL.createObjectURL(blob);
+      a.download = 'affiliate-clicks.csv';
+      a.click();
+      URL.revokeObjectURL(a.href);
+    };
+
+    document.getElementById('loadPartners').onclick = loadPartners;
+    document.getElementById('savePartner').onclick = async () => {
+      const err = document.getElementById('partnerErr');
+      err.textContent = '';
+      try {
+        const platform_key = document.getElementById('pKey').value.trim().toLowerCase();
+        const affiliate_url = document.getElementById('pUrl').value.trim();
+        const label = document.getElementById('pLabel').value.trim() || null;
+        await apiPostPartners({ platform_key, affiliate_url, label, active: true });
+        document.getElementById('pUrl').value = '';
+        loadPartners();
+      } catch (e) {
+        err.textContent = e.message;
+      }
+    };
+
+    async function loadPartners() {
+      const err = document.getElementById('partnerErr');
+      err.textContent = '';
+      try {
+        const data = await apiGet({ resource: 'partners' });
+        const tb = document.querySelector('#partnerTable tbody');
+        tb.innerHTML = '';
+        (data.partners || []).forEach((p) => {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${escapeHtml(p.platform_key)}</td>
+            <td class="truncate" style="max-width:280px;" title="${escapeAttr(p.affiliate_url)}">${escapeHtml(p.affiliate_url)}</td>
+            <td>${escapeHtml(p.label || '')}</td>
+            <td>${p.active ? 'yes' : 'no'}</td>
+            <td><button type="button" class="secondary toggle-p" data-id="${escapeAttr(p.id)}" data-active="${p.active}">${p.active ? 'Deactivate' : 'Activate'}</button></td>`;
+          tb.appendChild(tr);
+        });
+        tb.querySelectorAll('.toggle-p').forEach((b) => {
+          b.onclick = async () => {
+            const id = b.getAttribute('data-id');
+            const active = b.getAttribute('data-active') !== 'true';
+            try {
+              await apiPatch('partners', id, { active });
+              loadPartners();
+            } catch (e) {
+              alert(e.message);
+            }
+          };
+        });
+      } catch (e) {
+        err.textContent = e.message;
+      }
+    }
+
+    function escapeHtml(s) {
+      const d = document.createElement('div');
+      d.textContent = s;
+      return d.innerHTML;
+    }
+    function escapeAttr(s) {
+      return String(s).replace(/"/g, '&quot;');
+    }
+    function csvEscape(v) {
+      if (v == null) return '';
+      const s = String(v);
+      if (/[",\n]/.test(s)) return '"' + s.replace(/"/g, '""') + '"';
+      return s;
+    }
+  </script>
+</body>
+</html>

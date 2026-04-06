@@ -1,5 +1,6 @@
 import { insertContact, updateContactWithHubSpotId } from './utils/supabase.js'
 import { syncContactToHubSpot } from './utils/hubspot.js'
+import { sendContactFormAutoReply, sendContactFormNotification } from './utils/resend.js'
 import { validateContactForm, sanitizeInput, checkRateLimit } from './utils/validation.js'
 
 /**
@@ -9,8 +10,9 @@ import { validateContactForm, sanitizeInput, checkRateLimit } from './utils/vali
  * 1. Validates and sanitizes input
  * 2. Checks rate limiting
  * 3. Saves contact to Supabase
- * 4. Syncs contact to HubSpot
- * 5. Returns success/error response
+ * 4. Sends team notification + visitor auto-reply via Resend (if configured)
+ * 5. Syncs contact to HubSpot
+ * 6. Returns success/error response
  */
 export const handler = async (event, context) => {
   // Set CORS headers
@@ -86,6 +88,17 @@ export const handler = async (event, context) => {
     console.log('Inserting contact into Supabase...')
     const contact = await insertContact(sanitizedData)
     console.log('Contact saved to Supabase:', contact.id)
+
+    try {
+      await sendContactFormNotification(contact)
+    } catch (err) {
+      console.error('Resend notification failed (non-critical):', err.message)
+    }
+    try {
+      await sendContactFormAutoReply(contact)
+    } catch (err) {
+      console.error('Resend auto-reply failed (non-critical):', err.message)
+    }
 
     // Step 2: Sync to HubSpot (async, don't wait for completion)
     // This allows the user to get a fast response
