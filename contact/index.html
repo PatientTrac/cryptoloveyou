@@ -222,6 +222,42 @@ body .cryptoboxes .cc-stats .cc-coin {
 }
 
 		</style>
+
+	<!-- Tailwind CSS CDN for Grok chat widget -->
+	<script src="https://cdn.tailwindcss.com"></script>
+
+	<!-- Custom styles for Grok chat widget (match homepage) -->
+	<style>
+		/* Animation delay for second ping ring */
+		.animation-delay-700 {
+			animation-delay: 700ms;
+		}
+
+		/* Isolate Grok chat widget from theme styles */
+		#grok-chat-container {
+			all: initial;
+			position: fixed;
+			bottom: 24px;
+			right: 24px;
+			z-index: 9999;
+		}
+
+		/* Mobile responsive adjustments */
+		@media (max-width: 480px) {
+			#chat-window {
+				width: 100vw !important;
+				height: 100vh !important;
+				max-height: 100vh !important;
+				bottom: 0 !important;
+				right: 0 !important;
+				border-radius: 0 !important;
+			}
+			#grok-chat-container {
+				bottom: 16px !important;
+				right: 16px !important;
+			}
+		}
+	</style>
 		
 
 </head>

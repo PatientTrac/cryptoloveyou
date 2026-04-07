@@ -1,10 +1,37 @@
 /**
  * CryptoLoveYou Grok chat widget — Tailwind CSS version
- * Requires: Tailwind CSS CDN loaded in page head
+ * Self-contained: injects Tailwind + widget CSS if missing
  * Loads on pages that include: <script src="/js/grok-chat-widget.js" defer></script>
  */
 ;(function () {
   if (document.getElementById('grok-chat-container')) return
+
+  function ensureTailwindAndCss() {
+    // 1) Ensure Tailwind is present (needed for Tailwind utility classes)
+    if (!document.querySelector('script[data-clu-tailwind="1"]')) {
+      var tw = document.createElement('script')
+      tw.src = 'https://cdn.tailwindcss.com'
+      tw.defer = true
+      tw.setAttribute('data-clu-tailwind', '1')
+      document.head.appendChild(tw)
+    }
+
+    // 2) Ensure widget isolation + mobile rules exist (match homepage)
+    if (!document.getElementById('clu-grok-widget-css')) {
+      var st = document.createElement('style')
+      st.id = 'clu-grok-widget-css'
+      st.textContent =
+        '/* Animation delay for second ping ring */\\n' +
+        '.animation-delay-700{animation-delay:700ms}\\n' +
+        '/* Isolate Grok chat widget from theme styles */\\n' +
+        '#grok-chat-container{all:initial;position:fixed;bottom:24px;right:24px;z-index:9999}\\n' +
+        '/* Mobile responsive adjustments */\\n' +
+        '@media (max-width:480px){#chat-window{width:100vw!important;height:100vh!important;max-height:100vh!important;bottom:0!important;right:0!important;border-radius:0!important}#grok-chat-container{bottom:16px!important;right:16px!important}}\\n'
+      document.head.appendChild(st)
+    }
+  }
+
+  ensureTailwindAndCss()
 
   var API = '/.netlify/functions/grok-chat'
 
