@@ -1,4 +1,5 @@
 import { getSupabaseClient } from './utils/supabase.js'
+import { verifyToken, hasRole } from './auth.js'
 
 function corsHeaders() {
   return {
@@ -9,20 +10,41 @@ function corsHeaders() {
   }
 }
 
-function requireAdminKey(event) {
-  const expected = process.env.ADMIN_API_KEY
-  if (!expected || String(expected).trim().length < 16) {
-    return { ok: false, error: 'Server misconfiguration: ADMIN_API_KEY not set (min 16 chars)' }
+// NEW: JWT-based authentication (replaces API key)
+function requireAuth(event) {
+  const authHeader = event.headers?.authorization || event.headers?.Authorization || ''
+
+  // Check for JWT token first
+  if (authHeader.startsWith('Bearer ')) {
+    const token = authHeader.slice(7).trim()
+    const user = verifyToken(token)
+
+    if (user) {
+      return { ok: true, user }
+    }
   }
 
-  const auth = event.headers?.authorization || event.headers?.Authorization || ''
-  const bearer = auth.startsWith('Bearer ') ? auth.slice(7).trim() : ''
-  const headerKey = event.headers?.['x-admin-key'] || event.headers?.['X-Admin-Key'] || ''
-  const qsKey = event.queryStringParameters?.apiKey || ''
+  // BACKWARDS COMPATIBILITY: Fall back to API key if JWT not provided
+  // This allows gradual migration - remove this block after all users migrated
+  const apiKey = process.env.ADMIN_API_KEY
+  if (apiKey && String(apiKey).trim().length >= 16) {
+    const headerKey = event.headers?.['x-admin-key'] || event.headers?.['X-Admin-Key'] || ''
+    const qsKey = event.queryStringParameters?.apiKey || ''
+    const providedKey = authHeader.slice(7).trim() || headerKey || qsKey
 
-  const provided = bearer || headerKey || qsKey
-  if (!provided || provided !== expected) {
-    return { ok: false, error: 'Unauthorized' }
+    if (providedKey === apiKey) {
+      // API key users get admin role by default
+      return { ok: true, user: { username: 'legacy_api_key', role: 'admin' } }
+    }
+  }
+
+  return { ok: false, error: 'Unauthorized - Please login' }
+}
+
+// Check if user has permission for write operations
+function requireRole(user, requiredRole) {
+  if (!hasRole(user, requiredRole)) {
+    return { ok: false, error: `Insufficient permissions - ${requiredRole} role required` }
   }
   return { ok: true }
 }
@@ -43,7 +65,7 @@ export const handler = async (event) => {
     return { statusCode: 200, headers, body: '' }
   }
 
-  const auth = requireAdminKey(event)
+  const auth = requireAuth(event)
   if (!auth.ok) {
     return {
       statusCode: 401,
@@ -51,6 +73,8 @@ export const handler = async (event) => {
       body: JSON.stringify({ error: auth.error })
     }
   }
+
+  const currentUser = auth.user // Available for all endpoints
 
   if (!isSupabaseConfigured()) {
     return {
@@ -114,6 +138,16 @@ export const handler = async (event) => {
     }
 
     if (event.httpMethod === 'POST' && resource === 'partners') {
+      // Require admin role for creating/updating partners
+      const roleCheck = requireRole(currentUser, 'admin')
+      if (!roleCheck.ok) {
+        return {
+          statusCode: 403,
+          headers,
+          body: JSON.stringify({ error: roleCheck.error })
+        }
+      }
+
       const body = JSON.parse(event.body || '{}')
       const platform_key = String(body.platform_key || '').trim().toLowerCase()
       const affiliate_url = String(body.affiliate_url || '').trim()
@@ -151,6 +185,16 @@ export const handler = async (event) => {
     }
 
     if (event.httpMethod === 'PATCH' && resource === 'partners') {
+      // Require admin role for updating partners
+      const roleCheck = requireRole(currentUser, 'admin')
+      if (!roleCheck.ok) {
+        return {
+          statusCode: 403,
+          headers,
+          body: JSON.stringify({ error: roleCheck.error })
+        }
+      }
+
       const id = qs.id
       if (!id) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: 'id query param required' }) }
@@ -178,6 +222,16 @@ export const handler = async (event) => {
     }
 
     if (event.httpMethod === 'PATCH' && resource === 'click') {
+      // Require admin role for marking conversions (viewers can only view)
+      const roleCheck = requireRole(currentUser, 'admin')
+      if (!roleCheck.ok) {
+        return {
+          statusCode: 403,
+          headers,
+          body: JSON.stringify({ error: roleCheck.error })
+        }
+      }
+
       const id = qs.id
       if (!id) {
         return { statusCode: 400, headers, body: JSON.stringify({ error: 'id query param required' }) }
