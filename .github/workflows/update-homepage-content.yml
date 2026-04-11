@@ -1,20 +1,15 @@
 name: Update Homepage Content
-
 on:
-  # Run every 6 hours
   schedule:
     - cron: '0 */6 * * *'
-
-  # Allow manual trigger
   workflow_dispatch:
 
 permissions:
-    contents: write
+  contents: write
 
 jobs:
   update-homepage-content:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -46,14 +41,7 @@ jobs:
         run: |
           git add content/homepage/*.json
           if [[ -n $(git status -s) ]]; then
-            git commit -m "$(cat <<'EOF'
-          Update homepage content sections
-
-          🤖 Generated with Claude Code
-
-          Co-Authored-By: Claude <noreply@anthropic.com>
-          EOF
-          )"
+            git commit -m "Update homepage content sections"
             echo "✅ Homepage content committed"
           else
             echo "ℹ️ No homepage content changes to commit"
@@ -61,7 +49,7 @@ jobs:
 
       - name: Push changes to repository
         run: |
-          if [[ -n $(git status -s --cached) ]]; then
+          if [[ -n $(git status --cached -s) ]]; then
             git push origin ${{ github.ref_name }}
             echo "✅ Homepage content pushed successfully"
           else
