@@ -1,40 +1,40 @@
 {
   "featured": {
-    "title": "Trustpilot partners with big model vendors",
+    "title": "Railway secures $100 million to challenge AWS with AI-native cloud infrastructure",
     "category": "AI News",
     "categorySlug": "ai-news",
-    "date": "March 18, 2026",
-    "slug": "/trustpilot-partners-with-big-model-vendors/",
-    "imageUrl": "/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-1024x683.webp"
+    "date": "April 11, 2026",
+    "slug": "/railway-secures-100-million-to-challenge-aws-with-ai-native-cloud-infrastructure",
+    "imageUrl": "/wp-content/uploads/2026/03/ai-news-1.jpg"
   },
   "items": [
     {
-      "title": "Google AI Releases WAXAL: A Multilingual African Speech Dataset for Training Automatic Speech Recognition and Text-to-Speech Models",
+      "title": "Claude Code costs up to $200 a month. Goose does the same thing for free.",
       "category": "AI News",
       "categorySlug": "ai-news",
-      "slug": "/google-ai-releases-waxal-a-multilingual-african-speech-dataset-for-training-automatic-speech-recognition-and-text-to-speech-models/",
-      "imageUrl": "/wp-content/uploads/2026/03/Google-AI-Releases-WAXAL-A-Multilingual-African-Speech-Dataset-for-450x321.png"
+      "slug": "/claude-code-costs-up-to-200-a-month-goose-does-the-same-thing-for-free",
+      "imageUrl": "/wp-content/uploads/2026/03/ai-news-2.jpg"
     },
     {
-      "title": "U.S. Holds Off on New AI Chip Export Rules in Surprise Move in Tech Export Wars",
+      "title": "Listen Labs raises $69M after viral billboard hiring stunt to scale AI customer interviews",
       "category": "AI News",
       "categorySlug": "ai-news",
-      "slug": "/u-s-holds-off-on-new-ai-chip-export-rules-in-surprise-move-in-tech-export-wars/",
-      "imageUrl": "/wp-content/uploads/2026/03/US-Holds-Off-on-New-AI-Chip-Export-Rules-in-450x225.jpg"
+      "slug": "/listen-labs-raises-69m-after-viral-billboard-hiring-stunt-to-scale-ai-customer-interviews",
+      "imageUrl": "/wp-content/uploads/2026/03/ai-news-3.jpg"
     },
     {
-      "title": "Can AI help predict which heart-failure patients will worsen within a year? | MIT News",
+      "title": "Anthropic launches Cowork, a Claude Desktop agent that works in your files — no coding required",
       "category": "AI News",
       "categorySlug": "ai-news",
-      "slug": "/can-ai-help-predict-which-heart-failure-patients-will-worsen-within-a-year-mit-news/",
-      "imageUrl": "/wp-content/uploads/2026/03/Can-AI-help-predict-which-heart-failure-patients-will-worsen-within-450x300.jpg"
+      "slug": "/anthropic-launches-cowork-a-claude-desktop-agent-that-works-in-your-files-no-coding-required",
+      "imageUrl": "/wp-content/uploads/2026/03/ai-news-4.jpg"
     },
     {
-      "title": "NanoClaw and Docker partner to make sandboxes the safest way for enterprises to deploy AI agents",
+      "title": "The creator of Claude Code just revealed his workflow, and developers are losing their minds",
       "category": "AI News",
       "categorySlug": "ai-news",
-      "slug": "/nanoclaw-and-docker-partner-to-make-sandboxes-the-safest-way-for-enterprises-to-deploy-ai-agents/",
-      "imageUrl": "/wp-content/uploads/2026/03/NanoClaw-and-Docker-partner-to-make-sandboxes-the-safest-way.png"
+      "slug": "/the-creator-of-claude-code-just-revealed-his-workflow-and-developers-are-losing-their-minds",
+      "imageUrl": "/wp-content/uploads/2026/03/ai-news-5.jpg"
     }
   ]
 }

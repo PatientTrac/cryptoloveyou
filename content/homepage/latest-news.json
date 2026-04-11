@@ -1,40 +1,58 @@
 {
   "items": [
     {
-      "title": "Oracle's \"Halo Effect\" Is the Real Deal. But is the AI Growth Stock a Buy in March?",
-      "excerpt": "Key PointsOracle (NYSE: ORCL) is no longer a stodgy database and data management software company. Aggressive investments in…",
-      "category": "Stock News",
-      "categorySlug": "stock-news",
-      "date": "March 18, 2026",
-      "slug": "/oracles-halo-effect-is-the-real-deal-but-is-the-ai-growth-stock-a-buy-in-march/",
-      "imageUrl": "/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-450x225.jpg"
-    },
-    {
-      "title": "Trustpilot partners with big model vendors",
-      "excerpt": "Trustpilot is reported to be pursuing partnerships with large eCommerce companies as AI-driven shopping gains traction. In an…",
-      "category": "AI News",
-      "categorySlug": "ai-news",
-      "date": "March 18, 2026",
-      "slug": "/trustpilot-partners-with-big-model-vendors/",
-      "imageUrl": "/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-450x300.webp"
-    },
-    {
-      "title": "Bitcoin Price Rally To $79K Would Make Spot ETF Holders Whole Again",
-      "excerpt": "Bitcoin (BTC) is closing in on its average entry price for US spot BTC exchange-traded fund (ETF) investors…",
-      "category": "Bitcoin",
-      "categorySlug": "crypto-news/bitcoin",
-      "date": "March 18, 2026",
-      "slug": "/bitcoin-price-rally-to-79k-would-make-spot-etf-holders-whole-again/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Price-Rally-To-79K-Would-Make-Spot-ETF-Holders-450x300.jpg"
-    },
-    {
-      "title": "DAOs May Need To Ditch Decentralization To Court Institutions",
-      "excerpt": "Decentralized autonomous organizations (DAOs) were built on an ideological premise that is now running up against the realities…",
+      "title": "AIvalanche DeFAI Agents Faces Minor Correction as AI-Powered DeFi Sector Consolidates",
+      "excerpt": "AVAXAI experiences a slight 0.29% decline amid broader market stabilization in the artificial intelligence DeFi space. The token continues to trade at micro-cap levels as investors assess the long-term potential of AI-driven decentralized finance protocols.",
       "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
-      "date": "March 17, 2026",
-      "slug": "/daos-may-need-to-ditch-decentralization-to-court-institutions/",
-      "imageUrl": "/wp-content/uploads/2026/03/DAOs-May-Need-To-Ditch-Decentralization-To-Court-Institutions-450x300.jpg"
+      "categorySlug": "defi",
+      "date": "April 11, 2026",
+      "slug": "/aivalanche-defai-agents-correction-ai-defi-consolidation",
+      "imageUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Micro-Cap Altcoins Show Stability as USCR3 and NeProdam Hold Ground",
+      "excerpt": "Several ultra-low market cap tokens including USCR3 and NEPRODAM maintain flat trading patterns in today's session. Market observers note the unusual stability in typically volatile micro-cap segments as institutional focus shifts to established cryptocurrencies.",
+      "category": "Altcoins",
+      "categorySlug": "altcoins",
+      "date": "April 11, 2026",
+      "slug": "/micro-cap-altcoins-stability-uscr3-neprodam-hold",
+      "imageUrl": "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Blockchain Gaming Tokens Experience Mixed Signals as Trump Challenge Maintains Position",
+      "excerpt": "Political-themed cryptocurrency DONICE shows sideways movement as the broader blockchain gaming and meme token sector searches for direction. Analysts suggest micro-cap political tokens may see increased volatility approaching election cycles.",
+      "category": "Blockchain",
+      "categorySlug": "blockchain",
+      "date": "April 11, 2026",
+      "slug": "/blockchain-gaming-tokens-mixed-trump-challenge-stable",
+      "imageUrl": "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Bitcoin's Institutional Adoption Continues Despite Micro-Cap Token Stagnation",
+      "excerpt": "While ultra-low market cap tokens like Deep China remain flat, Bitcoin's underlying infrastructure continues attracting enterprise investment. The stark contrast highlights the growing divide between established cryptocurrencies and speculative micro-cap projects.",
+      "category": "Bitcoin",
+      "categorySlug": "bitcoin",
+      "date": "April 11, 2026",
+      "slug": "/bitcoin-institutional-adoption-micro-cap-stagnation-contrast",
+      "imageUrl": "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Ethereum Layer-2 Solutions Overshadow Commodity-Backed Tokens Like MEREN COFFEE",
+      "excerpt": "As Ethereum scaling solutions gain traction, niche commodity-backed cryptocurrencies such as MRNCF show minimal movement. The focus on infrastructure development appears to be drawing attention away from experimental tokenization projects.",
+      "category": "Ethereum",
+      "categorySlug": "ethereum",
+      "date": "April 11, 2026",
+      "slug": "/ethereum-layer2-overshadow-commodity-tokens-meren-coffee",
+      "imageUrl": "https://images.unsplash.com/photo-1639322537228-f710d846310a?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "DeFi Market Maturation Leaves Experimental Tokens in Consolidation Phase",
+      "excerpt": "The decentralized finance sector's evolution toward institutional-grade protocols has left many experimental tokens in extended consolidation periods. Projects like COMMUNIZM and others trade at fraction-of-penny levels as the market prioritizes proven DeFi infrastructure.",
+      "category": "DeFi",
+      "categorySlug": "defi",
+      "date": "April 11, 2026",
+      "slug": "/defi-market-maturation-experimental-tokens-consolidation",
+      "imageUrl": "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?w=800&h=400&fit=crop"
     }
   ]
 }
