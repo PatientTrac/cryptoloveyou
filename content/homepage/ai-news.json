@@ -9,17 +9,17 @@
   },
   "items": [
     {
-      "title": "Claude Code costs up to $200 a month. Goose does the same thing for free.",
-      "category": "AI News",
-      "categorySlug": "ai-news",
-      "slug": "/claude-code-costs-up-to-200-a-month-goose-does-the-same-thing-for-free",
-      "imageUrl": "/wp-content/uploads/2026/03/ai-news-2.jpg"
-    },
-    {
       "title": "Listen Labs raises $69M after viral billboard hiring stunt to scale AI customer interviews",
       "category": "AI News",
       "categorySlug": "ai-news",
       "slug": "/listen-labs-raises-69m-after-viral-billboard-hiring-stunt-to-scale-ai-customer-interviews",
+      "imageUrl": "/wp-content/uploads/2026/03/ai-news-2.jpg"
+    },
+    {
+      "title": "Claude Code costs up to $200 a month. Goose does the same thing for free.",
+      "category": "AI News",
+      "categorySlug": "ai-news",
+      "slug": "/claude-code-costs-up-to-200-a-month-goose-does-the-same-thing-for-free",
       "imageUrl": "/wp-content/uploads/2026/03/ai-news-3.jpg"
     },
     {
@@ -30,10 +30,10 @@
       "imageUrl": "/wp-content/uploads/2026/03/ai-news-4.jpg"
     },
     {
-      "title": "The creator of Claude Code just revealed his workflow, and developers are losing their minds",
+      "title": "Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in workplace AI",
       "category": "AI News",
       "categorySlug": "ai-news",
-      "slug": "/the-creator-of-claude-code-just-revealed-his-workflow-and-developers-are-losing-their-minds",
+      "slug": "/salesforce-rolls-out-new-slackbot-ai-agent-as-it-battles-microsoft-and-google-in-workplace-ai",
       "imageUrl": "/wp-content/uploads/2026/03/ai-news-5.jpg"
     }
   ]
