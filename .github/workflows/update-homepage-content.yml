@@ -41,7 +41,14 @@ jobs:
         run: |
           git add content/homepage/*.json
           if [[ -n $(git status -s) ]]; then
-            git commit -m "Update homepage content sections"
+            git commit -m "$(cat <<'EOF'
+          Update homepage content sections
+
+          🤖 Generated with Claude Code
+
+          Co-Authored-By: Claude <noreply@anthropic.com>
+          EOF
+          )"
             echo "✅ Homepage content committed"
           else
             echo "ℹ️ No homepage content changes to commit"
@@ -49,9 +56,5 @@ jobs:
 
       - name: Push changes to repository
         run: |
-          if [[ -n $(git status --cached -s) ]]; then
-            git push origin ${{ github.ref_name }}
-            echo "✅ Homepage content pushed successfully"
-          else
-            echo "ℹ️ No changes to push"
-          fi
+          git push origin ${{ github.ref_name }}
+          echo "✅ Homepage content pushed successfully"

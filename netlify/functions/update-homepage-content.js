@@ -44,21 +44,33 @@ async function fetchEURRate() {
 // Fetch top coins from LunarCrush for ticker
 async function fetchTickerData() {
   const apiKey = requireEnv('LUNARCRUSH_API_KEY')
-  const url = `https://lunarcrush.com/api4/public/coins/list/v1?key=${encodeURIComponent(apiKey)}&limit=10&sort=market_cap&desc=true`
 
+  // Use list endpoint with filtering (more efficient, avoids rate limits)
+  const url = `https://lunarcrush.com/api4/public/coins/list/v1?key=${encodeURIComponent(apiKey)}&limit=100&sort=market_cap&desc=true`
   const res = await fetch(url, { headers: { Accept: 'application/json' } })
+
   if (!res.ok) {
     throw new Error(`LunarCrush ticker error: ${res.status} ${res.statusText}`)
   }
 
   const json = await res.json()
-  const coins = json?.data || []
+  const allCoins = json?.data || []
+
+  // Filter to top 10 by market cap rank with actual price data
+  const topCoins = ['BTC', 'ETH', 'USDT', 'XRP', 'BNB', 'USDC', 'SOL', 'TRX', 'STETH', 'ADA']
+  const coinData = allCoins
+    .filter(coin =>
+      topCoins.includes(coin.symbol) &&
+      coin.price &&
+      parseFloat(coin.price) > 0
+    )
+    .slice(0, 10)
 
   // Get live EUR/USD rate
   const eurRate = await fetchEURRate()
   console.log(`Using EUR rate: ${eurRate}`)
 
-  return coins.map(coin => ({
+  return coinData.map(coin => ({
     id: coin.id || coin.symbol?.toLowerCase(),
     name: coin.name,
     symbol: coin.symbol,
@@ -66,7 +78,7 @@ async function fetchTickerData() {
     price_usd: parseFloat(coin.price || 0).toFixed(2),
     change_24h: parseFloat(coin.percent_change_24h || 0).toFixed(2),
     image: coin.image || `https://coin-images.coingecko.com/coins/images/1/thumb/${coin.symbol?.toLowerCase()}.png`
-  }))
+  })).filter(coin => parseFloat(coin.price_usd) > 0) // Only include coins with actual prices
 }
 
 // Fetch trending crypto topics from LunarCrush
