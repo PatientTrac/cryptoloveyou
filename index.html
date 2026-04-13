@@ -2022,61 +2022,8 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
     }
 </script>
 <!-- ==================== END COOKIE CONSENT ==================== -->
-<script>
-(function () {
-	var LABELS = { en: 'English', fr: 'Français', de: 'Deutsch', pt: 'Português', es: 'Español', zh: '中文', ru: 'Русский' };
-	var FLAGS = { en: '🇬🇧', fr: '🇫🇷', de: '🇩🇪', pt: '🇵🇹', es: '🇪🇸', zh: '🇨🇳', ru: '🇷🇺' };
-	var NAV_LANG = { en: 'Language', fr: 'Langue', de: 'Sprache', pt: 'Idioma', es: 'Idioma', zh: '语言', ru: 'Язык' };
-	function readCookieLang() {
-		var ck = document.cookie.match(/(?:^|;\s*)nf_lang=([^;]+)/);
-		if (!ck) return null;
-		var c = decodeURIComponent(ck[1]).replace(/"/g, '').split('-')[0].toLowerCase();
-		return LABELS[c] ? c : null;
-	}
-	function resolveLocale() {
-		var m = location.pathname.match(/^\/(en|fr|de|pt|es|zh|ru)(\/|$)/);
-		if (m) return m[1];
-		var ckCode = readCookieLang();
-		var p = location.pathname || '/';
-		/* Root homepage is the English main site — label as English unless user saved another preference */
-		if (p === '/' || p === '/index.html') {
-			if (ckCode) return ckCode;
-			return 'en';
-		}
-		if (ckCode) return ckCode;
-		var langs = navigator.languages || [navigator.language || 'en'];
-		for (var i = 0; i < langs.length; i++) {
-			var code = (langs[i] || '').split('-')[0].toLowerCase();
-			if (LABELS[code]) return code;
-		}
-		return 'en';
-	}
-	function apply() {
-		var loc = resolveLocale();
-		if (!LABELS[loc]) loc = 'en';
-		document.querySelectorAll('.clu-lang-switch .clu-lang-label').forEach(function (el) {
-			el.textContent = LABELS[loc];
-		});
-		document.querySelectorAll('.clu-lang-switch .clu-lang-flag').forEach(function (el) {
-			el.textContent = FLAGS[loc];
-		});
-		document.querySelectorAll('.clu-lang-switch .clu-lang-btn').forEach(function (btn) {
-			btn.setAttribute('aria-label', (NAV_LANG[loc] || NAV_LANG.en) + ': ' + LABELS[loc]);
-		});
-		document.querySelectorAll('.clu-lang-switch[role="navigation"]').forEach(function (el) {
-			el.setAttribute('aria-label', NAV_LANG[loc] || NAV_LANG.en);
-		});
-	}
-	if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', apply);
-	else apply();
-	document.querySelectorAll('.clu-lang-menu a[data-clu-lang]').forEach(function (link) {
-		link.addEventListener('click', function () {
-			var code = this.getAttribute('data-clu-lang');
-			if (code) document.cookie = 'nf_lang=' + encodeURIComponent(code) + '; path=/; max-age=31536000; SameSite=Lax';
-		});
-	});
-})();
-</script>
+<!-- Language Switcher + Auto-detect + Root Redirect (shared module) -->
+<script src="/assets/js/lang-switcher.js"></script>
 
 <!-- Grok AI Chatbot Widget -->
 <script src="/js/grok-chat-widget.js" defer></script>

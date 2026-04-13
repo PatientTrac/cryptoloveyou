@@ -3,6 +3,46 @@
   command = "echo 'Static site - no build needed'"
   functions = "netlify/functions"
 
+# ── Language detection redirects (server-side Accept-Language negotiation) ──
+# These fire BEFORE the client-side JS, giving a seamless first-visit experience.
+# Cookie override (nf_lang) is handled client-side by /assets/js/lang-switcher.js
+
+[[redirects]]
+  from = "/"
+  to = "/fr/"
+  status = 302
+  conditions = {Language = ["fr", "fr-FR", "fr-BE", "fr-CH", "fr-CA"]}
+
+[[redirects]]
+  from = "/"
+  to = "/de/"
+  status = 302
+  conditions = {Language = ["de", "de-DE", "de-AT", "de-CH"]}
+
+[[redirects]]
+  from = "/"
+  to = "/pt/"
+  status = 302
+  conditions = {Language = ["pt", "pt-BR", "pt-PT"]}
+
+[[redirects]]
+  from = "/"
+  to = "/es/"
+  status = 302
+  conditions = {Language = ["es", "es-ES", "es-MX", "es-AR", "es-CO", "es-CL"]}
+
+[[redirects]]
+  from = "/"
+  to = "/zh/"
+  status = 302
+  conditions = {Language = ["zh", "zh-CN", "zh-TW", "zh-HK"]}
+
+[[redirects]]
+  from = "/"
+  to = "/ru/"
+  status = 302
+  conditions = {Language = ["ru", "ru-RU", "ru-UA"]}
+
 [[redirects]]
   from = "/wp-admin/*"
   to = "/404.html"
