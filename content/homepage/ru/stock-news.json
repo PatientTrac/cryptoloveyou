@@ -1,0 +1,30 @@
+{
+  "featured": {
+    "title": "U.S. Фьючерсы падают на фоне блокады Ирана и новых геополитических потрясений",
+    "category": "Новости акций",
+    "categorySlug": "stock-news",
+    "date": "April 13, 2026",
+    "slug": "/us-futures-tumble-iran-blockade-geopolitical-shock/",
+    "imageUrl": "/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-450x225.jpg"
+  },
+  "items": [
+    {
+      "title": "Morgan Stanley считает, что доходы защитят S&P 500 от войны с Ираном",
+      "date": "April 13, 2026",
+      "slug": "/morgan-stanley-earnings-shield-sp500-iran-war/",
+      "imageUrl": "/wp-content/uploads/2026/03/Stocks-Settle-Sharply-Higher-as-Crude-Oil-Slumps-300x200.jpg"
+    },
+    {
+      "title": "История предполагает, что акции могут неожиданно вырасти при президенте Дональде Трампе",
+      "date": "April 13, 2026",
+      "slug": "/stocks-surprise-upside-president-trump-history/",
+      "imageUrl": "/wp-content/uploads/2026/03/AI-Biggest-Surprise-is-Coming-These-are-the-Stocks-to-300x169.jpg"
+    },
+    {
+      "title": "Norwegian Cruise Line Holdings Ltd. (NCLH) упала из-за слабых прогнозов и геополитической нестабильности",
+      "date": "April 13, 2026",
+      "slug": "/norwegian-cruise-nclh-weak-guidance-geopolitical/",
+      "imageUrl": "/wp-content/uploads/2026/03/SBET-Quantitative-Stock-Analysis-Nasdaq-300x150.jpg"
+    }
+  ]
+}

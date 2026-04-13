@@ -1,0 +1,40 @@
+{
+  "featured": {
+    "title": "Railway获得1亿美元融资，以AI原生云基础设施挑战AWS",
+    "category": "AI新闻",
+    "categorySlug": "ai-news",
+    "date": "April 13, 2026",
+    "slug": "/railway-secures-100-million-challenge-aws-ai-native-cloud/",
+    "imageUrl": "/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-1024x683.webp"
+  },
+  "items": [
+    {
+      "title": "Claude Code每月最高收费200美元。Goose免费提供相同功能。",
+      "category": "AI新闻",
+      "categorySlug": "ai-news",
+      "slug": "/claude-code-costs-200-month-goose-does-same-free/",
+      "imageUrl": "/wp-content/uploads/2026/03/Google-AI-Releases-WAXAL-A-Multilingual-African-Speech-Dataset-for-450x321.png"
+    },
+    {
+      "title": "Listen Labs在病毒式招聘广告牌活动后筹集6900万美元，用于扩展AI客户访谈",
+      "category": "AI新闻",
+      "categorySlug": "ai-news",
+      "slug": "/listen-labs-raises-69m-viral-billboard-stunt-ai-interviews/",
+      "imageUrl": "/wp-content/uploads/2026/03/US-Holds-Off-on-New-AI-Chip-Export-Rules-in-450x225.jpg"
+    },
+    {
+      "title": "Salesforce推出新的Slackbot AI代理，在职场AI领域与Microsoft和Google竞争",
+      "category": "AI新闻",
+      "categorySlug": "ai-news",
+      "slug": "/salesforce-rolls-out-slackbot-ai-agent-battles-microsoft-google/",
+      "imageUrl": "/wp-content/uploads/2026/03/Can-AI-help-predict-which-heart-failure-patients-will-worsen-within-450x300.jpg"
+    },
+    {
+      "title": "Anthropic推出Cowork，一款在你的文件中工作的Claude Desktop代理——无需编码",
+      "category": "AI新闻",
+      "categorySlug": "ai-news",
+      "slug": "/anthropic-launches-cowork-claude-desktop-agent-no-coding/",
+      "imageUrl": "/wp-content/uploads/2026/03/NanoClaw-and-Docker-partner-to-make-sandboxes-the-safest-way.png"
+    }
+  ]
+}
