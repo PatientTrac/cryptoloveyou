@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "RaveDAO Explodes 267% as Community Governance Token Gains Massive Traction",
-      "excerpt": "RAVE token surges to $9.47 in unprecedented rally as decentralized autonomous organization attracts significant investor interest. The dramatic price movement signals growing confidence in community-driven DeFi protocols.",
+      "title": "RaveDAO Explodes 260% as Community Governance Token Gains Massive Traction",
+      "excerpt": "RaveDAO (RAVE) surged to $9.98 with an extraordinary 260.65% gain in 24 hours, marking one of the most significant rallies in the DeFi governance space. The dramatic price movement comes amid increased community participation and new protocol developments.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 13, 2026",
-      "slug": "/ravedao-surges-267-percent-community-governance/",
+      "slug": "/ravedao-explodes-260-percent-community-governance/",
       "imageUrl": "/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-450x270.jpg"
     },
     {
-      "title": "Bitcoin Holds Strong Above $70K Despite Minor Correction",
-      "excerpt": "BTC trades at $70,870 with minimal 0.84% decline as institutional demand remains robust. Market analysts view the slight pullback as healthy consolidation before potential new highs.",
-      "category": "Bitcoin",
-      "categorySlug": "crypto-news/bitcoin",
+      "title": "Polkadot Faces Headwinds as DOT Drops 4.79% to $1.17 Amid Market Uncertainty",
+      "excerpt": "Polkadot's native token DOT declined to $1.17, down 4.79% in the last 24 hours as broader blockchain infrastructure tokens face selling pressure. Market analysts point to concerns over parachain adoption rates and competitive positioning.",
+      "category": "Blockchain",
+      "categorySlug": "crypto-news/blockchain",
       "date": "April 13, 2026",
-      "slug": "/bitcoin-maintains-70k-level-minor-decline/",
+      "slug": "/polkadot-faces-headwinds-dot-drops-market-uncertainty/",
       "imageUrl": "/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-450x300.jpg"
     },
     {
-      "title": "Infinex Protocol Rallies 32% as Cross-Chain Trading Platform Gains Momentum",
-      "excerpt": "INX token climbs to $0.017767 following successful testnet deployment and partnership announcements. The DeFi platform's innovative approach to cross-chain liquidity is attracting developer interest.",
+      "title": "Infinex Rallies 30% as Decentralized Exchange Protocol Gains Momentum",
+      "excerpt": "Infinex (INX) jumped 30.11% to $0.017471 as the decentralized exchange protocol attracts new liquidity providers and trading volume. The surge reflects growing confidence in the platform's innovative approach to cross-chain trading.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 13, 2026",
-      "slug": "/infinex-protocol-gains-32-percent-cross-chain/",
+      "slug": "/infinex-rallies-30-percent-dex-protocol-momentum/",
       "imageUrl": "/wp-content/uploads/2026/03/Aave-Rift-Bitcoin-Rebound-and-ETF-Inflows-Dominate-the-Crypto-300x200.jpg"
     },
     {
-      "title": "Polkadot Faces Headwinds as DOT Drops 5.5% Amid Market Uncertainty",
-      "excerpt": "DOT trades at $1.16 following broader altcoin weakness and concerns over parachain adoption rates. Despite recent challenges, developers continue building on the multi-chain ecosystem.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
+      "title": "Bittensor Holds Steady at $261.75 as AI-Blockchain Integration Continues",
+      "excerpt": "Bittensor (TAO) remained relatively stable at $261.75 with only a minor 0.34% decline, demonstrating resilience in the AI-blockchain sector. The project continues to develop its decentralized machine learning infrastructure despite broader market volatility.",
+      "category": "Blockchain",
+      "categorySlug": "crypto-news/blockchain",
       "date": "April 13, 2026",
-      "slug": "/polkadot-dot-drops-5-percent-market-pressure/",
+      "slug": "/bittensor-holds-steady-ai-blockchain-integration/",
       "imageUrl": "/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-300x180.jpg"
     },
     {
-      "title": "Bittensor AI Network Consolidates as TAO Dips Slightly to $261",
-      "excerpt": "TAO experiences minor 1.27% decline as the decentralized AI marketplace continues expanding its machine learning capabilities. The network's unique approach to AI monetization maintains long-term investor confidence.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
+      "title": "Monad Shows Modest Growth at $0.033818 as Layer-1 Competition Intensifies",
+      "excerpt": "Monad (MON) posted a 1.90% gain to $0.033818 as the layer-1 blockchain project continues development of its high-performance network. The modest uptick comes as investors evaluate next-generation blockchain solutions in an increasingly competitive landscape.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
       "date": "April 13, 2026",
-      "slug": "/bittensor-ai-network-consolidates-261-dollars/",
+      "slug": "/monad-modest-growth-layer-1-competition-intensifies/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     },
     {
-      "title": "Monad Blockchain Maintains Stability as MON Trades Flat at $0.033",
-      "excerpt": "MON shows minimal volatility with 0.44% decline as the high-performance blockchain focuses on technical development. The project's emphasis on scalability continues attracting enterprise partnerships.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
+      "title": "Hyperliquid Advances 3.62% to $41.82 as Perpetual Trading Platform Expands",
+      "excerpt": "Hyperliquid (HYPE) climbed 3.62% to $41.82 as the decentralized perpetual trading platform continues to attract institutional interest. The price increase reflects growing adoption of the protocol's advanced derivatives trading features.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
       "date": "April 13, 2026",
-      "slug": "/monad-blockchain-stability-technical-development/",
+      "slug": "/hyperliquid-advances-perpetual-trading-platform-expands/",
       "imageUrl": "/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-300x200.jpg"
     }
   ]
