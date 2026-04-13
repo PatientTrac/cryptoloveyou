@@ -8,7 +8,9 @@
 (function() {
   'use strict';
 
-  const CONTENT_BASE = '/content/homepage';
+  // Detect language from URL path (e.g. /es/, /fr/) and use lang-specific content if available
+  const _pathLang = (location.pathname.match(/^\/(en|fr|de|pt|es|zh|ru)(\/|$)/) || [])[1] || 'en';
+  const CONTENT_BASE = _pathLang === 'en' ? '/content/homepage' : '/content/homepage/' + _pathLang;
   const EUR_SYMBOL = '€';
 
   // HTML ticker: map symbols to `data-live-price` slugs; otherwise use string `coin.id` (CoinGecko id) from ticker.json
@@ -389,11 +391,16 @@
     console.log(`✅ Ticker updated (${coins.length} coins)`);
   }
 
-  // Fetch JSON file
+  // Fetch JSON file — falls back to English if lang-specific file does not exist
   async function fetchJSON(filename) {
     try {
       const response = await fetch(`${CONTENT_BASE}/${filename}`, { cache: 'no-store' });
       if (!response.ok) {
+        // Fall back to English content
+        if (_pathLang !== 'en') {
+          const fallback = await fetch(`/content/homepage/${filename}`, { cache: 'no-store' });
+          if (fallback.ok) return await fallback.json();
+        }
         throw new Error(`HTTP ${response.status}`);
       }
       return await response.json();

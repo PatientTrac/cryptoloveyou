@@ -26,20 +26,19 @@
 /api/*                    /.netlify/functions/:splat          200
 /en/api/*                 /.netlify/functions/:splat          200
 
-# === LOCALE HOME = MAIN SITE (same index.html as /) ===
-# Until real translations exist, /fr/, /de/, … show the same homepage as /. /en/ is NOT listed — see below.
-/fr          /index.html   200!
-/fr/         /index.html   200!
-/de          /index.html   200!
-/de/         /index.html   200!
-/pt          /index.html   200!
-/pt/         /index.html   200!
-/es          /index.html   200!
-/es/         /index.html   200!
-/zh          /index.html   200!
-/zh/         /index.html   200!
-/ru          /index.html   200!
-/ru/         /index.html   200!
+# === LOCALE HOME — serve the correct translated index.html for each language ===
+/fr          /fr/index.html   200!
+/fr/         /fr/index.html   200!
+/de          /de/index.html   200!
+/de/         /de/index.html   200!
+/pt          /pt/index.html   200!
+/pt/         /pt/index.html   200!
+/es          /es/index.html   200!
+/es/         /es/index.html   200!
+/zh          /zh/index.html   200!
+/zh/         /zh/index.html   200!
+/ru          /ru/index.html   200!
+/ru/         /ru/index.html   200!
 
 # === LOCALE ABOUT / LEGAL — extensionless URLs (rewrite, URL stays clean) ===
 /en/about-us                 /en/about-us.html                 200
