@@ -83,6 +83,7 @@ async function testAuth() {
   // 4. Test password hash
   console.log('\n4️⃣  Testing password verification...');
   const bcrypt = require('bcryptjs');
+  const testPassword = process.env.ADMIN_TEST_PASSWORD || 'changeme123';
   const { data: user } = await supabase
     .from('admin_users')
     .select('password_hash')
@@ -90,7 +91,7 @@ async function testAuth() {
     .single();
 
   if (user) {
-    const isValid = await bcrypt.compare('changeme123', user.password_hash);
+    const isValid = await bcrypt.compare(testPassword, user.password_hash);
     if (isValid) {
       console.log('   ✅ Password hash verification works');
     } else {
@@ -108,7 +109,7 @@ async function testAuth() {
   console.log('\n🎉 Admin panel is ready to use!\n');
   console.log('Login at: http://localhost:8888/admin/login.html');
   console.log('Username: admin');
-  console.log('Password: changeme123\n');
+  console.log(`Password: ${testPassword}\n`);
 
   process.exit(0);
 }

@@ -40,7 +40,9 @@ jobs:
 
       - name: Commit homepage content changes
         run: |
+          # Homepage JSON + generated homepage-linked article pages ({slug}/index.html)
           git add content/homepage/*.json
+          git add */index.html || true
           if [[ -n $(git status -s) ]]; then
             git commit -m "$(cat <<'EOF'
           Update homepage content sections
