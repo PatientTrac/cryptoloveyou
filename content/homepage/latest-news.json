@@ -1,58 +1,58 @@
 {
   "items": [
     {
-      "title": "AIvalanche DeFAI Agents Surges 21% as AI-Powered DeFi Solutions Gain Traction",
-      "excerpt": "AVAXAI token experiences significant growth amid rising interest in artificial intelligence integration within decentralized finance protocols. The project's innovative approach to automated DeFi strategies continues to attract institutional attention.",
+      "title": "AIvalanche DeFAI Agents Surges 20% as AI-Powered DeFi Gains Momentum",
+      "excerpt": "AVAXAI token rallies over 20% in 24 hours as investors show renewed interest in AI-driven decentralized finance protocols. The project combines artificial intelligence with DeFi mechanisms to optimize yield farming strategies.",
       "category": "DeFi",
       "categorySlug": "defi",
-      "date": "April 12, 2026",
-      "slug": "/aivalanche-defai-agents-surges-21-percent-ai-defi-solutions",
+      "date": "April 13, 2026",
+      "slug": "/aivalanche-defai-agents-surges-20-percent-ai-defi-momentum",
       "imageUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop"
     },
     {
-      "title": "Bitcoin Network Sees Record Hash Rate as Mining Infrastructure Expands Globally",
-      "excerpt": "The Bitcoin network reaches new security milestones with hash rate climbing to unprecedented levels. Major mining operations across North America and Europe report significant capacity additions despite regulatory challenges.",
-      "category": "Bitcoin",
-      "categorySlug": "bitcoin",
-      "date": "April 12, 2026",
-      "slug": "/bitcoin-network-record-hash-rate-mining-infrastructure-expansion",
-      "imageUrl": "https://images.unsplash.com/photo-1518546305927-5a555bb7020d?w=800&h=400&fit=crop"
-    },
-    {
-      "title": "Ethereum Layer 2 Solutions Process $2.3 Billion in Weekly Volume",
-      "excerpt": "Scaling solutions continue to dominate transaction activity as users seek lower fees and faster settlements. Arbitrum and Optimism lead the charge in institutional adoption for enterprise blockchain applications.",
-      "category": "Ethereum",
-      "categorySlug": "ethereum",
-      "date": "April 12, 2026",
-      "slug": "/ethereum-layer-2-solutions-process-2-3-billion-weekly-volume",
-      "imageUrl": "https://images.unsplash.com/photo-1644088379091-d574269d422f?w=800&h=400&fit=crop"
-    },
-    {
-      "title": "Micro-Cap Altcoins Show Consolidation Pattern as Market Awaits Direction",
-      "excerpt": "Several emerging tokens including USCR3, NEPRODAM, and DONICE maintain stable pricing amid broader market uncertainty. Analysts suggest accumulation phase may precede next major altcoin cycle.",
+      "title": "Micro-Cap Altcoins Show Mixed Signals Despite Market Stability",
+      "excerpt": "Several emerging altcoins including USCR3 and NeProdam maintain stable prices while trading volumes remain low. Market analysts suggest consolidation phase may precede next major movement.",
       "category": "Altcoins",
       "categorySlug": "altcoins",
-      "date": "April 12, 2026",
-      "slug": "/micro-cap-altcoins-consolidation-pattern-market-direction",
-      "imageUrl": "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?w=800&h=400&fit=crop"
+      "date": "April 13, 2026",
+      "slug": "/micro-cap-altcoins-mixed-signals-market-stability",
+      "imageUrl": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=400&fit=crop"
     },
     {
-      "title": "Blockchain Supply Chain Solutions Revolutionize Coffee Industry Transparency",
-      "excerpt": "New blockchain initiatives like MEREN COFFEE are transforming agricultural supply chains with immutable tracking systems. Major coffee retailers partner with crypto projects to ensure ethical sourcing and fair trade practices.",
+      "title": "Coffee Industry Tokenization Gains Traction with MEREN COFFEE Launch",
+      "excerpt": "MRNCF token represents growing trend of agricultural commodity tokenization on blockchain networks. The project aims to revolutionize coffee supply chain transparency and farmer compensation.",
       "category": "Blockchain",
       "categorySlug": "blockchain",
-      "date": "April 12, 2026",
-      "slug": "/blockchain-supply-chain-coffee-industry-transparency-revolution",
+      "date": "April 13, 2026",
+      "slug": "/coffee-industry-tokenization-meren-coffee-launch",
       "imageUrl": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&h=400&fit=crop"
     },
     {
-      "title": "Central Bank Digital Currencies Face Resistance as Privacy Concerns Mount",
-      "excerpt": "Growing opposition to government-issued digital currencies emerges across multiple jurisdictions as citizens demand financial privacy. Decentralized alternatives gain momentum amid increasing surveillance concerns.",
-      "category": "Blockchain",
-      "categorySlug": "blockchain",
-      "date": "April 12, 2026",
-      "slug": "/central-bank-digital-currencies-resistance-privacy-concerns",
-      "imageUrl": "https://images.unsplash.com/photo-1563013544-824ae1b704d3?w=800&h=400&fit=crop"
+      "title": "Political Meme Coins Maintain Low Volatility Ahead of Election Season",
+      "excerpt": "Trump Challenge and other politically-themed tokens show minimal price movement as traders await campaign developments. Historically, political tokens experience increased volatility during election periods.",
+      "category": "Altcoins",
+      "categorySlug": "altcoins",
+      "date": "April 13, 2026",
+      "slug": "/political-meme-coins-low-volatility-election-season",
+      "imageUrl": "https://images.unsplash.com/photo-1586095327813-7eb63632c5ad?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Ethereum Layer-2 Solutions Drive Innovation in Micro-Token Ecosystem",
+      "excerpt": "Ultra-low market cap tokens find new life on Ethereum scaling solutions as transaction costs decrease. Projects like Deep China demonstrate how L2 networks enable experimental tokenomics.",
+      "category": "Ethereum",
+      "categorySlug": "ethereum",
+      "date": "April 13, 2026",
+      "slug": "/ethereum-layer-2-solutions-micro-token-ecosystem",
+      "imageUrl": "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Bitcoin Dominance Shifts as Experimental Altcoins Seek Market Share",
+      "excerpt": "While Bitcoin maintains market leadership, emerging projects across various sectors challenge traditional crypto hierarchies. Analysts note increased experimentation in tokenized real-world assets.",
+      "category": "Bitcoin",
+      "categorySlug": "bitcoin",
+      "date": "April 13, 2026",
+      "slug": "/bitcoin-dominance-shifts-experimental-altcoins-market-share",
+      "imageUrl": "https://images.unsplash.com/photo-1518544866330-4e35c8b3fc95?w=800&h=400&fit=crop"
     }
   ]
 }
