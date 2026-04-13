@@ -1,40 +1,58 @@
 {
   "items": [
     {
-      "title": "Oracle's \"Halo Effect\" Is the Real Deal. But is the AI Growth Stock a Buy in March?",
-      "excerpt": "Key PointsOracle (NYSE: ORCL) is no longer a stodgy database and data management software company. Aggressive investments in…",
-      "category": "Stock News",
-      "categorySlug": "stock-news",
-      "date": "March 18, 2026",
-      "slug": "/oracles-halo-effect-is-the-real-deal-but-is-the-ai-growth-stock-a-buy-in-march/",
-      "imageUrl": "/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-450x225.jpg"
-    },
-    {
-      "title": "Trustpilot partners with big model vendors",
-      "excerpt": "Trustpilot is reported to be pursuing partnerships with large eCommerce companies as AI-driven shopping gains traction. In an…",
-      "category": "AI News",
-      "categorySlug": "ai-news",
-      "date": "March 18, 2026",
-      "slug": "/trustpilot-partners-with-big-model-vendors/",
-      "imageUrl": "/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-450x300.webp"
-    },
-    {
-      "title": "Bitcoin Price Rally To $79K Would Make Spot ETF Holders Whole Again",
-      "excerpt": "Bitcoin (BTC) is closing in on its average entry price for US spot BTC exchange-traded fund (ETF) investors…",
-      "category": "Bitcoin",
-      "categorySlug": "crypto-news/bitcoin",
-      "date": "March 18, 2026",
-      "slug": "/bitcoin-price-rally-to-79k-would-make-spot-etf-holders-whole-again/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Price-Rally-To-79K-Would-Make-Spot-ETF-Holders-450x300.jpg"
-    },
-    {
-      "title": "DAOs May Need To Ditch Decentralization To Court Institutions",
-      "excerpt": "Decentralized autonomous organizations (DAOs) were built on an ideological premise that is now running up against the realities…",
+      "title": "AIvalanche DeFAI Agents Surges 20% as AI-Powered DeFi Solutions Gain Traction",
+      "excerpt": "AVAXAI token jumps over 20% in 24 hours as investors show renewed interest in artificial intelligence integration within decentralized finance protocols. The project's AI-driven trading agents are attracting attention from institutional DeFi participants.",
       "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
-      "date": "March 17, 2026",
-      "slug": "/daos-may-need-to-ditch-decentralization-to-court-institutions/",
-      "imageUrl": "/wp-content/uploads/2026/03/DAOs-May-Need-To-Ditch-Decentralization-To-Court-Institutions-450x300.jpg"
+      "categorySlug": "defi",
+      "date": "April 13, 2026",
+      "slug": "/aivalanche-defai-agents-surges-20-percent-ai-defi-solutions",
+      "imageUrl": "https://images.unsplash.com/photo-1639762681485-074b7f938ba0?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Bitcoin Network Activity Reaches New Milestone as Layer 2 Solutions Expand",
+      "excerpt": "Bitcoin's ecosystem continues to evolve with innovative layer 2 implementations driving increased transaction volume. Recent developments in Bitcoin-based DeFi protocols are reshaping the narrative around the world's largest cryptocurrency.",
+      "category": "Bitcoin",
+      "categorySlug": "bitcoin",
+      "date": "April 13, 2026",
+      "slug": "/bitcoin-network-activity-milestone-layer-2-solutions-expand",
+      "imageUrl": "https://images.unsplash.com/photo-1621761191319-c6fb62004040?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Ethereum Smart Contract Upgrades Enable New Generation of Micro-Cap Altcoins",
+      "excerpt": "Recent Ethereum protocol improvements are facilitating the launch of innovative micro-cap projects including coffee-themed tokens and experimental governance models. These developments highlight the platform's continued evolution as a launchpad for diverse crypto projects.",
+      "category": "Ethereum",
+      "categorySlug": "ethereum",
+      "date": "April 13, 2026",
+      "slug": "/ethereum-smart-contract-upgrades-enable-micro-cap-altcoins",
+      "imageUrl": "https://images.unsplash.com/photo-1640340434855-6084b1f4901c?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Emerging Altcoins Show Stability Despite Market Volatility",
+      "excerpt": "Several new altcoin projects including USCR3, NeProdam, and Trump Challenge maintain stable pricing amid broader market fluctuations. Market analysts suggest this stability could indicate strong community support and strategic tokenomics design.",
+      "category": "Altcoins",
+      "categorySlug": "altcoins",
+      "date": "April 13, 2026",
+      "slug": "/emerging-altcoins-show-stability-market-volatility",
+      "imageUrl": "https://images.unsplash.com/photo-1642104704074-907c0698cbd9?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "Blockchain Technology Adoption Accelerates in Commodity Trading Sectors",
+      "excerpt": "Coffee and agricultural commodity markets are increasingly integrating blockchain solutions for supply chain transparency. Projects like MEREN COFFEE demonstrate how traditional industries are embracing tokenization for enhanced traceability.",
+      "category": "Blockchain",
+      "categorySlug": "blockchain",
+      "date": "April 13, 2026",
+      "slug": "/blockchain-adoption-accelerates-commodity-trading-sectors",
+      "imageUrl": "https://images.unsplash.com/photo-1559056199-641a0ac8b55e?w=800&h=400&fit=crop"
+    },
+    {
+      "title": "DeFi Protocol Innovations Drive Interest in Experimental Token Models",
+      "excerpt": "Decentralized finance platforms are experimenting with novel tokenomics structures, including geographically-themed projects and political prediction markets. These experimental approaches are testing new boundaries in decentralized governance and community engagement.",
+      "category": "DeFi",
+      "categorySlug": "defi",
+      "date": "April 13, 2026",
+      "slug": "/defi-protocol-innovations-experimental-token-models",
+      "imageUrl": "https://images.unsplash.com/photo-1642543492481-44e81e3914a7?w=800&h=400&fit=crop"
     }
   ]
 }
