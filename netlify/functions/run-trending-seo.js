@@ -1,9 +1,24 @@
 import { handler as scheduledHandler } from './scheduled-trending-seo.js'
+import { verifyToken, hasRole } from './auth.js'
 
 function requireEnv(name) {
   const v = process.env[name]
   if (!v) throw new Error(`Missing env var: ${name}`)
   return v
+}
+
+function isAuthorized(event) {
+  const authHeader = event.headers?.authorization || event.headers?.Authorization || ''
+  if (authHeader.startsWith('Bearer ')) {
+    const jwtToken = authHeader.slice(7).trim()
+    const decoded = verifyToken(jwtToken)
+    if (decoded && hasRole(decoded, 'admin')) return true
+  }
+  const body = JSON.parse(event.body || '{}')
+  const apiKey = body.apiKey
+  const expected = process.env.ARTICLE_GENERATION_API_KEY
+  if (apiKey && expected && apiKey === expected) return true
+  return false
 }
 
 export const handler = async (event) => {
@@ -26,13 +41,13 @@ export const handler = async (event) => {
   }
 
   try {
-    const body = JSON.parse(event.body || '{}')
-    const apiKey = body.apiKey
-    if (!apiKey || apiKey !== requireEnv('ARTICLE_GENERATION_API_KEY')) {
+    if (!isAuthorized(event)) {
       return {
         statusCode: 401,
         headers: corsHeaders(),
-        body: JSON.stringify({ error: 'Unauthorized: Invalid API key' })
+        body: JSON.stringify({
+          error: 'Unauthorized: admin JWT (Bearer) or body.apiKey matching ARTICLE_GENERATION_API_KEY required'
+        })
       }
     }
 

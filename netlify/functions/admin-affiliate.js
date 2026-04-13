@@ -130,10 +130,22 @@ export const handler = async (event) => {
         .order('platform_key', { ascending: true })
 
       if (error) throw error
+
+      // Add click counts for each partner
+      const partners = data || []
+      for (const partner of partners) {
+        const { count } = await supabase
+          .from('affiliate_clicks')
+          .select('*', { count: 'exact', head: true })
+          .eq('affiliate_platform', partner.platform_key)
+
+        partner.clicks = count || 0
+      }
+
       return {
         statusCode: 200,
         headers,
-        body: JSON.stringify({ ok: true, partners: data || [] })
+        body: JSON.stringify({ ok: true, partners })
       }
     }
 
@@ -167,6 +179,13 @@ export const handler = async (event) => {
         affiliate_url,
         label,
         active,
+        commission_model: body.commission_model != null ? String(body.commission_model) : null,
+        rate: body.rate != null ? String(body.rate) : null,
+        payment_method: body.payment_method != null ? String(body.payment_method) : null,
+        threshold: body.threshold != null ? String(body.threshold) : null,
+        payment_contact: body.payment_contact != null ? String(body.payment_contact) : null,
+        contact_name: body.contact_name != null ? String(body.contact_name) : null,
+        notes: body.notes != null ? String(body.notes) : null,
         updated_at: new Date().toISOString()
       }
 
@@ -204,6 +223,13 @@ export const handler = async (event) => {
       if (body.affiliate_url != null) patch.affiliate_url = String(body.affiliate_url).trim()
       if (body.label !== undefined) patch.label = body.label === null ? null : String(body.label)
       if (body.active !== undefined) patch.active = Boolean(body.active)
+      if (body.commission_model !== undefined) patch.commission_model = body.commission_model === null ? null : String(body.commission_model)
+      if (body.rate !== undefined) patch.rate = body.rate === null ? null : String(body.rate)
+      if (body.payment_method !== undefined) patch.payment_method = body.payment_method === null ? null : String(body.payment_method)
+      if (body.threshold !== undefined) patch.threshold = body.threshold === null ? null : String(body.threshold)
+      if (body.payment_contact !== undefined) patch.payment_contact = body.payment_contact === null ? null : String(body.payment_contact)
+      if (body.contact_name !== undefined) patch.contact_name = body.contact_name === null ? null : String(body.contact_name)
+      if (body.notes !== undefined) patch.notes = body.notes === null ? null : String(body.notes)
       patch.updated_at = new Date().toISOString()
 
       const { data, error } = await supabase

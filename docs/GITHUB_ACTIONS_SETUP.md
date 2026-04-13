@@ -7,7 +7,7 @@ This project uses GitHub Actions to automatically generate trending SEO articles
 ## How It Works
 
 1. **Scheduled Trigger**: GitHub Action runs daily at 9 AM UTC
-2. **Fetch Trending Data**: Script calls LunarCrush API to get the top trending cryptocurrency
+2. **Fetch Trending Data**: Script uses CoinGecko (`/search/trending` + markets) for the top trending coin
 3. **Generate Content**: Claude AI (Anthropic) generates article content
 4. **Create HTML**: Script renders the article using Handlebars templates
 5. **Commit & Push**: Article is committed to the repository
@@ -29,8 +29,9 @@ You need to configure the following secrets in your GitHub repository:
 | Secret Name | Description | Where to Get It |
 |------------|-------------|-----------------|
 | `ANTHROPIC_API_KEY` | Claude AI API key | https://console.anthropic.com/settings/keys |
-| `LUNARCRUSH_API_KEY` | LunarCrush API key | https://lunarcrush.com/developers/api |
 | `ARTICLE_GENERATION_API_KEY` | Internal API key for article generation | Use: `cloveyou_gen_2026_k9Qm3x7pV1n8aZ2rT6yW4uH0sJ5dF9` |
+| `COINGECKO_API_KEY` | (Optional) CoinGecko Demo/Pro key for higher rate limits | https://www.coingecko.com/en/api |
+| `COINGECKO_USE_PRO` | (Optional) Set to `true` if using a Pro key | — |
 | `BINANCE_AFFILIATE_URL` | Your Binance referral link | Your affiliate dashboard |
 | `COINBASE_AFFILIATE_URL` | Your Coinbase referral link | Your affiliate dashboard |
 | `BYBIT_AFFILIATE_URL` | Your Bybit referral link | Your affiliate dashboard |
@@ -42,8 +43,8 @@ You need to configure the following secrets in your GitHub repository:
 **⚠️ Important**: You need to get these values from your accounts:
 
 - `ANTHROPIC_API_KEY`: From your `.env` file or Netlify environment variables
-- `LUNARCRUSH_API_KEY`: From your `.env` file or Netlify environment variables
 - `ARTICLE_GENERATION_API_KEY`: From your `.env` file or Netlify environment variables
+- `COINGECKO_API_KEY` / `COINGECKO_USE_PRO`: Optional; public CoinGecko works without them
 - Affiliate URLs: Replace `YOUR_REF` and `YOUR_ID` with your actual affiliate IDs
 
 **Contact your developer** if you need help finding these values.
@@ -85,7 +86,7 @@ node scripts/generate-trending-article.js
 
 Check the workflow logs for specific error messages:
 - **Credit balance too low**: Add credits to your Anthropic account
-- **LunarCrush API error**: Check your API key and rate limits
+- **CoinGecko API error**: Rate limits on the free tier; add `COINGECKO_API_KEY` or retry later
 - **Git push failed**: Ensure GitHub token has write permissions
 
 ### No New Article Generated
@@ -99,7 +100,7 @@ Possible causes:
 
 - **GitHub Actions**: Free tier includes 2,000 minutes/month (plenty for daily runs)
 - **Anthropic API**: ~$0.03-0.10 per article (depending on length)
-- **LunarCrush API**: Free tier should be sufficient
+- **CoinGecko API**: Free public tier (optional paid key for higher limits)
 
 ## Next Steps
 

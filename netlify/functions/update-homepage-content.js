@@ -1,15 +1,30 @@
 import { writeFile } from 'fs/promises'
 import { join } from 'path'
+import {
+  collectHomepageArticleSpecs,
+  pickRelatedHomepagePosts,
+  slugDirFromHomepagePath,
+  writeHomepageLinkedArticle
+} from './utils/write-homepage-article.js'
+import { useClaudeArticleBodies } from './utils/claude-article-body.js'
+import {
+  fetchCoinGeckoMarketsTop,
+  fetchTrendingCoinsForHomepage,
+  mapMarketRowToTickerCoin
+} from './utils/coingecko-homepage.js'
 
 /**
  * Netlify Function: Update Homepage Content
  *
  * This function:
- * 1. Fetches trending crypto data from LunarCrush API
+ * 1. Fetches crypto ticker + trending from CoinGecko (markets + search/trending)
  * 2. Fetches stock news from external RSS/APIs
  * 3. Fetches AI news from RSS feeds (MIT News, VentureBeat, The Verge)
- * 4. Uses Claude API to generate content sections
+ * 4. Uses Claude API to generate homepage JSON (featured, latest, stock, AI card copy + slugs)
  * 5. Writes JSON files to content/homepage/
+ * 6. Writes static article pages (Claude long-form + CoinGecko snapshot when HOMEPAGE_CLAUDE_ARTICLES is enabled) + site chrome sliced from index.html
+ *    Default: overwrites existing slug pages when Claude is on so old stubs are replaced (HOMEPAGE_ARTICLE_SKIP_IF_EXISTS=true to keep skips).
+ * Homepage layout stays the WP-exported index.html + homepage-content-loader.js (this job does not replace index.html).
  */
 
 function requireEnv(name) {
@@ -27,72 +42,116 @@ function formatDate(isoDate) {
   })
 }
 
-// Fetch live EUR/USD exchange rate from exchange rate API
-async function fetchEURRate() {
-  try {
-    // Using exchangerate-api.com free tier (1500 requests/month)
-    const res = await fetch('https://api.exchangerate-api.com/v4/latest/USD')
-    if (!res.ok) throw new Error('Exchange rate fetch failed')
-    const json = await res.json()
-    return json.rates?.EUR || 0.92 // Fallback to reasonable default if API fails
-  } catch (error) {
-    console.warn('Failed to fetch live EUR rate, using fallback:', error.message)
-    return 0.92 // Fallback rate
-  }
+// Real files under /wp-content/uploads (LLM "stock-news-1.jpg" style paths are not on disk)
+const HOMEPAGE_SIDEBAR_MEDIA = {
+  stockFeatured: '/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-450x225.jpg',
+  stockSmall: [
+    '/wp-content/uploads/2026/03/Stocks-Settle-Sharply-Higher-as-Crude-Oil-Slumps-300x200.jpg',
+    '/wp-content/uploads/2026/03/AI-Biggest-Surprise-is-Coming-These-are-the-Stocks-to-300x169.jpg',
+    '/wp-content/uploads/2026/03/SBET-Quantitative-Stock-Analysis-Nasdaq-300x150.jpg'
+  ],
+  aiFeatured: '/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-1024x683.webp',
+  aiList: [
+    '/wp-content/uploads/2026/03/Google-AI-Releases-WAXAL-A-Multilingual-African-Speech-Dataset-for-450x321.png',
+    '/wp-content/uploads/2026/03/US-Holds-Off-on-New-AI-Chip-Export-Rules-in-450x225.jpg',
+    '/wp-content/uploads/2026/03/Can-AI-help-predict-which-heart-failure-patients-will-worsen-within-450x300.jpg',
+    '/wp-content/uploads/2026/03/NanoClaw-and-Docker-partner-to-make-sandboxes-the-safest-way.png'
+  ],
+  // Crypto/blockchain article images - real files from wp-content/uploads
+  cryptoFeatured: '/wp-content/uploads/2026/03/Aave-Rift-Bitcoin-Rebound-and-ETF-Inflows-Dominate-the-Crypto-450x300.jpg',
+  cryptoList: [
+    '/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-450x270.jpg',
+    '/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-450x300.jpg',
+    '/wp-content/uploads/2026/03/Aave-Rift-Bitcoin-Rebound-and-ETF-Inflows-Dominate-the-Crypto-300x200.jpg',
+    '/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-300x180.jpg',
+    '/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg',
+    '/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-300x200.jpg'
+  ]
 }
 
-// Fetch top coins from LunarCrush for ticker
-async function fetchTickerData() {
-  const apiKey = requireEnv('LUNARCRUSH_API_KEY')
+function assignStockNewsImages(data) {
+  if (!data?.featured) return data
+  data.featured.imageUrl = HOMEPAGE_SIDEBAR_MEDIA.stockFeatured
+  const items = data.items || []
+  items.forEach((item, i) => {
+    item.imageUrl = HOMEPAGE_SIDEBAR_MEDIA.stockSmall[i % HOMEPAGE_SIDEBAR_MEDIA.stockSmall.length]
+  })
+  return data
+}
 
-  // Use list endpoint with filtering (more efficient, avoids rate limits)
-  const url = `https://lunarcrush.com/api4/public/coins/list/v1?key=${encodeURIComponent(apiKey)}&limit=100&sort=market_cap&desc=true`
-  const res = await fetch(url, { headers: { Accept: 'application/json' } })
+function assignAINewsImages(data) {
+  if (!data?.featured) return data
+  data.featured.imageUrl = HOMEPAGE_SIDEBAR_MEDIA.aiFeatured
+  const items = data.items || []
+  items.forEach((item, i) => {
+    item.imageUrl = HOMEPAGE_SIDEBAR_MEDIA.aiList[i % HOMEPAGE_SIDEBAR_MEDIA.aiList.length]
+  })
+  return data
+}
 
-  if (!res.ok) {
-    throw new Error(`LunarCrush ticker error: ${res.status} ${res.statusText}`)
+function assignCryptoFeaturedImage(data) {
+  if (!data) return data
+  data.imageUrl = HOMEPAGE_SIDEBAR_MEDIA.cryptoFeatured
+  return data
+}
+
+function assignCryptoLatestNewsImages(data) {
+  if (!data?.items) return data
+  const items = data.items || []
+  items.forEach((item, i) => {
+    item.imageUrl = HOMEPAGE_SIDEBAR_MEDIA.cryptoList[i % HOMEPAGE_SIDEBAR_MEDIA.cryptoList.length]
+  })
+  return data
+}
+
+// Fetch live EUR/USD (primary + backup + short retries for flaky networks)
+async function fetchEURRate() {
+  const sleep = ms => new Promise(r => setTimeout(r, ms))
+  const sources = [
+    {
+      url: 'https://api.exchangerate-api.com/v4/latest/USD',
+      parse: j => j.rates?.EUR
+    },
+    {
+      url: 'https://api.frankfurter.app/latest?from=USD&to=EUR',
+      parse: j => j.rates?.EUR
+    }
+  ]
+  for (const { url, parse } of sources) {
+    for (let attempt = 1; attempt <= 2; attempt++) {
+      try {
+        const res = await fetch(url, { headers: { Accept: 'application/json' } })
+        if (!res.ok) throw new Error(`HTTP ${res.status}`)
+        const json = await res.json()
+        const eur = parse(json)
+        if (eur != null && Number.isFinite(Number(eur))) return Number(eur)
+      } catch (error) {
+        if (attempt < 2) await sleep(600)
+        else console.warn(`EUR rate ${url} failed:`, error.message)
+      }
+    }
   }
+  console.warn('Failed to fetch live EUR rate, using fallback 0.92')
+  return 0.92
+}
 
-  const json = await res.json()
-  const allCoins = json?.data || []
-
-  // Filter to top 10 by market cap rank with actual price data
-  const topCoins = ['BTC', 'ETH', 'USDT', 'XRP', 'BNB', 'USDC', 'SOL', 'TRX', 'STETH', 'ADA']
-  const coinData = allCoins
-    .filter(coin =>
-      topCoins.includes(coin.symbol) &&
-      coin.price &&
-      parseFloat(coin.price) > 0
-    )
-    .slice(0, 10)
-
-  // Get live EUR/USD rate
+// Top coins by market cap (CoinGecko) for homepage ticker
+async function fetchTickerData() {
   const eurRate = await fetchEURRate()
   console.log(`Using EUR rate: ${eurRate}`)
-
-  return coinData.map(coin => ({
-    id: coin.id || coin.symbol?.toLowerCase(),
-    name: coin.name,
-    symbol: coin.symbol,
-    price_eur: (parseFloat(coin.price || 0) * eurRate).toFixed(2),
-    price_usd: parseFloat(coin.price || 0).toFixed(2),
-    change_24h: parseFloat(coin.percent_change_24h || 0).toFixed(2),
-    image: coin.image || `https://coin-images.coingecko.com/coins/images/1/thumb/${coin.symbol?.toLowerCase()}.png`
-  })).filter(coin => parseFloat(coin.price_usd) > 0) // Only include coins with actual prices
+  const markets = await fetchCoinGeckoMarketsTop({ perPage: 10 })
+  if (!Array.isArray(markets) || markets.length === 0) {
+    throw new Error('No ticker data from CoinGecko /coins/markets')
+  }
+  markets.forEach(m => {
+    console.log(`  ✓ ${String(m.symbol || '').toUpperCase()}: $${m.current_price}`)
+  })
+  return markets.map(m => mapMarketRowToTickerCoin(m, eurRate))
 }
 
-// Fetch trending crypto topics from LunarCrush
+// CoinGecko search/trending (+ markets enrichment) for Claude prompts
 async function fetchTrendingCryptoTopics() {
-  const apiKey = requireEnv('LUNARCRUSH_API_KEY')
-  const url = `https://lunarcrush.com/api4/public/coins/list/v1?key=${encodeURIComponent(apiKey)}&limit=10&sort=galaxy_score&desc=true`
-
-  const res = await fetch(url, { headers: { Accept: 'application/json' } })
-  if (!res.ok) {
-    throw new Error(`LunarCrush trending error: ${res.status} ${res.statusText}`)
-  }
-
-  const json = await res.json()
-  return json?.data || []
+  return fetchTrendingCoinsForHomepage(10)
 }
 
 // Parse RSS feed to JSON
@@ -209,65 +268,91 @@ async function generateContentWithClaude(prompt, schema) {
   }
 }
 
-// Generate featured article section
+function trendingUsdPriceLabel(c) {
+  const p = c?.price
+  if (p == null || !Number.isFinite(Number(p))) return 'N/A'
+  const n = Number(p)
+  if (n > 0 && n < 0.01) return `~$${n.toPrecision(5)}`
+  return `$${n.toLocaleString('en-US', { maximumFractionDigits: n < 1 ? 6 : 2 })}`
+}
+
+function pctLabel(v) {
+  if (v == null || !Number.isFinite(Number(v))) return 'N/A'
+  return `${Number(v).toFixed(2)}`
+}
+
+// Generate featured article section (slug becomes a new static article URL on this site)
 async function generateFeaturedSection(trendingCoins) {
   const topCoin = trendingCoins[0]
   if (!topCoin) throw new Error('No trending coins found')
 
-  const prompt = `Generate a featured article entry for the homepage based on this trending cryptocurrency:
+  const rank =
+    topCoin.market_cap_rank != null && Number.isFinite(Number(topCoin.market_cap_rank))
+      ? `#${topCoin.market_cap_rank}`
+      : 'N/A'
+  const trendScore =
+    topCoin.coingecko_trend_score != null ? String(topCoin.coingecko_trend_score) : 'N/A'
+
+  const prompt = `Generate a featured homepage article entry based on this trending cryptocurrency:
 
 Name: ${topCoin.name}
 Symbol: ${topCoin.symbol}
-Price: $${topCoin.price}
-24h Change: ${topCoin.percent_change_24h}%
-Galaxy Score: ${topCoin.galaxy_score}
-Social Volume: ${topCoin.social_volume}
+Price (USD): ${trendingUsdPriceLabel(topCoin)}
+24h Change: ${pctLabel(topCoin.percent_change_24h)}%
+Market cap rank: ${rank}
+CoinGecko trending score (relative): ${trendScore}
 
 Requirements:
-- Title should be compelling and SEO-optimized
-- Excerpt should be 2-3 sentences summarizing the key trend
-- Category should be "Bitcoin" if BTC, "Ethereum" if ETH, otherwise "Altcoins"
-- Date should be today: ${formatDate(new Date().toISOString())}
-- Slug should be URL-friendly version of title starting with /
-- Include a realistic image path
+- Title: compelling, SEO-oriented.
+- Excerpt: 2-3 sentences.
+- Category: "Bitcoin" if BTC, "Ethereum" if ETH, otherwise "Altcoins" | "Blockchain" | "DeFi" as fits.
+- categorySlug: WordPress-style path: crypto-news/bitcoin, crypto-news/ethereum, crypto-news/altcoins, crypto-news/blockchain, or crypto-news/defi
+- date: ${formatDate(new Date().toISOString())}
+- slug: URL path for a NEW article on this site: start with /, end with /, lowercase kebab-case only (e.g. /bitcoin-volatility-update-april-2026/). Must be unique and filesystem-safe (letters, numbers, hyphens only between slashes).
+- imageUrl: "" or a real /wp-content/uploads/... path if you output one
 `
 
   const schema = {
-    title: "string",
-    excerpt: "string",
-    category: "string",
-    categorySlug: "string",
-    date: "string",
-    slug: "string",
-    imageUrl: "string"
+    title: 'string',
+    excerpt: 'string',
+    category: 'string',
+    categorySlug: 'string',
+    date: 'string',
+    slug: 'string',
+    imageUrl: 'string'
   }
 
   return await generateContentWithClaude(prompt, schema)
 }
 
-// Generate latest news section
+// Generate latest news section (each slug gets a new static article page)
 async function generateLatestNewsSection(trendingCoins) {
-  const prompt = `Generate 6 crypto news article entries for the "Latest News" section based on these trending coins:
+  const prompt = `Generate 6 crypto news entries for the homepage "Latest News" section from these trending coins:
 
-${trendingCoins.slice(0, 6).map((c, i) => `${i + 1}. ${c.name} (${c.symbol}): $${c.price}, 24h: ${c.percent_change_24h}%`).join('\n')}
+${trendingCoins
+    .slice(0, 6)
+    .map(
+      (c, i) =>
+        `${i + 1}. ${c.name} (${c.symbol}): ${trendingUsdPriceLabel(c)}, 24h: ${pctLabel(c.percent_change_24h)}%`
+    )
+    .join('\n')}
 
 Requirements:
-- Mix of categories: Bitcoin, Ethereum, Altcoins, Blockchain, DeFi
-- Each item needs: title, excerpt (1-2 sentences), category, categorySlug, date (today: ${formatDate(new Date().toISOString())}), slug, imageUrl
-- Titles should be newsworthy and compelling
-- Slugs should be URL-friendly and start with /
+- Mix categories: Bitcoin, Ethereum, Altcoins, Blockchain, DeFi with matching categorySlug crypto-news/bitcoin … crypto-news/defi
+- Each item: title, excerpt (1-2 sentences), category, categorySlug, date ${formatDate(new Date().toISOString())}, imageUrl ""
+- slug: NEW on-site article path: /kebab-case/ only, lowercase, unique across all 6, filesystem-safe
 `
 
   const schema = {
     items: [
       {
-        title: "string",
-        excerpt: "string",
-        category: "string",
-        categorySlug: "string",
-        date: "string",
-        slug: "string",
-        imageUrl: "string"
+        title: 'string',
+        excerpt: 'string',
+        category: 'string',
+        categorySlug: 'string',
+        date: 'string',
+        slug: 'string',
+        imageUrl: 'string'
       }
     ]
   }
@@ -275,43 +360,37 @@ Requirements:
   return await generateContentWithClaude(prompt, schema)
 }
 
-// Generate stock news section
+// Generate stock news section (headlines from RSS; slugs point to new pages on this site)
 async function generateStockNewsSection(rssItems) {
   const topStories = rssItems.slice(0, 8).map((item, i) =>
-    `${i + 1}. ${item.title} (${item.pubDate})`
-  ).join('\n')
+    `${i + 1}. Title: ${item.title}\n   URL (reference only): ${item.link}`
+  ).join('\n\n')
 
-  const prompt = `Based on these real stock market headlines from Reuters and Yahoo Finance:
+  const prompt = `Create homepage Stock News entries from these headlines (use the REAL headline text; links stay on this site).
 
 ${topStories}
 
-Generate stock news articles for the homepage sidebar:
-
 Requirements:
-- 1 featured article: Pick the most compelling headline, create a URL-friendly slug starting with /
-- 3 smaller news items: Pick 3 other interesting headlines, create slugs starting with /
-- Category: "Stock News", categorySlug: "stock-news"
-- Date: today (${formatDate(new Date().toISOString())})
-- Image URLs: use placeholder paths like "/wp-content/uploads/2026/03/stock-news-1.jpg"
-- Slugs must be URL-friendly (lowercase, hyphens, no special chars)
-- Use the ACTUAL headlines from the list above, don't make up new ones
+- 1 featured + 3 smaller items; titles must follow the RSS headlines closely (you may shorten slightly for space).
+- For each entry choose a NEW on-site slug path: /kebab-case/ lowercase, unique, filesystem-safe. Do not use external URLs as slug.
+- category "Stock News", categorySlug "stock-news", date ${formatDate(new Date().toISOString())}, imageUrl ""
 `
 
   const schema = {
     featured: {
-      title: "string",
-      category: "string",
-      categorySlug: "string",
-      date: "string",
-      slug: "string",
-      imageUrl: "string"
+      title: 'string',
+      category: 'string',
+      categorySlug: 'string',
+      date: 'string',
+      slug: 'string',
+      imageUrl: 'string'
     },
     items: [
       {
-        title: "string",
-        date: "string",
-        slug: "string",
-        imageUrl: "string"
+        title: 'string',
+        date: 'string',
+        slug: 'string',
+        imageUrl: 'string'
       }
     ]
   }
@@ -319,44 +398,38 @@ Requirements:
   return await generateContentWithClaude(prompt, schema)
 }
 
-// Generate AI news section
+// Generate AI news section (RSS headlines; new on-site slugs)
 async function generateAINewsSection(rssItems) {
   const topStories = rssItems.slice(0, 8).map((item, i) =>
-    `${i + 1}. ${item.title} (${item.pubDate})`
-  ).join('\n')
+    `${i + 1}. Title: ${item.title}\n   URL (reference only): ${item.link}`
+  ).join('\n\n')
 
-  const prompt = `Based on these real AI news headlines from VentureBeat, MIT News, and The Verge:
+  const prompt = `Create homepage AI News entries from these headlines (use REAL headline text; links are on this site only).
 
 ${topStories}
 
-Generate AI news articles for the homepage:
-
 Requirements:
-- 1 featured article: Pick the most compelling AI headline, create a URL-friendly slug starting with /
-- 4 related AI news items: Pick 4 other interesting headlines, create slugs starting with /
-- Category: "AI News", categorySlug: "ai-news"
-- Date: today (${formatDate(new Date().toISOString())})
-- Image URLs: use placeholder paths like "/wp-content/uploads/2026/03/ai-news-1.jpg"
-- Slugs must be URL-friendly (lowercase, hyphens, no special chars)
-- Use the ACTUAL headlines from the list above, don't make up new ones
+- 1 featured + 4 list items; titles follow RSS closely.
+- Each entry: NEW slug /kebab-case/ unique, filesystem-safe, lowercase.
+- category "AI News", categorySlug "ai-news", date ${formatDate(new Date().toISOString())}, imageUrl ""
 `
 
   const schema = {
     featured: {
-      title: "string",
-      category: "string",
-      categorySlug: "string",
-      date: "string",
-      slug: "string",
-      imageUrl: "string"
+      title: 'string',
+      category: 'string',
+      categorySlug: 'string',
+      date: 'string',
+      slug: 'string',
+      imageUrl: 'string'
     },
     items: [
       {
-        title: "string",
-        category: "string",
-        categorySlug: "string",
-        slug: "string",
-        imageUrl: "string"
+        title: 'string',
+        category: 'string',
+        categorySlug: 'string',
+        slug: 'string',
+        imageUrl: 'string'
       }
     ]
   }
@@ -391,8 +464,15 @@ export const handler = async (event) => {
     latestNews: null,
     stockNews: null,
     aiNews: null,
+    homepageArticles: null,
     errors: []
   }
+
+  let featuredPayload = null
+  let latestNewsPayload = null
+  let stockNewsPayload = null
+  let aiNewsPayload = null
+  let tickerPayload = null
 
   try {
     console.log('🚀 Starting homepage content update...')
@@ -407,6 +487,7 @@ export const handler = async (event) => {
         JSON.stringify(tickerContent, null, 2),
         'utf-8'
       )
+      tickerPayload = tickerContent
       results.ticker = { success: true, coins: tickerData.length }
       console.log('✅ Ticker data updated')
     } catch (error) {
@@ -414,17 +495,17 @@ export const handler = async (event) => {
       results.errors.push({ section: 'ticker', error: error.message })
     }
 
-    // Fetch trending crypto topics for content generation
+    // Fetch trending crypto topics for content generation (CoinGecko)
     console.log('📈 Fetching trending crypto topics...')
     const trendingCoins = await fetchTrendingCryptoTopics()
 
     // Generate featured section
     try {
       console.log('🎯 Generating featured article...')
-      const featured = await generateFeaturedSection(trendingCoins)
+      featuredPayload = assignCryptoFeaturedImage(await generateFeaturedSection(trendingCoins))
       await writeFile(
         join(process.cwd(), 'content', 'homepage', 'featured.json'),
-        JSON.stringify(featured, null, 2),
+        JSON.stringify(featuredPayload, null, 2),
         'utf-8'
       )
       results.featured = { success: true }
@@ -437,13 +518,13 @@ export const handler = async (event) => {
     // Generate latest news section
     try {
       console.log('📰 Generating latest news...')
-      const latestNews = await generateLatestNewsSection(trendingCoins)
+      latestNewsPayload = assignCryptoLatestNewsImages(await generateLatestNewsSection(trendingCoins))
       await writeFile(
         join(process.cwd(), 'content', 'homepage', 'latest-news.json'),
-        JSON.stringify(latestNews, null, 2),
+        JSON.stringify(latestNewsPayload, null, 2),
         'utf-8'
       )
-      results.latestNews = { success: true, items: latestNews.items?.length || 0 }
+      results.latestNews = { success: true, items: latestNewsPayload.items?.length || 0 }
       console.log('✅ Latest news updated')
     } catch (error) {
       console.error('❌ Latest news failed:', error.message)
@@ -457,10 +538,10 @@ export const handler = async (event) => {
     // Generate stock news section
     try {
       console.log('📈 Generating stock news from RSS data...')
-      const stockNews = await generateStockNewsSection(stockNewsRSS.items)
+      stockNewsPayload = assignStockNewsImages(await generateStockNewsSection(stockNewsRSS.items))
       await writeFile(
         join(process.cwd(), 'content', 'homepage', 'stock-news.json'),
-        JSON.stringify(stockNews, null, 2),
+        JSON.stringify(stockNewsPayload, null, 2),
         'utf-8'
       )
       results.stockNews = { success: true, rssItems: stockNewsRSS.items.length }
@@ -477,10 +558,10 @@ export const handler = async (event) => {
     // Generate AI news section
     try {
       console.log('🤖 Generating AI news from RSS data...')
-      const aiNews = await generateAINewsSection(aiNewsRSS.items)
+      aiNewsPayload = assignAINewsImages(await generateAINewsSection(aiNewsRSS.items))
       await writeFile(
         join(process.cwd(), 'content', 'homepage', 'ai-news.json'),
-        JSON.stringify(aiNews, null, 2),
+        JSON.stringify(aiNewsPayload, null, 2),
         'utf-8'
       )
       results.aiNews = { success: true, rssItems: aiNewsRSS.items.length }
@@ -488,6 +569,58 @@ export const handler = async (event) => {
     } catch (error) {
       console.error('❌ AI news failed:', error.message)
       results.errors.push({ section: 'ai-news', error: error.message })
+    }
+
+    // Static HTML for each homepage slug (so /slug/ resolves like other articles)
+    try {
+      const specs = collectHomepageArticleSpecs(
+        featuredPayload,
+        latestNewsPayload,
+        stockNewsPayload,
+        aiNewsPayload
+      )
+      const forceEnv = String(process.env.HOMEPAGE_ARTICLE_OVERWRITE || '').toLowerCase() === 'true'
+      const skipIfExists = String(process.env.HOMEPAGE_ARTICLE_SKIP_IF_EXISTS || '').toLowerCase() === 'true'
+      /** With Claude bodies on, re-write existing pages by default so stubs are replaced (opt out with HOMEPAGE_ARTICLE_SKIP_IF_EXISTS=true). */
+      const force = forceEnv || (useClaudeArticleBodies() && !skipIfExists)
+      if (useClaudeArticleBodies() && force && !forceEnv) {
+        console.log('📄 Regenerating article HTML (Claude bodies; existing files overwritten — set HOMEPAGE_ARTICLE_SKIP_IF_EXISTS=true to skip)')
+      }
+      let created = 0
+      let skipped = 0
+      let failed = 0
+      const articleBatchIso = new Date().toISOString()
+      for (const spec of specs) {
+        try {
+          const slugDir = slugDirFromHomepagePath(spec.slug)
+          const pool = pickRelatedHomepagePosts(specs, slugDir, 10, articleBatchIso)
+          const relatedPosts = pool.slice(0, 4)
+          const sidebarLatestPosts = pool.slice(0, 6)
+          const r = await writeHomepageLinkedArticle(spec, {
+            force,
+            trendingCoins,
+            relatedPosts,
+            sidebarLatestPosts
+          })
+          if (r.skipped) skipped += 1
+          else created += 1
+        } catch (e) {
+          failed += 1
+          console.warn(`  ⚠️ Article write failed (${spec.slug}):`, e.message)
+        }
+      }
+      results.homepageArticles = {
+        success: failed === 0,
+        created,
+        skipped,
+        failed,
+        planned: specs.length
+      }
+      console.log(`📄 Homepage-linked static articles: ${created} written, ${skipped} skipped (exists)`)
+    } catch (error) {
+      console.error('❌ Homepage article pages failed:', error.message)
+      results.errors.push({ section: 'homepage-articles', error: error.message })
+      results.homepageArticles = { success: false, error: error.message }
     }
 
     const successCount = Object.values(results).filter(r => r && r.success).length

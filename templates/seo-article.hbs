@@ -53,10 +53,9 @@
         {{/if}}
         {{#if coin}}
           {{#if coin.name}}<span class="pill">{{coin.name}}{{#if coin.symbol}} ({{coin.symbol}}){{/if}}</span>{{/if}}
-          {{#if coin.galaxy_score}}<span class="pill">Galaxy Score: {{coin.galaxy_score}}</span>{{/if}}
           {{#if coin.percent_change_24h}}<span class="pill">24h: {{coin.percent_change_24h}}%</span>{{/if}}
-          {{#if coin.social_volume}}<span class="pill">Social volume: {{coin.social_volume}}</span>{{/if}}
           {{#if coin.market_cap_rank}}<span class="pill">Rank: #{{coin.market_cap_rank}}</span>{{/if}}
+          {{#if coin.total_volume_24h_usd}}<span class="pill">24h vol: {{coin.total_volume_24h_usd}}</span>{{/if}}
         {{/if}}
       </div>
 

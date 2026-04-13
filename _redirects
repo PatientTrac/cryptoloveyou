@@ -21,6 +21,11 @@
 /ru/privacy-policy.html      /ru/privacy-policy                301!
 /ru/affiliate-disclosure.html /ru/affiliate-disclosure         301!
 
+# === API & FUNCTIONS: MUST run before language /* rules below ===
+# Otherwise /api/* gets 302 → /en/api/* and browsers may turn POST into GET (breaks admin login).
+/api/*                    /.netlify/functions/:splat          200
+/en/api/*                 /.netlify/functions/:splat          200
+
 # === LOCALE HOME = MAIN SITE (same index.html as /) ===
 # Until real translations exist, /fr/, /de/, … show the same homepage as /. /en/ is NOT listed — see below.
 /fr          /index.html   200!

@@ -122,6 +122,7 @@
       color: var(--error);
       font-size: 0.875rem;
       display: none;
+      white-space: pre-wrap;
     }
     .error.show {
       display: block;
@@ -144,7 +145,7 @@
     <div class="card">
       <div id="error" class="error"></div>
 
-      <form id="loginForm">
+      <form id="loginForm" method="post" action="#" autocomplete="on">
         <div class="form-group">
           <label for="username">Username</label>
           <input
@@ -186,26 +187,48 @@
   </div>
 
   <script>
-    const API_BASE = window.location.origin;
+    /** Always call APIs at site root — never under /en/… even if this page is served from /en/admin/… */
+    function apiUrl(path) {
+      const p = path.startsWith('/') ? path : '/' + path
+      return new URL(p, window.location.origin).href
+    }
+
+    const AUTH_LOGIN_URLS = [
+      () => apiUrl('/api/auth/login'),
+      () => apiUrl('/.netlify/functions/auth/login')
+    ]
+    const AUTH_SESSION_URLS = [
+      () => apiUrl('/api/auth/session'),
+      () => apiUrl('/.netlify/functions/auth/session')
+    ]
+
+    async function fetchAuthJson(url, init) {
+      const res = await fetch(url, init)
+      const raw = await res.text()
+      try {
+        return { res, data: raw ? JSON.parse(raw) : {}, raw }
+      } catch {
+        return { res, data: null, raw }
+      }
+    }
 
     // Check if already logged in
     const existingToken = sessionStorage.getItem('auth_token') || localStorage.getItem('auth_token');
     if (existingToken) {
-      // Verify token is still valid
-      fetch(`${API_BASE}/.netlify/functions/auth/session`, {
-        headers: { 'Authorization': `Bearer ${existingToken}` }
-      })
-      .then(res => res.json())
-      .then(data => {
-        if (data.valid) {
-          window.location.href = '/admin/';
+      (async () => {
+        for (const urlFn of AUTH_SESSION_URLS) {
+          const { res, data } = await fetchAuthJson(urlFn(), {
+            headers: { Authorization: `Bearer ${existingToken}` }
+          })
+          if (data && res.ok && data.valid) {
+            window.location.href = '/admin/'
+            return
+          }
         }
+      })().catch(() => {
+        sessionStorage.removeItem('auth_token')
+        localStorage.removeItem('auth_token')
       })
-      .catch(() => {
-        // Token invalid, clear it
-        sessionStorage.removeItem('auth_token');
-        localStorage.removeItem('auth_token');
-      });
     }
 
     const form = document.getElementById('loginForm');
@@ -241,16 +264,41 @@
       loadingDiv.style.display = 'block';
 
       try {
-        const response = await fetch(`${API_BASE}/.netlify/functions/auth/login`, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ username, password })
-        });
+        const body = JSON.stringify({ username, password })
+        let response = null
+        let data = null
+        let tried = []
+        for (const urlFn of AUTH_LOGIN_URLS) {
+          const url = urlFn()
+          tried.push(url)
+          const r = await fetchAuthJson(url, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body
+          })
+          if (r.data !== null) {
+            response = r.res
+            data = r.data
+            break
+          }
+        }
 
-        const data = await response.json();
+        if (data === null) {
+          throw new Error(
+            'Auth API returned HTML instead of JSON (usually 404). From the project root run:\n' +
+            '  npm run dev\n' +
+            'then open this page on the same host/port (default http://localhost:8888). ' +
+            'A plain static server (e.g. only Live Server) cannot run Netlify Functions.\n' +
+            'Tried: ' + tried.join(' → ')
+          )
+        }
 
         if (!response.ok) {
           throw new Error(data.error || 'Login failed');
+        }
+
+        if (!data.token) {
+          throw new Error('Login succeeded but no token in response. Check Netlify function logs.')
         }
 
         // Store token

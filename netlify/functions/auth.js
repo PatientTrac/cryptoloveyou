@@ -14,6 +14,21 @@ function corsHeaders() {
   }
 }
 
+/** Netlify may set path as `/.netlify/functions/auth/login` or `/api/auth/login` (rewrite). */
+function getAuthSubpath(event) {
+  let path = event.path || ''
+  if (path.includes('?')) path = path.split('?')[0]
+  const prefixes = ['/.netlify/functions/auth', '/en/api/auth', '/api/auth']
+  for (const prefix of prefixes) {
+    if (path.startsWith(prefix)) {
+      const rest = path.slice(prefix.length)
+      if (!rest || rest === '') return '/'
+      return rest.startsWith('/') ? rest : `/${rest}`
+    }
+  }
+  return path || '/'
+}
+
 export const handler = async (event) => {
   const headers = corsHeaders()
 
@@ -21,7 +36,7 @@ export const handler = async (event) => {
     return { statusCode: 200, headers, body: '' }
   }
 
-  const path = event.path.replace('/.netlify/functions/auth', '')
+  const path = getAuthSubpath(event)
 
   try {
     // Login endpoint
@@ -138,10 +153,17 @@ async function handleLogin(event, headers) {
     }
   } catch (error) {
     console.error('Login error:', error)
+    const missingDb =
+      String(error?.message || '').includes('Missing Supabase') ||
+      String(error?.message || '').includes('Supabase environment')
     return {
-      statusCode: 500,
+      statusCode: missingDb ? 503 : 500,
       headers,
-      body: JSON.stringify({ error: 'Login failed' })
+      body: JSON.stringify({
+        error: missingDb
+          ? 'Admin login is unavailable: Supabase is not configured on this deployment.'
+          : 'Login failed'
+      })
     }
   }
 }

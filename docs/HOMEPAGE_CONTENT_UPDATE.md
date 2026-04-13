@@ -14,12 +14,12 @@ This system updates eligible homepage content sections every 6 hours without mod
 - **latest-news.json** - Latest News tabbed section
 - **stock-news.json** - Stock News sidebar section
 - **ai-news.json** - AI News section
-- **ticker.json** - Crypto price ticker (direct LunarCrush data, no Claude)
+- **ticker.json** - Crypto price ticker (CoinGecko `/coins/markets`, no Claude)
 
 ### 2. Netlify Function (`netlify/functions/update-homepage-content.js`)
 
 **What it does:**
-- Fetches trending crypto data from LunarCrush API
+- Fetches crypto ticker + trending from CoinGecko (`/coins/markets`, `/search/trending`)
 - Fetches **live EUR/USD exchange rate** from exchangerate-api.com (free tier)
 - Fetches stock news from **Reuters Business RSS + Yahoo Finance RSS** (no API key needed)
 - Fetches AI news from **VentureBeat AI, MIT News AI, The Verge AI RSS feeds** (no API key needed)
@@ -28,8 +28,8 @@ This system updates eligible homepage content sections every 6 hours without mod
 - Handles errors per-section (one failure doesn't block others)
 
 **Environment variables needed:**
-- `LUNARCRUSH_API_KEY` - For crypto trending data and ticker
 - `ANTHROPIC_API_KEY` - For content generation
+- Optional: `COINGECKO_API_KEY` and `COINGECKO_USE_PRO` - Higher CoinGecko rate limits (public API works without a key)
 
 **External APIs used (no keys needed):**
 - exchangerate-api.com - Live EUR/USD rates (1500 req/month free)
@@ -79,9 +79,9 @@ scripts/update-homepage.js
   ↓
 netlify/functions/update-homepage-content.js
   ↓
-LunarCrush API → Ticker JSON (direct)
+CoinGecko API → Ticker JSON (direct)
   ↓
-LunarCrush API → Claude API → Featured/News JSON
+CoinGecko API → Claude API → Featured/News JSON
   ↓
 Write content/homepage/*.json
   ↓
@@ -198,10 +198,10 @@ Modify cron schedule in `.github/workflows/update-homepage-content.yml`
 ## Dependencies
 
 **Paid/API Key Required:**
-- LunarCrush API (trending coins + ticker data)
 - Anthropic Claude API (content generation based on real RSS data)
 
 **Free (No API Key):**
+- CoinGecko public API (ticker + trending; optional `COINGECKO_API_KEY` for higher limits)
 - exchangerate-api.com (live EUR/USD rates, 1500 req/month)
 - Reuters Business RSS feed
 - Yahoo Finance RSS feed

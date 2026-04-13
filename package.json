@@ -1,6 +1,7 @@
 {
   "name": "crypto-love-you-static",
   "version": "1.0.0",
+  "type": "module",
   "description": "Static site with Netlify Functions, Supabase, and HubSpot integration",
   "main": "index.js",
   "scripts": {

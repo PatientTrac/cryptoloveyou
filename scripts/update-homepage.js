@@ -5,6 +5,7 @@
  * Designed to run in GitHub Actions environment
  */
 
+import 'dotenv/config'
 import { handler as updateHomepageHandler } from '../netlify/functions/update-homepage-content.js'
 
 async function main() {
@@ -13,7 +14,7 @@ async function main() {
     console.log('⏰ Time:', new Date().toISOString())
 
     // Call the handler which will:
-    // 1. Fetch trending coins from LunarCrush
+    // 1. Fetch crypto ticker + trending from CoinGecko
     // 2. Fetch stock/AI news
     // 3. Generate content with Claude
     // 4. Write JSON files to content/homepage/
@@ -50,4 +51,7 @@ async function main() {
   }
 }
 
-main()
+main().catch((err) => {
+  console.error(err)
+  process.exit(1)
+})

@@ -14,7 +14,7 @@ async function main() {
     console.log('⏰ Time:', new Date().toISOString())
 
     // Call the scheduled handler which will:
-    // 1. Fetch trending coin from LunarCrush
+    // 1. Fetch top CoinGecko trending coin
     // 2. Generate article with Claude
     // 3. Call generate-article to create HTML
     // 4. Commit and push to git (if SKIP_GIT_COMMIT/PUSH are not true)

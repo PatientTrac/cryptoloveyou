@@ -38,7 +38,8 @@ jobs:
       - name: Generate trending article
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
-          LUNARCRUSH_API_KEY: ${{ secrets.LUNARCRUSH_API_KEY }}
+          COINGECKO_API_KEY: ${{ secrets.COINGECKO_API_KEY }}
+          COINGECKO_USE_PRO: ${{ secrets.COINGECKO_USE_PRO }}
           ARTICLE_GENERATION_API_KEY: ${{ secrets.ARTICLE_GENERATION_API_KEY }}
           BINANCE_AFFILIATE_URL: ${{ secrets.BINANCE_AFFILIATE_URL }}
           COINBASE_AFFILIATE_URL: ${{ secrets.COINBASE_AFFILIATE_URL }}

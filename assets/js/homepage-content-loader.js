@@ -11,6 +11,87 @@
   const CONTENT_BASE = '/content/homepage';
   const EUR_SYMBOL = '€';
 
+  // HTML ticker: map symbols to `data-live-price` slugs; otherwise use string `coin.id` (CoinGecko id) from ticker.json
+  const TICKER_LIVE_PRICE_SLUG = {
+    BTC: 'bitcoin',
+    ETH: 'ethereum',
+    USDT: 'tether',
+    XRP: 'ripple',
+    BNB: 'bnb',
+    USDC: 'usdc',
+    SOL: 'solana',
+    TRX: 'tron',
+    STETH: 'lido-staked-ether',
+    ADA: 'cardano',
+    WBTC: 'wrapped-bitcoin',
+    DOGE: 'dogecoin',
+    LINK: 'chainlink',
+    DOT: 'polkadot',
+    MATIC: 'matic-network',
+    AVAX: 'avalanche-2'
+  };
+
+  function tickerDomSlug(coin) {
+    const sym = (coin.symbol || '').toUpperCase();
+    if (TICKER_LIVE_PRICE_SLUG[sym]) return TICKER_LIVE_PRICE_SLUG[sym];
+    if (typeof coin.id === 'string' && coin.id && !/^\d+$/.test(coin.id)) return coin.id.toLowerCase();
+    return sym ? sym.toLowerCase() : '';
+  }
+
+  // Real media under /wp-content/uploads (placeholders from the generator do not exist on disk)
+  const HOMEPAGE_STOCK_IMAGES = {
+    featured: '/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-450x225.jpg',
+    small: [
+      '/wp-content/uploads/2026/03/Stocks-Settle-Sharply-Higher-as-Crude-Oil-Slumps-300x200.jpg',
+      '/wp-content/uploads/2026/03/AI-Biggest-Surprise-is-Coming-These-are-the-Stocks-to-300x169.jpg',
+      '/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-300x150.jpg'
+    ]
+  };
+
+  const HOMEPAGE_AI_IMAGES = {
+    featured: '/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-1024x683.webp',
+    list: [
+      '/wp-content/uploads/2026/03/Google-AI-Releases-WAXAL-A-Multilingual-African-Speech-Dataset-for-450x321.png',
+      '/wp-content/uploads/2026/03/US-Holds-Off-on-New-AI-Chip-Export-Rules-in-450x225.jpg',
+      '/wp-content/uploads/2026/03/Can-AI-help-predict-which-heart-failure-patients-will-worsen-within-450x300.jpg',
+      '/wp-content/uploads/2026/03/NanoClaw-and-Docker-partner-to-make-sandboxes-the-safest-way.png'
+    ]
+  };
+
+  function isPlaceholderSidebarImage(url) {
+    if (!url || typeof url !== 'string') return true;
+    return /\/(stock|ai)-news-\d+\.(jpe?g|png|webp)$/i.test(url.trim());
+  }
+
+  function stockFeaturedImage(url) {
+    return isPlaceholderSidebarImage(url) ? HOMEPAGE_STOCK_IMAGES.featured : url.trim();
+  }
+
+  function stockSmallImage(url, index) {
+    if (!isPlaceholderSidebarImage(url)) return url.trim();
+    return HOMEPAGE_STOCK_IMAGES.small[index % HOMEPAGE_STOCK_IMAGES.small.length];
+  }
+
+  function aiFeaturedImage(url) {
+    return isPlaceholderSidebarImage(url) ? HOMEPAGE_AI_IMAGES.featured : url.trim();
+  }
+
+  function aiListImage(url, index) {
+    if (!isPlaceholderSidebarImage(url)) return url.trim();
+    return HOMEPAGE_AI_IMAGES.list[index % HOMEPAGE_AI_IMAGES.list.length];
+  }
+
+  /** Internal paths use trailing slash (matches static HTML); allow legacy `url` field */
+  function articleHref(obj) {
+    if (!obj) return '#';
+    const raw = String(obj.slug || obj.url || '').trim();
+    if (!raw) return '#';
+    if (/^https?:\/\//i.test(raw)) return raw;
+    let s = raw.startsWith('/') ? raw : `/${raw}`;
+    if (s.length > 1 && !s.endsWith('/')) s += '/';
+    return s;
+  }
+
   // Helper: Check if element or its children contain iframes
   function containsIframe(element) {
     if (!element) return false;
@@ -49,7 +130,7 @@
     const html = `
 <article class="l-post grid-post grid-base-post">
   <div class="media">
-    <a href="${data.slug}" class="image-link media-ratio ratio-16-9" title="${data.title}">
+    <a href="${articleHref(data)}" class="image-link media-ratio ratio-16-9" title="${data.title}">
       <span data-bgsrc="${data.imageUrl}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${data.title}"></span>
     </a>
   </div>
@@ -60,7 +141,7 @@
           <a href="/category/${data.categorySlug}/" class="category ${categoryColorClass}" rel="category">${data.category}</a>
         </span>
       </div>
-      <h2 class="is-title post-title"><a href="${data.slug}">${data.title}</a></h2>
+      <h2 class="is-title post-title"><a href="${articleHref(data)}">${data.title}</a></h2>
       <div class="post-meta-items meta-below">
         <span class="meta-item date"><span class="date-link"><time class="post-date">${data.date}</time></span></span>
       </div>
@@ -93,7 +174,7 @@
       return `
 <article class="l-post list-post list-post-on-sm m-pos-left">
   <div class="media">
-    <a href="${item.slug}" class="image-link media-ratio ratio-16-9" title="${item.title}">
+    <a href="${articleHref(item)}" class="image-link media-ratio ratio-16-9" title="${item.title}">
       <span data-bgsrc="${item.imageUrl}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${item.title}"></span>
     </a>
   </div>
@@ -104,7 +185,7 @@
           <a href="/category/${item.categorySlug}/" class="category ${categoryColorClass}" rel="category">${item.category}</a>
         </span>
       </div>
-      <h2 class="is-title post-title"><a href="${item.slug}">${item.title}</a></h2>
+      <h2 class="is-title post-title"><a href="${articleHref(item)}">${item.title}</a></h2>
       <div class="post-meta-items meta-below">
         <span class="meta-item date"><span class="date-link"><time class="post-date">${item.date}</time></span></span>
       </div>
@@ -132,13 +213,14 @@
 
     const featured = data.featured;
     const items = data.items || [];
+    const featuredImg = stockFeaturedImage(featured.imageUrl);
 
     // Featured article
     const featuredHtml = `
 <article class="l-post grid-post grid-base-post">
   <div class="media">
-    <a href="${featured.slug}" class="image-link media-ratio ratio-16-9" title="${featured.title}">
-      <span data-bgsrc="${featured.imageUrl}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${featured.title}"></span>
+    <a href="${articleHref(featured)}" class="image-link media-ratio ratio-16-9" title="${featured.title}">
+      <span data-bgsrc="${featuredImg}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${featured.title}"></span>
     </a>
   </div>
   <div class="content">
@@ -148,7 +230,7 @@
           <a href="/category/${featured.categorySlug}/" class="category term-color-141" rel="category">${featured.category}</a>
         </span>
       </div>
-      <h2 class="is-title post-title"><a href="${featured.slug}">${featured.title}</a></h2>
+      <h2 class="is-title post-title"><a href="${articleHref(featured)}">${featured.title}</a></h2>
       <div class="post-meta-items meta-below">
         <span class="meta-item date"><span class="date-link"><time class="post-date">${featured.date}</time></span></span>
       </div>
@@ -158,16 +240,16 @@
     `;
 
     // Small items
-    const itemsHtml = items.map(item => `
+    const itemsHtml = items.map((item, index) => `
 <article class="l-post small-post m-pos-left">
   <div class="media">
-    <a href="${item.slug}" class="image-link media-ratio ratio-4-3" title="${item.title}">
-      <span data-bgsrc="${item.imageUrl}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${item.title}"></span>
+    <a href="${articleHref(item)}" class="image-link media-ratio ratio-4-3" title="${item.title}">
+      <span data-bgsrc="${stockSmallImage(item.imageUrl, index)}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${item.title}"></span>
     </a>
   </div>
   <div class="content">
     <div class="post-meta post-meta-a post-meta-left has-below">
-      <h4 class="is-title post-title limit-lines l-lines-2"><a href="${item.slug}">${item.title}</a></h4>
+      <h4 class="is-title post-title limit-lines l-lines-2"><a href="${articleHref(item)}">${item.title}</a></h4>
       <div class="post-meta-items meta-below">
         <span class="meta-item date"><span class="date-link"><time class="post-date">${item.date}</time></span></span>
       </div>
@@ -176,18 +258,28 @@
 </article>
     `).join('');
 
-    // Find both containers
-    const featuredContainer = section.querySelector('.loop-grid-base .loop');
-    const smallItemsContainer = section.querySelector('.loop-small');
+    // Featured: markup is one div with classes `loop loop-grid loop-grid-base` (not .loop inside .loop-grid-base)
+    const featuredContainer = section.querySelector('.loop.loop-grid-base');
+    // Small list lives in a sibling Elementor widget (smartmag-postssmall), still same sidebar column
+    const sidebarColumn = section.closest('.elementor-column');
+    const smallItemsContainer = sidebarColumn
+      ? sidebarColumn.querySelector('.loop-small')
+      : null;
 
     if (featuredContainer) {
       featuredContainer.innerHTML = featuredHtml;
+    } else {
+      console.warn('Stock news: featured container .loop.loop-grid-base not found');
     }
     if (smallItemsContainer) {
       smallItemsContainer.innerHTML = itemsHtml;
+    } else {
+      console.warn('Stock news: small list .loop-small not found (check sidebar column)');
     }
 
-    console.log('✅ Stock news section updated');
+    if (featuredContainer || smallItemsContainer) {
+      console.log('✅ Stock news section updated');
+    }
   }
 
   // Render AI news section
@@ -200,13 +292,14 @@
 
     const featured = data.featured;
     const items = data.items || [];
+    const aiFeaturedImg = aiFeaturedImage(featured.imageUrl);
 
     // Featured overlay article
     const featuredHtml = `
 <article class="l-post grid-overlay overlay-post grid-overlay-a overlay-base-post">
   <div class="media">
-    <a href="${featured.slug}" class="image-link media-ratio ratio-16-9" title="${featured.title}">
-      <span data-bgsrc="${featured.imageUrl}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${featured.title}"></span>
+    <a href="${articleHref(featured)}" class="image-link media-ratio ratio-16-9" title="${featured.title}">
+      <span data-bgsrc="${aiFeaturedImg}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${featured.title}"></span>
     </a>
   </div>
   <div class="content-wrap">
@@ -217,7 +310,7 @@
             <a href="/category/${featured.categorySlug}/" class="category term-color-110" rel="category" tabindex="-1">${featured.category}</a>
           </span>
         </div>
-        <h2 class="is-title post-title"><a href="${featured.slug}">${featured.title}</a></h2>
+        <h2 class="is-title post-title"><a href="${articleHref(featured)}">${featured.title}</a></h2>
         <div class="post-meta-items meta-below">
           <span class="meta-item date"><span class="date-link"><time class="post-date">${featured.date}</time></span></span>
         </div>
@@ -228,11 +321,11 @@
     `;
 
     // List items
-    const itemsHtml = items.map(item => `
+    const itemsHtml = items.map((item, index) => `
 <article class="l-post list-post list-post-on-sm m-pos-right">
   <div class="media">
-    <a href="${item.slug}" class="image-link media-ratio ratio-16-9" title="${item.title}">
-      <span data-bgsrc="${item.imageUrl}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${item.title}"></span>
+    <a href="${articleHref(item)}" class="image-link media-ratio ratio-16-9" title="${item.title}">
+      <span data-bgsrc="${aiListImage(item.imageUrl, index)}" class="img bg-cover wp-post-image lazyload" role="img" aria-label="${item.title}"></span>
     </a>
   </div>
   <div class="content">
@@ -242,7 +335,7 @@
           <a href="/category/${item.categorySlug}/" class="category term-color-110" rel="category">${item.category}</a>
         </span>
       </div>
-      <h2 class="is-title post-title limit-lines l-lines-2"><a href="${item.slug}">${item.title}</a></h2>
+      <h2 class="is-title post-title limit-lines l-lines-2"><a href="${articleHref(item)}">${item.title}</a></h2>
     </div>
   </div>
 </article>
@@ -273,8 +366,10 @@
     const coins = data.coins || [];
 
     coins.forEach(coin => {
+      const slug = tickerDomSlug(coin);
+      if (!slug) return;
       // Update prices in both ticker bar and sidebar widget
-      const priceElements = document.querySelectorAll(`[data-live-price="${coin.id}"]`);
+      const priceElements = document.querySelectorAll(`[data-live-price="${slug}"]`);
       priceElements.forEach(el => {
         const priceSpan = el.querySelector('span');
         const changeSpan = el.closest('.cc-coin, .mcw-list-row')?.querySelector('.mcw-list-change, .cc-change');
@@ -297,7 +392,7 @@
   // Fetch JSON file
   async function fetchJSON(filename) {
     try {
-      const response = await fetch(`${CONTENT_BASE}/${filename}`);
+      const response = await fetch(`${CONTENT_BASE}/${filename}`, { cache: 'no-store' });
       if (!response.ok) {
         throw new Error(`HTTP ${response.status}`);
       }
