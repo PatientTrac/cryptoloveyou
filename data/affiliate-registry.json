@@ -202,15 +202,40 @@
       "commission_model": "recurring",
       "rate": "25% recurring",
       "risk_level": "low"
+    },
+
+    "payset": {
+      "category": "fintech",
+      "tags": ["banking", "iban", "multi-currency", "fca", "swift", "sepa", "crypto-friendly"],
+      "priority": 1,
+      "env_key": "PAYSET_AFFILIATE_URL",
+      "default_cta": "Open a Payset Account — Monthly Fee Waived",
+      "commission_model": "cpa",
+      "rate": "TBC — monthly fee waived for referrals (negotiated)",
+      "risk_level": "low",
+      "note": "NEGOTIATED: CryptoLoveYou referrals get monthly account fee FREE. FCA EMI. 34 currencies, 180+ countries. Crypto via partner."
+    },
+
+    "safelynx": {
+      "category": "exchange",
+      "tags": ["otc", "crypto", "regulated", "denmark", "fsa", "sepa", "swift"],
+      "priority": 6,
+      "env_key": "SAFELYNX_AFFILIATE_URL",
+      "default_cta": "Buy Crypto via Safelynx — Lower Fees",
+      "commission_model": "revshare",
+      "rate": "0.75% for referred clients vs standard 1% (negotiated)",
+      "risk_level": "low",
+      "note": "NEGOTIATED: Referred clients start at 0.75% not 1% for €0-€100k tier. Danish FSA-registered VASP. OTC for larger buyers."
     }
 
   },
 
   "categories": {
-    "exchange":  { "label": "Exchanges",       "display_order": 1 },
-    "wallet":    { "label": "Wallets",          "display_order": 2 },
-    "tax":       { "label": "Tax Software",     "display_order": 3 },
-    "ai_tool":   { "label": "AI Trading Tools", "display_order": 4 },
-    "other":     { "label": "Other",            "display_order": 5 }
+    "exchange":  { "label": "Exchanges",           "display_order": 1 },
+    "wallet":    { "label": "Wallets",              "display_order": 2 },
+    "fintech":   { "label": "Banking & Fintech",    "display_order": 3 },
+    "tax":       { "label": "Tax Software",         "display_order": 4 },
+    "ai_tool":   { "label": "AI Trading Tools",     "display_order": 5 },
+    "other":     { "label": "Other",                "display_order": 6 }
   }
 }
