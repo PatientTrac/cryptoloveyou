@@ -63,7 +63,7 @@ export const handler = async (event) => {
     }
   }
 
-  const model = process.env.GROK_MODEL || 'grok-4'
+  const model = process.env.GROK_MODEL || 'grok-4.20-reasoning'
 
   try {
     const response = await fetch('https://api.x.ai/v1/chat/completions', {
