@@ -58,7 +58,7 @@ jobs:
           fi
 
       - name: Push changes to repository
-          run: |
-            git pull --rebase origin main
-            git push origin main
-            echo "✅ Homepage content pushed successfully"
+        run: |
+          git pull --rebase origin main
+          git push origin main
+          echo "✅ Homepage content pushed successfully"
