@@ -47,27 +47,34 @@ const HOMEPAGE_SIDEBAR_MEDIA = {
   stockFeatured: '/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-450x225.jpg',
   stockSmall: [
     '/wp-content/uploads/2026/03/Stocks-Settle-Sharply-Higher-as-Crude-Oil-Slumps-300x200.jpg',
-    '/wp-content/uploads/2026/03/AI-Biggest-Surprise-is-Coming-These-are-the-Stocks-to-300x169.jpg',
-    '/wp-content/uploads/2026/03/SBET-Quantitative-Stock-Analysis-Nasdaq-300x150.jpg'
+    '/wp-content/uploads/2026/03/Cocoa-Prices-Settle-Mixed-on-Currency-Fluctuations-450x253.jpg',
+    '/wp-content/uploads/2026/03/Crude-Oil-Prices-Rally-as-Iran-War-Disrupts-Global-Supplies-450x299.jpg',
+    '/wp-content/uploads/2026/03/2-Bruised-Dividend-Titans-Worth-Buying-on-the-Cheap-300x200.jpg'
   ],
   aiFeatured: '/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-1024x683.webp',
   aiList: [
-    '/wp-content/uploads/2026/03/Google-AI-Releases-WAXAL-A-Multilingual-African-Speech-Dataset-for-450x321.png',
-    '/wp-content/uploads/2026/03/US-Holds-Off-on-New-AI-Chip-Export-Rules-in-450x225.jpg',
     '/wp-content/uploads/2026/03/Can-AI-help-predict-which-heart-failure-patients-will-worsen-within-450x300.jpg',
-    '/wp-content/uploads/2026/03/NanoClaw-and-Docker-partner-to-make-sandboxes-the-safest-way.png'
+    '/wp-content/uploads/2026/03/5-Hacks-To-Use-ChatGPT-So-Well-Its-Almost-Unfair-450x253.jpg',
+    '/wp-content/uploads/2026/03/100-Free-AI-Course-by-Anthropic-Learn-AI-in-450x253.jpg',
+    '/wp-content/uploads/2026/03/10-Best-FREE-AI-Courses-for-Beginners-450x253.jpg',
+    '/wp-content/uploads/2026/03/5-Levels-of-Prompting-to-Create-ANY-AI-Video-450x253.jpg'
   ],
-  // Crypto/blockchain article images - real files from wp-content/uploads
   cryptoFeatured: '/wp-content/uploads/2026/03/Aave-Rift-Bitcoin-Rebound-and-ETF-Inflows-Dominate-the-Crypto-450x300.jpg',
   cryptoList: [
-    '/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-450x270.jpg',
-    '/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-450x300.jpg',
-    '/wp-content/uploads/2026/03/Aave-Rift-Bitcoin-Rebound-and-ETF-Inflows-Dominate-the-Crypto-300x200.jpg',
-    '/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-300x180.jpg',
+    '/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg',
+    '/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg',
+    '/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg',
+    '/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg',
+    '/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg',
     '/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg',
-    '/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-300x200.jpg'
+    '/wp-content/uploads/2026/03/Bitcoin-Miners-Battle-Rising-Costs-With-New-Survival-Strategies-450x253.png',
+    '/wp-content/uploads/2026/03/78-of-Top-Alts-Beating-Bitcoin-ETH-Up-2X-450x270.jpg',
+    '/wp-content/uploads/2026/03/Crypto-Funding-Soars-50-But-Most-Startups-Are-Getting-Shut-450x253.jpg',
+    '/wp-content/uploads/2026/03/Buterin-Says-Its-Time-To-Revisit-Idea-Simplifying-Ethereum-Node-450x300.jpg'
   ]
-}
+}git add netlify/functions/update-homepage-content.js
+git commit -m "fix: update crypto/stock/AI image pools with verified real paths"
+git push origin main
 
 function assignStockNewsImages(data) {
   if (!data?.featured) return data
