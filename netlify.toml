@@ -89,6 +89,16 @@
   [headers.values]
     Cache-Control = "public, max-age=120, must-revalidate"
 
+[[headers]]
+  for = "/"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/category/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"
