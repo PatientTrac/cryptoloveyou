@@ -99,8 +99,11 @@ export const handler = async (event) => {
             'GET ?resource=clicks': 'List clicks (from, to, platform, article_slug, limit)',
             'GET ?resource=aggregates': 'Aggregates (from, to, groupBy=platform|day|article_slug)',
             'GET ?resource=partners': 'List affiliate_partners rows',
-            'POST ?resource=partners': 'Create partner (JSON body)',
-            'PATCH ?resource=partners&id=<uuid>': 'Update partner',
+            'GET ?resource=custom': 'List custom_affiliates rows',
+            'POST ?resource=partners': 'Create partner in affiliate_partners (JSON body)',
+            'POST ?resource=custom': 'Create/upsert custom affiliate (JSON body)',
+            'PATCH ?resource=partners&id=<uuid>': 'Update affiliate_partners row',
+            'PATCH ?resource=custom&id=<uuid>': 'Update custom_affiliates row',
             'PATCH ?resource=click&id=<uuid>': 'Mark conversion (JSON body)'
           }
         })
@@ -146,6 +149,106 @@ export const handler = async (event) => {
         statusCode: 200,
         headers,
         body: JSON.stringify({ ok: true, partners })
+      }
+    }
+
+    // ── custom_affiliates GET ────────────────────────────────
+    if (event.httpMethod === 'GET' && resource === 'custom') {
+      const { data, error } = await supabase
+        .from('custom_affiliates')
+        .select('*')
+        .order('category', { ascending: true })
+        .order('priority', { ascending: true })
+
+      if (error) throw error
+      return {
+        statusCode: 200,
+        headers,
+        body: JSON.stringify({ ok: true, custom_affiliates: data || [] })
+      }
+    }
+
+    // ── custom_affiliates POST (create / upsert) ─────────────
+    if (event.httpMethod === 'POST' && resource === 'custom') {
+      const roleCheck = requireRole(currentUser, 'admin')
+      if (!roleCheck.ok) {
+        return { statusCode: 403, headers, body: JSON.stringify({ error: roleCheck.error }) }
+      }
+
+      const body = JSON.parse(event.body || '{}')
+      const platform_key = String(body.platform_key || '').trim().toLowerCase().replace(/\s+/g, '_')
+      const label        = String(body.label || '').trim()
+      const affiliate_url = String(body.affiliate_url || '').trim()
+
+      if (!platform_key || !label || !affiliate_url) {
+        return {
+          statusCode: 400, headers,
+          body: JSON.stringify({ error: 'platform_key, label and affiliate_url are required' })
+        }
+      }
+
+      const row = {
+        platform_key,
+        label,
+        affiliate_url,
+        category:         body.category         || 'other',
+        description:      body.description       || null,
+        logo_url:         body.logo_url          || null,
+        cta_text:         body.cta_text          || 'Learn more →',
+        commission_model: body.commission_model  || null,
+        rate:             body.rate              || null,
+        cookie_days:      body.cookie_days       ? Number(body.cookie_days) : null,
+        payment_method:   body.payment_method    || null,
+        threshold:        body.threshold         || null,
+        notes:            body.notes             || null,
+        active:           body.active !== false,
+        priority:         body.priority          ? Number(body.priority) : 10,
+        updated_at:       new Date().toISOString()
+      }
+
+      const { data, error } = await supabase
+        .from('custom_affiliates')
+        .upsert([row], { onConflict: 'platform_key' })
+        .select()
+
+      if (error) throw error
+      return {
+        statusCode: 200, headers,
+        body: JSON.stringify({ ok: true, partner: data?.[0] })
+      }
+    }
+
+    // ── custom_affiliates PATCH ──────────────────────────────
+    if (event.httpMethod === 'PATCH' && resource === 'custom') {
+      const roleCheck = requireRole(currentUser, 'admin')
+      if (!roleCheck.ok) {
+        return { statusCode: 403, headers, body: JSON.stringify({ error: roleCheck.error }) }
+      }
+
+      const id = qs.id
+      if (!id) {
+        return { statusCode: 400, headers, body: JSON.stringify({ error: 'id param required' }) }
+      }
+
+      const body = JSON.parse(event.body || '{}')
+      const allowed = ['label','affiliate_url','category','description','logo_url',
+                       'cta_text','commission_model','rate','cookie_days','payment_method',
+                       'threshold','notes','active','priority']
+      const updates = { updated_at: new Date().toISOString() }
+      for (const key of allowed) {
+        if (body[key] !== undefined) updates[key] = body[key]
+      }
+
+      const { data, error } = await supabase
+        .from('custom_affiliates')
+        .update(updates)
+        .eq('id', id)
+        .select()
+
+      if (error) throw error
+      return {
+        statusCode: 200, headers,
+        body: JSON.stringify({ ok: true, partner: data?.[0] })
       }
     }
 
