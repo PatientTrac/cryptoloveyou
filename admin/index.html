@@ -820,7 +820,7 @@
             <option value="inactive">Inactive</option>
           </select>
         </div>
-        <button class="btn btn-primary" onclick="openAffiliateModal('custom')">+ Add Affiliate</button>
+        <button class="btn btn-primary" onclick="openCatalogueModal()">+ Add Affiliate</button>
       </div>
 
       <div class="card">
@@ -1208,6 +1208,35 @@
 
   </div><!-- /content -->
 </main>
+
+<!-- ══ AFFILIATE CATALOGUE MODAL ══════════════════════════════════ -->
+<div class="modal-overlay" id="catalogue-modal" style="z-index:10001">
+  <div class="modal" style="max-width:720px;width:95vw">
+    <div class="modal-header">
+      <div class="modal-title">Add Affiliate Partner</div>
+      <button class="btn btn-ghost btn-icon" onclick="closeModal('catalogue-modal')">✕</button>
+    </div>
+    <div class="modal-body" style="padding:0">
+      <!-- Tab bar -->
+      <div style="display:flex;border-bottom:1px solid var(--border);padding:0 24px">
+        <button id="tab-catalogue" onclick="switchCatalogueTab('catalogue')" style="padding:12px 16px;background:none;border:none;border-bottom:2px solid var(--gold);color:var(--gold);font-weight:600;font-size:0.85rem;cursor:pointer">📋 From Registry (22)</button>
+        <button id="tab-custom" onclick="switchCatalogueTab('custom')" style="padding:12px 16px;background:none;border:none;border-bottom:2px solid transparent;color:var(--dim);font-size:0.85rem;cursor:pointer">✏️ Custom / New</button>
+      </div>
+
+      <!-- CATALOGUE TAB -->
+      <div id="catalogue-tab-content" style="padding:16px 24px">
+        <p style="font-size:0.8rem;color:var(--dim);margin-bottom:12px">All affiliates from your registry. Click one to pre-fill the form, then add your referral URL and activate.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;max-height:420px;overflow-y:auto" id="catalogue-grid"></div>
+      </div>
+
+      <!-- CUSTOM TAB -->
+      <div id="custom-tab-content" style="display:none;padding:16px 24px">
+        <p style="font-size:0.8rem;color:var(--dim);margin-bottom:12px">Add a brand new affiliate not in the registry.</p>
+        <button class="btn btn-primary" onclick="closeModal('catalogue-modal');openAffiliateModal('custom')" style="width:100%">Open Blank Form →</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ══ AFFILIATE MODAL ══════════════════════════════════ -->
 <div class="modal-overlay" id="aff-modal">
@@ -1775,6 +1804,88 @@ function deleteAffiliate(id, key, source) {
     toast(`Removed ${key}`, 'success')
     closeModal('confirm-modal')
   })
+}
+
+// ── AFFILIATE CATALOGUE ───────────────────────────────────────
+const REGISTRY = [
+  {key:'binance',    label:'Binance',        cat:'Exchange',   rate:'Up to 50% revshare',          url:'https://www.binance.com/en/activity/referral-entry/CPA', note:'Largest exchange · Most AI tokens'},
+  {key:'coinbase',   label:'Coinbase',       cat:'Exchange',   rate:'$10 CPA per signup',           url:'https://www.coinbase.com/partners',                       note:'Best for US/UK · NASDAQ listed'},
+  {key:'bybit',      label:'Bybit',          cat:'Exchange',   rate:'30% revshare',                 url:'https://partner.bybit.com/',                              note:'Best AI token selection'},
+  {key:'okx',        label:'OKX',            cat:'Exchange',   rate:'Up to 60% revshare',           url:'https://www.okx.com/affiliate',                           note:'Best DeFi/Web3 exchange'},
+  {key:'kraken',     label:'Kraken',         cat:'Exchange',   rate:'20% revshare',                 url:'https://www.kraken.com/affiliate',                        note:'Best security record'},
+  {key:'ledger',     label:'Ledger',         cat:'Wallet',     rate:'10% CPA per sale',             url:'https://affiliate.ledger.com/',                           note:'Most popular hardware wallet'},
+  {key:'trezor',     label:'Trezor',         cat:'Wallet',     rate:'12–15% CPA per sale',          url:'https://trezor.io/resellers',                             note:'Fully open source'},
+  {key:'tangem',     label:'Tangem',         cat:'Wallet',     rate:'20–25% CPA ⭐ Best rate',      url:'https://tangem.com/en/referral/',                         note:'Card form factor · Converts well'},
+  {key:'safepal',    label:'SafePal',        cat:'Wallet',     rate:'20% CPA per sale',             url:'https://www.safepal.com/en/affiliate',                    note:'Budget pick · $49 · Binance backed'},
+  {key:'exodus',     label:'Exodus',         cat:'Wallet',     rate:'30% lifetime revshare ⭐',     url:'https://www.exodus.com/referral/',                        note:'Earns on every swap forever'},
+  {key:'coldcard',   label:'Coldcard',       cat:'Wallet',     rate:'15% CPA per sale',             url:'https://coinkite.com/affiliates',                         note:'Bitcoin-maxi audience'},
+  {key:'koinly',     label:'Koinly',         cat:'Tax',        rate:'30% lifetime recurring ⭐',    url:'https://koinly.io/affiliates/',                           note:'Best tax software · Already in content'},
+  {key:'cointracker',label:'CoinTracker',    cat:'Tax',        rate:'25% recurring',                url:'https://www.cointracker.io/affiliates',                   note:'TurboTax integration'},
+  {key:'zenledger',  label:'ZenLedger',      cat:'Tax',        rate:'30% recurring',                url:'https://www.zenledger.io/affiliate',                      note:'$999/yr plan = $299/conversion'},
+  {key:'tradingview',label:'TradingView',    cat:'AI Tool',    rate:'30% recurring 12mo ⭐',        url:'https://www.tradingview.com/gopro/',                      note:'50M users · Highest volume'},
+  {key:'3commas',    label:'3Commas',        cat:'AI Tool',    rate:'30% recurring',                url:'https://3commas.io/affiliate-program',                    note:'AI trading bots · $29–99/mo'},
+  {key:'pionex',     label:'Pionex',         cat:'AI Tool',    rate:'30–40% lifetime revshare',     url:'https://www.pionex.com/en/sign-up?affiliate',             note:'Free bots · Zero friction signup'},
+  {key:'token_metrics',label:'Token Metrics',cat:'AI Tool',   rate:'30% recurring',                url:'https://tokenmetrics.com/affiliate',                      note:'AI crypto research platform'},
+  {key:'coinstats',  label:'CoinStats',      cat:'AI Tool',    rate:'25% recurring',                url:'https://coinstats.app/affiliate',                         note:'Portfolio tracker · 1M+ users'},
+  {key:'nordvpn',    label:'NordVPN',        cat:'Other',      rate:'40% new + 30% renewals ⭐',    url:'https://affiliate.nordvpn.com/',                          note:'Crypto audience converts high'},
+  {key:'payset',     label:'Payset',         cat:'Fintech',    rate:'TBC · Fee waived (negotiated)',url:'https://signup.payset.io/sign-up?utm=Sl_vFlp',           note:'✅ LIVE · FCA regulated IBAN'},
+  {key:'safelynx',   label:'Safelynx',       cat:'Exchange',   rate:'0.75% rate (negotiated)',      url:'https://signup.payset.io/sign-up?utm=Sl_vFlp',           note:'✅ LIVE · Danish FSA VASP'},
+]
+
+const CAT_COLORS = {Exchange:'badge-blue',Wallet:'badge-green','AI Tool':'badge-purple',Tax:'badge-gold',Fintech:'badge-purple',Other:'badge-muted'}
+
+function openCatalogueModal() {
+  // Build catalogue grid
+  const grid = document.getElementById('catalogue-grid')
+  grid.innerHTML = REGISTRY.map(p => {
+    const alreadyAdded = allPartners.some(x => x.platform_key === p.key)
+    const badgeClass = CAT_COLORS[p.cat] || 'badge-muted'
+    const liveTag = p.note.startsWith('✅') ? '<span style="color:#4ade80;font-size:0.7rem;font-weight:700">✅ LIVE</span>' : ''
+    return `<div onclick="${alreadyAdded ? '' : `pickFromCatalogue('${p.key}')`}"
+      style="background:var(--card-bg);border:1px solid ${alreadyAdded ? 'var(--border)' : 'var(--border-hover)'};border-radius:10px;padding:12px;cursor:${alreadyAdded ? 'default' : 'pointer'};opacity:${alreadyAdded ? '0.5' : '1'};transition:border-color 0.15s"
+      onmouseover="if(!${alreadyAdded})this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='${alreadyAdded ? 'var(--border)' : 'var(--border-hover)'}'">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+        <span style="font-weight:700;font-size:0.85rem">${p.label}</span>
+        ${alreadyAdded ? '<span style="font-size:0.65rem;color:var(--dim)">added</span>' : liveTag}
+      </div>
+      <div style="font-size:0.7rem;color:var(--gold);margin-bottom:4px">${p.rate}</div>
+      <div style="font-size:0.68rem;color:var(--dim)">${p.note.replace('✅ LIVE · ','')}</div>
+    </div>`
+  }).join('')
+  document.getElementById('catalogue-modal').classList.add('open')
+}
+
+function switchCatalogueTab(tab) {
+  document.getElementById('catalogue-tab-content').style.display = tab === 'catalogue' ? '' : 'none'
+  document.getElementById('custom-tab-content').style.display   = tab === 'custom'    ? '' : 'none'
+  document.getElementById('tab-catalogue').style.borderBottomColor = tab === 'catalogue' ? 'var(--gold)' : 'transparent'
+  document.getElementById('tab-catalogue').style.color             = tab === 'catalogue' ? 'var(--gold)' : 'var(--dim)'
+  document.getElementById('tab-custom').style.borderBottomColor    = tab === 'custom'    ? 'var(--gold)' : 'transparent'
+  document.getElementById('tab-custom').style.color                = tab === 'custom'    ? 'var(--gold)' : 'var(--dim)'
+}
+
+function pickFromCatalogue(key) {
+  const p = REGISTRY.find(x => x.key === key)
+  if (!p) return
+  closeModal('catalogue-modal')
+  // Pre-fill the affiliate modal
+  document.getElementById('aff-modal-title').textContent = `Add ${p.label}`
+  document.getElementById('aff-edit-id').value = ''
+  document.getElementById('aff-source').value = 'custom'
+  document.getElementById('aff-platform-key').value = p.key
+  document.getElementById('aff-label').value = p.label
+  document.getElementById('aff-url').value = p.url
+  document.getElementById('aff-commission-model').value =
+    p.rate.includes('CPA') ? 'cpa' :
+    p.rate.includes('revshare') || p.rate.includes('revshare') ? 'revshare' :
+    p.rate.includes('recurring') ? 'recurring' : 'hybrid'
+  document.getElementById('aff-rate').value = p.rate.replace(' ⭐ Best rate','').replace(' ⭐','')
+  const catMap = {Exchange:'exchange',Wallet:'wallet',Fintech:'fintech',Tax:'tax','AI Tool':'ai_tool',Other:'other'}
+  const catEl = document.getElementById('aff-category')
+  if (catEl) catEl.value = catMap[p.cat] || 'other'
+  document.getElementById('aff-notes').value = p.note.replace('✅ LIVE · ','')
+  document.getElementById('aff-active').checked = p.note.startsWith('✅')
+  document.getElementById('aff-modal').classList.add('open')
 }
 
 // ── PAYMENTS ──────────────────────────────────────────────
