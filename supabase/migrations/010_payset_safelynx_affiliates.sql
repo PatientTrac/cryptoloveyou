@@ -35,7 +35,7 @@ INSERT INTO custom_affiliates (
 (
   'payset',
   'Payset',
-  'https://payset.io/?ref=PENDING',
+  'https://signup.payset.io/sign-up?utm=Sl_vFlp',
   'fintech',
 
   'FCA-regulated multi-currency IBAN accounts (UK, EU, US). '
@@ -62,19 +62,18 @@ INSERT INTO custom_affiliates (
   'bank',
   NULL,
 
-  'PARTNER TERMS NEGOTIATED: Clients referred via CryptoLoveYou '
+  'LIVE PARTNER: Clients referred via CryptoLoveYou '
   'receive monthly account fee FREE (standard rate normally applies). '
   'Pricing otherwise based on client risk profile per Payset policy. '
   'FCA-registered EMI (Electronic Money Institution). '
   'Crypto services via regulated Payset partner — NOT available for US clients. '
   'Contact: sales@payset.io | +44 (0)748 205 9285. '
-  'NEXT STEPS: (1) Book call to confirm affiliate commission structure. '
-  '(2) Get your unique referral URL. (3) Update affiliate_url field. '
-  '(4) Set active = true. '
+  'Referral URL: https://signup.payset.io/sign-up?utm=Sl_vFlp. '
+  'Commission structure: confirm rev-share % with Payset. '
   'Best content placement: crypto-tax-guide (IBAN for international filers), '
   'best-crypto-exchanges (banking alternative), make-money guide.',
 
-  false,  -- activate after receiving referral URL from Payset
+  true,   -- LIVE: referral URL confirmed
   1
 ),
 
@@ -82,7 +81,7 @@ INSERT INTO custom_affiliates (
 (
   'safelynx',
   'Safelynx',
-  'https://safelynx.io/?ref=PENDING',
+  'https://signup.payset.io/sign-up?utm=Sl_vFlp',
   'exchange',
 
   'Danish FSA-registered crypto OTC broker (FTID 17514). '
@@ -111,17 +110,17 @@ INSERT INTO custom_affiliates (
   'bank',
   NULL,
 
-  'PARTNER TERMS NEGOTIATED: CryptoLoveYou referrals get preferential '
+  'LIVE PARTNER: CryptoLoveYou referrals get preferential '
   '0.75% transaction rate instead of standard 1% for the entry tier. '
   'Significant saving for clients trading €50k–€100k (saves up to €250/trade). '
   'FSA-registered VASP: SafeLynx Technologies ApS, Kålundsvej 18, 3520 Farum, Denmark. '
   'Contact: support@safelynx.io | +45 52 519902 | Telegram: @SafeLynx_OTC_Irina. '
-  'NEXT STEPS: (1) Confirm affiliate rev-share % and get referral URL from Safelynx. '
-  '(2) Update affiliate_url. (3) Set active = true. '
+  'Referral URL: https://signup.payset.io/sign-up?utm=Sl_vFlp (shared link). '
+  'Confirm individual Safelynx rev-share % with support@safelynx.io. '
   'Best content placement: best-crypto-exchanges page (OTC angle for larger buyers), '
   'how-to-buy-crypto (European regulated option), make-money guide (OTC exit ramp).',
 
-  false,  -- activate after receiving referral URL from Safelynx
+  true,   -- LIVE: referral URL confirmed
   2
 )
 

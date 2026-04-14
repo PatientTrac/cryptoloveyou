@@ -2,10 +2,14 @@
   "version": 2,
   "updated_at": "2026-04-14",
   "platforms": {
-
     "binance": {
       "category": "exchange",
-      "tags": ["exchange", "trading", "staking", "ai-tokens"],
+      "tags": [
+        "exchange",
+        "trading",
+        "staking",
+        "ai-tokens"
+      ],
       "priority": 1,
       "env_key": "BINANCE_AFFILIATE_URL",
       "default_cta": "Get started on Binance",
@@ -15,7 +19,12 @@
     },
     "coinbase": {
       "category": "exchange",
-      "tags": ["exchange", "beginner", "staking", "regulated"],
+      "tags": [
+        "exchange",
+        "beginner",
+        "staking",
+        "regulated"
+      ],
       "priority": 2,
       "env_key": "COINBASE_AFFILIATE_URL",
       "default_cta": "Get started on Coinbase",
@@ -25,7 +34,13 @@
     },
     "bybit": {
       "category": "exchange",
-      "tags": ["exchange", "trading", "earn", "ai-tokens", "derivatives"],
+      "tags": [
+        "exchange",
+        "trading",
+        "earn",
+        "ai-tokens",
+        "derivatives"
+      ],
       "priority": 3,
       "env_key": "BYBIT_AFFILIATE_URL",
       "default_cta": "Explore Bybit Earn",
@@ -35,7 +50,13 @@
     },
     "okx": {
       "category": "exchange",
-      "tags": ["exchange", "trading", "earn", "defi", "web3"],
+      "tags": [
+        "exchange",
+        "trading",
+        "earn",
+        "defi",
+        "web3"
+      ],
       "priority": 4,
       "env_key": "OKX_AFFILIATE_URL",
       "default_cta": "Explore OKX",
@@ -45,7 +66,12 @@
     },
     "kraken": {
       "category": "exchange",
-      "tags": ["exchange", "security", "staking", "regulated"],
+      "tags": [
+        "exchange",
+        "security",
+        "staking",
+        "regulated"
+      ],
       "priority": 5,
       "env_key": "KRAKEN_AFFILIATE_URL",
       "default_cta": "Get started on Kraken",
@@ -55,7 +81,12 @@
     },
     "ledger": {
       "category": "wallet",
-      "tags": ["wallet", "hardware", "security", "cold-storage"],
+      "tags": [
+        "wallet",
+        "hardware",
+        "security",
+        "cold-storage"
+      ],
       "priority": 1,
       "env_key": "LEDGER_AFFILIATE_URL",
       "default_cta": "Buy a Ledger wallet",
@@ -65,7 +96,12 @@
     },
     "trezor": {
       "category": "wallet",
-      "tags": ["wallet", "hardware", "security", "open-source"],
+      "tags": [
+        "wallet",
+        "hardware",
+        "security",
+        "open-source"
+      ],
       "priority": 2,
       "env_key": "TREZOR_AFFILIATE_URL",
       "default_cta": "Buy a Trezor wallet",
@@ -75,7 +111,13 @@
     },
     "tangem": {
       "category": "wallet",
-      "tags": ["wallet", "hardware", "beginner", "nfc", "no-seed-phrase"],
+      "tags": [
+        "wallet",
+        "hardware",
+        "beginner",
+        "nfc",
+        "no-seed-phrase"
+      ],
       "priority": 3,
       "env_key": "TANGEM_AFFILIATE_URL",
       "default_cta": "Get Tangem — Tap to Secure",
@@ -85,7 +127,12 @@
     },
     "safepal": {
       "category": "wallet",
-      "tags": ["wallet", "hardware", "budget", "air-gapped"],
+      "tags": [
+        "wallet",
+        "hardware",
+        "budget",
+        "air-gapped"
+      ],
       "priority": 4,
       "env_key": "SAFEPAL_AFFILIATE_URL",
       "default_cta": "Get SafePal S1 Pro",
@@ -95,7 +142,13 @@
     },
     "exodus": {
       "category": "wallet",
-      "tags": ["wallet", "software", "desktop", "staking", "multi-chain"],
+      "tags": [
+        "wallet",
+        "software",
+        "desktop",
+        "staking",
+        "multi-chain"
+      ],
       "priority": 5,
       "env_key": "EXODUS_AFFILIATE_URL",
       "default_cta": "Download Exodus Free",
@@ -105,7 +158,13 @@
     },
     "coldcard": {
       "category": "wallet",
-      "tags": ["wallet", "hardware", "bitcoin", "air-gapped", "open-source"],
+      "tags": [
+        "wallet",
+        "hardware",
+        "bitcoin",
+        "air-gapped",
+        "open-source"
+      ],
       "priority": 6,
       "env_key": "COLDCARD_AFFILIATE_URL",
       "default_cta": "Buy Coldcard",
@@ -115,7 +174,15 @@
     },
     "koinly": {
       "category": "tax",
-      "tags": ["tax", "reporting", "portfolio", "us", "uk", "eu", "au"],
+      "tags": [
+        "tax",
+        "reporting",
+        "portfolio",
+        "us",
+        "uk",
+        "eu",
+        "au"
+      ],
       "priority": 1,
       "env_key": "KOINLY_AFFILIATE_URL",
       "default_cta": "Try Koinly Free — 20% Off",
@@ -125,7 +192,13 @@
     },
     "tradingview": {
       "category": "ai_tool",
-      "tags": ["charting", "analysis", "trading", "alerts", "ai"],
+      "tags": [
+        "charting",
+        "analysis",
+        "trading",
+        "alerts",
+        "ai"
+      ],
       "priority": 1,
       "env_key": "TRADINGVIEW_AFFILIATE_URL",
       "default_cta": "Get TradingView Pro",
@@ -135,7 +208,13 @@
     },
     "3commas": {
       "category": "ai_tool",
-      "tags": ["trading-bot", "dca", "grid", "ai", "automation"],
+      "tags": [
+        "trading-bot",
+        "dca",
+        "grid",
+        "ai",
+        "automation"
+      ],
       "priority": 2,
       "env_key": "THREECOMMAS_AFFILIATE_URL",
       "default_cta": "Try 3Commas Bots",
@@ -145,7 +224,14 @@
     },
     "pionex": {
       "category": "ai_tool",
-      "tags": ["trading-bot", "free", "exchange", "grid", "dca", "ai"],
+      "tags": [
+        "trading-bot",
+        "free",
+        "exchange",
+        "grid",
+        "dca",
+        "ai"
+      ],
       "priority": 3,
       "env_key": "PIONEX_AFFILIATE_URL",
       "default_cta": "Start Pionex Bots Free",
@@ -155,7 +241,13 @@
     },
     "token_metrics": {
       "category": "ai_tool",
-      "tags": ["ai", "research", "analysis", "predictions", "portfolio"],
+      "tags": [
+        "ai",
+        "research",
+        "analysis",
+        "predictions",
+        "portfolio"
+      ],
       "priority": 4,
       "env_key": "TOKEN_METRICS_AFFILIATE_URL",
       "default_cta": "Try Token Metrics",
@@ -165,7 +257,13 @@
     },
     "cointracker": {
       "category": "tax",
-      "tags": ["tax", "reporting", "turbotax", "defi", "us"],
+      "tags": [
+        "tax",
+        "reporting",
+        "turbotax",
+        "defi",
+        "us"
+      ],
       "priority": 2,
       "env_key": "COINTRACKER_AFFILIATE_URL",
       "default_cta": "Try CoinTracker",
@@ -175,7 +273,14 @@
     },
     "zenledger": {
       "category": "tax",
-      "tags": ["tax", "reporting", "cpa", "defi", "us", "high-volume"],
+      "tags": [
+        "tax",
+        "reporting",
+        "cpa",
+        "defi",
+        "us",
+        "high-volume"
+      ],
       "priority": 3,
       "env_key": "ZENLEDGER_AFFILIATE_URL",
       "default_cta": "Try ZenLedger",
@@ -185,7 +290,11 @@
     },
     "nordvpn": {
       "category": "other",
-      "tags": ["vpn", "privacy", "security"],
+      "tags": [
+        "vpn",
+        "privacy",
+        "security"
+      ],
       "priority": 1,
       "env_key": "NORDVPN_AFFILIATE_URL",
       "default_cta": "Get NordVPN — Stay Private",
@@ -195,7 +304,13 @@
     },
     "coinstats": {
       "category": "ai_tool",
-      "tags": ["portfolio", "tracker", "defi", "nft", "ai"],
+      "tags": [
+        "portfolio",
+        "tracker",
+        "defi",
+        "nft",
+        "ai"
+      ],
       "priority": 5,
       "env_key": "COINSTATS_AFFILIATE_URL",
       "default_cta": "Track Portfolio on CoinStats",
@@ -203,39 +318,73 @@
       "rate": "25% recurring",
       "risk_level": "low"
     },
-
     "payset": {
       "category": "fintech",
-      "tags": ["banking", "iban", "multi-currency", "fca", "swift", "sepa", "crypto-friendly"],
+      "tags": [
+        "banking",
+        "iban",
+        "multi-currency",
+        "fca",
+        "swift",
+        "sepa",
+        "crypto-friendly"
+      ],
       "priority": 1,
       "env_key": "PAYSET_AFFILIATE_URL",
       "default_cta": "Open a Payset Account — Monthly Fee Waived",
       "commission_model": "cpa",
       "rate": "TBC — monthly fee waived for referrals (negotiated)",
       "risk_level": "low",
-      "note": "NEGOTIATED: CryptoLoveYou referrals get monthly account fee FREE. FCA EMI. 34 currencies, 180+ countries. Crypto via partner."
+      "note": "LIVE. NEGOTIATED: monthly fee waived for referrals. Commission TBC with Payset.",
+      "affiliate_url": "https://signup.payset.io/sign-up?utm=Sl_vFlp",
+      "active": true
     },
-
     "safelynx": {
       "category": "exchange",
-      "tags": ["otc", "crypto", "regulated", "denmark", "fsa", "sepa", "swift"],
+      "tags": [
+        "otc",
+        "crypto",
+        "regulated",
+        "denmark",
+        "fsa",
+        "sepa",
+        "swift"
+      ],
       "priority": 6,
       "env_key": "SAFELYNX_AFFILIATE_URL",
       "default_cta": "Buy Crypto via Safelynx — Lower Fees",
       "commission_model": "revshare",
       "rate": "0.75% for referred clients vs standard 1% (negotiated)",
       "risk_level": "low",
-      "note": "NEGOTIATED: Referred clients start at 0.75% not 1% for €0-€100k tier. Danish FSA-registered VASP. OTC for larger buyers."
+      "note": "LIVE (shared link with Payset). NEGOTIATED: 0.75% vs standard 1% for €0-€100k. Rev-share % TBC with Safelynx.",
+      "affiliate_url": "https://signup.payset.io/sign-up?utm=Sl_vFlp",
+      "active": true
     }
-
   },
-
   "categories": {
-    "exchange":  { "label": "Exchanges",           "display_order": 1 },
-    "wallet":    { "label": "Wallets",              "display_order": 2 },
-    "fintech":   { "label": "Banking & Fintech",    "display_order": 3 },
-    "tax":       { "label": "Tax Software",         "display_order": 4 },
-    "ai_tool":   { "label": "AI Trading Tools",     "display_order": 5 },
-    "other":     { "label": "Other",                "display_order": 6 }
+    "exchange": {
+      "label": "Exchanges",
+      "display_order": 1
+    },
+    "wallet": {
+      "label": "Wallets",
+      "display_order": 2
+    },
+    "fintech": {
+      "label": "Banking & Fintech",
+      "display_order": 3
+    },
+    "tax": {
+      "label": "Tax Software",
+      "display_order": 4
+    },
+    "ai_tool": {
+      "label": "AI Trading Tools",
+      "display_order": 5
+    },
+    "other": {
+      "label": "Other",
+      "display_order": 6
+    }
   }
 }
