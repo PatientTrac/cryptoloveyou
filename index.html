@@ -2041,13 +2041,10 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 	function resolveLocale() {
 		var m = location.pathname.match(/^\/(en|fr|de|pt|es|zh|ru)(\/|$)/);
 		if (m) return m[1];
-		var ckCode = readCookieLang();
 		var p = location.pathname || '/';
-		/* Root homepage is the English main site — label as English unless user saved another preference */
-		if (p === '/' || p === '/index.html') {
-			if (ckCode) return ckCode;
-			return 'en';
-		}
+		/* Root homepage is always English — never override with cookie or browser lang */
+		if (p === '/' || p === '/index.html') return 'en';
+		var ckCode = readCookieLang();
 		if (ckCode) return ckCode;
 		var langs = navigator.languages || [navigator.language || 'en'];
 		for (var i = 0; i < langs.length; i++) {
@@ -2080,6 +2077,15 @@ const a=JSON.parse(document.getElementById("wp-emoji-settings").textContent),o=(
 			if (code) document.cookie = 'nf_lang=' + encodeURIComponent(code) + '; path=/; max-age=31536000; SameSite=Lax';
 		});
 	});
+	/* Auto-redirect root page visitors to their saved language preference */
+	(function() {
+		var p = location.pathname;
+		if (p !== '/' && p !== '/index.html') return;
+		var ckCode = readCookieLang();
+		if (ckCode && ckCode !== 'en') {
+			location.replace('/' + ckCode + '/');
+		}
+	})();
 })();
 </script>
 
