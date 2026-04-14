@@ -72,9 +72,7 @@ const HOMEPAGE_SIDEBAR_MEDIA = {
     '/wp-content/uploads/2026/03/Crypto-Funding-Soars-50-But-Most-Startups-Are-Getting-Shut-450x253.jpg',
     '/wp-content/uploads/2026/03/Buterin-Says-Its-Time-To-Revisit-Idea-Simplifying-Ethereum-Node-450x300.jpg'
   ]
-}git add netlify/functions/update-homepage-content.js
-git commit -m "fix: update crypto/stock/AI image pools with verified real paths"
-git push origin main
+}
 
 function assignStockNewsImages(data) {
   if (!data?.featured) return data
