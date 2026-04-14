@@ -40,23 +40,25 @@
     return sym ? sym.toLowerCase() : '';
   }
 
-  // Real media under /wp-content/uploads (placeholders from the generator do not exist on disk)
+  // Real media under /wp-content/uploads — all paths verified to exist on disk
   const HOMEPAGE_STOCK_IMAGES = {
     featured: '/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-450x225.jpg',
     small: [
       '/wp-content/uploads/2026/03/Stocks-Settle-Sharply-Higher-as-Crude-Oil-Slumps-300x200.jpg',
-      '/wp-content/uploads/2026/03/AI-Biggest-Surprise-is-Coming-These-are-the-Stocks-to-300x169.jpg',
-      '/wp-content/uploads/2025/09/SBET-Quantitative-Stock-Analysis-Nasdaq-300x150.jpg'
+      '/wp-content/uploads/2026/03/Cocoa-Prices-Settle-Mixed-on-Currency-Fluctuations-450x253.jpg',
+      '/wp-content/uploads/2026/03/Crude-Oil-Prices-Rally-as-Iran-War-Disrupts-Global-Supplies-450x299.jpg',
+      '/wp-content/uploads/2026/03/2-Bruised-Dividend-Titans-Worth-Buying-on-the-Cheap-300x200.jpg'
     ]
   };
 
   const HOMEPAGE_AI_IMAGES = {
     featured: '/wp-content/uploads/2026/03/Trustpilot-partners-with-big-model-vendors.webp-1024x683.webp',
     list: [
-      '/wp-content/uploads/2026/03/Google-AI-Releases-WAXAL-A-Multilingual-African-Speech-Dataset-for-450x321.png',
-      '/wp-content/uploads/2026/03/US-Holds-Off-on-New-AI-Chip-Export-Rules-in-450x225.jpg',
       '/wp-content/uploads/2026/03/Can-AI-help-predict-which-heart-failure-patients-will-worsen-within-450x300.jpg',
-      '/wp-content/uploads/2026/03/NanoClaw-and-Docker-partner-to-make-sandboxes-the-safest-way.png'
+      '/wp-content/uploads/2026/03/5-Hacks-To-Use-ChatGPT-So-Well-Its-Almost-Unfair-450x253.jpg',
+      '/wp-content/uploads/2026/03/100-Free-AI-Course-by-Anthropic-Learn-AI-in-450x253.jpg',
+      '/wp-content/uploads/2026/03/10-Best-FREE-AI-Courses-for-Beginners-450x253.jpg',
+      '/wp-content/uploads/2026/03/5-Levels-of-Prompting-to-Create-ANY-AI-Video-450x253.jpg'
     ]
   };
 
@@ -260,9 +262,7 @@
 </article>
     `).join('');
 
-    // Featured: markup is one div with classes `loop loop-grid loop-grid-base` (not .loop inside .loop-grid-base)
     const featuredContainer = section.querySelector('.loop.loop-grid-base');
-    // Small list lives in a sibling Elementor widget (smartmag-postssmall), still same sidebar column
     const sidebarColumn = section.closest('.elementor-column');
     const smallItemsContainer = sidebarColumn
       ? sidebarColumn.querySelector('.loop-small')
@@ -343,7 +343,6 @@
 </article>
     `).join('');
 
-    // Find both containers - AI news has two different sections
     const featuredContainer = section.querySelector('.loop-overlay');
     const listContainer = section.querySelector('.loop-list');
 
@@ -370,7 +369,6 @@
     coins.forEach(coin => {
       const slug = tickerDomSlug(coin);
       if (!slug) return;
-      // Update prices in both ticker bar and sidebar widget
       const priceElements = document.querySelectorAll(`[data-live-price="${slug}"]`);
       priceElements.forEach(el => {
         const priceSpan = el.querySelector('span');
@@ -396,7 +394,6 @@
     try {
       const response = await fetch(`${CONTENT_BASE}/${filename}`, { cache: 'no-store' });
       if (!response.ok) {
-        // Fall back to English content
         if (_pathLang !== 'en') {
           const fallback = await fetch(`/content/homepage/${filename}`, { cache: 'no-store' });
           if (fallback.ok) return await fallback.json();
@@ -414,27 +411,21 @@
   async function initializeHomepageContent() {
     console.log('🚀 Homepage content loader starting...');
 
-    // Ticker
     const tickerData = await fetchJSON('ticker.json');
     if (tickerData) updateTicker(tickerData);
 
-    // Featured
     const featuredData = await fetchJSON('featured.json');
     if (featuredData) renderFeaturedSection(featuredData);
 
-    // Latest News
     const latestNewsData = await fetchJSON('latest-news.json');
     if (latestNewsData) renderLatestNewsSection(latestNewsData);
 
-    // Stock News
     const stockNewsData = await fetchJSON('stock-news.json');
     if (stockNewsData) renderStockNewsSection(stockNewsData);
 
-    // AI News
     const aiNewsData = await fetchJSON('ai-news.json');
     if (aiNewsData) renderAINewsSection(aiNewsData);
 
-    // Re-initialize lazy loading for new images
     if (window.BunyadLazy && window.BunyadLazy.load) {
       window.BunyadLazy.load.initBgImages(true);
     }
@@ -442,7 +433,6 @@
     console.log('✅ Homepage content loader complete');
   }
 
-  // Run on DOM ready
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', initializeHomepageContent);
   } else {
