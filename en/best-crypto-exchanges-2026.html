@@ -32,6 +32,24 @@
       "publisher": {"@type": "Organization", "name": "AegisIQ Limited"}
     }
     </script>
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {"@type":"Question","name":"What is the best crypto exchange in 2026?","acceptedAnswer":{"@type":"Answer","text":"The best exchange depends on your goals. Bybit leads for AI-token access and low fees, Binance for liquidity and coin selection, and Coinbase for US-regulated beginners."}},
+        {"@type":"Question","name":"Are crypto exchanges safe to use in 2026?","acceptedAnswer":{"@type":"Answer","text":"Safety varies by platform. Look for cold storage, 2FA, proof-of-reserves audits, insurance funds, and a clean regulatory history before depositing."}},
+        {"@type":"Question","name":"How do crypto exchange fees work?","acceptedAnswer":{"@type":"Answer","text":"Exchanges charge trading fees (maker/taker), deposit/withdrawal fees, and network (gas) fees. Holding a platform's native token typically unlocks 25–50% discounts."}},
+        {"@type":"Question","name":"Do I need to verify my identity (KYC) to trade?","acceptedAnswer":{"@type":"Answer","text":"Yes, on all regulated exchanges. KYC — a government-issued ID plus selfie — is required by regulators in the US, EU, UK, and most major jurisdictions."}},
+        {"@type":"Question","name":"Which exchange has the lowest trading fees in 2026?","acceptedAnswer":{"@type":"Answer","text":"MEXC offers 0% maker fees on spot trading. Bybit and Binance follow at 0.1% or less, with further discounts via native-token fee payment."}},
+        {"@type":"Question","name":"What is the difference between a centralised and decentralised exchange?","acceptedAnswer":{"@type":"Answer","text":"A CEX holds your funds and matches orders internally, offering better liquidity and fiat access. A DEX uses smart contracts for peer-to-peer trading without a custodian, but lacks fiat on-ramps and consumer protection."}},
+        {"@type":"Question","name":"Is crypto trading legal in my country?","acceptedAnswer":{"@type":"Answer","text":"Most major economies permit retail crypto trading in 2026, including the US, UK, EU, Canada, Australia, Singapore, and Japan, provided exchanges hold the required licences."}},
+        {"@type":"Question","name":"Which exchange is best for complete beginners?","acceptedAnswer":{"@type":"Answer","text":"Coinbase (US/EU) and Bybit (global) are top picks for beginners in 2026. Prioritise a simple interface, responsive support, transparent fees, and regulatory credibility over raw features."}},
+        {"@type":"Question","name":"Can I trade AI crypto tokens on these exchanges?","acceptedAnswer":{"@type":"Answer","text":"Yes. AI tokens like NEAR, FET, RNDR, TAO, and WLD are widely available on Bybit, Binance, OKX, KuCoin, and MEXC. Early-stage AI tokens can be found on DEXs like Uniswap and Jupiter."}},
+        {"@type":"Question","name":"How do welcome bonuses and referral rewards work?","acceptedAnswer":{"@type":"Answer","text":"New-user bonuses — fee vouchers, deposit matches, or futures trial funds — are available when signing up via an affiliate link and completing KYC plus a minimum deposit. Bonuses have trading volume requirements before withdrawal."}}
+      ]
+    }
+    </script>
 </head>
 <body class="bg-zinc-950 text-white font-sans">
 
@@ -238,8 +256,343 @@
     <!-- FAQ -->
         <section class="mb-20">
             <h2 class="text-4xl font-bold mb-8">Frequently Asked Questions</h2>
-            <!-- 10 rich FAQ items -->
+
+            <div class="space-y-4" id="faq-accordion">
+
+                <!-- Q1 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">What is the best crypto exchange in 2026?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p>The best exchange depends on your goals. Based on our 2026 research, <strong class="text-white">Bybit</strong> leads for AI-token access and low fees, <strong class="text-white">Binance</strong> for sheer liquidity and coin selection, and <strong class="text-white">Coinbase</strong> for US-regulated beginners. For most users, a regulated exchange with cold-storage security, competitive fees, and a broad asset list is the safest starting point. Use the comparison table above to match your priorities.</p>
+                    </div>
+                </div>
+
+                <!-- Q2 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">Are crypto exchanges safe to use in 2026?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">Safety varies significantly by platform. Look for these key indicators before depositing:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>95%+ of funds held in cold (offline) storage</li>
+                            <li>Two-factor authentication (2FA) and biometric login</li>
+                            <li>Regular proof-of-reserves audits</li>
+                            <li>Insurance fund covering digital assets</li>
+                            <li>Clean regulatory history with no major security breaches</li>
+                        </ul>
+                        <p class="mt-3">We always recommend enabling every available security feature and using a hardware wallet for long-term holdings — never leave assets you can't afford to lose on any exchange.</p>
+                    </div>
+                </div>
+
+                <!-- Q3 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">How do crypto exchange fees work?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">Exchanges charge fees in three main areas:</p>
+                        <ul class="list-disc list-inside space-y-1 mb-3">
+                            <li><strong class="text-white">Trading fees</strong> — a percentage per buy/sell order, split into maker (adds liquidity) and taker (removes liquidity) rates</li>
+                            <li><strong class="text-white">Deposit/withdrawal fees</strong> — vary by payment method; bank transfers are usually free, card deposits cost more</li>
+                            <li><strong class="text-white">Network (gas) fees</strong> — blockchain transaction costs passed directly to users</li>
+                        </ul>
+                        <p>Holding a platform's native token (e.g. BNB on Binance, BIT on Bybit) typically unlocks 25–50% fee discounts. Always compare the full round-trip cost, not just the headline maker rate.</p>
+                    </div>
+                </div>
+
+                <!-- Q4 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">Do I need to verify my identity (KYC) to trade?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">Yes, on all regulated exchanges. Know Your Customer (KYC) verification — typically a government-issued ID plus a selfie — is required by financial regulators in the US, EU, UK, and most major jurisdictions. This protects users and ensures the platform can legally operate in your country.</p>
+                        <p>Some platforms permit limited trading on unverified accounts, but withdrawal limits and feature access are heavily restricted until full KYC is complete. Decentralised exchanges (DEXs) generally skip KYC but offer no fiat on-ramps and have different risk profiles.</p>
+                    </div>
+                </div>
+
+                <!-- Q5 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">Which exchange has the lowest trading fees in 2026?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">As of 2026, <strong class="text-white">MEXC</strong> offers 0% maker fees on spot trading, making it the cheapest for limit orders. <strong class="text-white">Bybit</strong> and <strong class="text-white">Binance</strong> follow closely at 0.1% or less, with further discounts available via native-token fee payment. General benchmarks:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Spot trading: 0.0% – 0.5% per trade</li>
+                            <li>Maker fees are almost always lower than taker fees</li>
+                            <li>VIP tiers reward high-volume traders with institutional rates</li>
+                        </ul>
+                        <p class="mt-3">Check the full fee comparison table at the top of this page for the most current rates across all ranked exchanges.</p>
+                    </div>
+                </div>
+
+                <!-- Q6 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">What is the difference between a centralised and decentralised exchange?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">A <strong class="text-white">centralised exchange (CEX)</strong> is operated by a company that holds your funds and matches orders through an internal order book — similar to a traditional brokerage. CEXs offer superior liquidity, fast execution, fiat on-ramps, and customer support.</p>
+                        <p>A <strong class="text-white">decentralised exchange (DEX)</strong> runs on blockchain smart contracts, enabling peer-to-peer trades without an intermediary holding your assets. DEXs are non-custodial and grant access to tokens not yet listed on major platforms, but typically carry higher gas costs, lower liquidity, and no consumer protection or fiat deposits.</p>
+                    </div>
+                </div>
+
+                <!-- Q7 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">Is crypto trading legal in my country?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">Crypto regulation evolves rapidly. As of 2026, most major economies — including the US, UK, EU member states, Canada, Australia, Singapore, and Japan — permit retail crypto trading, provided exchanges hold the required licences and comply with AML/KYC rules. A small number of countries still restrict or prohibit crypto activity outright.</p>
+                        <p>We strongly recommend verifying the regulatory landscape in your specific jurisdiction before depositing funds, and always using an exchange that is fully licensed in your region. This content does not constitute legal advice.</p>
+                    </div>
+                </div>
+
+                <!-- Q8 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">Which exchange is best for complete beginners?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">For first-time buyers, prioritise ease of use and regulatory credibility over raw features. Our top picks for beginners in 2026 are <strong class="text-white">Coinbase</strong> (US/EU, intuitive app, regulated) and <strong class="text-white">Bybit</strong> (global, generous welcome bonuses, strong academy content). Look for:</p>
+                        <ul class="list-disc list-inside space-y-1">
+                            <li>Simple buy/sell interface with fiat support in your currency</li>
+                            <li>Responsive live customer support</li>
+                            <li>Clear fee structure with no hidden charges</li>
+                            <li>Educational resources, guides, or paper trading</li>
+                            <li>Strong regulatory standing and proven security history</li>
+                        </ul>
+                        <p class="mt-3">Start with a small amount on a well-known regulated platform rather than chasing the lowest fees on an obscure exchange.</p>
+                    </div>
+                </div>
+
+                <!-- Q9 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">Can I trade AI crypto tokens on these exchanges?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">Yes. AI tokens are one of the fastest-growing categories in 2026 and are widely listed across the exchanges in our rankings. Popular AI crypto projects — including <strong class="text-white">NEAR, FET, RNDR, TAO, and WLD</strong> — are available on Bybit, Binance, OKX, KuCoin, and MEXC.</p>
+                        <p>For early-stage AI tokens not yet on major CEXs, decentralised exchanges such as Uniswap and Jupiter are the primary listing venue. Check our <a href="/en/best-ai-crypto-projects-2026" class="text-cyan-400 hover:underline">Best AI Crypto Projects 2026</a> guide for a full breakdown.</p>
+                    </div>
+                </div>
+
+                <!-- Q10 -->
+                <div class="faq-item border border-zinc-800 rounded-2xl overflow-hidden bg-zinc-900">
+                    <button class="faq-btn w-full flex items-center justify-between px-6 py-5 text-left hover:bg-zinc-800 transition-colors" aria-expanded="false">
+                        <span class="text-lg font-semibold pr-4">How do welcome bonuses and referral rewards work?</span>
+                        <span class="faq-icon flex-shrink-0 w-8 h-8 rounded-full bg-zinc-800 flex items-center justify-center text-cyan-400 text-xl font-bold transition-transform">+</span>
+                    </button>
+                    <div class="faq-body hidden px-6 pb-6 text-zinc-400 leading-relaxed">
+                        <p class="mb-3">Most exchanges offer new-user bonuses — typically trading fee vouchers, deposit-match rewards, or futures trial funds — when you sign up via an affiliate link and complete KYC + a minimum deposit. Bonuses are usually subject to trading volume requirements before withdrawal.</p>
+                        <p>The links in this guide may earn CryptoLoveYou.com a commission at no extra cost to you. Bonus amounts and terms change frequently — always check the exchange's official promotions page before depositing. See our <a href="/en/affiliate-disclosure" class="text-cyan-400 hover:underline">Affiliate Disclosure</a> for full details.</p>
+                    </div>
+                </div>
+
+            </div><!-- end accordion -->
         </section>
+
+        <script>
+        (function(){
+            document.querySelectorAll('.faq-btn').forEach(function(btn){
+                btn.addEventListener('click', function(){
+                    var item = btn.closest('.faq-item');
+                    var body = item.querySelector('.faq-body');
+                    var icon = btn.querySelector('.faq-icon');
+                    var isOpen = !body.classList.contains('hidden');
+                    // Close all
+                    document.querySelectorAll('.faq-item').forEach(function(i){
+                        i.querySelector('.faq-body').classList.add('hidden');
+                        i.querySelector('.faq-icon').textContent = '+';
+                        i.querySelector('.faq-icon').classList.remove('rotate-45','bg-cyan-500/20','text-purple-400');
+                        i.querySelector('.faq-icon').classList.add('bg-zinc-800','text-cyan-400');
+                        i.querySelector('.faq-btn').setAttribute('aria-expanded','false');
+                    });
+                    if(!isOpen){
+                        body.classList.remove('hidden');
+                        icon.textContent = '×';
+                        icon.classList.add('bg-cyan-500/20','text-purple-400');
+                        icon.classList.remove('bg-zinc-800','text-cyan-400');
+                        btn.setAttribute('aria-expanded','true');
+                    }
+                });
+            });
+        })();
+        </script>
+
+        <!-- AI FAQ WIDGET -->
+        <section class="mb-20">
+            <div class="flex items-center gap-3 mb-3">
+                <div class="w-9 h-9 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center flex-shrink-0">
+                    <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.347.346A3.99 3.99 0 0112 16a3.99 3.99 0 01-2.829-1.17l-.344-.343z"/></svg>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-bold leading-tight">Ask our AI crypto expert</h2>
+                    <p class="text-zinc-400 text-sm">Powered by Claude · Get instant answers about any exchange</p>
+                </div>
+            </div>
+
+            <div class="border border-zinc-800 rounded-2xl bg-zinc-900 overflow-hidden">
+                <!-- Suggested questions -->
+                <div class="px-5 pt-5 pb-3">
+                    <p class="text-xs text-zinc-500 uppercase tracking-widest font-semibold mb-3">Suggested questions</p>
+                    <div class="flex flex-wrap gap-2" id="ai-suggestions">
+                        <button onclick="askSuggestion(this)" class="suggest-btn text-xs bg-zinc-800 hover:bg-cyan-500/10 border border-zinc-700 hover:border-cyan-500/50 text-zinc-300 hover:text-cyan-400 px-3 py-1.5 rounded-full transition-colors">Which exchange is best for beginners?</button>
+                        <button onclick="askSuggestion(this)" class="suggest-btn text-xs bg-zinc-800 hover:bg-cyan-500/10 border border-zinc-700 hover:border-cyan-500/50 text-zinc-300 hover:text-cyan-400 px-3 py-1.5 rounded-full transition-colors">Compare Bybit vs Binance fees</button>
+                        <button onclick="askSuggestion(this)" class="suggest-btn text-xs bg-zinc-800 hover:bg-cyan-500/10 border border-zinc-700 hover:border-cyan-500/50 text-zinc-300 hover:text-cyan-400 px-3 py-1.5 rounded-full transition-colors">Is Coinbase safe in 2026?</button>
+                        <button onclick="askSuggestion(this)" class="suggest-btn text-xs bg-zinc-800 hover:bg-cyan-500/10 border border-zinc-700 hover:border-cyan-500/50 text-zinc-300 hover:text-cyan-400 px-3 py-1.5 rounded-full transition-colors">What AI tokens can I buy on MEXC?</button>
+                        <button onclick="askSuggestion(this)" class="suggest-btn text-xs bg-zinc-800 hover:bg-cyan-500/10 border border-zinc-700 hover:border-cyan-500/50 text-zinc-300 hover:text-cyan-400 px-3 py-1.5 rounded-full transition-colors">Do I need KYC to withdraw?</button>
+                        <button onclick="askSuggestion(this)" class="suggest-btn text-xs bg-zinc-800 hover:bg-cyan-500/10 border border-zinc-700 hover:border-cyan-500/50 text-zinc-300 hover:text-cyan-400 px-3 py-1.5 rounded-full transition-colors">Which exchange has the biggest welcome bonus?</button>
+                    </div>
+                </div>
+
+                <div class="border-t border-zinc-800 mx-5"></div>
+
+                <!-- Chat messages -->
+                <div id="ai-chat-messages" class="px-5 py-4 space-y-4 min-h-[80px] max-h-[420px] overflow-y-auto">
+                    <div class="flex gap-3 items-start" id="ai-welcome-msg">
+                        <div class="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 14.5A6.5 6.5 0 1110 3.5a6.5 6.5 0 010 13z"/><path d="M10 6a1 1 0 011 1v4a1 1 0 01-2 0V7a1 1 0 011-1zm0 7a1 1 0 100 2 1 1 0 000-2z"/></svg>
+                        </div>
+                        <div class="text-sm text-zinc-300 leading-relaxed bg-zinc-800 rounded-xl rounded-tl-sm px-4 py-3 max-w-2xl">
+                            Hi! I'm your crypto exchange AI assistant. I know everything about Bybit, Binance, MEXC, KuCoin, OKX, Coinbase, Kraken, and Changelly — fees, security, AI tokens, bonuses and more. What would you like to know?
+                        </div>
+                    </div>
+                </div>
+
+                <div class="border-t border-zinc-800 mx-5"></div>
+
+                <!-- Input bar -->
+                <div class="px-5 py-4 flex gap-3 items-end">
+                    <textarea
+                        id="ai-chat-input"
+                        rows="1"
+                        placeholder="Ask anything about crypto exchanges…"
+                        class="flex-1 bg-zinc-800 border border-zinc-700 focus:border-cyan-500 rounded-xl px-4 py-3 text-sm text-white placeholder-zinc-500 outline-none resize-none transition-colors leading-relaxed"
+                        style="min-height:44px;max-height:120px;"
+                        onkeydown="handleAIKey(event)"
+                        oninput="autoResize(this)"
+                    ></textarea>
+                    <button
+                        id="ai-send-btn"
+                        onclick="sendAIMessage()"
+                        class="flex-shrink-0 w-11 h-11 rounded-xl bg-gradient-to-br from-purple-500 to-cyan-400 hover:opacity-90 active:scale-95 transition flex items-center justify-center disabled:opacity-40"
+                    >
+                        <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"/></svg>
+                    </button>
+                </div>
+
+                <p class="text-center text-zinc-600 text-xs pb-4">AI responses are for informational purposes only — not financial advice.</p>
+            </div>
+        </section>
+
+        <script>
+        (function(){
+            var SYSTEM_PROMPT = "You are CryptoLoveYou's expert AI assistant for the 'Best Crypto Exchanges 2026' guide. You have deep knowledge of: Bybit (low fees, AI tokens, up to $30,000 bonus), Binance (largest exchange, 0.1% fees, BNB discounts), MEXC (0% maker fees, 2,700+ coins), KuCoin (2,300+ altcoins, 0.1% fees), OKX (DeFi + CEX, proof-of-reserves), Coinbase (US regulated, Coinbase One), Kraken (institutional-grade security, 200+ coins), Changelly (instant swaps, no KYC for small amounts), SafeLynx (FSA-registered, 0.75% EUR OTC). Topics you cover: trading fees, maker/taker rates, KYC/AML requirements, welcome bonuses, AI crypto tokens (NEAR, FET, RNDR, TAO, WLD, AGIX), security practices, cold storage, proof-of-reserves, DEX vs CEX, crypto regulation by country, affiliate disclosures. Keep answers clear, helpful, and concise (2-4 paragraphs max). Always remind users this is not financial advice and they should DYOR. If asked about a specific exchange, give honest pros and cons.";
+
+            var chatHistory = [];
+            window.askSuggestion = function(btn){ document.getElementById('ai-chat-input').value = btn.textContent; sendAIMessage(); };
+            window.handleAIKey = function(e){ if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); sendAIMessage(); } };
+            window.autoResize = function(el){ el.style.height='auto'; el.style.height=Math.min(el.scrollHeight,120)+'px'; };
+
+            window.sendAIMessage = async function(){
+                var input = document.getElementById('ai-chat-input');
+                var msg = input.value.trim();
+                if(!msg) return;
+                input.value = ''; input.style.height='44px';
+
+                // Disable suggestions after first use
+                document.querySelectorAll('.suggest-btn').forEach(function(b){ b.style.opacity='0.4'; b.disabled=true; });
+
+                appendMessage('user', msg);
+                chatHistory.push({role:'user', content: msg});
+
+                var thinkingId = appendMessage('ai', '<span class="ai-typing"><span></span><span></span><span></span></span>', true);
+                document.getElementById('ai-send-btn').disabled = true;
+
+                try {
+                    var res = await fetch('https://api.anthropic.com/v1/messages', {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json', 'anthropic-dangerous-allow-browser': 'true' },
+                        body: JSON.stringify({
+                            model: 'claude-sonnet-4-20250514',
+                            max_tokens: 1000,
+                            system: SYSTEM_PROMPT,
+                            messages: chatHistory
+                        })
+                    });
+                    var data = await res.json();
+                    var reply = (data.content && data.content[0] && data.content[0].text) ? data.content[0].text : 'Sorry, I had trouble answering that. Please try again.';
+                    chatHistory.push({role:'assistant', content: reply});
+                    updateMessage(thinkingId, reply);
+                } catch(err) {
+                    updateMessage(thinkingId, 'Connection issue — please try again in a moment.');
+                }
+                document.getElementById('ai-send-btn').disabled = false;
+                document.getElementById('ai-chat-input').focus();
+            };
+
+            function appendMessage(role, content, raw){
+                var msgs = document.getElementById('ai-chat-messages');
+                var id = 'msg-' + Date.now();
+                var el = document.createElement('div');
+                el.id = id;
+                el.className = 'flex gap-3 items-start ' + (role==='user' ? 'justify-end' : '');
+                if(role==='ai'){
+                    el.innerHTML = '<div class="w-7 h-7 rounded-lg bg-gradient-to-br from-purple-500 to-cyan-400 flex items-center justify-center flex-shrink-0 mt-0.5"><svg class="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20"><path d="M10 2a8 8 0 100 16A8 8 0 0010 2zm0 14.5A6.5 6.5 0 1110 3.5a6.5 6.5 0 010 13z"/><path d="M10 6a1 1 0 011 1v4a1 1 0 01-2 0V7a1 1 0 011-1zm0 7a1 1 0 100 2 1 1 0 000-2z"/></svg></div><div class="ai-msg-body text-sm text-zinc-300 leading-relaxed bg-zinc-800 rounded-xl rounded-tl-sm px-4 py-3 max-w-2xl">' + (raw ? content : escHtml(content)) + '</div>';
+                } else {
+                    el.innerHTML = '<div class="text-sm text-white leading-relaxed bg-gradient-to-br from-purple-600/30 to-cyan-600/20 border border-purple-500/20 rounded-xl rounded-tr-sm px-4 py-3 max-w-xl">' + escHtml(content) + '</div>';
+                }
+                msgs.appendChild(el);
+                msgs.scrollTop = msgs.scrollHeight;
+                return id;
+            }
+
+            function updateMessage(id, text){
+                var el = document.getElementById(id);
+                if(!el) return;
+                var body = el.querySelector('.ai-msg-body');
+                if(body) body.innerHTML = formatAIText(text);
+                document.getElementById('ai-chat-messages').scrollTop = 99999;
+            }
+
+            function formatAIText(text){
+                return text
+                    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+                    .replace(/\*\*(.+?)\*\*/g,'<strong class="text-white">$1</strong>')
+                    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+                    .replace(/\n\n/g,'</p><p class="mt-2">')
+                    .replace(/\n- /g,'<br>• ')
+                    .replace(/^/,'<p>').replace(/$/,'</p>');
+            }
+
+            function escHtml(t){ return t.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+        })();
+        </script>
+
+        <style>
+        .ai-typing { display:inline-flex; gap:4px; align-items:center; padding:2px 0; }
+        .ai-typing span { display:block; width:6px; height:6px; border-radius:50%; background:#22d3ee; animation:ai-bounce 1.2s infinite; }
+        .ai-typing span:nth-child(2){ animation-delay:.2s; }
+        .ai-typing span:nth-child(3){ animation-delay:.4s; }
+        @keyframes ai-bounce{ 0%,80%,100%{transform:translateY(0);opacity:.4} 40%{transform:translateY(-5px);opacity:1} }
+        #ai-chat-messages::-webkit-scrollbar{ width:4px; }
+        #ai-chat-messages::-webkit-scrollbar-track{ background:transparent; }
+        #ai-chat-messages::-webkit-scrollbar-thumb{ background:#3f3f46; border-radius:4px; }
+        </style>
 
         <!-- FINAL DISCLAIMER -->
         <div class="text-center text-sm text-zinc-500 mt-16 border-t border-zinc-800 pt-12">
