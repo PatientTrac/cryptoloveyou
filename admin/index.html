@@ -1537,14 +1537,23 @@ let allPartners = []
 
 async function fetchPartners() {
   try {
-    const r = await fetch(`${API}/admin-affiliate?resource=partners`, {
-      headers: { Authorization: `Bearer ${token()}` }
-    })
-    if (r.ok) { const d = await r.json(); return d.partners || [] }
+    const headers = { Authorization: `Bearer ${token()}` }
+    const [r1, r2] = await Promise.all([
+      fetch(`${API}/admin-affiliate?resource=partners`, { headers }),
+      fetch(`${API}/admin-affiliate?resource=custom`,   { headers })
+    ])
+    const d1 = r1.ok ? await r1.json() : {}
+    const d2 = r2.ok ? await r2.json() : {}
+    const core   = (d1.partners         || []).map(p => ({ ...p, _source: 'partners' }))
+    const custom = (d2.custom_affiliates || []).map(p => ({ ...p, _source: 'custom'   }))
+    const map = new Map()
+    core.forEach(p   => map.set(p.platform_key, p))
+    custom.forEach(p => map.set(p.platform_key, p))
+    return [...map.values()]
   } catch (e) {
     console.warn('Failed to fetch partners from API, using mock data:', e)
   }
-  return mockPartners
+  return mockPartners.map(p => ({ ...p, _source: 'partners' }))
 }
 
 async function loadAffiliates() {
