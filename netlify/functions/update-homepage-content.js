@@ -334,10 +334,18 @@ Requirements:
 
 // Generate latest news section (each slug gets a new static article page)
 async function generateLatestNewsSection(trendingCoins) {
+  // Always include Bitcoin and Ethereum in the coin data, regardless of trending list
+  const btc = trendingCoins.find(c => c.symbol?.toLowerCase() === 'btc') || { name: 'Bitcoin', symbol: 'BTC' }
+  const eth = trendingCoins.find(c => c.symbol?.toLowerCase() === 'eth') || { name: 'Ethereum', symbol: 'ETH' }
+  const others = trendingCoins.filter(c => {
+    const s = c.symbol?.toLowerCase()
+    return s !== 'btc' && s !== 'eth'
+  })
+  const coinList = [btc, eth, ...others].slice(0, 6)
+
   const prompt = `Generate 6 crypto news entries for the homepage "Latest News" section from these trending coins:
 
-${trendingCoins
-    .slice(0, 6)
+${coinList
     .map(
       (c, i) =>
         `${i + 1}. ${c.name} (${c.symbol}): ${trendingUsdPriceLabel(c)}, 24h: ${pctLabel(c.percent_change_24h)}%`
@@ -345,7 +353,8 @@ ${trendingCoins
     .join('\n')}
 
 Requirements:
-- Mix categories: Bitcoin, Ethereum, Altcoins, Blockchain, DeFi with matching categorySlug crypto-news/bitcoin … crypto-news/defi
+- You MUST include exactly 1 Bitcoin article (category: "Bitcoin", categorySlug: "crypto-news/bitcoin") and exactly 1 Ethereum article (category: "Ethereum", categorySlug: "crypto-news/ethereum"). This is required regardless of what is trending.
+- The remaining 4 items may cover Altcoins, Blockchain, or DeFi topics with matching categorySlug (crypto-news/altcoins, crypto-news/blockchain, crypto-news/defi).
 - Each item: title, excerpt (1-2 sentences), category, categorySlug, date ${formatDate(new Date().toISOString())}, imageUrl ""
 - slug: NEW on-site article path: /kebab-case/ only, lowercase, unique across all 6, filesystem-safe
 `
