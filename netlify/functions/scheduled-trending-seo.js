@@ -57,6 +57,17 @@ function monthKey(date) {
   return date.toLocaleString('en-US', { month: 'long' }).toLowerCase()
 }
 
+function assignCategory(symbol) {
+  const sym = String(symbol || '').toUpperCase()
+  if (sym === 'BTC') return { category: 'Bitcoin', categorySlug: 'crypto-news/bitcoin' }
+  if (sym === 'ETH') return { category: 'Ethereum', categorySlug: 'crypto-news/ethereum' }
+  // DeFi tokens
+  const defi = ['UNI', 'AAVE', 'MKR', 'COMP', 'CRV', 'SNX', 'YFI', 'SUSHI', 'BAL', 'RUNE']
+  if (defi.includes(sym)) return { category: 'DeFi', categorySlug: 'crypto-news/defi' }
+  // Default to altcoins
+  return { category: 'Altcoins', categorySlug: 'crypto-news/altcoins' }
+}
+
 async function claudeJsonArticle({ coin, slug, title }) {
   const { value: apiKey, from: apiKeyFrom } = requireEnv('ANTHROPIC_API_KEY', ['CLAUDE_API_KEY', 'ANTHROPIC_KEY'])
   assertAnthropicApiKey(apiKey, apiKeyFrom)
@@ -110,7 +121,7 @@ async function claudeJsonArticle({ coin, slug, title }) {
           `  /best-crypto-yield-platforms\n` +
           `  /best-crypto-exchanges-2026\n` +
           `  /best-crypto-wallets-2026\n` +
-          `- Don’t invent APYs/fees/TVL.\n` +
+          `- Don't invent APYs/fees/TVL.\n` +
           `- Include 1–2 sentences warning trends can reverse quickly.\n` +
           `- CTA text: \"Explore ${coin.symbol} on Binance\".\n\n` +
           `Return JSON now.`
@@ -185,10 +196,19 @@ export const handler = async () => {
     const now = new Date()
     const coin = await fetchCoinGeckoTrendingTopCoin()
 
-    const slug = `${slugify(coin.symbol)}-trending-${monthKey(now)}-${now.getFullYear()}`
+    // Unique slug per day (not per month) so every daily run commits a new file
+    const day = String(now.getDate()).padStart(2, '0')
+    const slug = `${slugify(coin.symbol)}-trending-${monthKey(now)}-${day}-${now.getFullYear()}`
     const title = `Why ${coin.name} (${coin.symbol}) Is Trending Today`
 
+    // Assign category based on coin symbol
+    const { category, categorySlug } = assignCategory(coin.symbol)
+
     const article = await claudeJsonArticle({ coin, slug, title })
+
+    // Attach category so generate-article.js can use it in templates
+    article.category = category
+    article.categorySlug = categorySlug
 
     // Publish by calling the existing generator locally (no Supabase)
     const publishEvent = {
@@ -207,6 +227,8 @@ export const handler = async () => {
         success: true,
         message: 'Scheduled SEO article generated',
         slug,
+        category,
+        categorySlug,
         generateArticleResult: safeJson(res?.body)
       })
     }
@@ -236,4 +258,3 @@ function debugKey(key) {
     length: v.length
   }
 }
-
