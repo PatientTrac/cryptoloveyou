@@ -1,50 +1,50 @@
 <?xml version="1.0" encoding="UTF-8"?><?xml-stylesheet type="text/xsl" href="/main-sitemap.xsl"?>
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:image="http://www.google.com/schemas/sitemap-image/1.1" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd http://www.google.com/schemas/sitemap-image/1.1 http://www.google.com/schemas/sitemap-image/1.1/sitemap-image.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 	<url>
-		<loc>/category/ai-for-beginners/</loc>
+		<loc>https://cryptoloveyou.com/category/ai-for-beginners/</loc>
 		<lastmod>2026-03-18T08:38:39+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/ai-news/</loc>
+		<loc>https://cryptoloveyou.com/category/ai-news/</loc>
 		<lastmod>2026-03-18T09:06:54+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/ai-tips/</loc>
+		<loc>https://cryptoloveyou.com/category/ai-tips/</loc>
 		<lastmod>2026-03-17T07:45:38+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/crypto-news/altcoins/</loc>
+		<loc>https://cryptoloveyou.com/category/crypto-news/altcoins/</loc>
 		<lastmod>2026-03-18T09:16:16+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/crypto-news/bitcoin/</loc>
+		<loc>https://cryptoloveyou.com/category/crypto-news/bitcoin/</loc>
 		<lastmod>2026-03-18T13:13:46+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/crypto-news/blockchain/</loc>
+		<loc>https://cryptoloveyou.com/category/crypto-news/blockchain/</loc>
 		<lastmod>2026-03-18T09:14:10+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/crypto-news/</loc>
+		<loc>https://cryptoloveyou.com/category/crypto-news/</loc>
 	</url>
 	<url>
-		<loc>/category/crypto-news/defi/</loc>
+		<loc>https://cryptoloveyou.com/category/crypto-news/defi/</loc>
 		<lastmod>2026-03-17T22:29:00+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/crypto-news/ethereum/</loc>
+		<loc>https://cryptoloveyou.com/category/crypto-news/ethereum/</loc>
 		<lastmod>2026-03-18T09:12:14+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/make-money-with-ai/</loc>
+		<loc>https://cryptoloveyou.com/category/make-money-with-ai/</loc>
 		<lastmod>2026-03-18T09:02:27+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/reviews/</loc>
+		<loc>https://cryptoloveyou.com/category/reviews/</loc>
 		<lastmod>2025-09-14T01:19:09+00:00</lastmod>
 	</url>
 	<url>
-		<loc>/category/stock-news/</loc>
+		<loc>https://cryptoloveyou.com/category/stock-news/</loc>
 		<lastmod>2026-03-18T09:10:10+00:00</lastmod>
 	</url>
 </urlset>
