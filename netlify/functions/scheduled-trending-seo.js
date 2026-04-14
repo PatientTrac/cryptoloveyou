@@ -1,8 +1,10 @@
-import { handler as generateArticle } from './generate-article.js'
+const slug = `${slugify(coin.symbol)}-trending-${monthKey(now)}-${now.getFullYear()}`import { handler as generateArticle } from './generate-article.js'
 import { fetchCoinGeckoTrendingTopCoin } from './utils/coingecko-homepage.js'
 
 function requireEnv(name, fallbacks = []) {
-  const candidates = [name, ...fallbacks]
+  const candidates = [name, ...fallbacks]git add netlify/functions/scheduled-trending-seo.js
+git commit -m "fix: unique daily slugs and category assignment for trending articles"
+git push origin main
   for (const key of candidates) {
     const raw = process.env[key]
     const v = normalizeSecret(raw)
