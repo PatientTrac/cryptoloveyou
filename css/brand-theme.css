@@ -1,120 +1,76 @@
 /* ============================================================
    CryptoLoveYou — Global Brand Theme
    DEFAULT (light): Option A — Lavender Mist
-   DARK MODE:       crypto_theme.jpg — purple/blue wave
-   Toggle:          .clv-dark class on <html>
+   DARK MODE:       crypto_theme.jpg wave (toggle .clv-dark)
+   NOTE: Uses !important to override WordPress SmartMag inline styles
    ============================================================ */
 
-/* ── LIGHT MODE (default) ─────────────────────────────────── */
-html, body {
-  background-color: #f5f0ff;
+/* ── LIGHT MODE (default) — beat WP inline .s-dark rules ──── */
+html body,
+html.s-light body,
+html.s-dark body,
+body {
+  background-color: #f5f0ff !important;
   background-image:
     radial-gradient(ellipse at 0% 0%, rgba(167,139,250,0.35) 0%, transparent 50%),
     radial-gradient(ellipse at 100% 100%, rgba(186,230,253,0.45) 0%, transparent 50%),
-    linear-gradient(135deg, #f5f0ff 0%, #ede9fe 40%, #e0f2fe 100%);
-  background-attachment: fixed;
-  color: #1e1b4b;
+    linear-gradient(135deg, #f5f0ff 0%, #ede9fe 40%, #e0f2fe 100%) !important;
+  background-attachment: fixed !important;
+  background-size: cover !important;
+  color: #1e1b4b !important;
   transition: background 0.4s ease, color 0.3s ease;
 }
 
-h1, h2, h3, h4, h5, h6 { color: #1e1b4b; }
+/* Beat .s-dark body specificity */
+.s-dark body { background-color: #f5f0ff !important; }
+.s-dark .smart-head-main .smart-head-top,
+.smart-head-main .s-dark.smart-head-top { background-color: rgba(245,240,255,0.9) !important; }
+.s-dark .smart-head-main .smart-head-mid,
+.smart-head-main .s-dark.smart-head-mid { background-color: rgba(237,233,254,0.95) !important; }
+.s-dark .smart-head-mobile .smart-head-mid,
+.smart-head-mobile .s-dark.smart-head-mid { background-color: rgba(237,233,254,0.95) !important; }
+.s-dark .off-canvas, .off-canvas.s-dark { background-color: #ede9fe !important; }
+.s-dark.search-modal.mfp-bg { background-color: rgba(237,233,254,0.97) !important; }
+
+/* Elementor section backgrounds — override dark theme */
+.elementor-element:not(.elementor-motion-effects-element-type-background) {
+  background-color: transparent !important;
+}
+[class*="elementor-element"] { background-color: transparent !important; }
+
+/* ── TYPOGRAPHY — light mode ─────────────────────────────────*/
+h1, h2, h3, h4, h5, h6 { color: #1e1b4b !important; }
 p, li, td, th { color: #3730a3; }
 .muted, .text-muted, small { color: #6d6a9c; }
 
-nav, .site-nav, #masthead, .navbar {
-  background: rgba(245,240,255,0.9) !important;
+/* ── NAV ─────────────────────────────────────────────────────*/
+nav, .site-nav, #masthead, .navbar,
+.smart-head-main, .smart-head-mid, .smart-head-top {
+  background: rgba(245,240,255,0.92) !important;
   border-bottom: 1px solid rgba(124,58,237,0.15) !important;
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
 }
 
-.hero, [class*="hero-"], .site-hero, .page-hero {
-  background: linear-gradient(135deg,
-    rgba(167,139,250,0.25) 0%,
-    rgba(224,242,254,0.6) 60%,
-    rgba(237,233,254,0.4) 100%);
-  border-bottom: 1px solid rgba(124,58,237,0.12);
-  position: relative;
-  overflow: hidden;
-}
-
-.card, .panel, .widget,
-.entry-content .wp-block-group,
-[class*="card-"], [class*="-card"] {
-  background: rgba(255,255,255,0.78) !important;
-  border: 1px solid rgba(124,58,237,0.12) !important;
-  backdrop-filter: blur(6px);
-  -webkit-backdrop-filter: blur(6px);
-}
-
-.guide-hero, .en-guide-hero {
-  background: linear-gradient(135deg, rgba(237,233,254,0.9) 0%, rgba(224,242,254,0.8) 100%);
-  border: 1px solid rgba(124,58,237,0.15);
-}
-
+/* ── LINKS ───────────────────────────────────────────────────*/
 a { color: #6d28d9; }
 a:hover { color: #2563eb; transition: color 0.15s ease; }
+
+/* ── HR / DIVIDERS ───────────────────────────────────────────*/
 hr, .divider { border-color: rgba(124,58,237,0.12); }
+
+/* ── SCROLLBAR ───────────────────────────────────────────────*/
+::-webkit-scrollbar { width: 6px; }
 ::-webkit-scrollbar-track { background: #ede9fe; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #3b82f6);
+  border-radius: 3px;
+}
+
+/* ── SELECTION ───────────────────────────────────────────────*/
 ::selection { background: rgba(167,139,250,0.35); color: #1e1b4b; }
 
-/* ── DARK MODE (.clv-dark on <html>) ──────────────────────── */
-html.clv-dark body {
-  background-color: #07020f;
-  background-image:
-    radial-gradient(ellipse at 15% 50%, rgba(109,33,168,0.22) 0%, transparent 55%),
-    radial-gradient(ellipse at 85% 15%, rgba(59,130,246,0.14) 0%, transparent 50%),
-    url('/images/crypto_theme.jpg');
-  background-size: cover;
-  background-position: center top;
-  background-attachment: fixed;
-  background-repeat: no-repeat;
-  background-blend-mode: overlay, overlay, normal;
-  color: #f5f3ff;
-}
-
-html.clv-dark h1, html.clv-dark h2, html.clv-dark h3,
-html.clv-dark h4, html.clv-dark h5, html.clv-dark h6 { color: #f5f3ff; }
-html.clv-dark p, html.clv-dark li,
-html.clv-dark td, html.clv-dark th { color: #c4b5fd; }
-html.clv-dark .muted, html.clv-dark .text-muted,
-html.clv-dark small { color: #7c6fa0; }
-
-html.clv-dark nav, html.clv-dark .site-nav,
-html.clv-dark #masthead, html.clv-dark .navbar {
-  background: rgba(7,2,15,0.85) !important;
-  border-bottom: 1px solid rgba(124,58,237,0.2) !important;
-}
-
-html.clv-dark .hero, html.clv-dark [class*="hero-"],
-html.clv-dark .site-hero, html.clv-dark .page-hero {
-  background:
-    linear-gradient(135deg, rgba(26,5,51,0.92) 0%, rgba(45,20,88,0.88) 40%, rgba(30,58,138,0.85) 100%),
-    url('/images/crypto_theme.jpg') center center / cover no-repeat;
-  border-bottom: 1px solid rgba(168,85,247,0.25);
-}
-
-html.clv-dark .card, html.clv-dark .panel, html.clv-dark .widget,
-html.clv-dark .entry-content .wp-block-group,
-html.clv-dark [class*="card-"], html.clv-dark [class*="-card"] {
-  background: rgba(18,5,38,0.72) !important;
-  border: 1px solid rgba(124,58,237,0.18) !important;
-}
-
-html.clv-dark .guide-hero, html.clv-dark .en-guide-hero {
-  background:
-    linear-gradient(135deg, rgba(13,31,60,0.96) 0%, rgba(17,34,64,0.94) 60%, rgba(10,22,40,0.97) 100%),
-    url('/images/crypto_theme.jpg') right center / cover no-repeat;
-  border: 1px solid rgba(232,155,45,0.2);
-}
-
-html.clv-dark a { color: #a78bfa; }
-html.clv-dark a:hover { color: #22d3ee; }
-html.clv-dark hr, html.clv-dark .divider { border-color: rgba(124,58,237,0.2); }
-html.clv-dark ::-webkit-scrollbar-track { background: #07020f; }
-html.clv-dark ::selection { background: rgba(124,58,237,0.4); color: #f5f3ff; }
-
-/* ── SHARED ───────────────────────────────────────────────── */
+/* ── BUTTONS ─────────────────────────────────────────────────*/
 .btn-primary, .wp-block-button__link,
 button[type="submit"], .cta-button {
   background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%) !important;
@@ -124,61 +80,68 @@ button[type="submit"], .cta-button {
 }
 .btn-primary:hover, .wp-block-button__link:hover,
 button[type="submit"]:hover, .cta-button:hover {
-  opacity: 0.88;
-  transform: translateY(-1px);
+  opacity: 0.88; transform: translateY(-1px);
 }
-.accent-border { border-left: 3px solid #7c3aed; padding-left: 1rem; }
-::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-thumb {
-  background: linear-gradient(180deg, #7c3aed, #3b82f6);
-  border-radius: 3px;
+
+/* ── DARK MODE (.clv-dark on <html>) ──────────────────────── */
+html.clv-dark body,
+html.clv-dark.s-dark body,
+html.clv-dark.s-light body {
+  background-color: #07020f !important;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(109,33,168,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(59,130,246,0.14) 0%, transparent 50%),
+    url('/images/crypto_theme.jpg') !important;
+  background-size: cover !important;
+  background-position: center top !important;
+  background-attachment: fixed !important;
+  background-repeat: no-repeat !important;
+  background-blend-mode: overlay, overlay, normal !important;
+  color: #f5f3ff !important;
 }
+
+html.clv-dark h1, html.clv-dark h2, html.clv-dark h3,
+html.clv-dark h4, html.clv-dark h5, html.clv-dark h6 { color: #f5f3ff !important; }
+html.clv-dark p, html.clv-dark li,
+html.clv-dark td, html.clv-dark th { color: #c4b5fd; }
+
+html.clv-dark nav, html.clv-dark .site-nav,
+html.clv-dark #masthead, html.clv-dark .navbar,
+html.clv-dark .smart-head-main, html.clv-dark .smart-head-mid,
+html.clv-dark .smart-head-top {
+  background: rgba(7,2,15,0.88) !important;
+  border-bottom: 1px solid rgba(124,58,237,0.2) !important;
+}
+
+html.clv-dark .s-dark body { background-color: #07020f !important; }
+html.clv-dark a { color: #a78bfa; }
+html.clv-dark a:hover { color: #22d3ee; }
+html.clv-dark ::-webkit-scrollbar-track { background: #07020f; }
+html.clv-dark ::selection { background: rgba(124,58,237,0.4); color: #f5f3ff; }
+html.clv-dark hr, html.clv-dark .divider { border-color: rgba(124,58,237,0.2); }
 
 /* ── DARK MODE TOGGLE BUTTON ──────────────────────────────── */
 #clv-dark-toggle {
-  position: fixed;
-  bottom: 24px;
-  right: 24px;
-  z-index: 9999;
-  width: 46px;
-  height: 46px;
-  border-radius: 50%;
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  width: 46px; height: 46px; border-radius: 50%;
   border: 2px solid rgba(124,58,237,0.35);
   background: rgba(255,255,255,0.92);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 20px;
-  box-shadow: 0 4px 20px rgba(124,58,237,0.18);
+  backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+  cursor: pointer; display: flex; align-items: center; justify-content: center;
+  font-size: 20px; box-shadow: 0 4px 20px rgba(124,58,237,0.18);
   transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.3s ease;
   line-height: 1;
 }
-#clv-dark-toggle:hover {
-  transform: scale(1.1);
-  box-shadow: 0 6px 28px rgba(124,58,237,0.32);
-}
-html.clv-dark #clv-dark-toggle {
-  background: rgba(18,5,38,0.88);
-  border-color: rgba(167,139,250,0.5);
-}
+#clv-dark-toggle:hover { transform: scale(1.1); box-shadow: 0 6px 28px rgba(124,58,237,0.32); }
+html.clv-dark #clv-dark-toggle { background: rgba(18,5,38,0.88); border-color: rgba(167,139,250,0.5); }
 #clv-dark-toggle::before {
-  content: attr(data-tip);
-  position: absolute;
-  right: 54px;
-  bottom: 50%;
-  transform: translateY(50%);
-  background: #1e1b4b;
-  color: #fff;
-  font-size: 11px;
-  font-family: system-ui, sans-serif;
-  white-space: nowrap;
-  padding: 4px 10px;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
+  content: attr(data-tip); position: absolute; right: 54px; bottom: 50%;
+  transform: translateY(50%); background: #1e1b4b; color: #fff;
+  font-size: 11px; font-family: system-ui,sans-serif; white-space: nowrap;
+  padding: 4px 10px; border-radius: 6px; opacity: 0; pointer-events: none;
   transition: opacity 0.15s ease;
 }
 #clv-dark-toggle:hover::before { opacity: 1; }
+
+/* ── ACCENT UTILITY ──────────────────────────────────────────*/
+.accent-border { border-left: 3px solid #7c3aed; padding-left: 1rem; }
