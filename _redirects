@@ -26,6 +26,21 @@
 /api/*                    /.netlify/functions/:splat          200
 /en/api/*                 /.netlify/functions/:splat          200
 
+
+# === CLEAN URLS FOR /en/ GUIDE PAGES (extensionless → .html) ===
+/en/best-ai-crypto-projects-2026     /en/best-ai-crypto-projects-2026.html     200
+/en/best-ai-crypto-projects-2026/    /en/best-ai-crypto-projects-2026.html     200
+/en/how-to-buy-crypto-2026           /en/how-to-buy-crypto-2026.html           200
+/en/how-to-buy-crypto-2026/          /en/how-to-buy-crypto-2026.html           200
+/en/best-crypto-exchanges-2026       /en/best-crypto-exchanges-2026.html       200
+/en/best-crypto-exchanges-2026/      /en/best-crypto-exchanges-2026.html       200
+/en/best-crypto-wallets-2026         /en/best-crypto-wallets-2026.html         200
+/en/best-crypto-wallets-2026/        /en/best-crypto-wallets-2026.html         200
+/en/make-money-with-ai-crypto-2026   /en/make-money-with-ai-crypto-2026.html   200
+/en/make-money-with-ai-crypto-2026/  /en/make-money-with-ai-crypto-2026.html   200
+/en/crypto-tax-guide-2026            /en/crypto-tax-guide-2026.html            200
+/en/crypto-tax-guide-2026/           /en/crypto-tax-guide-2026.html            200
+
 # === LOCALE HOME — serve the correct translated index.html for each language ===
 /fr          /fr/index.html   200!
 /fr/         /fr/index.html   200!

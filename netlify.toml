@@ -111,3 +111,13 @@
   framework = "#static"
   targetPort = 8000
   port = 8888
+
+[[headers]]
+  for = "/en/*.html"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
+
+[[headers]]
+  for = "/en/*"
+  [headers.values]
+    Cache-Control = "public, max-age=0, must-revalidate"
