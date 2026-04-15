@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Faces Minor Correction as Price Dips to $73,697 Amid Market Consolidation",
-      "excerpt": "Bitcoin experiences a 1.34% decline in the past 24 hours, trading at $73,697 as investors take profits near recent highs. Market analysts suggest this minor pullback represents healthy consolidation rather than a bearish trend reversal.",
+      "title": "Bitcoin Holds Strong Above $74K Despite Minor Correction",
+      "excerpt": "Bitcoin trades at $74,299 with a modest 0.48% decline in the past 24 hours, maintaining its position near all-time highs. Market analysts suggest this minor pullback represents healthy consolidation after recent gains.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 15, 2026",
-      "slug": "/bitcoin-price-correction-market-consolidation/",
+      "slug": "/bitcoin-holds-strong-above-74k-despite-minor-correction/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Drops 2.87% to $2,313 as Layer-2 Solutions Continue Gaining Traction",
-      "excerpt": "Ethereum sees a notable decline to $2,313.3 amid ongoing discussions about network scalability improvements. Despite the price drop, development activity on Ethereum's ecosystem remains robust with increasing Layer-2 adoption.",
+      "title": "Ethereum Network Upgrades Drive Institutional Adoption",
+      "excerpt": "Ethereum continues to attract institutional investors as network improvements enhance scalability and reduce transaction costs. Major financial institutions are increasingly integrating ETH into their digital asset portfolios.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 15, 2026",
-      "slug": "/ethereum-decline-layer-2-solutions-growth/",
+      "slug": "/ethereum-network-upgrades-drive-institutional-adoption/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "RaveDAO Surges 28.48% to $14.48 as Community Governance Tokens Rally",
-      "excerpt": "RaveDAO experiences impressive gains of 28.48% in 24 hours, reaching $14.48 per token. The surge comes amid renewed interest in decentralized autonomous organizations and community-driven governance models.",
-      "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
-      "date": "April 15, 2026",
-      "slug": "/ravedao-surge-dao-governance-rally/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
-    },
-    {
-      "title": "Enjin Coin Explodes 43.15% as Gaming NFT Sector Shows Signs of Revival",
-      "excerpt": "Enjin Coin leads altcoin gains with a massive 43.15% surge to $0.067587, driven by renewed optimism in blockchain gaming. The rally coincides with several major gaming partnerships and NFT marketplace integrations.",
+      "title": "Enjin Coin Surges 48% as Gaming NFT Sector Rebounds",
+      "excerpt": "ENJ rallies to $0.071505 with a remarkable 47.95% gain as renewed interest in gaming NFTs drives demand. The recovery signals growing confidence in blockchain gaming applications.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 15, 2026",
-      "slug": "/enjin-coin-gaming-nft-sector-revival/",
+      "slug": "/enjin-coin-surges-48-percent-gaming-nft-sector-rebounds/",
+      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
+    },
+    {
+      "title": "Bio Protocol Gains 28% Following Major Partnership Announcement",
+      "excerpt": "BIO token jumps to $0.024711 with a 28.16% increase after revealing strategic partnerships in the biotechnology sector. The protocol aims to revolutionize scientific research funding through decentralized mechanisms.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
+      "date": "April 15, 2026",
+      "slug": "/bio-protocol-gains-28-percent-following-major-partnership/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "Bittensor Falls 3.40% Despite Growing Interest in Decentralized AI Networks",
-      "excerpt": "Bittensor drops to $243.96 with a 3.40% decline, bucking the trend of AI-focused cryptocurrencies. The pullback comes despite increasing institutional interest in decentralized artificial intelligence infrastructure projects.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
+      "title": "RaveDAO Faces Correction as Token Drops 15% to $11.98",
+      "excerpt": "RAVE experiences a significant pullback with a 15.58% decline, trading at $11.98 amid profit-taking by early investors. The DAO continues development of its decentralized entertainment platform despite the price correction.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
       "date": "April 15, 2026",
-      "slug": "/bittensor-decline-decentralized-ai-interest/",
+      "slug": "/ravedao-faces-correction-token-drops-15-percent/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "Zama Gains 10.93% as Privacy-Focused Blockchain Solutions Attract Investors",
-      "excerpt": "Zama rises 10.93% to $0.030639 amid growing demand for privacy-preserving blockchain technologies. The project's focus on fully homomorphic encryption continues to draw attention from enterprise and institutional investors.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
+      "title": "World Liberty Financial Maintains Stability at $0.083",
+      "excerpt": "WLFI shows minimal movement with just 0.17% growth, trading at $0.082749 as the platform focuses on regulatory compliance. The steady performance reflects investor confidence in the project's long-term vision.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
       "date": "April 15, 2026",
-      "slug": "/zama-gains-privacy-blockchain-solutions/",
+      "slug": "/world-liberty-financial-maintains-stability/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
