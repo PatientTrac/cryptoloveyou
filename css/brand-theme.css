@@ -1,0 +1,173 @@
+/* ============================================================
+   CryptoLoveYou — Global Brand Theme
+   Palette: Deep Violet → Purple → Electric Blue → Cyan
+   Background image: /images/crypto_theme.jpg
+   ============================================================ */
+
+/* --- Base page background ---------------------------------- */
+html, body {
+  background-color: #07020f;
+  background-image:
+    radial-gradient(ellipse at 15% 50%, rgba(109,33,168,0.22) 0%, transparent 55%),
+    radial-gradient(ellipse at 85% 15%, rgba(59,130,246,0.14) 0%, transparent 50%),
+    url('/images/crypto_theme.jpg');
+  background-size: cover;
+  background-position: center top;
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  /* Dark overlay so text is always readable over the image */
+  background-blend-mode: overlay, overlay, normal;
+}
+
+/* --- Hero sections ----------------------------------------- */
+.hero,
+[class*="hero-"],
+.site-hero,
+.page-hero {
+  background:
+    linear-gradient(135deg,
+      rgba(26,5,51,0.92) 0%,
+      rgba(45,20,88,0.88) 40%,
+      rgba(30,58,138,0.85) 100%),
+    url('/images/crypto_theme.jpg') center center / cover no-repeat;
+  border-bottom: 1px solid rgba(168,85,247,0.25);
+  position: relative;
+  overflow: hidden;
+}
+
+/* Circuit glow top-right on heroes */
+.hero::after {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 360px;
+  height: 360px;
+  background: radial-gradient(circle, rgba(59,130,246,0.18) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+/* --- Nav bar ----------------------------------------------- */
+nav,
+.site-nav,
+#masthead,
+.navbar {
+  background: rgba(7,2,15,0.85) !important;
+  border-bottom: 1px solid rgba(124,58,237,0.2) !important;
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+/* --- Cards / panels ---------------------------------------- */
+.card,
+.panel,
+.widget,
+.entry-content .wp-block-group,
+[class*="card-"],
+[class*="-card"] {
+  background: rgba(18,5,38,0.72) !important;
+  border: 1px solid rgba(124,58,237,0.18) !important;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+/* --- Category page hero override --------------------------- */
+.category .hero,
+.archive .hero,
+.tax-category .hero {
+  background:
+    linear-gradient(160deg,
+      rgba(109,33,168,0.25) 0%,
+      rgba(7,2,15,0.95) 50%,
+      rgba(37,99,235,0.15) 100%),
+    url('/images/crypto_theme.jpg') center center / cover no-repeat;
+}
+
+/* --- Guide / static EN pages ------------------------------ */
+.guide-hero,
+.en-guide-hero {
+  background:
+    linear-gradient(135deg,
+      rgba(13,31,60,0.96) 0%,
+      rgba(17,34,64,0.94) 60%,
+      rgba(10,22,40,0.97) 100%),
+    url('/images/crypto_theme.jpg') right center / cover no-repeat;
+  border: 1px solid rgba(232,155,45,0.2);
+}
+
+/* --- Admin / legal pages ----------------------------------- */
+.admin-page,
+.legal-page,
+body.page-template-legal {
+  background-color: #030008;
+  background-image:
+    linear-gradient(rgba(76,29,149,0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(76,29,149,0.06) 1px, transparent 1px);
+  background-size: 40px 40px;
+  border-left: 3px solid rgba(124,58,237,0.4);
+}
+
+/* --- Buttons / CTAs --------------------------------------- */
+.btn-primary,
+.wp-block-button__link,
+button[type="submit"],
+.cta-button {
+  background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%) !important;
+  border: none !important;
+  color: #fff !important;
+  transition: opacity 0.2s ease, transform 0.15s ease;
+}
+
+.btn-primary:hover,
+.wp-block-button__link:hover,
+button[type="submit"]:hover,
+.cta-button:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* --- Links ------------------------------------------------- */
+a { color: #a78bfa; }
+a:hover { color: #22d3ee; transition: color 0.15s ease; }
+
+/* --- Typography on dark backgrounds ----------------------- */
+h1, h2, h3, h4, h5, h6 { color: #f5f3ff; }
+p, li, td, th { color: #c4b5fd; }
+.muted, .text-muted, small { color: #7c6fa0; }
+
+/* --- Accent border utility -------------------------------- */
+.accent-border {
+  border-left: 3px solid #7c3aed;
+  padding-left: 1rem;
+}
+
+/* --- Section dividers ------------------------------------- */
+hr, .divider {
+  border-color: rgba(124,58,237,0.2);
+}
+
+/* --- Scrollbar (webkit) ----------------------------------- */
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: #07020f; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #7c3aed, #3b82f6);
+  border-radius: 3px;
+}
+
+/* --- Selection colour ------------------------------------- */
+::selection {
+  background: rgba(124,58,237,0.4);
+  color: #f5f3ff;
+}
+
+/* --- Netlify.toml cache hint (comment for reference) ------
+   Add to netlify.toml:
+   [[headers]]
+     for = "/css/brand-theme.css"
+     [headers.values]
+       Cache-Control = "public, max-age=31536000, immutable"
+   [[headers]]
+     for = "/images/crypto_theme.jpg"
+     [headers.values]
+       Cache-Control = "public, max-age=31536000, immutable"
+   --------------------------------------------------------- */
