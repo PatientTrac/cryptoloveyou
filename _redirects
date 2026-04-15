@@ -135,6 +135,69 @@
 /crypto-tax-guide-2026                 /en/crypto-tax-guide-2026.html                 301
 /crypto-tax-guide-2026/*               /en/crypto-tax-guide-2026.html                 301
 
+
+# === GUIDE PAGES: de / fr / pt / zh / ru → serve locale stub then redirect to /en/ ===
+/de/best-ai-crypto-projects-2026     /de/best-ai-crypto-projects-2026.html     200
+/de/best-ai-crypto-projects-2026/    /de/best-ai-crypto-projects-2026.html     200
+/de/how-to-buy-crypto-2026     /de/how-to-buy-crypto-2026.html     200
+/de/how-to-buy-crypto-2026/    /de/how-to-buy-crypto-2026.html     200
+/de/best-crypto-exchanges-2026     /de/best-crypto-exchanges-2026.html     200
+/de/best-crypto-exchanges-2026/    /de/best-crypto-exchanges-2026.html     200
+/de/best-crypto-wallets-2026     /de/best-crypto-wallets-2026.html     200
+/de/best-crypto-wallets-2026/    /de/best-crypto-wallets-2026.html     200
+/de/make-money-with-ai-crypto-2026     /de/make-money-with-ai-crypto-2026.html     200
+/de/make-money-with-ai-crypto-2026/    /de/make-money-with-ai-crypto-2026.html     200
+/de/crypto-tax-guide-2026     /de/crypto-tax-guide-2026.html     200
+/de/crypto-tax-guide-2026/    /de/crypto-tax-guide-2026.html     200
+/fr/best-ai-crypto-projects-2026     /fr/best-ai-crypto-projects-2026.html     200
+/fr/best-ai-crypto-projects-2026/    /fr/best-ai-crypto-projects-2026.html     200
+/fr/how-to-buy-crypto-2026     /fr/how-to-buy-crypto-2026.html     200
+/fr/how-to-buy-crypto-2026/    /fr/how-to-buy-crypto-2026.html     200
+/fr/best-crypto-exchanges-2026     /fr/best-crypto-exchanges-2026.html     200
+/fr/best-crypto-exchanges-2026/    /fr/best-crypto-exchanges-2026.html     200
+/fr/best-crypto-wallets-2026     /fr/best-crypto-wallets-2026.html     200
+/fr/best-crypto-wallets-2026/    /fr/best-crypto-wallets-2026.html     200
+/fr/make-money-with-ai-crypto-2026     /fr/make-money-with-ai-crypto-2026.html     200
+/fr/make-money-with-ai-crypto-2026/    /fr/make-money-with-ai-crypto-2026.html     200
+/fr/crypto-tax-guide-2026     /fr/crypto-tax-guide-2026.html     200
+/fr/crypto-tax-guide-2026/    /fr/crypto-tax-guide-2026.html     200
+/pt/best-ai-crypto-projects-2026     /pt/best-ai-crypto-projects-2026.html     200
+/pt/best-ai-crypto-projects-2026/    /pt/best-ai-crypto-projects-2026.html     200
+/pt/how-to-buy-crypto-2026     /pt/how-to-buy-crypto-2026.html     200
+/pt/how-to-buy-crypto-2026/    /pt/how-to-buy-crypto-2026.html     200
+/pt/best-crypto-exchanges-2026     /pt/best-crypto-exchanges-2026.html     200
+/pt/best-crypto-exchanges-2026/    /pt/best-crypto-exchanges-2026.html     200
+/pt/best-crypto-wallets-2026     /pt/best-crypto-wallets-2026.html     200
+/pt/best-crypto-wallets-2026/    /pt/best-crypto-wallets-2026.html     200
+/pt/make-money-with-ai-crypto-2026     /pt/make-money-with-ai-crypto-2026.html     200
+/pt/make-money-with-ai-crypto-2026/    /pt/make-money-with-ai-crypto-2026.html     200
+/pt/crypto-tax-guide-2026     /pt/crypto-tax-guide-2026.html     200
+/pt/crypto-tax-guide-2026/    /pt/crypto-tax-guide-2026.html     200
+/zh/best-ai-crypto-projects-2026     /zh/best-ai-crypto-projects-2026.html     200
+/zh/best-ai-crypto-projects-2026/    /zh/best-ai-crypto-projects-2026.html     200
+/zh/how-to-buy-crypto-2026     /zh/how-to-buy-crypto-2026.html     200
+/zh/how-to-buy-crypto-2026/    /zh/how-to-buy-crypto-2026.html     200
+/zh/best-crypto-exchanges-2026     /zh/best-crypto-exchanges-2026.html     200
+/zh/best-crypto-exchanges-2026/    /zh/best-crypto-exchanges-2026.html     200
+/zh/best-crypto-wallets-2026     /zh/best-crypto-wallets-2026.html     200
+/zh/best-crypto-wallets-2026/    /zh/best-crypto-wallets-2026.html     200
+/zh/make-money-with-ai-crypto-2026     /zh/make-money-with-ai-crypto-2026.html     200
+/zh/make-money-with-ai-crypto-2026/    /zh/make-money-with-ai-crypto-2026.html     200
+/zh/crypto-tax-guide-2026     /zh/crypto-tax-guide-2026.html     200
+/zh/crypto-tax-guide-2026/    /zh/crypto-tax-guide-2026.html     200
+/ru/best-ai-crypto-projects-2026     /ru/best-ai-crypto-projects-2026.html     200
+/ru/best-ai-crypto-projects-2026/    /ru/best-ai-crypto-projects-2026.html     200
+/ru/how-to-buy-crypto-2026     /ru/how-to-buy-crypto-2026.html     200
+/ru/how-to-buy-crypto-2026/    /ru/how-to-buy-crypto-2026.html     200
+/ru/best-crypto-exchanges-2026     /ru/best-crypto-exchanges-2026.html     200
+/ru/best-crypto-exchanges-2026/    /ru/best-crypto-exchanges-2026.html     200
+/ru/best-crypto-wallets-2026     /ru/best-crypto-wallets-2026.html     200
+/ru/best-crypto-wallets-2026/    /ru/best-crypto-wallets-2026.html     200
+/ru/make-money-with-ai-crypto-2026     /ru/make-money-with-ai-crypto-2026.html     200
+/ru/make-money-with-ai-crypto-2026/    /ru/make-money-with-ai-crypto-2026.html     200
+/ru/crypto-tax-guide-2026     /ru/crypto-tax-guide-2026.html     200
+/ru/crypto-tax-guide-2026/    /ru/crypto-tax-guide-2026.html     200
+
 # === PHASE 2: AI ARTICLE GENERATION & AFFILIATE TRACKING ===
 # Affiliate click tracking (redirect with tracking)
 /aff/:platform  /.netlify/functions/track-affiliate-click?platform=:platform  302
