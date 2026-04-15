@@ -1,12 +1,14 @@
 /**
  * Netlify Function: Beehiiv Newsletter Subscribe
- * 
- * Handles email subscriptions:
- * 1. Validates email
- * 2. Subscribes to Beehiiv via API
- * 3. Also saves to Supabase contacts table
- * 4. Returns success/error
+ * Publication: crypto love you
+ * Publication ID (API V2): pub_f241bfb6-8576-42dd-88b2-973c9f6bb5c2
+ *
+ * Env vars needed in Netlify Dashboard → Site Settings → Environment Variables:
+ *   BEEHIIV_API_KEY          = your API key (generate after Stripe verification)
+ *   BEEHIIV_PUBLICATION_ID   = pub_f241bfb6-8576-42dd-88b2-973c9f6bb5c2 (or leave unset, hardcoded below)
  */
+
+const FALLBACK_PUB_ID = 'pub_f241bfb6-8576-42dd-88b2-973c9f6bb5c2'
 
 const headers = {
   'Access-Control-Allow-Origin': '*',
@@ -27,12 +29,12 @@ export const handler = async (event) => {
       return { statusCode: 400, headers, body: JSON.stringify({ error: 'Valid email required' }) }
     }
 
-    const BEEHIIV_API_KEY  = process.env.BEEHIIV_API_KEY
-    const BEEHIIV_PUB_ID   = process.env.BEEHIIV_PUBLICATION_ID
+    const BEEHIIV_API_KEY = process.env.BEEHIIV_API_KEY
+    const BEEHIIV_PUB_ID  = process.env.BEEHIIV_PUBLICATION_ID || FALLBACK_PUB_ID
     const results = {}
 
     // ── 1. Subscribe to Beehiiv ──────────────────────────────
-    if (BEEHIIV_API_KEY && BEEHIIV_PUB_ID) {
+    if (BEEHIIV_API_KEY) {
       const payload = {
         email,
         reactivate_existing: false,
@@ -43,52 +45,73 @@ export const handler = async (event) => {
         custom_fields: first_name ? [{ name: 'first_name', value: first_name }] : []
       }
 
-      const res = await fetch(
-        `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`,
-        {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'Authorization': `Bearer ${BEEHIIV_API_KEY}`
-          },
-          body: JSON.stringify(payload)
+      try {
+        const res = await fetch(
+          `https://api.beehiiv.com/v2/publications/${BEEHIIV_PUB_ID}/subscriptions`,
+          {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'Authorization': `Bearer ${BEEHIIV_API_KEY}`
+            },
+            body: JSON.stringify(payload)
+          }
+        )
+        const data = await res.json()
+        if (res.ok) {
+          results.beehiiv = { status: 'subscribed', subscriber_id: data.data?.id }
+        } else {
+          console.error('Beehiiv API error:', data)
+          results.beehiiv = { status: 'error', message: data.message || `HTTP ${res.status}` }
         }
-      )
-
-      const data = await res.json()
-      results.beehiiv = res.ok ? 'subscribed' : `error: ${data.message || res.status}`
+      } catch (e) {
+        console.error('Beehiiv fetch error:', e.message)
+        results.beehiiv = { status: 'error', message: e.message }
+      }
     } else {
-      results.beehiiv = 'skipped (no API key configured)'
+      console.warn('BEEHIIV_API_KEY not set — skipping Beehiiv, saving to Supabase only')
+      results.beehiiv = { status: 'skipped', reason: 'API key not configured yet' }
     }
 
-    // ── 2. Also save to Supabase ─────────────────────────────
+    // ── 2. Always save to Supabase ───────────────────────────
     try {
       const { createClient } = await import('@supabase/supabase-js')
-      const supabase = createClient(
-        process.env.SUPABASE_URL || process.env.SUPABASE_DATABASE_URL,
-        process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY
-      )
-      await supabase.from('contacts').insert([{
-        name: first_name || email.split('@')[0],
-        email,
-        message: `Newsletter signup via ${source}`,
-        source: `newsletter_${source}`,
-        status: 'subscriber',
-        created_at: new Date().toISOString()
-      }])
-      results.supabase = 'saved'
+      const supabaseUrl = process.env.SUPABASE_URL || process.env.SUPABASE_DATABASE_URL
+      const supabaseKey = process.env.SUPABASE_SERVICE_KEY || process.env.SUPABASE_SERVICE_ROLE_KEY
+      if (supabaseUrl && supabaseKey) {
+        const supabase = createClient(supabaseUrl, supabaseKey)
+        const { error } = await supabase.from('contacts').insert([{
+          name: first_name || email.split('@')[0],
+          email,
+          message: `Newsletter signup via ${source}`,
+          source: `newsletter_${source}`,
+          status: 'subscriber',
+          created_at: new Date().toISOString()
+        }])
+        results.supabase = error ? { status: 'error', message: error.message } : { status: 'saved' }
+      } else {
+        results.supabase = { status: 'skipped', reason: 'Supabase not configured' }
+      }
     } catch (e) {
-      results.supabase = `skipped: ${e.message}`
+      results.supabase = { status: 'error', message: e.message }
     }
 
     return {
       statusCode: 200,
       headers,
-      body: JSON.stringify({ success: true, message: "You're in! Check your inbox.", results })
+      body: JSON.stringify({
+        success: true,
+        message: "You're in! Check your inbox for a confirmation.",
+        results
+      })
     }
 
   } catch (err) {
-    console.error('Beehiiv subscribe error:', err)
-    return { statusCode: 500, headers, body: JSON.stringify({ error: 'Subscription failed. Please try again.' }) }
+    console.error('beehiiv-subscribe unhandled error:', err)
+    return {
+      statusCode: 500,
+      headers,
+      body: JSON.stringify({ error: 'Subscription failed. Please try again.' })
+    }
   }
 }
