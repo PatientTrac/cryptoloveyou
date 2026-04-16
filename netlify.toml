@@ -35,3 +35,9 @@
 
 [functions."link-integrity"]
   schedule = "0 */6 * * *"
+
+# Daily automated content — AI-generated trending crypto article
+# Runs at 13:00 UTC daily (9am EST / 6am PST / 15:00 CET)
+# Uses ANTHROPIC_API_KEY env var, generates via Claude, publishes via generate-article.js
+[functions."scheduled-trending-seo"]
+  schedule = "0 13 * * *"
