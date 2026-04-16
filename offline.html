@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>You're offline — CryptoLoveYou</title>
+<link rel="manifest" href="/manifest.json">
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    background: #07020f;
+    color: #f5f3ff;
+    font-family: system-ui, -apple-system, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    padding: 24px;
+    text-align: center;
+  }
+  img { width: 80px; height: 80px; object-fit: contain; border-radius: 16px; margin-bottom: 24px; }
+  h1 { font-size: 24px; font-weight: 700; margin-bottom: 12px; color: #a78bfa; }
+  p  { font-size: 15px; color: #c4b5fd; line-height: 1.6; max-width: 320px; margin-bottom: 28px; }
+  a  {
+    display: inline-block;
+    background: #7c3aed;
+    color: #fff;
+    padding: 14px 28px;
+    border-radius: 10px;
+    font-size: 15px;
+    font-weight: 600;
+    text-decoration: none;
+  }
+</style>
+</head>
+<body>
+  <img src="/images/logo-heart-brand.jpg" alt="CryptoLoveYou">
+  <h1>You're offline</h1>
+  <p>No internet connection detected. Check your connection and try again — we'll be here when you're back.</p>
+  <a href="/" onclick="location.reload(); return false;">Try again</a>
+</body>
+</html>

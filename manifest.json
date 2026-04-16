@@ -1,0 +1,52 @@
+{
+  "name": "CryptoLoveYou",
+  "short_name": "CryptoLoveYou",
+  "description": "Crypto news, exchange guides, and AI-powered insights for every level",
+  "start_url": "/?source=pwa",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#07020f",
+  "theme_color": "#7c3aed",
+  "lang": "en",
+  "scope": "/",
+  "icons": [
+    {
+      "src": "/images/logo-neon-vertical.jpg",
+      "sizes": "192x192",
+      "type": "image/jpeg",
+      "purpose": "any"
+    },
+    {
+      "src": "/images/logo-heart-brand.jpg",
+      "sizes": "512x512",
+      "type": "image/jpeg",
+      "purpose": "maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Bitcoin Price",
+      "url": "/bitcoin-ethereum-crypto-news-price-indexes/?source=pwa_shortcut",
+      "description": "Live Bitcoin and crypto prices"
+    },
+    {
+      "name": "Best Exchanges",
+      "url": "/best-crypto-exchanges/?source=pwa_shortcut",
+      "description": "Compare top crypto exchanges"
+    },
+    {
+      "name": "Free AI Crypto Guide",
+      "url": "/free-crypto-ai-guide/?source=pwa_shortcut",
+      "description": "Free guide to crypto and AI"
+    }
+  ],
+  "categories": ["finance", "news"],
+  "screenshots": [
+    {
+      "src": "/images/logo-hero-final.jpg",
+      "sizes": "1242x698",
+      "type": "image/jpeg",
+      "label": "CryptoLoveYou home page"
+    }
+  ]
+}
