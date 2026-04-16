@@ -1,100 +1,89 @@
-# === SECURITY BLOCK — MUST BE BEFORE ALL OTHER RULES ===
-# These use 404 (not 403) — 403 confirms the path exists
+# === SECURITY BLOCK — explicit named files only, no wildcards ===
 
-# Block admin directory — all variants
-/admin                          /404.html    404!
-/admin/                         /404.html    404!
-/admin/index.html               /404.html    404!
-/admin/login.html               /404.html    404!
-/admin/login                    /404.html    404!
-/admin/index.html.backup        /404.html    404!
-/admin/*                        /404.html    404!
+# Block admin directory
+/admin                                  /404.html    404!
+/admin/                                 /404.html    404!
+/admin/index.html                       /404.html    404!
+/admin/index.html.backup                /404.html    404!
+/admin/login.html                       /404.html    404!
+/admin/login                            /404.html    404!
 
 # Block wp paths
-/wp-admin                       /404.html    404!
-/wp-admin/*                     /404.html    404!
-/wp-login.php                   /404.html    404!
+/wp-admin                               /404.html    404!
+/wp-login.php                           /404.html    404!
 
-# Block ALL markdown docs
-/DEPLOYMENT_GUIDE.md            /404.html    404!
-/DEPLOYMENT_INSTRUCTIONS.md     /404.html    404!
-/CLIENT_REQUIREMENTS_STATUS.md  /404.html    404!
-/IMPLEMENTATION_SUMMARY.md      /404.html    404!
-/GROK_CHATBOT_DEPLOYMENT.md     /404.html    404!
-/GROK_CHATBOT_SETUP.md          /404.html    404!
-/PHASE1_SUMMARY.md              /404.html    404!
-/PHASE2_IMPLEMENTATION.md       /404.html    404!
-/PRODUCTION_DEPLOYMENT_CHECKLIST.md /404.html 404!
-/PROGRESS_REPORT.md             /404.html    404!
-/QUICK_START_GUIDE.md           /404.html    404!
-/RESEND_INTEGRATION_GUIDE.md    /404.html    404!
-/FINAL_DEPLOYMENT_CHECKLIST.md  /404.html    404!
-/IMAGE_FIX_SUMMARY.md           /404.html    404!
-/AUDIT_IMPLEMENTATION.md        /404.html    404!
-/README.md                      /404.html    404!
-/*.md                           /404.html    404!
+# Block deployment/config docs
+/DEPLOYMENT_GUIDE.md                    /404.html    404!
+/DEPLOYMENT_INSTRUCTIONS.md             /404.html    404!
+/CLIENT_REQUIREMENTS_STATUS.md          /404.html    404!
+/IMPLEMENTATION_SUMMARY.md              /404.html    404!
+/GROK_CHATBOT_DEPLOYMENT.md             /404.html    404!
+/GROK_CHATBOT_SETUP.md                  /404.html    404!
+/PHASE1_SUMMARY.md                      /404.html    404!
+/PHASE2_IMPLEMENTATION.md               /404.html    404!
+/PRODUCTION_DEPLOYMENT_CHECKLIST.md     /404.html    404!
+/PROGRESS_REPORT.md                     /404.html    404!
+/QUICK_START_GUIDE.md                   /404.html    404!
+/RESEND_INTEGRATION_GUIDE.md            /404.html    404!
+/FINAL_DEPLOYMENT_CHECKLIST.md          /404.html    404!
+/IMAGE_FIX_SUMMARY.md                   /404.html    404!
+/AUDIT_IMPLEMENTATION.md                /404.html    404!
+/README.md                              /404.html    404!
 
 # Block test files
-/test-api-final.js              /404.html    404!
-/test-api-real.js               /404.html    404!
-/test-grok-chat.html            /404.html    404!
-/test-contact-form.html         /404.html    404!
-/test-lunarcrush.js             /404.html    404!
-/test-lunarcrush-simple.js      /404.html    404!
-/test-lunarcrush-v4.js          /404.html    404!
-/test-local.sh                  /404.html    404!
-/test-*                         /404.html    404!
+/test-api-final.js                      /404.html    404!
+/test-api-real.js                       /404.html    404!
+/test-grok-chat.html                    /404.html    404!
+/test-contact-form.html                 /404.html    404!
+/test-lunarcrush.js                     /404.html    404!
+/test-lunarcrush-simple.js              /404.html    404!
+/test-lunarcrush-v4.js                  /404.html    404!
+/test-local.sh                          /404.html    404!
 
-# Block debug and dev scripts
-/debug-ticker.js                /404.html    404!
-/cleanup_for_netlify.py         /404.html    404!
-/netlifyfunctionsgrok-chat.js.txt /404.html  404!
-/scheduled-trending-seo.js      /404.html    404!
-/update-homepage-content.js     /404.html    404!
-/debug-*                        /404.html    404!
+# Block dev scripts
+/debug-ticker.js                        /404.html    404!
+/cleanup_for_netlify.py                 /404.html    404!
+/netlifyfunctionsgrok-chat.js.txt       /404.html    404!
+/scheduled-trending-seo.js              /404.html    404!
+/update-homepage-content.js             /404.html    404!
+/deno.lock                              /404.html    404!
+/package.json                           /404.html    404!
 
-# Block scripts directory dev files
-/scripts/create-admin-user.cjs          /404.html 404!
-/scripts/reset-admin-password.cjs       /404.html 404!
-/scripts/smoke-admin-affiliate.cjs      /404.html 404!
-/scripts/test-admin-auth.cjs            /404.html 404!
-/scripts/enable-chatbot-everywhere.cjs  /404.html 404!
-/scripts/smoke-generate-pages.js        /404.html 404!
-/scripts/sync-smartmag-header.cjs       /404.html 404!
-/scripts/diagnose-fetch-endpoints.mjs   /404.html 404!
-/scripts/generate-seo-draft.mjs         /404.html 404!
-/scripts/generate-trending-article.js   /404.html 404!
-/scripts/*                              /404.html 404!
+# Block exposed txt files (but NOT robots.txt)
+/Add Contextual Buttons + Full ChatBox.txt  /404.html  404!
 
-# Block loose txt/py/sh/cjs files
-/*.txt                          /404.html    404!
-/*.py                           /404.html    404!
-/*.sh                           /404.html    404!
-/*.cjs                          /404.html    404!
-/*.mjs                          /404.html    404!
-/*.json                         /404.html    404!
-/deno.lock                      /404.html    404!
-/package.json                   /404.html    404!
+# Block scripts directory
+/scripts/create-admin-user.cjs          /404.html    404!
+/scripts/reset-admin-password.cjs       /404.html    404!
+/scripts/smoke-admin-affiliate.cjs      /404.html    404!
+/scripts/test-admin-auth.cjs            /404.html    404!
+/scripts/enable-chatbot-everywhere.cjs  /404.html    404!
+/scripts/smoke-generate-pages.js        /404.html    404!
+/scripts/sync-smartmag-header.cjs       /404.html    404!
+/scripts/diagnose-fetch-endpoints.mjs   /404.html    404!
+/scripts/generate-seo-draft.mjs         /404.html    404!
+/scripts/generate-trending-article.js   /404.html    404!
+/scripts/test-resend.cjs                /404.html    404!
 
-# === FORCE REMOVE .html EXTENSION (MUST BE AFTER SECURITY BLOCK) ===
-/en/about-us.html            /en/about-us                      301!
-/en/privacy-policy.html      /en/privacy-policy                301!
-/en/affiliate-disclosure.html /en/affiliate-disclosure         301!
-/de/about-us.html            /de/about-us                      301!
-/de/privacy-policy.html      /de/privacy-policy                301!
-/de/affiliate-disclosure.html /de/affiliate-disclosure         301!
-/fr/about-us.html            /fr/about-us                      301!
-/fr/privacy-policy.html      /fr/privacy-policy                301!
-/fr/affiliate-disclosure.html /fr/affiliate-disclosure         301!
-/es/about-us.html            /es/about-us                      301!
-/es/privacy-policy.html      /es/privacy-policy                301!
-/es/affiliate-disclosure.html /es/affiliate-disclosure         301!
-/pt/about-us.html            /pt/about-us                      301!
-/pt/privacy-policy.html      /pt/privacy-policy                301!
-/pt/affiliate-disclosure.html /pt/affiliate-disclosure         301!
-/zh/about-us.html            /zh/about-us                      301!
-/zh/privacy-policy.html      /zh/privacy-policy                301!
-/zh/affiliate-disclosure.html /zh/affiliate-disclosure         301!
-/ru/about-us.html            /ru/about-us                      301!
-/ru/privacy-policy.html      /ru/privacy-policy                301!
-/ru/affiliate-disclosure.html /ru/affiliate-disclosure         301!
+# === FORCE REMOVE .html EXTENSION ===
+/en/about-us.html             /en/about-us                301!
+/en/privacy-policy.html       /en/privacy-policy          301!
+/en/affiliate-disclosure.html /en/affiliate-disclosure    301!
+/de/about-us.html             /de/about-us                301!
+/de/privacy-policy.html       /de/privacy-policy          301!
+/de/affiliate-disclosure.html /de/affiliate-disclosure    301!
+/fr/about-us.html             /fr/about-us                301!
+/fr/privacy-policy.html       /fr/privacy-policy          301!
+/fr/affiliate-disclosure.html /fr/affiliate-disclosure    301!
+/es/about-us.html             /es/about-us                301!
+/es/privacy-policy.html       /es/privacy-policy          301!
+/es/affiliate-disclosure.html /es/affiliate-disclosure    301!
+/pt/about-us.html             /pt/about-us                301!
+/pt/privacy-policy.html       /pt/privacy-policy          301!
+/pt/affiliate-disclosure.html /pt/affiliate-disclosure    301!
+/zh/about-us.html             /zh/about-us                301!
+/zh/privacy-policy.html       /zh/privacy-policy          301!
+/zh/affiliate-disclosure.html /zh/affiliate-disclosure    301!
+/ru/about-us.html             /ru/about-us                301!
+/ru/privacy-policy.html       /ru/privacy-policy          301!
+/ru/affiliate-disclosure.html /ru/affiliate-disclosure    301!
