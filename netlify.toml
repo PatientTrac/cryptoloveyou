@@ -1,189 +1,19 @@
-# ================================================================
-# CryptoLoveYou — netlify.toml
-# Security hardening per audit recommendations
-# Covers: CSP, admin protection, dev file blocking, HTTPS enforcement
-# ================================================================
-
 [build]
   publish = "."
   command = ""
 
-# ── HTTPS & CANONICAL DOMAIN ──────────────────────────────────
-[[redirects]]
-  from = "http://cryptoloveyou.com/*"
-  to   = "https://www.cryptoloveyou.com/:splat"
-  status = 301
-  force  = true
-
-[[redirects]]
-  from = "https://cryptoloveyou.com/*"
-  to   = "https://www.cryptoloveyou.com/:splat"
-  status = 301
-  force  = true
-
-# ── BLOCK ADMIN DIRECTORY ─────────────────────────────────────
-# Audit finding: exposed admin link is a critical security risk
-# Block direct access; return 404 (not 403 — 403 confirms existence)
-[[redirects]]
-  from   = "/admin"
-  to     = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from   = "/admin/*"
-  to     = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from   = "/wp-admin/*"
-  to     = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from   = "/wp-login.php"
-  to     = "/404"
-  status = 404
-  force  = true
-
-# ── BLOCK EXPOSED DEV/DEPLOYMENT FILES ───────────────────────
-# Audit: test files, debug scripts, deployment docs publicly accessible
-[[redirects]]
-  from = "/test-*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/debug-*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/*.md"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/*.py"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/*.txt"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/DEPLOYMENT*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/GROK_*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/CLIENT_*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/IMPLEMENTATION*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/PRODUCTION*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/PHASE*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/PROGRESS*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/FINAL_*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/QUICK_*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-[[redirects]]
-  from = "/RESEND_*"
-  to   = "/404"
-  status = 404
-  force  = true
-
-# ── GLOBAL SECURITY HEADERS ───────────────────────────────────
+# ── STATIC ASSET CACHING ──────────────────────────────────────
 [[headers]]
   for = "/*"
   [headers.values]
-
-    # HTTPS enforcement — 1 year, include subdomains
     Strict-Transport-Security = "max-age=31536000; includeSubDomains; preload"
-
-    # Clickjacking protection
     X-Frame-Options = "SAMEORIGIN"
-
-    # MIME type sniffing prevention
     X-Content-Type-Options = "nosniff"
-
-    # Referrer — send full URL to same origin, only origin cross-origin
     Referrer-Policy = "strict-origin-when-cross-origin"
-
-    # Permissions — disable unnecessary browser APIs
     Permissions-Policy = "camera=(), microphone=(), geolocation=(), payment=(), usb=(), bluetooth=()"
-
-    # XSS protection (legacy browsers)
     X-XSS-Protection = "1; mode=block"
-
-    # Content Security Policy
-    # Audit finding: missing CSP is a critical gap — allows XSS and affiliate link hijacking
-    #
-    # POLICY RATIONALE:
-    # default-src 'self'         — baseline: nothing loads unless explicitly allowed
-    # script-src                 — allows self + Cloudflare CDN (SmartMag assets) +
-    #                              Google Analytics + Netlify functions + inline scripts
-    #                              (WordPress themes need 'unsafe-inline' until nonces are added)
-    # style-src                  — allows self + Google Fonts + inline styles (theme requirement)
-    # img-src                    — allows self + data URIs + CDN + exchange partner logos
-    # connect-src                — allows API calls to self + analytics + Netlify functions
-    # frame-src                  — allows nothing (no iframes needed)
-    # object-src 'none'          — blocks Flash/plugin execution
-    # base-uri 'self'            — prevents base tag injection (affiliate link hijacking vector)
-    # form-action 'self'         — prevents form submissions to external domains
-    #
-    # NOTE: Remove 'unsafe-inline' from script-src once WordPress nonces are implemented
-    # This is the single highest-value CSP improvement after initial deployment.
     Content-Security-Policy = "default-src 'self'; script-src 'self' 'unsafe-inline' 'unsafe-eval' https://cdn.jsdelivr.net https://cdnjs.cloudflare.com https://www.googletagmanager.com https://www.google-analytics.com https://*.netlify.app; style-src 'self' 'unsafe-inline' https://fonts.googleapis.com https://cdn.jsdelivr.net https://cdnjs.cloudflare.com; font-src 'self' https://fonts.gstatic.com data:; img-src 'self' data: blob: https: http:; connect-src 'self' https://www.google-analytics.com https://analytics.google.com https://*.netlify.app https://api.anthropic.com; frame-src 'none'; object-src 'none'; base-uri 'self'; form-action 'self' https://formspree.io; upgrade-insecure-requests"
 
-# ── STATIC ASSET CACHING ──────────────────────────────────────
 [[headers]]
   for = "/images/*"
   [headers.values]
@@ -202,3 +32,6 @@
 # ── NETLIFY FUNCTIONS ─────────────────────────────────────────
 [functions]
   directory = "netlify/functions"
+
+[functions."link-integrity"]
+  schedule = "0 */6 * * *"
