@@ -5,32 +5,28 @@
    NOTE: Uses !important to override WordPress SmartMag inline styles
    ============================================================ */
 
-/* ── LIGHT MODE (default) — beat WP inline .s-dark rules ──── */
+/* ── LIGHT MODE (default) — clean white background ──────────── */
 html body,
 html.s-light body,
 html.s-dark body,
 body {
-  background-color: #f5f0ff !important;
-  background-image:
-    radial-gradient(ellipse at 0% 0%, rgba(167,139,250,0.35) 0%, transparent 50%),
-    radial-gradient(ellipse at 100% 100%, rgba(186,230,253,0.45) 0%, transparent 50%),
-    linear-gradient(135deg, #f5f0ff 0%, #ede9fe 40%, #e0f2fe 100%) !important;
-  background-attachment: fixed !important;
-  background-size: cover !important;
+  background-color: #ffffff !important;
+  background-image: none !important;
+  background-attachment: scroll !important;
   color: #1e1b4b !important;
   transition: background 0.4s ease, color 0.3s ease;
 }
 
 /* Beat .s-dark body specificity */
-.s-dark body { background-color: #f5f0ff !important; }
+.s-dark body { background-color: #ffffff !important; }
 .s-dark .smart-head-main .smart-head-top,
-.smart-head-main .s-dark.smart-head-top { background-color: rgba(245,240,255,0.9) !important; }
+.smart-head-main .s-dark.smart-head-top { background-color: #ffffff !important; }
 .s-dark .smart-head-main .smart-head-mid,
-.smart-head-main .s-dark.smart-head-mid { background-color: rgba(237,233,254,0.95) !important; }
+.smart-head-main .s-dark.smart-head-mid { background-color: #ffffff !important; }
 .s-dark .smart-head-mobile .smart-head-mid,
-.smart-head-mobile .s-dark.smart-head-mid { background-color: rgba(237,233,254,0.95) !important; }
-.s-dark .off-canvas, .off-canvas.s-dark { background-color: #ede9fe !important; }
-.s-dark.search-modal.mfp-bg { background-color: rgba(237,233,254,0.97) !important; }
+.smart-head-mobile .s-dark.smart-head-mid { background-color: #ffffff !important; }
+.s-dark .off-canvas, .off-canvas.s-dark { background-color: #f8f8f8 !important; }
+.s-dark.search-modal.mfp-bg { background-color: rgba(255,255,255,0.97) !important; }
 
 /* Elementor section backgrounds — override dark theme */
 .elementor-element:not(.elementor-motion-effects-element-type-background) {
@@ -46,10 +42,10 @@ p, li, td, th { color: #3730a3; }
 /* ── NAV ─────────────────────────────────────────────────────*/
 nav, .site-nav, #masthead, .navbar,
 .smart-head-main, .smart-head-mid, .smart-head-top {
-  background: rgba(245,240,255,0.92) !important;
-  border-bottom: 1px solid rgba(124,58,237,0.15) !important;
-  backdrop-filter: blur(12px) !important;
-  -webkit-backdrop-filter: blur(12px) !important;
+  background: #ffffff !important;
+  border-bottom: 1px solid rgba(124,58,237,0.12) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
 }
 
 /* ── LINKS ───────────────────────────────────────────────────*/
@@ -61,7 +57,7 @@ hr, .divider { border-color: rgba(124,58,237,0.12); }
 
 /* ── SCROLLBAR ───────────────────────────────────────────────*/
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #ede9fe; }
+::-webkit-scrollbar-track { background: #f5f5f5; }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #7c3aed, #3b82f6);
   border-radius: 3px;
