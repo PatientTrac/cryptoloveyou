@@ -65,6 +65,14 @@
 /scripts/generate-trending-article.js   /404.html    404!
 /scripts/test-resend.cjs                /404.html    404!
 
+# === ROOT-LEVEL LEGAL PAGES → DEFAULT TO ENGLISH ===
+/about-us.html              /en/about-us              301!
+/affiliate-disclosure.html  /en/affiliate-disclosure  301!
+/privacy-policy.html        /en/privacy-policy        301!
+/about-us                   /en/about-us              301!
+/affiliate-disclosure       /en/affiliate-disclosure  301!
+/privacy-policy             /en/privacy-policy        301!
+
 # === FORCE REMOVE .html EXTENSION ===
 /en/about-us.html             /en/about-us                301!
 /en/privacy-policy.html       /en/privacy-policy          301!
