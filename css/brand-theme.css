@@ -1,72 +1,123 @@
 /* ============================================================
    CryptoLoveYou — Global Brand Theme
-   DEFAULT (light): Option A — Lavender Mist
-   DARK MODE:       crypto_theme.jpg wave (toggle .clv-dark)
-   NOTE: Uses !important to override WordPress SmartMag inline styles
-   ============================================================ */
+   Light mode: #fafaf8 warm white (upgraded from lavender)
+   Dark mode:  html.clv-dark class toggle (unchanged)
+   Images: /images/logo-*.jpg (see placement guide below)
+   ============================================================
 
-/* ── LIGHT MODE (default) — clean white background ──────────── */
+   LOGO IMAGE PLACEMENT GUIDE
+   ──────────────────────────
+   logo-hero-final.jpg      → Full-width hero banner (cinematic, URL watermark)
+   logo-lightning-hero.jpg  → Article feature images, "Bitcoin" category header
+   logo-cinematic.jpg       → Hero banner alternate (no watermark, cleaner)
+   logo-heart-brand.jpg     → Header logo area, about page, brand identity sections
+   logo-neon-vertical.jpg   → Mobile sidebar, social cards, story format (vertical)
+
+   Usage in HTML:
+   <img src="/images/logo-heart-brand.jpg" alt="CryptoLoveYou" class="site-brand-logo">
+   <img src="/images/logo-hero-final.jpg"  alt="CryptoLoveYou hero" class="hero-banner-img">
+*/
+
+/* ── CSS VARIABLES (single source of truth) ──────────────── */
+:root {
+  --clv-bg-page:        #fafaf8;
+  --clv-bg-surface:     #ffffff;
+  --clv-bg-header:      #ffffff;
+  --clv-brand-purple:   #7c3aed;
+  --clv-brand-blue:     #3b82f6;
+  --clv-text-primary:   #1e1b4b;
+  --clv-text-body:      #3730a3;
+  --clv-text-muted:     #6d6a9c;
+}
+
+/* ── LIGHT MODE (default) ────────────────────────────────── */
 html body,
 html.s-light body,
-html.s-dark body,
 body {
-  background-color: #ffffff !important;
+  background-color: var(--clv-bg-page) !important;
   background-image: none !important;
   background-attachment: scroll !important;
-  color: #1e1b4b !important;
+  color: var(--clv-text-primary) !important;
   transition: background 0.4s ease, color 0.3s ease;
 }
 
-/* Beat .s-dark body specificity */
-.s-dark body { background-color: #ffffff !important; }
-.s-dark .smart-head-main .smart-head-top,
-.smart-head-main .s-dark.smart-head-top { background-color: #ffffff !important; }
-.s-dark .smart-head-main .smart-head-mid,
-.smart-head-main .s-dark.smart-head-mid { background-color: #ffffff !important; }
-.s-dark .smart-head-mobile .smart-head-mid,
-.smart-head-mobile .s-dark.smart-head-mid { background-color: #ffffff !important; }
-.s-dark .off-canvas, .off-canvas.s-dark { background-color: #f8f8f8 !important; }
-.s-dark.search-modal.mfp-bg { background-color: rgba(255,255,255,0.97) !important; }
+/* SmartMag .s-dark class forces dark bg — override for light mode */
+html:not(.clv-dark) .s-dark body { background-color: var(--clv-bg-page) !important; }
+html:not(.clv-dark) .s-dark .smart-head-main .smart-head-top,
+html:not(.clv-dark) .smart-head-main .s-dark.smart-head-top { background-color: var(--clv-bg-header) !important; }
+html:not(.clv-dark) .s-dark .smart-head-main .smart-head-mid,
+html:not(.clv-dark) .smart-head-main .s-dark.smart-head-mid { background-color: var(--clv-bg-header) !important; }
+html:not(.clv-dark) .s-dark .smart-head-mobile .smart-head-mid,
+html:not(.clv-dark) .smart-head-mobile .s-dark.smart-head-mid { background-color: var(--clv-bg-header) !important; }
+html:not(.clv-dark) .s-dark .off-canvas,
+html:not(.clv-dark) .off-canvas.s-dark { background-color: var(--clv-bg-surface) !important; }
+html:not(.clv-dark) .s-dark.search-modal.mfp-bg { background-color: rgba(255,255,255,0.97) !important; }
 
-/* Elementor section backgrounds — override dark theme */
-.elementor-element:not(.elementor-motion-effects-element-type-background) {
+/* Content gaps, rows, sections — match page bg */
+html:not(.clv-dark) .sm-row,
+html:not(.clv-dark) .sm-section,
+html:not(.clv-dark) .entry-wrap,
+html:not(.clv-dark) .content-wrap,
+html:not(.clv-dark) .site-content,
+html:not(.clv-dark) #content,
+html:not(.clv-dark) main.site-main {
+  background-color: var(--clv-bg-page) !important;
+  background-image: none !important;
+}
+
+/* Cards stay white (surface) on warm-white page */
+html:not(.clv-dark) .sm-card,
+html:not(.clv-dark) article.post,
+html:not(.clv-dark) .widget,
+html:not(.clv-dark) .widget-wrap {
+  background-color: var(--clv-bg-surface) !important;
+}
+
+/* Elementor section backgrounds */
+html:not(.clv-dark) .elementor-element:not(.elementor-motion-effects-element-type-background) {
   background-color: transparent !important;
 }
-[class*="elementor-element"] { background-color: transparent !important; }
+html:not(.clv-dark) [class*="elementor-element"] { background-color: transparent !important; }
 
-/* ── TYPOGRAPHY — light mode ─────────────────────────────────*/
-h1, h2, h3, h4, h5, h6 { color: #1e1b4b !important; }
-p, li, td, th { color: #3730a3; }
-.muted, .text-muted, small { color: #6d6a9c; }
+/* ── TYPOGRAPHY — light mode ─────────────────────────────── */
+h1, h2, h3, h4, h5, h6 { color: var(--clv-text-primary) !important; }
+p, li, td, th { color: var(--clv-text-body); }
+.muted, .text-muted, small { color: var(--clv-text-muted); }
 
-/* ── NAV ─────────────────────────────────────────────────────*/
+/* ── NAV ─────────────────────────────────────────────────── */
 nav, .site-nav, #masthead, .navbar,
 .smart-head-main, .smart-head-mid, .smart-head-top {
-  background: #ffffff !important;
+  background: var(--clv-bg-header) !important;
   border-bottom: 1px solid rgba(124,58,237,0.12) !important;
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
 }
 
-/* ── LINKS ───────────────────────────────────────────────────*/
+/* Nav dropdowns */
+nav .sub-menu,
+.main-navigation .sub-menu {
+  background-color: var(--clv-bg-surface) !important;
+}
+
+/* ── LINKS ───────────────────────────────────────────────── */
 a { color: #6d28d9; }
 a:hover { color: #2563eb; transition: color 0.15s ease; }
 
-/* ── HR / DIVIDERS ───────────────────────────────────────────*/
+/* ── HR / DIVIDERS ───────────────────────────────────────── */
 hr, .divider { border-color: rgba(124,58,237,0.12); }
 
-/* ── SCROLLBAR ───────────────────────────────────────────────*/
+/* ── SCROLLBAR ───────────────────────────────────────────── */
 ::-webkit-scrollbar { width: 6px; }
-::-webkit-scrollbar-track { background: #f5f5f5; }
+::-webkit-scrollbar-track { background: var(--clv-bg-page); }
 ::-webkit-scrollbar-thumb {
   background: linear-gradient(180deg, #7c3aed, #3b82f6);
   border-radius: 3px;
 }
 
-/* ── SELECTION ───────────────────────────────────────────────*/
+/* ── SELECTION ───────────────────────────────────────────── */
 ::selection { background: rgba(167,139,250,0.35); color: #1e1b4b; }
 
-/* ── BUTTONS ─────────────────────────────────────────────────*/
+/* ── BUTTONS ─────────────────────────────────────────────── */
 .btn-primary, .wp-block-button__link,
 button[type="submit"], .cta-button {
   background: linear-gradient(135deg, #7c3aed 0%, #3b82f6 100%) !important;
@@ -79,7 +130,25 @@ button[type="submit"]:hover, .cta-button:hover {
   opacity: 0.88; transform: translateY(-1px);
 }
 
-/* ── DARK MODE (.clv-dark on <html>) ──────────────────────── */
+/* ── BRAND LOGO IMAGES ───────────────────────────────────── */
+.site-brand-logo {
+  max-height: 56px;
+  width: auto;
+  display: block;
+}
+.hero-banner-img {
+  width: 100%;
+  height: auto;
+  display: block;
+  border-radius: 8px;
+}
+/* Vertical logo for mobile/sidebar */
+.logo-neon-vertical {
+  max-height: 280px;
+  width: auto;
+}
+
+/* ── DARK MODE (html.clv-dark class toggle) ──────────────── */
 html.clv-dark body,
 html.clv-dark.s-dark body,
 html.clv-dark.s-light body {
@@ -116,7 +185,13 @@ html.clv-dark ::-webkit-scrollbar-track { background: #07020f; }
 html.clv-dark ::selection { background: rgba(124,58,237,0.4); color: #f5f3ff; }
 html.clv-dark hr, html.clv-dark .divider { border-color: rgba(124,58,237,0.2); }
 
-/* ── DARK MODE TOGGLE BUTTON ──────────────────────────────── */
+/* Dark mode sub-menus */
+html.clv-dark .sub-menu,
+html.clv-dark .main-navigation .sub-menu {
+  background: rgba(7,2,15,0.95) !important;
+}
+
+/* ── DARK MODE TOGGLE BUTTON ─────────────────────────────── */
 #clv-dark-toggle {
   position: fixed; bottom: 24px; right: 24px; z-index: 9999;
   width: 46px; height: 46px; border-radius: 50%;
@@ -139,5 +214,5 @@ html.clv-dark #clv-dark-toggle { background: rgba(18,5,38,0.88); border-color: r
 }
 #clv-dark-toggle:hover::before { opacity: 1; }
 
-/* ── ACCENT UTILITY ──────────────────────────────────────────*/
+/* ── ACCENT UTILITY ──────────────────────────────────────── */
 .accent-border { border-left: 3px solid #7c3aed; padding-left: 1rem; }
