@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Maintains Market Leadership Amid Crypto Volatility",
-      "excerpt": "Despite ongoing market fluctuations, Bitcoin continues to hold its position as the dominant cryptocurrency. Analysts suggest institutional interest remains strong as the digital asset weathers current market conditions.",
+      "title": "Bitcoin Surges Past $77K as Institutional Adoption Accelerates",
+      "excerpt": "Bitcoin reached $77,171 with a 2.87% daily gain as major corporations announce new treasury allocations. The milestone reflects growing institutional confidence in cryptocurrency as a store of value.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 17, 2026",
-      "slug": "/bitcoin-maintains-market-leadership-amid-volatility/",
+      "slug": "/bitcoin-surges-past-77k-institutional-adoption/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Developments Drive Long-term Optimism",
-      "excerpt": "Recent updates to the Ethereum ecosystem continue to attract developer attention and institutional adoption. The network's ongoing evolution positions it for sustained growth in the decentralized finance sector.",
+      "title": "Ethereum Network Prepares for Major Scaling Upgrade Amid Market Volatility",
+      "excerpt": "Ethereum developers announce final testing phase for the next major network upgrade focused on transaction throughput. The enhancement aims to reduce gas fees and improve user experience across DeFi applications.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 17, 2026",
-      "slug": "/ethereum-network-developments-drive-optimism/",
+      "slug": "/ethereum-scaling-upgrade-market-volatility/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "Asteroid Shiba Explodes with Over 50,000% Daily Gains",
-      "excerpt": "ASTEROID token has shocked the crypto market with an unprecedented surge of 50,532.19% in 24 hours. The meme coin's meteoric rise has captured widespread attention across social media platforms.",
+      "title": "Asteroid Shiba Explodes 40,000% in Unprecedented Meme Coin Rally",
+      "excerpt": "ASTEROID token experiences historic gains of over 40,000% in 24 hours, reaching $0.000048140. The surge highlights continued retail interest in meme-based cryptocurrencies despite market maturation.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 17, 2026",
-      "slug": "/asteroid-shiba-explodes-massive-daily-gains/",
+      "slug": "/asteroid-shiba-explodes-40000-percent-meme-rally/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "RaveDAO Surges Nearly 20% as Community Governance Expands",
-      "excerpt": "RAVE token climbed 19.91% today as the decentralized autonomous organization announces new governance features. The platform's innovative approach to community-driven decision making continues to attract investors.",
+      "title": "RaveDAO Governance Token Jumps 27% Following Community Vote",
+      "excerpt": "RAVE token climbs to $20.89 after successful community proposal for new DeFi partnerships. The decentralized autonomous organization continues expanding its ecosystem through member-driven initiatives.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 17, 2026",
-      "slug": "/ravedao-surges-community-governance-expands/",
+      "slug": "/ravedao-governance-token-jumps-community-vote/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "Pudgy Penguins Token Gains 7% Following NFT Collection Updates",
-      "excerpt": "PENGU token rose 6.94% as the popular NFT project announces new utility features for holders. The integration of token rewards with the beloved penguin collection has strengthened community engagement.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
+      "title": "Bittensor AI Network Gains 8% as Machine Learning Integration Grows",
+      "excerpt": "TAO token reaches $261.94 with 7.95% gains as artificial intelligence applications drive network adoption. The blockchain-based AI platform attracts developers seeking decentralized machine learning solutions.",
+      "category": "Blockchain",
+      "categorySlug": "crypto-news/blockchain",
       "date": "April 17, 2026",
-      "slug": "/pudgy-penguins-token-gains-nft-updates/",
+      "slug": "/bittensor-ai-network-gains-machine-learning-integration/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "Siren Protocol Faces 21% Decline Amid DeFi Market Correction",
-      "excerpt": "SIREN token dropped 21.29% today as broader DeFi markets experience selling pressure. The options protocol remains focused on product development despite current market headwinds.",
-      "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
+      "title": "OpenVPP Faces 5% Decline Despite Growing Virtual Power Plant Adoption",
+      "excerpt": "OVPP token drops to $0.021149 amid broader energy sector corrections, though underlying technology gains traction. The virtual power plant protocol continues onboarding renewable energy providers globally.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
       "date": "April 17, 2026",
-      "slug": "/siren-protocol-faces-decline-defi-correction/",
+      "slug": "/openvpp-decline-virtual-power-plant-adoption/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
