@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Consolidates as Market Awaits Next Major Move",
-      "excerpt": "Bitcoin continues to trade within established ranges as investors monitor institutional adoption and regulatory developments. Market analysts suggest the current consolidation phase may precede significant price action.",
+      "title": "Bitcoin Maintains Market Leadership Amid Crypto Volatility",
+      "excerpt": "Despite ongoing market fluctuations, Bitcoin continues to hold its position as the dominant cryptocurrency. Analysts suggest institutional interest remains strong as the digital asset weathers current market conditions.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 17, 2026",
-      "slug": "/bitcoin-consolidates-market-awaits-major-move/",
+      "slug": "/bitcoin-maintains-market-leadership-amid-volatility/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Upgrades Drive Developer Activity",
-      "excerpt": "Recent Ethereum protocol improvements continue to attract developers and enhance network efficiency. The ecosystem shows strong fundamentals despite current market conditions.",
+      "title": "Ethereum Network Developments Drive Long-term Optimism",
+      "excerpt": "Recent updates to the Ethereum ecosystem continue to attract developer attention and institutional adoption. The network's ongoing evolution positions it for sustained growth in the decentralized finance sector.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 17, 2026",
-      "slug": "/ethereum-network-upgrades-drive-developer-activity/",
+      "slug": "/ethereum-network-developments-drive-optimism/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "Moonriver Surges Over 200% Following Major Partnership Announcement",
-      "excerpt": "MOVR token skyrockets 208.63% to $3.89 after revealing strategic collaboration with leading DeFi protocols. The Kusama parachain sees unprecedented trading volume as investors pile in.",
+      "title": "Asteroid Shiba Explodes with Over 50,000% Daily Gains",
+      "excerpt": "ASTEROID token has shocked the crypto market with an unprecedented surge of 50,532.19% in 24 hours. The meme coin's meteoric rise has captured widespread attention across social media platforms.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 17, 2026",
-      "slug": "/moonriver-surges-200-percent-partnership-announcement/",
+      "slug": "/asteroid-shiba-explodes-massive-daily-gains/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Siren Protocol Rallies 138% on DeFi Innovation Breakthrough",
-      "excerpt": "SIREN token jumps to $2.01 following the launch of revolutionary options trading features. The DeFi protocol's new functionality attracts significant attention from institutional traders.",
+      "title": "RaveDAO Surges Nearly 20% as Community Governance Expands",
+      "excerpt": "RAVE token climbed 19.91% today as the decentralized autonomous organization announces new governance features. The platform's innovative approach to community-driven decision making continues to attract investors.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 17, 2026",
-      "slug": "/siren-protocol-rallies-138-percent-defi-breakthrough/",
+      "slug": "/ravedao-surges-community-governance-expands/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "RaveDAO Climbs 28% as Community Governance Gains Momentum",
-      "excerpt": "RAVE token reaches $18.56 amid growing participation in decentralized governance initiatives. The DAO's recent proposals show strong community engagement and strategic direction.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
-      "date": "April 17, 2026",
-      "slug": "/ravedao-climbs-28-percent-governance-momentum/",
-      "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
-    },
-    {
-      "title": "Pudgy Penguins NFT Token Shows Steady Growth in Volatile Market",
-      "excerpt": "PENGU token maintains stability with modest 1.57% gain as the NFT-backed cryptocurrency demonstrates resilience. The project's utility expansion continues to attract long-term holders.",
+      "title": "Pudgy Penguins Token Gains 7% Following NFT Collection Updates",
+      "excerpt": "PENGU token rose 6.94% as the popular NFT project announces new utility features for holders. The integration of token rewards with the beloved penguin collection has strengthened community engagement.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 17, 2026",
-      "slug": "/pudgy-penguins-nft-token-steady-growth-volatile-market/",
+      "slug": "/pudgy-penguins-token-gains-nft-updates/",
+      "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
+    },
+    {
+      "title": "Siren Protocol Faces 21% Decline Amid DeFi Market Correction",
+      "excerpt": "SIREN token dropped 21.29% today as broader DeFi markets experience selling pressure. The options protocol remains focused on product development despite current market headwinds.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
+      "date": "April 17, 2026",
+      "slug": "/siren-protocol-faces-decline-defi-correction/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
