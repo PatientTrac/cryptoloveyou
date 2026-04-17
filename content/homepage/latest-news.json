@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Maintains Stability Above $74K as Market Consolidates",
-      "excerpt": "Bitcoin continues to hold strong above the $74,000 level with a modest 0.35% gain in the past 24 hours. The cryptocurrency shows signs of consolidation as traders assess the next potential breakout direction.",
+      "title": "Bitcoin Holds Strong Above $74K Despite Minor Correction",
+      "excerpt": "Bitcoin maintains its position near all-time highs at $74,722, showing remarkable stability with only a 0.01% decline in 24 hours. The leading cryptocurrency continues to demonstrate resilience amid market volatility.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
-      "date": "April 16, 2026",
-      "slug": "/bitcoin-maintains-stability-above-74k-consolidation/",
+      "date": "April 17, 2026",
+      "slug": "/bitcoin-holds-strong-above-74k-despite-minor-correction/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Prepares for Major Protocol Upgrade Amid Market Uncertainty",
-      "excerpt": "Ethereum developers announce readiness for the next major network upgrade as the cryptocurrency faces temporary data unavailability. The upgrade aims to enhance scalability and reduce transaction costs across the network.",
+      "title": "Ethereum Faces Minor Setback as Price Dips to $2,335",
+      "excerpt": "Ethereum experiences a slight pullback of 0.83% in the past 24 hours, trading at $2,335.04. Market analysts suggest this minor correction may present a buying opportunity for long-term investors.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
-      "date": "April 16, 2026",
-      "slug": "/ethereum-protocol-upgrade-market-uncertainty/",
+      "date": "April 17, 2026",
+      "slug": "/ethereum-faces-minor-setback-as-price-dips-to-2335/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "ORDI Token Explodes 179% as Bitcoin Ordinals Gain Massive Traction",
-      "excerpt": "ORDI surges to $8.70 with an extraordinary 179.16% gain as Bitcoin Ordinals protocol experiences unprecedented adoption. The token's meteoric rise reflects growing interest in Bitcoin-based NFT and inscription technologies.",
+      "title": "ORDI Token Explodes 134% in Massive Rally",
+      "excerpt": "ORDI experiences an extraordinary surge of 134.79% in 24 hours, reaching $9.18 per token. The dramatic price movement has caught the attention of traders and sparked renewed interest in the Ordinals ecosystem.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
-      "date": "April 16, 2026",
-      "slug": "/ordi-token-explodes-179-percent-bitcoin-ordinals/",
+      "date": "April 17, 2026",
+      "slug": "/ordi-token-explodes-134-percent-in-massive-rally/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Pudgy Penguins Token PENGU Rallies 10% as NFT Community Engagement Soars",
-      "excerpt": "PENGU token climbs 10.09% to approximately $0.0078 as the Pudgy Penguins NFT ecosystem expands. The community-driven project continues to build momentum with new utility features and partnerships.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 16, 2026",
-      "slug": "/pudgy-penguins-pengu-rallies-10-percent-nft-community/",
+      "title": "Siren Protocol Surges Over 100% Amid DeFi Revival",
+      "excerpt": "SIREN token rockets 104.93% to $1.71, signaling renewed interest in decentralized finance protocols. The impressive gains reflect growing confidence in DeFi innovation and institutional adoption.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
+      "date": "April 17, 2026",
+      "slug": "/siren-protocol-surges-over-100-percent-amid-defi-revival/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "Based Token Surges 92% as Base Chain DeFi Activity Reaches New Heights",
-      "excerpt": "BASED token rockets 91.97% to $0.178 driven by explosive growth in Base blockchain DeFi protocols. The surge reflects increasing developer activity and total value locked across Base-native applications.",
-      "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
-      "date": "April 16, 2026",
-      "slug": "/based-token-surges-92-percent-base-chain-defi/",
+      "title": "RaveDAO Gains 46% as Community Governance Tokens Rally",
+      "excerpt": "RaveDAO token climbs 46.32% to $16.85, joining the broader trend of governance token appreciation. The surge highlights increasing investor interest in decentralized autonomous organization structures.",
+      "category": "Blockchain",
+      "categorySlug": "crypto-news/blockchain",
+      "date": "April 17, 2026",
+      "slug": "/ravedao-gains-46-percent-as-community-governance-tokens-rally/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "RaveDAO Jumps 30% as Decentralized Music Platform Gains Industry Support",
-      "excerpt": "RAVE token climbs 30.24% to $16.28 as the decentralized music platform attracts major artist partnerships. The blockchain-based music ecosystem continues to revolutionize how artists distribute and monetize their content.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
-      "date": "April 16, 2026",
-      "slug": "/ravedao-jumps-30-percent-decentralized-music-platform/",
+      "title": "Pudgy Penguins NFT Token Rises 7% on Market Optimism",
+      "excerpt": "PENGU token advances 7.26% to approximately $0.0077, reflecting growing enthusiasm for NFT-backed cryptocurrencies. The modest but steady gains suggest sustained interest in the digital collectibles space.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 17, 2026",
+      "slug": "/pudgy-penguins-nft-token-rises-7-percent-on-market-optimism/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
