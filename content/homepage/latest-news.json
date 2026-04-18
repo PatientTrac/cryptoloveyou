@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Holds Steady Above $76K as Market Shows Resilience",
-      "excerpt": "Bitcoin maintains its position near $76,249 with minimal daily movement of 0.05%, signaling market stability. The leading cryptocurrency continues to demonstrate strength despite broader market volatility.",
+      "title": "Bitcoin Faces Minor Correction as Price Dips Below $76K",
+      "excerpt": "Bitcoin experiences a 2.36% decline in 24 hours, trading at $75,548 as investors take profits following recent highs. Market analysts suggest this pullback represents healthy consolidation in the ongoing bull cycle.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 18, 2026",
-      "slug": "/bitcoin-holds-steady-above-76k-market-resilience/",
+      "slug": "/bitcoin-correction-below-76k-april-2026/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Upgrades Drive Institutional Interest Despite Price Uncertainty",
-      "excerpt": "Ethereum continues to attract institutional attention with ongoing network improvements and scaling solutions. Major financial institutions are increasingly exploring Ethereum-based products despite current market conditions.",
+      "title": "Ethereum Network Upgrades Drive Institutional Interest Despite Price Volatility",
+      "excerpt": "Ethereum continues to attract institutional investors as network improvements enhance scalability and reduce transaction costs. The latest protocol updates position ETH for long-term growth in the evolving DeFi landscape.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 18, 2026",
-      "slug": "/ethereum-network-upgrades-institutional-interest/",
+      "slug": "/ethereum-institutional-interest-network-upgrades/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "RaveDAO Faces Sharp 27% Decline as DeFi Governance Token Struggles",
-      "excerpt": "RaveDAO's native token plummets to $13.61 following a significant 27.28% drop in 24 hours. The decline raises questions about the future of decentralized autonomous organization governance models.",
+      "title": "RaveDAO Token Crashes 77% Following Governance Dispute",
+      "excerpt": "RAVE token plummets to $4.81 after community members raised concerns about recent governance proposals. The dramatic sell-off highlights ongoing challenges in decentralized autonomous organization management.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 18, 2026",
-      "slug": "/ravedao-sharp-decline-defi-governance-struggles/",
+      "slug": "/ravedao-crashes-governance-dispute/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Pudgy Penguins NFT Token Drops 7% Amid Broader Altcoin Selloff",
-      "excerpt": "PENGU token slides to approximately $0.0074 as the popular NFT-backed cryptocurrency faces selling pressure. The 7.02% decline reflects broader weakness in meme-based digital assets.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
+      "title": "Siren Protocol Surges 23% on DeFi Options Trading Expansion",
+      "excerpt": "SIREN token rallies to $0.789 as the protocol announces new structured products for decentralized options trading. The platform's innovative approach to DeFi derivatives attracts significant trading volume.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
       "date": "April 18, 2026",
-      "slug": "/pudgy-penguins-nft-token-drops-altcoin-selloff/",
+      "slug": "/siren-protocol-surges-defi-options-expansion/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "Solana Blockchain Activity Remains Strong Despite 2% Price Dip",
-      "excerpt": "SOL trades at $86.94 following a 2.01% daily decline, but on-chain metrics show continued high transaction volume. Developer activity and DeFi protocols on Solana maintain robust growth trajectories.",
+      "title": "Request Network Jumps 34% Following Payment Infrastructure Partnership",
+      "excerpt": "REQ token climbs to $0.095 after announcing a major partnership to integrate blockchain-based invoicing solutions. The collaboration aims to streamline crypto payments for enterprise clients worldwide.",
       "category": "Blockchain",
       "categorySlug": "crypto-news/blockchain",
       "date": "April 18, 2026",
-      "slug": "/solana-blockchain-activity-strong-despite-price-dip/",
+      "slug": "/request-network-payment-partnership-surge/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "OpenVPP Altcoin Shows Stability with Minor 1% Correction",
-      "excerpt": "OpenVPP demonstrates relative strength trading at $0.019386 with only a 1.03% decline. The smaller cap altcoin outperforms many peers in today's mixed trading session.",
+      "title": "Pudgy Penguins NFT Token Declines Amid Broader Meme Coin Selloff",
+      "excerpt": "PENGU drops 8.31% to $0.0073 as meme-inspired tokens face profit-taking pressure. Despite the recent decline, the Pudgy Penguins ecosystem continues expanding its gaming and metaverse initiatives.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 18, 2026",
-      "slug": "/openvpp-altcoin-stability-minor-correction/",
+      "slug": "/pudgy-penguins-decline-meme-coin-selloff/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
