@@ -1,187 +1,163 @@
-/**
- * CryptoLoveYou Grok chat widget — Tailwind CSS version
- * Self-contained: injects Tailwind + widget CSS if missing
- * Loads on pages that include: <script src="/js/grok-chat-widget.js" defer></script>
- */
 ;(function () {
-  if (document.getElementById('grok-chat-container')) return
+  if (document.getElementById('grok-widget-root')) return
 
-  function ensureTailwindAndCss() {
-    // 1) Ensure Tailwind is present (needed for Tailwind utility classes)
-    if (!document.querySelector('script[data-clu-tailwind="1"]')) {
-      var tw = document.createElement('script')
-      tw.src = 'https://cdn.tailwindcss.com'
-      tw.defer = true
-      tw.setAttribute('data-clu-tailwind', '1')
-      document.head.appendChild(tw)
-    }
+  var API_CHAT = '/.netlify/functions/grok-chat'
+  var API_STT  = '/.netlify/functions/stt'
 
-    // 2) Ensure widget isolation + mobile rules exist (match homepage)
-    if (!document.getElementById('clu-grok-widget-css')) {
-      var st = document.createElement('style')
-      st.id = 'clu-grok-widget-css'
-      st.textContent =
-        '/* Animation delay for second ping ring */\\n' +
-        '.animation-delay-700{animation-delay:700ms}\\n' +
-        '/* Isolate Grok chat widget from theme styles */\\n' +
-        '#grok-chat-container{all:initial;position:fixed;bottom:24px;right:24px;z-index:9999}\\n' +
-        '/* Mobile responsive adjustments */\\n' +
-        '@media (max-width:480px){#chat-window{width:100vw!important;height:100vh!important;max-height:100vh!important;bottom:0!important;right:0!important;border-radius:0!important}#grok-chat-container{bottom:16px!important;right:16px!important}}\\n'
-      document.head.appendChild(st)
-    }
+  var style = document.createElement('style')
+  style.textContent =
+    '@keyframes clw-ping{0%{transform:scale(1);opacity:.6}100%{transform:scale(1.8);opacity:0}}' +
+    '#grok-widget-root{all:initial;position:fixed;bottom:24px;right:24px;z-index:9999;font-family:system-ui,sans-serif}' +
+    '#grok-fab{width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);cursor:pointer;display:flex;align-items:center;justify-content:center;font-size:26px;box-shadow:0 0 24px 8px rgba(139,92,246,.45);border:none;position:relative}' +
+    '#grok-fab::before{content:"";position:absolute;inset:0;border-radius:50%;background:linear-gradient(135deg,#7c3aed,#a855f7);animation:clw-ping 1.8s ease-out infinite}' +
+    '#grok-window{position:absolute;bottom:72px;right:0;width:384px;height:560px;background:#0f172a;border:1px solid rgba(167,139,250,.3);border-radius:24px;box-shadow:0 25px 60px rgba(0,0,0,.6);display:flex;flex-direction:column;overflow:hidden}' +
+    '#grok-messages::-webkit-scrollbar{width:4px}#grok-messages::-webkit-scrollbar-thumb{background:rgba(139,92,246,.4);border-radius:2px}' +
+    '@media(max-width:480px){#grok-window{width:100vw;height:100vh;bottom:0;right:0;border-radius:0}#grok-widget-root{bottom:16px;right:16px}}'
+  document.head.appendChild(style)
+
+  var root = document.createElement('div')
+  root.id = 'grok-widget-root'
+
+  root.innerHTML =
+    '<button id="grok-fab" aria-label="Open chat">💬</button>' +
+    '<div id="grok-window" style="display:none">' +
+      '<div style="background:linear-gradient(90deg,#6d28d9,#9333ea);padding:16px 20px;display:flex;align-items:center;gap:12px;color:#fff;flex-shrink:0">' +
+        '<span style="font-size:22px;font-weight:700">𝕏</span>' +
+        '<div style="flex:1">' +
+          '<div style="font-weight:600;font-size:15px">Grok • CryptoLoveYou AI</div>' +
+          '<div style="font-size:11px;opacity:.75">Crypto • AI • Future ❤️</div>' +
+        '</div>' +
+        '<button id="grok-close" style="background:none;border:none;color:#fff;font-size:22px;cursor:pointer;opacity:.8;line-height:1">✕</button>' +
+      '</div>' +
+      '<div id="grok-messages" style="flex:1;overflow-y:auto;padding:20px;display:flex;flex-direction:column;gap:12px;background:#0f172a"></div>' +
+      '<div style="padding:14px 16px;border-top:1px solid rgba(255,255,255,.08);display:flex;align-items:center;gap:10px;background:#0f172a;flex-shrink:0">' +
+        '<button id="grok-mic" aria-label="Voice input" style="width:42px;height:42px;border-radius:14px;background:rgba(255,255,255,.1);border:none;cursor:pointer;font-size:20px;display:flex;align-items:center;justify-content:center;flex-shrink:0;color:#fff">🎤</button>' +
+        '<input id="grok-input" type="text" placeholder="Ask Grok anything..." style="flex:1;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);border-radius:999px;padding:10px 18px;color:#fff;font-size:13px;outline:none">' +
+        '<button id="grok-send" style="padding:10px 20px;background:linear-gradient(90deg,#7c3aed,#9333ea);color:#fff;border:none;border-radius:999px;font-size:13px;font-weight:500;cursor:pointer;flex-shrink:0">Send</button>' +
+      '</div>' +
+    '</div>'
+
+  document.body.appendChild(root)
+
+  var fab     = document.getElementById('grok-fab')
+  var win     = document.getElementById('grok-window')
+  var closeBtn= document.getElementById('grok-close')
+  var msgs    = document.getElementById('grok-messages')
+  var input   = document.getElementById('grok-input')
+  var sendBtn = document.getElementById('grok-send')
+  var micBtn  = document.getElementById('grok-mic')
+
+  function openWidget () {
+    win.style.display = 'flex'
+    fab.style.display = 'none'
+    input.focus()
+    if (!msgs.firstChild) addBotMsg('Hey! I\'m Grok from CryptoLoveYou ❤️ Ask me anything about crypto, AI, or whatever you want.')
   }
 
-  ensureTailwindAndCss()
-
-  var API = '/.netlify/functions/grok-chat'
-
-  // Create container with Tailwind classes
-  var container = document.createElement('div')
-  container.id = 'grok-chat-container'
-  container.className = 'fixed bottom-6 right-6 z-[9999]'
-
-  container.innerHTML = `
-    <button id="grok-chat-fab" onclick="window.toggleGrokChat()" class="relative w-16 h-16 flex items-center justify-center group">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full animate-ping opacity-30"></div>
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-400 to-purple-600 rounded-full animate-ping opacity-20 animation-delay-700"></div>
-        <div class="relative w-14 h-14 bg-gradient-to-br from-cyan-500 to-purple-600 rounded-full flex items-center justify-center shadow-[0_0_30px_10px] shadow-cyan-400/60">
-            <span class="text-3xl">💬</span>
-        </div>
-    </button>
-
-    <div id="chat-window" class="hidden absolute bottom-20 right-0 w-96 h-[560px] bg-zinc-900 border-2 border-transparent bg-clip-padding rounded-3xl shadow-2xl flex flex-col overflow-hidden" style="background-image: linear-gradient(rgb(24, 24, 27), rgb(24, 24, 27)), linear-gradient(to right, rgb(6, 182, 212), rgb(147, 51, 234)); background-origin: border-box; background-clip: padding-box, border-box;">
-        <div class="bg-gradient-to-r from-purple-500 to-cyan-400 px-5 py-4 flex items-center gap-3">
-            <div class="w-10 h-10 flex items-center justify-center">
-                <img src="/apple-touch-icon.png" alt="CryptoLoveYou" class="w-full h-full object-contain">
-            </div>
-            <div class="flex-1">
-                <h3 class="font-bold text-white text-base">CryptoLoveYou AI</h3>
-                <p class="text-xs text-white/80">Crypto • AI • Future</p>
-            </div>
-            <button onclick="window.toggleGrokChat()" class="text-2xl text-white/80 hover:text-white transition-colors bg-transparent hover:bg-transparent">✕</button>
-        </div>
-
-        <div id="chat-messages" class="flex-1 p-5 overflow-y-auto space-y-4 bg-zinc-950"></div>
-
-        <!-- Contextual Quick Buttons -->
-        <div class="px-5 pb-3 pt-3 flex flex-wrap gap-2 border-t border-zinc-800 bg-zinc-900/50">
-            <button onclick="window.sendGrokQuickPrompt('What are the best AI crypto projects in 2026?')" class="text-xs bg-gradient-to-r from-zinc-800 to-zinc-800 hover:from-cyan-600 hover:to-purple-600 text-gray-300 hover:text-white px-3 py-2 rounded-full transition-all duration-200 border border-zinc-700 hover:border-transparent">AI Projects</button>
-            <button onclick="window.sendGrokQuickPrompt('How do I buy crypto safely in 2026?')" class="text-xs bg-gradient-to-r from-zinc-800 to-zinc-800 hover:from-cyan-600 hover:to-purple-600 text-gray-300 hover:text-white px-3 py-2 rounded-full transition-all duration-200 border border-zinc-700 hover:border-transparent">Buy Crypto</button>
-            <button onclick="window.sendGrokQuickPrompt('What are the best crypto exchanges in 2026?')" class="text-xs bg-gradient-to-r from-zinc-800 to-zinc-800 hover:from-cyan-600 hover:to-purple-600 text-gray-300 hover:text-white px-3 py-2 rounded-full transition-all duration-200 border border-zinc-700 hover:border-transparent">Exchanges</button>
-            <button onclick="window.sendGrokQuickPrompt('How can I make money with AI and crypto?')" class="text-xs bg-gradient-to-r from-zinc-800 to-zinc-800 hover:from-cyan-600 hover:to-purple-600 text-gray-300 hover:text-white px-3 py-2 rounded-full transition-all duration-200 border border-zinc-700 hover:border-transparent">Make Money</button>
-            <button onclick="window.sendGrokQuickPrompt('Explain crypto taxes in 2026')" class="text-xs bg-gradient-to-r from-zinc-800 to-zinc-800 hover:from-cyan-600 hover:to-purple-600 text-gray-300 hover:text-white px-3 py-2 rounded-full transition-all duration-200 border border-zinc-700 hover:border-transparent">Taxes</button>
-        </div>
-
-        <form id="grok-chat-form" onsubmit="window.sendGrokMessage(event)" class="p-4 border-t border-zinc-800 bg-zinc-900/50 flex gap-2 items-center">
-            <input id="user-input" type="text" placeholder="Ask about crypto, AI, or trading..." class="flex-1 bg-zinc-800 border border-zinc-700 focus:border-cyan-400 rounded-full px-5 py-3 text-sm text-white placeholder-zinc-500 outline-none transition-colors" style="color: #ffffff;">
-            <button type="button" id="mic-btn" onclick="window.startVoiceInput()" title="Voice input" class="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 rounded-full text-lg transition-colors">🎤</button>
-            <button type="submit" class="bg-gradient-to-r from-purple-500 to-cyan-400 text-white px-6 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-200">Send</button>
-        </form>
-    </div>
-  `
-
-  document.body.appendChild(container)
-
-  // Global functions for event handlers
-  window.toggleGrokChat = function () {
-    var win = document.getElementById('chat-window')
-    win.classList.toggle('hidden')
-    if (!win.classList.contains('hidden')) {
-      document.getElementById('user-input').focus()
-    }
+  function closeWidget () {
+    win.style.display = 'none'
+    fab.style.display = 'flex'
   }
 
-  window.sendGrokMessage = async function (e) {
-    e.preventDefault()
-    var input = document.getElementById('user-input')
+  fab.addEventListener('click', openWidget)
+  closeBtn.addEventListener('click', closeWidget)
+
+  function escapeHtml (t) {
+    var d = document.createElement('div')
+    d.textContent = t
+    return d.innerHTML
+  }
+
+  function addBubble (html, isUser) {
+    var d = document.createElement('div')
+    d.style.cssText = 'display:flex;justify-content:' + (isUser ? 'flex-end' : 'flex-start')
+    var b = document.createElement('div')
+    b.style.cssText = 'max-width:78%;padding:12px 16px;border-radius:18px;font-size:13px;line-height:1.5;color:#fff;' +
+      (isUser ? 'background:linear-gradient(135deg,#7c3aed,#9333ea)' : 'background:rgba(255,255,255,.1)')
+    b.innerHTML = html
+    d.appendChild(b)
+    msgs.appendChild(d)
+    msgs.scrollTop = msgs.scrollHeight
+    return b
+  }
+
+  function addUserMsg (text) { addBubble(escapeHtml(text), true) }
+  function addBotMsg (text)  { addBubble(formatReply(text), false) }
+
+  function formatReply (text) {
+    var s = escapeHtml(text)
+    s = s.replace(/\*\*(.+?)\*\*/g, '<strong style="color:#c4b5fd">$1</strong>')
+    s = s.replace(/^[\-•]\s+(.+)$/gm, '<div style="display:flex;gap:6px;margin-top:4px"><span style="color:#a78bfa">•</span><span>$1</span></div>')
+    s = s.replace(/\n\n/g, '<div style="height:8px"></div>')
+    s = s.replace(/\n/g, '<br>')
+    return s
+  }
+
+  async function sendMessage () {
     var text = input.value.trim()
     if (!text) return
-
-    addMessage('user', text)
+    addUserMsg(text)
     input.value = ''
 
-    var typing = addMessage('bot', '💭 Thinking...')
+    var thinking = addBubble('💭 Thinking…', false)
+    thinking.style.opacity = '.6'
 
     try {
-      var res = await fetch(API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ message: text })
-      })
-
+      var res  = await fetch(API_CHAT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({message:text}) })
       var data = await res.json()
-      typing.remove()
-      addMessage('bot', data.reply || 'Sorry, something went wrong.')
-    } catch (error) {
-      typing.remove()
-      addMessage('bot', "Couldn't reach the chat service. Check your connection and try again.")
+      thinking.parentNode.remove()
+      addBotMsg(data.reply || 'Sorry, something went wrong.')
+    } catch (e) {
+      thinking.parentNode.remove()
+      addBotMsg("Couldn't reach the chat service. Check your connection and try again.")
     }
   }
 
-  window.sendGrokQuickPrompt = function (prompt) {
-    var win = document.getElementById('chat-window')
-    if (win.classList.contains('hidden')) {
-      window.toggleGrokChat()
-    }
-    setTimeout(function () {
-      var input = document.getElementById('user-input')
-      input.value = prompt
-      var fakeEvent = { preventDefault: function () {} }
-      window.sendGrokMessage(fakeEvent)
-    }, 300)
-  }
+  sendBtn.addEventListener('click', sendMessage)
+  input.addEventListener('keypress', function (e) { if (e.key === 'Enter') sendMessage() })
 
-  window.startVoiceInput = async function () {
-    var micBtn = document.getElementById('mic-btn')
+  // Voice input
+  var grokRecorder = null
 
-    if (window._grokRecorder && window._grokRecorder.state === 'recording') {
-      window._grokRecorder.stop()
+  micBtn.addEventListener('click', async function () {
+    if (grokRecorder && grokRecorder.state === 'recording') {
+      grokRecorder.stop()
       return
     }
 
     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-      addMessage('bot', '🎤 Voice input is not supported in this browser.')
+      addBotMsg('🎤 Voice input is not supported in this browser.')
       return
     }
 
     try {
       var stream = await navigator.mediaDevices.getUserMedia({ audio: true })
       var chunks = []
-      var recorder = new MediaRecorder(stream)
-      window._grokRecorder = recorder
+      grokRecorder = new MediaRecorder(stream)
 
       micBtn.textContent = '🔴'
       micBtn.title = 'Stop recording'
 
-      recorder.ondataavailable = function (e) {
-        if (e.data.size > 0) chunks.push(e.data)
-      }
+      grokRecorder.ondataavailable = function (e) { if (e.data.size > 0) chunks.push(e.data) }
 
-      recorder.onstop = async function () {
+      grokRecorder.onstop = async function () {
         stream.getTracks().forEach(function (t) { t.stop() })
         micBtn.textContent = '⏳'
         micBtn.disabled = true
 
         try {
-          var blob = new Blob(chunks, { type: 'audio/webm' })
+          var blob   = new Blob(chunks, { type:'audio/webm' })
           var base64 = await blobToBase64(blob)
-
-          var res = await fetch('/.netlify/functions/stt', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ audio: base64, mimeType: 'audio/webm' })
-          })
-          var data = await res.json()
-
+          var res    = await fetch(API_STT, { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify({audio:base64, mimeType:'audio/webm'}) })
+          var data   = await res.json()
           if (data.text) {
-            var input = document.getElementById('user-input')
             input.value = data.text
             input.focus()
           } else {
-            addMessage('bot', '⚠️ Could not transcribe audio. Please type your message.')
+            addBotMsg('⚠️ Could not transcribe audio. Please type your message.')
           }
         } catch (err) {
-          addMessage('bot', '⚠️ Voice transcription failed. Please type your message.')
+          addBotMsg('⚠️ Voice transcription failed. Please type your message.')
         } finally {
           micBtn.textContent = '🎤'
           micBtn.title = 'Voice input'
@@ -189,76 +165,24 @@
         }
       }
 
-      recorder.start()
+      grokRecorder.start()
+      setTimeout(function () { if (grokRecorder && grokRecorder.state === 'recording') grokRecorder.stop() }, 30000)
 
-      // Auto-stop after 30 seconds
-      setTimeout(function () {
-        if (recorder.state === 'recording') recorder.stop()
-      }, 30000)
     } catch (err) {
       if (err.name === 'NotAllowedError') {
-        addMessage('bot', '🎤 Microphone access denied. Please allow microphone in your browser settings.')
+        addBotMsg('🎤 Microphone access denied. Please allow it in your browser settings.')
       } else {
-        addMessage('bot', '🎤 Voice input unavailable. Please type your message.')
+        addBotMsg('🎤 Voice input unavailable. Please type your message.')
       }
     }
-  }
+  })
 
   function blobToBase64 (blob) {
     return new Promise(function (resolve, reject) {
       var reader = new FileReader()
-      reader.onload = function () { resolve(reader.result.split(',')[1]) }
+      reader.onload  = function () { resolve(reader.result.split(',')[1]) }
       reader.onerror = reject
       reader.readAsDataURL(blob)
     })
-  }
-
-  function addMessage (sender, text) {
-    var container = document.getElementById('chat-messages')
-    var div = document.createElement('div')
-    div.className = sender === 'user' ? 'flex justify-end' : 'flex justify-start'
-
-    // Format bot messages for better readability
-    var formattedText = text
-    if (sender === 'bot') {
-      formattedText = formatBotMessage(text)
-    } else {
-      formattedText = escapeHtml(text)
-    }
-
-    div.innerHTML = '<div class="' +
-      (sender === 'user' ? 'bg-gradient-to-r from-cyan-500 to-purple-600 text-white' : 'bg-zinc-800 text-gray-100') +
-      ' max-w-[85%] px-5 py-3 rounded-3xl text-sm leading-relaxed">' + formattedText + '</div>'
-    container.appendChild(div)
-    container.scrollTop = container.scrollHeight
-    return div
-  }
-
-  function formatBotMessage (text) {
-    // Escape HTML first
-    var escaped = escapeHtml(text)
-
-    // Format bold text (e.g., **Bitcoin** or **Text**)
-    escaped = escaped.replace(/\*\*(.+?)\*\*/g, '<strong class="font-bold text-cyan-300">$1</strong>')
-
-    // Format bullet points (lines starting with - or •)
-    escaped = escaped.replace(/^[\-•]\s+(.+)$/gm, '<div class="flex gap-2 mt-1"><span class="text-cyan-400">•</span><span>$1</span></div>')
-
-    // Format numbered lists (lines starting with 1. 2. etc)
-    escaped = escaped.replace(/^(\d+)\.\s+(.+)$/gm, '<div class="flex gap-2 mt-1"><span class="text-cyan-400 font-semibold">$1.</span><span>$2</span></div>')
-
-    // Add spacing between paragraphs (double line breaks)
-    escaped = escaped.replace(/\n\n/g, '<div class="h-3"></div>')
-
-    // Convert single line breaks to <br>
-    escaped = escaped.replace(/\n/g, '<br>')
-
-    return escaped
-  }
-
-  function escapeHtml (text) {
-    var div = document.createElement('div')
-    div.textContent = text
-    return div.innerHTML
   }
 })()
