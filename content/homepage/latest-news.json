@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Holds Ground Near $75K Despite Minor Correction",
-      "excerpt": "Bitcoin trades at $75,561 with a modest 0.87% decline over 24 hours, showing relative stability compared to broader crypto market volatility. The leading cryptocurrency continues to maintain strong support levels above the $75,000 psychological barrier.",
+      "title": "Bitcoin Faces Minor Correction as Price Dips Below $75K Support Level",
+      "excerpt": "Bitcoin retreats 1.05% in 24-hour trading, falling from recent highs to $74,751 amid profit-taking activity. Market analysts suggest this minor pullback could present a buying opportunity for long-term investors.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 19, 2026",
-      "slug": "/bitcoin-holds-ground-near-75k-despite-minor-correction/",
+      "slug": "/bitcoin-correction-below-75k-support/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Faces Pressure as Price Drops to $2,329 Amid Market Uncertainty",
-      "excerpt": "Ethereum experiences a 1.24% decline in 24 hours, trading at $2,329.18 as investors reassess market conditions. The second-largest cryptocurrency by market cap shows signs of consolidation after recent gains.",
+      "title": "Ethereum Network Sees Increased Activity Despite Price Data Unavailability",
+      "excerpt": "Technical issues affecting Ethereum price feeds highlight the importance of reliable market data infrastructure. The network continues to process transactions normally while data providers work to restore full pricing visibility.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 19, 2026",
-      "slug": "/ethereum-faces-pressure-as-price-drops-to-2329-amid-market-uncertainty/",
+      "slug": "/ethereum-network-activity-data-issues/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "RaveDAO Token Crashes 91% in Dramatic Market Selloff",
-      "excerpt": "RaveDAO (RAVE) suffers catastrophic losses, plummeting 91.61% to $1.17 in what appears to be a major liquidation event. The dramatic decline highlights the extreme volatility risks associated with smaller altcoin projects.",
+      "title": "RaveDAO Token Crashes 75% Following Major Sell-Off Event",
+      "excerpt": "RAVE token plummets to $1.14 after experiencing a devastating 74.94% decline in 24 hours. The dramatic price drop raises questions about the project's tokenomics and recent governance decisions.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 19, 2026",
-      "slug": "/ravedao-token-crashes-91-percent-in-dramatic-market-selloff/",
+      "slug": "/ravedao-token-crashes-75-percent/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Asteroid Shiba Explodes 961% in Meme Coin Frenzy",
-      "excerpt": "Asteroid Shiba (ASTEROID) rockets 961.56% higher to approximately $0.00035518, becoming the day's biggest gainer. The astronomical surge reflects renewed interest in meme-based cryptocurrencies among retail traders.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 19, 2026",
-      "slug": "/asteroid-shiba-explodes-961-percent-in-meme-coin-frenzy/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
-    },
-    {
-      "title": "Aave Protocol Faces 17% Decline as DeFi Sector Shows Weakness",
-      "excerpt": "Aave (AAVE) drops 17.90% to $91.39, reflecting broader challenges across decentralized finance protocols. The significant decline raises questions about DeFi token valuations amid changing market dynamics.",
+      "title": "Aave Protocol Faces 12.5% Price Decline Amid DeFi Market Volatility",
+      "excerpt": "AAVE token drops to $89.39 as decentralized finance markets experience broader selling pressure. Despite the price decline, protocol fundamentals remain strong with continued lending activity across multiple networks.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 19, 2026",
-      "slug": "/aave-protocol-faces-17-percent-decline-as-defi-sector-shows-weakness/",
+      "slug": "/aave-protocol-price-decline-defi-volatility/",
+      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
+    },
+    {
+      "title": "Asteroid Shiba Explodes 632% in Spectacular Meme Coin Rally",
+      "excerpt": "ASTEROID token surges over 600% to reach $0.00029328, becoming the day's biggest gainer. The dramatic price movement reflects renewed interest in Shiba Inu-themed cryptocurrencies among retail traders.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 19, 2026",
+      "slug": "/asteroid-shiba-explodes-632-percent-rally/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "LayerZero Token Slides 9% as Interoperability Projects Face Headwinds",
-      "excerpt": "LayerZero (ZRO) falls 9% to $1.71, continuing a downward trend affecting blockchain interoperability tokens. The decline comes despite growing recognition of cross-chain infrastructure's importance in the evolving crypto ecosystem.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
+      "title": "Book of Meme Token Gains 18.8% as Meme Coin Sector Shows Mixed Signals",
+      "excerpt": "BOME token rises to $0.00058665 with solid gains of nearly 19% in 24-hour trading. The positive performance contrasts with broader market weakness, highlighting selective strength in the meme coin category.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
       "date": "April 19, 2026",
-      "slug": "/layerzero-token-slides-9-percent-as-interoperability-projects-face-headwinds/",
+      "slug": "/book-of-meme-token-gains-mixed-signals/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
