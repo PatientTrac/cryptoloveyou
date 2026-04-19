@@ -72,8 +72,9 @@
             <button onclick="window.sendGrokQuickPrompt('Explain crypto taxes in 2026')" class="text-xs bg-gradient-to-r from-zinc-800 to-zinc-800 hover:from-cyan-600 hover:to-purple-600 text-gray-300 hover:text-white px-3 py-2 rounded-full transition-all duration-200 border border-zinc-700 hover:border-transparent">Taxes</button>
         </div>
 
-        <form id="grok-chat-form" onsubmit="window.sendGrokMessage(event)" class="p-4 border-t border-zinc-800 bg-zinc-900/50 flex gap-2">
+        <form id="grok-chat-form" onsubmit="window.sendGrokMessage(event)" class="p-4 border-t border-zinc-800 bg-zinc-900/50 flex gap-2 items-center">
             <input id="user-input" type="text" placeholder="Ask about crypto, AI, or trading..." class="flex-1 bg-zinc-800 border border-zinc-700 focus:border-cyan-400 rounded-full px-5 py-3 text-sm text-white placeholder-zinc-500 outline-none transition-colors" style="color: #ffffff;">
+            <button type="button" id="mic-btn" onclick="window.startVoiceInput()" title="Voice input" class="w-10 h-10 flex-shrink-0 flex items-center justify-center bg-zinc-700 hover:bg-zinc-600 rounded-full text-lg transition-colors">🎤</button>
             <button type="submit" class="bg-gradient-to-r from-purple-500 to-cyan-400 text-white px-6 rounded-full font-semibold text-sm hover:shadow-lg hover:shadow-cyan-500/50 transition-all duration-200">Send</button>
         </form>
     </div>
@@ -128,6 +129,88 @@
       var fakeEvent = { preventDefault: function () {} }
       window.sendGrokMessage(fakeEvent)
     }, 300)
+  }
+
+  window.startVoiceInput = async function () {
+    var micBtn = document.getElementById('mic-btn')
+
+    if (window._grokRecorder && window._grokRecorder.state === 'recording') {
+      window._grokRecorder.stop()
+      return
+    }
+
+    if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+      addMessage('bot', '🎤 Voice input is not supported in this browser.')
+      return
+    }
+
+    try {
+      var stream = await navigator.mediaDevices.getUserMedia({ audio: true })
+      var chunks = []
+      var recorder = new MediaRecorder(stream)
+      window._grokRecorder = recorder
+
+      micBtn.textContent = '🔴'
+      micBtn.title = 'Stop recording'
+
+      recorder.ondataavailable = function (e) {
+        if (e.data.size > 0) chunks.push(e.data)
+      }
+
+      recorder.onstop = async function () {
+        stream.getTracks().forEach(function (t) { t.stop() })
+        micBtn.textContent = '⏳'
+        micBtn.disabled = true
+
+        try {
+          var blob = new Blob(chunks, { type: 'audio/webm' })
+          var base64 = await blobToBase64(blob)
+
+          var res = await fetch('/.netlify/functions/stt', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ audio: base64, mimeType: 'audio/webm' })
+          })
+          var data = await res.json()
+
+          if (data.text) {
+            var input = document.getElementById('user-input')
+            input.value = data.text
+            input.focus()
+          } else {
+            addMessage('bot', '⚠️ Could not transcribe audio. Please type your message.')
+          }
+        } catch (err) {
+          addMessage('bot', '⚠️ Voice transcription failed. Please type your message.')
+        } finally {
+          micBtn.textContent = '🎤'
+          micBtn.title = 'Voice input'
+          micBtn.disabled = false
+        }
+      }
+
+      recorder.start()
+
+      // Auto-stop after 30 seconds
+      setTimeout(function () {
+        if (recorder.state === 'recording') recorder.stop()
+      }, 30000)
+    } catch (err) {
+      if (err.name === 'NotAllowedError') {
+        addMessage('bot', '🎤 Microphone access denied. Please allow microphone in your browser settings.')
+      } else {
+        addMessage('bot', '🎤 Voice input unavailable. Please type your message.')
+      }
+    }
+  }
+
+  function blobToBase64 (blob) {
+    return new Promise(function (resolve, reject) {
+      var reader = new FileReader()
+      reader.onload = function () { resolve(reader.result.split(',')[1]) }
+      reader.onerror = reject
+      reader.readAsDataURL(blob)
+    })
   }
 
   function addMessage (sender, text) {
