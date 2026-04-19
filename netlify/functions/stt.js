@@ -1,3 +1,5 @@
+const { Buffer } = require('buffer')
+
 const corsHeaders = {
   'Access-Control-Allow-Origin': '*',
   'Access-Control-Allow-Headers': 'Content-Type',
@@ -5,23 +7,13 @@ const corsHeaders = {
   'Content-Type': 'application/json'
 }
 
-/**
- * POST { "audio": "<base64>", "mimeType": "audio/webm" } → { "text": "..." }
- * Forwards audio to xAI STT endpoint and returns transcription.
- */
-export const handler = async (event) => {
+exports.handler = async (event) => {
   if (event.httpMethod === 'OPTIONS') {
     return { statusCode: 200, headers: corsHeaders, body: '' }
   }
 
   if (event.httpMethod !== 'POST') {
     return { statusCode: 405, headers: corsHeaders, body: JSON.stringify({ error: 'Method not allowed' }) }
-  }
-
-  const key = process.env.GROK_API_KEY
-  if (!key || key.includes('YOUR_')) {
-    console.error('GROK_API_KEY missing')
-    return { statusCode: 503, headers: corsHeaders, body: JSON.stringify({ error: 'STT unavailable' }) }
   }
 
   let body
@@ -32,44 +24,76 @@ export const handler = async (event) => {
   }
 
   const { audio, mimeType = 'audio/webm' } = body
-  if (!audio || typeof audio !== 'string') {
-    return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'No audio provided' }) }
+  if (!audio) {
+    return { statusCode: 400, headers: corsHeaders, body: JSON.stringify({ error: 'No audio data' }) }
+  }
+
+  const audioBuffer = Buffer.from(audio, 'base64')
+
+  // 1. Try xAI STT first
+  const xaiKey = process.env.GROK_API_KEY
+  if (xaiKey && !xaiKey.includes('YOUR_')) {
+    try {
+      const form = new FormData()
+      form.append('file', new Blob([audioBuffer], { type: mimeType }), 'recording.webm')
+
+      const xaiRes = await fetch('https://api.x.ai/v1/stt', {
+        method: 'POST',
+        headers: { Authorization: `Bearer ${xaiKey}` },
+        body: form
+      })
+
+      if (xaiRes.ok) {
+        const data = await xaiRes.json()
+        return {
+          statusCode: 200,
+          headers: corsHeaders,
+          body: JSON.stringify({ text: data.text || data.transcription || '' })
+        }
+      }
+    } catch (e) {
+      console.log('xAI STT failed → falling back to OpenAI Whisper')
+    }
+  }
+
+  // 2. Fallback: OpenAI Whisper
+  const openaiKey = process.env.OPENAI_API_KEY
+  if (!openaiKey) {
+    return {
+      statusCode: 503,
+      headers: corsHeaders,
+      body: JSON.stringify({ error: 'Speech-to-text unavailable. Please type your message.' })
+    }
   }
 
   try {
-    const audioBuffer = Buffer.from(audio, 'base64')
-    const blob = new Blob([audioBuffer], { type: mimeType })
-    const form = new FormData()
-    form.append('file', blob, 'recording.webm')
+    const openaiForm = new FormData()
+    openaiForm.append('file', new Blob([audioBuffer], { type: mimeType }), 'recording.webm')
+    openaiForm.append('model', 'whisper-1')
 
-    const response = await fetch('https://api.x.ai/v1/stt', {
+    const openaiRes = await fetch('https://api.openai.com/v1/audio/transcriptions', {
       method: 'POST',
-      headers: { Authorization: `Bearer ${key}` },
-      body: form
+      headers: { Authorization: `Bearer ${openaiKey}` },
+      body: openaiForm
     })
 
-    const data = await response.json().catch(() => ({}))
-
-    if (!response.ok) {
-      console.error('xAI STT error:', response.status, data)
-      return {
-        statusCode: 200,
-        headers: corsHeaders,
-        body: JSON.stringify({ error: data.error?.message || 'Transcription failed' })
-      }
+    if (!openaiRes.ok) {
+      const errText = await openaiRes.text()
+      throw new Error(`OpenAI Whisper failed: ${errText}`)
     }
 
+    const openaiData = await openaiRes.json()
     return {
       statusCode: 200,
       headers: corsHeaders,
-      body: JSON.stringify({ text: data.text || data.transcription || '' })
+      body: JSON.stringify({ text: openaiData.text })
     }
-  } catch (err) {
-    console.error('stt:', err)
+  } catch (error) {
+    console.error('STT Error:', error)
     return {
       statusCode: 500,
       headers: corsHeaders,
-      body: JSON.stringify({ error: 'Failed to transcribe audio' })
+      body: JSON.stringify({ error: 'Could not transcribe audio. Please type your message.' })
     }
   }
 }
