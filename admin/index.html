@@ -816,9 +816,9 @@
           </div>
           <select id="aff-filter-status" onchange="filterAffiliates()" style="width:auto">
             <option value="">All Status</option>
-            <option value="active">✅ Approved</option>
-            <option value="pending">🟡 Pending</option>
-            <option value="inactive">🔴 Not Applied</option>
+            <option value="active">✅ Active (approved)</option>
+            <option value="no_link">⚡ No Link (fix now)</option>
+            <option value="pursue">📧 Pursue (apply)</option>
           </select>
         </div>
         <button class="btn btn-primary" onclick="openCatalogueModal()">+ Add Affiliate</button>
@@ -1625,41 +1625,42 @@ function renderAffiliateTable(partners) {
       ? `<span class="badge badge-purple" style="font-size:0.65rem">custom</span>`
       : `<span class="badge badge-muted"  style="font-size:0.65rem">core</span>`
 
-    const hasPendingUrl = p.affiliate_url && (
-      p.affiliate_url.includes('PENDING') ||
-      p.affiliate_url.includes('/activity/referral-entry') ||
-      p.affiliate_url.includes('/partners') ||
-      p.affiliate_url.includes('/affiliate') ||
-      p.affiliate_url.includes('/resellers') ||
-      p.affiliate_url.includes('/referral/') ||
-      p.affiliate_url.includes('/gopro/') ||
-      p.affiliate_url.includes('/affiliates/')
-    ) && !p.active
+    const hasPendingUrl = !p.active
 
-    // Three status states
-    const statusBadge = p.active
-      ? `<span class="badge badge-green">● Approved</span>`
-      : hasPendingUrl
-        ? `<span class="badge badge-gold" style="background:rgba(234,179,8,0.15);color:#f59e0b">● Pending</span>`
-        : `<span class="badge badge-red">● Not Applied</span>`
+    // Use audit_status from DB if available, else derive from active flag
+    const auditStatus = p.audit_status || (p.active ? 'ACTIVE' : 'PURSUE')
 
-    // Quick-activate — only for inactive with a real confirmed referral URL
-    const activateBtn = (!p.active && !hasPendingUrl && p.affiliate_url && p.affiliate_url.startsWith('http'))
-      ? `<button class="btn btn-secondary btn-sm" style="color:var(--green)" onclick="quickActivate('${p.id}','${p.platform_key}','${p._source}')">⚡ Activate</button>`
+    const statusBadge =
+      auditStatus === 'ACTIVE'   ? `<span class="badge badge-green">● Active</span>` :
+      auditStatus === 'NO_LINK'  ? `<span class="badge" style="background:rgba(234,179,8,0.15);color:#f59e0b;font-size:0.72rem">⚡ No Link</span>` :
+                                   `<span class="badge badge-muted" style="font-size:0.72rem">○ Pursue</span>`
+
+    const priorityBadge = p.priority_tier
+      ? p.priority_tier === 'P1' ? `<span style="color:#ef4444;font-size:0.65rem;font-weight:700">🔴 P1</span>`
+      : p.priority_tier === 'P2' ? `<span style="color:#f59e0b;font-size:0.65rem;font-weight:700">🟡 P2</span>`
+      :                            `<span style="color:#22c55e;font-size:0.65rem;font-weight:700">🟢 P3</span>`
       : ''
 
-    return `<tr>
-      <td><strong>${p.platform_key}</strong><br>${sourceBadge}</td>
-      <td><a href="${p.affiliate_url}" target="_blank" style="color:var(--blue);font-size:0.78rem;word-break:break-all">${(p.affiliate_url||'').slice(0,45)}${p.affiliate_url?.length>45?'…':''}</a></td>
-      <td class="muted">${p.label || '—'}<br><span style="font-size:0.72rem;color:var(--dim)">${(p.notes||'').slice(0,60)}${(p.notes||'').length>60?'…':''}</span></td>
-      <td class="muted">${p.commission_model ? `<span class="badge badge-gold">${p.commission_model.toUpperCase()}</span><br><span style="font-size:0.75rem">${p.rate||''}</span>` : '—'}</td>
+    const pagesTag = p.pages_on_site > 0
+      ? `<span style="font-size:0.65rem;color:var(--dim)">${p.pages_on_site} pages</span>`
+      : ''
+
+    const activateBtn = auditStatus === 'NO_LINK'
+      ? `<button class="btn btn-secondary btn-sm" style="color:#f59e0b;font-size:0.7rem" onclick="quickActivate('${p.id}','${p.platform_key}','${p._source}')">⚡ Fix Now</button>`
+      : auditStatus === 'ACTIVE' ? ''
+      : `<button class="btn btn-secondary btn-sm" style="font-size:0.7rem" onclick="applyAffiliate('${p.affiliate_url}','${p.label}')">📧 Apply</button>`
+
+    return `<tr style="${auditStatus === 'NO_LINK' ? 'background:rgba(234,179,8,0.04)' : auditStatus === 'PURSUE' ? '' : ''}">
+      <td><strong>${p.platform_key}</strong><br>${sourceBadge} ${priorityBadge}</td>
+      <td><a href="${p.affiliate_url}" target="_blank" style="color:var(--blue);font-size:0.78rem;word-break:break-all">${(p.affiliate_url||'').slice(0,40)}${p.affiliate_url?.length>40?'…':''}</a>${p.tracking_url ? `<br><span style="font-size:0.65rem;color:var(--green)">✓ tracking URL</span>` : ''}</td>
+      <td class="muted">${p.label || '—'}<br>${pagesTag} <span style="font-size:0.72rem;color:var(--dim)">${(p.notes||'').slice(0,50)}${(p.notes||'').length>50?'…':''}</span></td>
+      <td class="muted">${p.commission_model ? `<span class="badge badge-gold">${p.commission_model.toUpperCase()}</span><br>` : ''}${p.rate ? `<span style="font-size:0.75rem">${p.rate}</span>` : '—'}</td>
       <td>${statusBadge}</td>
       <td class="monospace">${(p.clicks||0).toLocaleString()}</td>
       <td>
         <div class="flex-gap" style="flex-wrap:wrap;gap:4px">
           ${activateBtn}
           <button class="btn btn-secondary btn-sm" onclick="editAffiliate('${p.id}','${p._source}')">Edit</button>
-          <button class="btn btn-danger btn-sm"    onclick="deleteAffiliate('${p.id}','${p.platform_key}','${p._source}')">Remove</button>
         </div>
       </td>
     </tr>`
@@ -1690,16 +1691,22 @@ async function quickActivate(id, key, source) {
   }
 }
 
+function applyAffiliate(url, label) {
+  if (confirm(`Open ${label} affiliate application page?\n\n${url}`)) {
+    window.open(url, '_blank')
+  }
+}
+
 function filterAffiliates() {
   const q = document.getElementById('aff-search').value.toLowerCase()
   const s = document.getElementById('aff-filter-status').value
   const filtered = allPartners.filter(p => {
     const matchQ = !q || p.platform_key.includes(q) || (p.label||'').toLowerCase().includes(q) || (p.category||'').includes(q)
-    const isPending = !p.active && p.affiliate_url && !p.affiliate_url.includes('PENDING') && p.affiliate_url.startsWith('http') === false
+    const status = p.audit_status || (p.active ? 'ACTIVE' : 'PURSUE')
     const matchS = !s
-      || (s === 'active'   && p.active)
-      || (s === 'pending'  && !p.active && p.affiliate_url && !p.affiliate_url.includes('PENDING'))
-      || (s === 'inactive' && !p.active && (!p.affiliate_url || p.affiliate_url.includes('PENDING')))
+      || (s === 'active'   && status === 'ACTIVE')
+      || (s === 'no_link'  && status === 'NO_LINK')
+      || (s === 'pursue'   && status === 'PURSUE')
     return matchQ && matchS
   })
   renderAffiliateTable(filtered)
