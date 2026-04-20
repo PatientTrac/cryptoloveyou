@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Holds Above $75K Despite 1.37% Daily Decline",
-      "excerpt": "Bitcoin maintains its position above the $75,000 threshold even as it experiences a minor pullback of 1.37% in the past 24 hours. Market analysts suggest this consolidation phase could be healthy for the leading cryptocurrency's long-term trajectory.",
+      "title": "Bitcoin Surges Past $76,000 as Institutional Demand Continues to Drive Markets",
+      "excerpt": "Bitcoin climbed 2.20% in the last 24 hours, reaching $76,437 as institutional investors maintain strong buying pressure. The rally comes amid growing corporate adoption and favorable regulatory developments.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 20, 2026",
-      "slug": "/bitcoin-holds-above-75k-despite-daily-decline/",
+      "slug": "/bitcoin-surges-past-76000-institutional-demand/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Price Data Temporarily Unavailable Amid Network Updates",
-      "excerpt": "Ethereum's price tracking has been temporarily disrupted as major exchanges undergo system maintenance. The network continues to operate normally while data providers work to restore accurate pricing information.",
+      "title": "Ethereum Network Prepares for Major Upgrade as Developer Activity Reaches New Heights",
+      "excerpt": "Ethereum developers are finalizing preparations for the next major network upgrade, focusing on scalability improvements and gas fee reductions. The upgrade is expected to enhance the network's capacity for decentralized applications.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 20, 2026",
-      "slug": "/ethereum-price-data-temporarily-unavailable/",
+      "slug": "/ethereum-network-major-upgrade-developer-activity/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "RaveDAO Plummets 42% as DAO Governance Token Faces Selling Pressure",
-      "excerpt": "RaveDAO's native token RAVE has crashed over 42% to $0.66 following concerns about the project's governance structure. The sharp decline highlights ongoing volatility in the decentralized autonomous organization sector.",
+      "title": "Aave Protocol Shows Resilience with Modest Gains Despite Market Volatility",
+      "excerpt": "Aave (AAVE) posted a 0.56% gain to $90.3, demonstrating stability in the DeFi lending space. The protocol continues to attract users with its innovative lending and borrowing features.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 20, 2026",
-      "slug": "/ravedao-plummets-42-percent-governance-concerns/",
+      "slug": "/aave-protocol-resilience-modest-gains-market-volatility/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Aave Protocol Token Drops 3.7% to $90 Amid DeFi Market Correction",
-      "excerpt": "Leading DeFi lending protocol Aave sees its token decline 3.7% to $90.34 as the broader decentralized finance sector experiences a market correction. Despite the pullback, institutional adoption of DeFi protocols continues to grow.",
-      "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
+      "title": "RaveDAO Faces Sharp Decline as Token Drops 44% Amid Community Governance Changes",
+      "excerpt": "RaveDAO (RAVE) experienced a significant 44.74% decline to $0.611989 following announced changes to its governance structure. The community is actively discussing proposals to stabilize the protocol's future direction.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
       "date": "April 20, 2026",
-      "slug": "/aave-protocol-token-drops-amid-defi-correction/",
+      "slug": "/ravedao-sharp-decline-community-governance-changes/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "Meme Coin Market Mixed as Asteroid Shiba Falls 11% While Pudgy Penguins Gains",
-      "excerpt": "The meme coin sector shows divergent trends with Asteroid Shiba dropping 11% while Pudgy Penguins posts modest gains of 0.61%. This mixed performance reflects selective investor interest in different meme token projects.",
+      "title": "Pudgy Penguins Token Gains Momentum with 6.36% Rally as NFT Market Shows Signs of Recovery",
+      "excerpt": "Pudgy Penguins (PENGU) surged 6.36% to approximately $0.0075414, reflecting renewed interest in NFT-backed tokens. The rally coincides with increased trading volume in the broader NFT marketplace.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 20, 2026",
-      "slug": "/meme-coin-market-mixed-asteroid-shiba-pudgy-penguins/",
+      "slug": "/pudgy-penguins-token-momentum-nft-market-recovery/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "Pudgy Penguins Defies Market Trend with 0.61% Gain",
-      "excerpt": "NFT-backed token Pudgy Penguins bucked the broader market decline by posting a small gain of 0.61% to $0.0074105. The positive performance comes as the project continues to expand its ecosystem beyond traditional NFT collectibles.",
+      "title": "Asteroid Shiba Rockets 13.61% as Meme Coin Sector Experiences Renewed Interest",
+      "excerpt": "Asteroid Shiba (ASTEROID) jumped 13.61% to $0.00034131, leading gains among meme-themed cryptocurrencies. The token's performance reflects growing retail investor appetite for alternative digital assets.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 20, 2026",
-      "slug": "/pudgy-penguins-defies-market-trend-with-gain/",
+      "slug": "/asteroid-shiba-rockets-meme-coin-renewed-interest/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
