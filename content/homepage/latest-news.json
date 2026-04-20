@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Faces Minor Correction as Price Dips Below $75K Support Level",
-      "excerpt": "Bitcoin retreats 1.05% in 24-hour trading, falling from recent highs to $74,751 amid profit-taking activity. Market analysts suggest this minor pullback could present a buying opportunity for long-term investors.",
+      "title": "Bitcoin Holds Strong Above $74K Despite Minor Pullback",
+      "excerpt": "Bitcoin trades at $74,485 with a modest 1.51% decline in 24 hours, maintaining resilience near all-time highs. Market analysts suggest the minor correction reflects healthy consolidation after recent gains.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
-      "date": "April 19, 2026",
-      "slug": "/bitcoin-correction-below-75k-support/",
+      "date": "April 20, 2026",
+      "slug": "/bitcoin-holds-strong-above-74k-despite-minor-pullback/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Sees Increased Activity Despite Price Data Unavailability",
-      "excerpt": "Technical issues affecting Ethereum price feeds highlight the importance of reliable market data infrastructure. The network continues to process transactions normally while data providers work to restore full pricing visibility.",
+      "title": "Ethereum Faces 2.8% Drop as Price Settles at $2,280",
+      "excerpt": "Ethereum experiences a 2.81% decline over 24 hours, trading at $2,280.47 amid broader market uncertainty. The pullback comes as investors await key network upgrades and institutional adoption news.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
-      "date": "April 19, 2026",
-      "slug": "/ethereum-network-activity-data-issues/",
+      "date": "April 20, 2026",
+      "slug": "/ethereum-faces-28-percent-drop-as-price-settles-at-2280/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "RaveDAO Token Crashes 75% Following Major Sell-Off Event",
-      "excerpt": "RAVE token plummets to $1.14 after experiencing a devastating 74.94% decline in 24 hours. The dramatic price drop raises questions about the project's tokenomics and recent governance decisions.",
+      "title": "RaveDAO Token Crashes 77% in Dramatic Market Selloff",
+      "excerpt": "RAVE token plummets to $0.54 following a devastating 77.54% drop in 24 hours. The sharp decline raises questions about the project's sustainability and governance token utility.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
-      "date": "April 19, 2026",
-      "slug": "/ravedao-token-crashes-75-percent/",
+      "date": "April 20, 2026",
+      "slug": "/ravedao-token-crashes-77-percent-dramatic-market-selloff/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Aave Protocol Faces 12.5% Price Decline Amid DeFi Market Volatility",
-      "excerpt": "AAVE token drops to $89.39 as decentralized finance markets experience broader selling pressure. Despite the price decline, protocol fundamentals remain strong with continued lending activity across multiple networks.",
+      "title": "Aave Protocol Sees 6.5% Price Decline Despite DeFi Growth",
+      "excerpt": "AAVE token drops 6.54% to $91.45 as the lending protocol continues expanding its ecosystem. The price movement contrasts with increasing total value locked across Aave markets.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
-      "date": "April 19, 2026",
-      "slug": "/aave-protocol-price-decline-defi-volatility/",
+      "date": "April 20, 2026",
+      "slug": "/aave-protocol-sees-65-percent-price-decline-despite-defi-growth/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "Asteroid Shiba Explodes 632% in Spectacular Meme Coin Rally",
-      "excerpt": "ASTEROID token surges over 600% to reach $0.00029328, becoming the day's biggest gainer. The dramatic price movement reflects renewed interest in Shiba Inu-themed cryptocurrencies among retail traders.",
+      "title": "Wojak Meme Coin Explodes 160% in Viral Trading Frenzy",
+      "excerpt": "WOJAK token surges an incredible 160.20% in 24 hours, capturing retail investor attention. The meme coin rally demonstrates continued appetite for community-driven digital assets.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
-      "date": "April 19, 2026",
-      "slug": "/asteroid-shiba-explodes-632-percent-rally/",
+      "date": "April 20, 2026",
+      "slug": "/wojak-meme-coin-explodes-160-percent-viral-trading-frenzy/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "Book of Meme Token Gains 18.8% as Meme Coin Sector Shows Mixed Signals",
-      "excerpt": "BOME token rises to $0.00058665 with solid gains of nearly 19% in 24-hour trading. The positive performance contrasts with broader market weakness, highlighting selective strength in the meme coin category.",
+      "title": "Asteroid Shiba Shows Stability with Minimal 0.1% Decline",
+      "excerpt": "ASTEROID token demonstrates remarkable stability with only a 0.10% drop to $0.00030271. The minimal price movement suggests strong holder confidence in the space-themed project.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
-      "date": "April 19, 2026",
-      "slug": "/book-of-meme-token-gains-mixed-signals/",
+      "date": "April 20, 2026",
+      "slug": "/asteroid-shiba-shows-stability-minimal-01-percent-decline/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
