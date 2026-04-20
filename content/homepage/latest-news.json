@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Holds Strong Above $74K Despite Minor Correction",
-      "excerpt": "Bitcoin trades at $74,822 with a modest 0.56% decline over 24 hours, maintaining its position near recent highs. Market analysts view the minor pullback as healthy consolidation after the cryptocurrency's impressive rally.",
+      "title": "Bitcoin Holds Above $75K Despite 1.37% Daily Decline",
+      "excerpt": "Bitcoin maintains its position above the $75,000 threshold even as it experiences a minor pullback of 1.37% in the past 24 hours. Market analysts suggest this consolidation phase could be healthy for the leading cryptocurrency's long-term trajectory.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 20, 2026",
-      "slug": "/bitcoin-holds-strong-above-74k-despite-minor-correction/",
+      "slug": "/bitcoin-holds-above-75k-despite-daily-decline/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Faces Slight Pressure as Price Dips to $2,297",
-      "excerpt": "Ethereum experiences a 0.80% decline in the past 24 hours, trading at $2,297.61 amid broader market consolidation. The pullback comes as investors assess the network's recent upgrades and scaling developments.",
+      "title": "Ethereum Price Data Temporarily Unavailable Amid Network Updates",
+      "excerpt": "Ethereum's price tracking has been temporarily disrupted as major exchanges undergo system maintenance. The network continues to operate normally while data providers work to restore accurate pricing information.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 20, 2026",
-      "slug": "/ethereum-faces-slight-pressure-as-price-dips-to-2297/",
+      "slug": "/ethereum-price-data-temporarily-unavailable/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "WOJAK Token Explodes 248% in Massive Meme Coin Rally",
-      "excerpt": "The WOJAK meme token has surged an incredible 248.55% in 24 hours, capturing trader attention in the latest altcoin frenzy. The dramatic price movement highlights the continued volatility and speculative nature of meme-based cryptocurrencies.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 20, 2026",
-      "slug": "/wojak-token-explodes-248-percent-massive-meme-coin-rally/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
-    },
-    {
-      "title": "RaveDAO Crashes 58% as Community Governance Token Faces Sell-Off",
-      "excerpt": "RaveDAO's native token plummets 58.17% to $0.499709, marking one of the day's biggest losers among major altcoins. The sharp decline raises questions about the project's tokenomics and community governance structure.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 20, 2026",
-      "slug": "/ravedao-crashes-58-percent-community-governance-token-sell-off/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
-    },
-    {
-      "title": "Aave Maintains Stability at $92.46 Amid DeFi Market Fluctuations",
-      "excerpt": "The leading DeFi lending protocol Aave shows resilience with only a 0.15% decline, trading at $92.46. The minimal price movement demonstrates the protocol's stability as institutional adoption of decentralized finance continues to grow.",
+      "title": "RaveDAO Plummets 42% as DAO Governance Token Faces Selling Pressure",
+      "excerpt": "RaveDAO's native token RAVE has crashed over 42% to $0.66 following concerns about the project's governance structure. The sharp decline highlights ongoing volatility in the decentralized autonomous organization sector.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 20, 2026",
-      "slug": "/aave-maintains-stability-92-46-amid-defi-market-fluctuations/",
-      "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
+      "slug": "/ravedao-plummets-42-percent-governance-concerns/",
+      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Asteroid Shiba Drops 27% as Meme Coin Sector Shows Mixed Signals",
-      "excerpt": "Asteroid Shiba falls 27.43% to $0.00031499, contrasting sharply with other meme tokens like WOJAK's massive gains. The divergent performance within the meme coin sector reflects the highly speculative and unpredictable nature of these assets.",
+      "title": "Aave Protocol Token Drops 3.7% to $90 Amid DeFi Market Correction",
+      "excerpt": "Leading DeFi lending protocol Aave sees its token decline 3.7% to $90.34 as the broader decentralized finance sector experiences a market correction. Despite the pullback, institutional adoption of DeFi protocols continues to grow.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
+      "date": "April 20, 2026",
+      "slug": "/aave-protocol-token-drops-amid-defi-correction/",
+      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
+    },
+    {
+      "title": "Meme Coin Market Mixed as Asteroid Shiba Falls 11% While Pudgy Penguins Gains",
+      "excerpt": "The meme coin sector shows divergent trends with Asteroid Shiba dropping 11% while Pudgy Penguins posts modest gains of 0.61%. This mixed performance reflects selective investor interest in different meme token projects.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 20, 2026",
-      "slug": "/asteroid-shiba-drops-27-percent-meme-coin-sector-mixed-signals/",
+      "slug": "/meme-coin-market-mixed-asteroid-shiba-pudgy-penguins/",
+      "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
+    },
+    {
+      "title": "Pudgy Penguins Defies Market Trend with 0.61% Gain",
+      "excerpt": "NFT-backed token Pudgy Penguins bucked the broader market decline by posting a small gain of 0.61% to $0.0074105. The positive performance comes as the project continues to expand its ecosystem beyond traditional NFT collectibles.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 20, 2026",
+      "slug": "/pudgy-penguins-defies-market-trend-with-gain/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
