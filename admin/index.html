@@ -816,8 +816,9 @@
           </div>
           <select id="aff-filter-status" onchange="filterAffiliates()" style="width:auto">
             <option value="">All Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value="active">✅ Approved</option>
+            <option value="pending">🟡 Pending</option>
+            <option value="inactive">🔴 Not Applied</option>
           </select>
         </div>
         <button class="btn btn-primary" onclick="openCatalogueModal()">+ Add Affiliate</button>
@@ -1624,13 +1625,26 @@ function renderAffiliateTable(partners) {
       ? `<span class="badge badge-purple" style="font-size:0.65rem">custom</span>`
       : `<span class="badge badge-muted"  style="font-size:0.65rem">core</span>`
 
-    const statusBadge = p.active
-      ? `<span class="badge badge-green">● Active</span>`
-      : `<span class="badge badge-muted">● Inactive</span>`
+    const hasPendingUrl = p.affiliate_url && (
+      p.affiliate_url.includes('PENDING') ||
+      p.affiliate_url.includes('/activity/referral-entry') ||
+      p.affiliate_url.includes('/partners') ||
+      p.affiliate_url.includes('/affiliate') ||
+      p.affiliate_url.includes('/resellers') ||
+      p.affiliate_url.includes('/referral/') ||
+      p.affiliate_url.includes('/gopro/') ||
+      p.affiliate_url.includes('/affiliates/')
+    ) && !p.active
 
-    // Quick-activate button — only shown for inactive partners that have a real URL
-    const hasPendingUrl = p.affiliate_url && p.affiliate_url.includes('PENDING')
-    const activateBtn = (!p.active && !hasPendingUrl)
+    // Three status states
+    const statusBadge = p.active
+      ? `<span class="badge badge-green">● Approved</span>`
+      : hasPendingUrl
+        ? `<span class="badge badge-gold" style="background:rgba(234,179,8,0.15);color:#f59e0b">● Pending</span>`
+        : `<span class="badge badge-red">● Not Applied</span>`
+
+    // Quick-activate — only for inactive with a real confirmed referral URL
+    const activateBtn = (!p.active && !hasPendingUrl && p.affiliate_url && p.affiliate_url.startsWith('http'))
       ? `<button class="btn btn-secondary btn-sm" style="color:var(--green)" onclick="quickActivate('${p.id}','${p.platform_key}','${p._source}')">⚡ Activate</button>`
       : ''
 
@@ -1681,7 +1695,11 @@ function filterAffiliates() {
   const s = document.getElementById('aff-filter-status').value
   const filtered = allPartners.filter(p => {
     const matchQ = !q || p.platform_key.includes(q) || (p.label||'').toLowerCase().includes(q) || (p.category||'').includes(q)
-    const matchS = !s || (s==='active' ? p.active : !p.active)
+    const isPending = !p.active && p.affiliate_url && !p.affiliate_url.includes('PENDING') && p.affiliate_url.startsWith('http') === false
+    const matchS = !s
+      || (s === 'active'   && p.active)
+      || (s === 'pending'  && !p.active && p.affiliate_url && !p.affiliate_url.includes('PENDING'))
+      || (s === 'inactive' && !p.active && (!p.affiliate_url || p.affiliate_url.includes('PENDING')))
     return matchQ && matchS
   })
   renderAffiliateTable(filtered)
