@@ -102,6 +102,12 @@
 /*         /zh/:splat     302   Language=zh
 /*         /ru/:splat     302   Language=ru
 
+# === ADMIN PORTAL — must be before the catch-all ===
+/admin           /admin/index.html    200!
+/admin/          /admin/index.html    200!
+/admin/login     /admin/login.html    200!
+/admin/login.html /admin/login.html   200!
+
 /*         /en/:splat     200   # fallback
 
 # === CLEAN URLS FOR SEO PAGES (no .html) ===
