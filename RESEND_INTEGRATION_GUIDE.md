@@ -7,18 +7,18 @@ Your CryptoLoveYou.com contact form is now fully integrated with Resend email se
 ## ✅ What's Configured
 
 ### Email Addresses (Verified in Resend)
-- `admin@cryptoloveyou.io`
-- `affiliate@cryptoloveyou.io`
-- `contact@cryptoloveyou.io` ← **Receives contact form notifications**
-- `info@cryptoloveyou.io`
+- `admin@cryptoloveyou.com`
+- `affiliate@cryptoloveyou.com`
+- `contact@cryptoloveyou.com` ← **Receives contact form notifications**
+- `info@cryptoloveyou.com`
 - `reply@cryptoloveyou.io` ← **Sends emails from**
 
 ### Environment Variables (.env)
 ```bash
 RESEND_API_KEY=re_Wjb1bpu6_CNuDcGLNMKwKpTV3P82ThE7W
-RESEND_NOTIFY_TO=contact@cryptoloveyou.io
+RESEND_NOTIFY_TO=contact@cryptoloveyou.com
 RESEND_FROM=Crypto Love You <reply@cryptoloveyou.io>
-RESEND_REPLY_TO=contact@cryptoloveyou.io
+RESEND_REPLY_TO=contact@cryptoloveyou.com
 RESEND_AUTO_REPLY_SUBJECT=We received your message — Crypto Love You
 ```
 
@@ -28,7 +28,7 @@ When a user submits the contact form at `/contact`:
 
 1. **Form Submission** → Netlify Function (`/.netlify/functions/submit-contact`)
 2. **Data Saved** → Supabase database
-3. **📧 Notification Email** → Sent to `contact@cryptoloveyou.io` (site owner)
+3. **📧 Notification Email** → Sent to `contact@cryptoloveyou.com` (site owner)
    - From: `reply@cryptoloveyou.io`
    - Contains: User's name, email, message
    - Reply-To: User's email (so you can reply directly)
@@ -61,7 +61,7 @@ When a user submits the contact form at `/contact`:
 
 5. **Check Results:**
    - ✅ Success message appears on the page
-   - 📧 Check `contact@cryptoloveyou.io` inbox for notification
+   - 📧 Check `contact@cryptoloveyou.com` inbox for notification
    - 📧 Check your test email inbox for auto-reply
    - 💾 Verify contact saved in Supabase dashboard
 
@@ -83,7 +83,7 @@ https://cryptoloveyou.com/contact
 ### Notification Email (to site owner)
 ```
 From: reply@cryptoloveyou.io
-To: contact@cryptoloveyou.io
+To: contact@cryptoloveyou.com
 Reply-To: user@example.com
 Subject: Contact form: John Doe
 
@@ -99,7 +99,7 @@ Message:
 ```
 From: reply@cryptoloveyou.io
 To: user@example.com
-Reply-To: contact@cryptoloveyou.io
+Reply-To: contact@cryptoloveyou.com
 Subject: We received your message — Crypto Love You
 
 Hi John,
@@ -151,9 +151,9 @@ When deploying to Netlify, ensure these environment variables are set:
 
 ```bash
 RESEND_API_KEY=re_Wjb1bpu6_CNuDcGLNMKwKpTV3P82ThE7W
-RESEND_NOTIFY_TO=contact@cryptoloveyou.io
+RESEND_NOTIFY_TO=contact@cryptoloveyou.com
 RESEND_FROM=Crypto Love You <reply@cryptoloveyou.io>
-RESEND_REPLY_TO=contact@cryptoloveyou.io
+RESEND_REPLY_TO=contact@cryptoloveyou.com
 SUPABASE_URL=https://kibgrvomourbyyepidli.supabase.co
 SUPABASE_SERVICE_KEY=[your_service_key]
 ```
@@ -175,7 +175,7 @@ RESEND_AUTO_REPLY_SUBJECT=Thank you for contacting us!
 
 ### Add Multiple Notification Recipients
 ```bash
-RESEND_NOTIFY_TO=contact@cryptoloveyou.io,admin@cryptoloveyou.io,info@cryptoloveyou.io
+RESEND_NOTIFY_TO=contact@cryptoloveyou.com,admin@cryptoloveyou.com,info@cryptoloveyou.com
 ```
 
 ## 🔒 Security
