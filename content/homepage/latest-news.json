@@ -1,58 +1,58 @@
 {
   "items": [
     {
-      "title": "Bitcoin Maintains Strong Position Above $76K as Market Shows Resilience",
-      "excerpt": "Bitcoin continues to trade above $76,000 with a modest 1.45% gain in the past 24 hours. The leading cryptocurrency demonstrates stability amid ongoing market volatility.",
-      "category": "Bitcoin",
-      "categorySlug": "crypto-news/bitcoin",
-      "date": "April 21, 2026",
-      "slug": "/bitcoin-maintains-strong-position-above-76k/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
-    },
-    {
-      "title": "Ethereum Network Prepares for Major Infrastructure Upgrades",
-      "excerpt": "Ethereum developers announce significant protocol improvements aimed at enhancing scalability and reducing transaction costs. The upgrades are expected to roll out in the coming months.",
-      "category": "Ethereum",
-      "categorySlug": "crypto-news/ethereum",
-      "date": "April 21, 2026",
-      "slug": "/ethereum-network-prepares-major-infrastructure-upgrades/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
-    },
-    {
-      "title": "RaveDAO Explodes 277% as Community-Driven Token Gains Massive Traction",
-      "excerpt": "RaveDAO surges to $1.91 with an extraordinary 277.43% increase in 24 hours. The decentralized autonomous organization token attracts significant investor interest.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 21, 2026",
-      "slug": "/ravedao-explodes-277-percent-community-driven-token/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
-    },
-    {
-      "title": "Aave Protocol Faces Minor Correction Despite Strong DeFi Market Fundamentals",
-      "excerpt": "Aave experiences a slight 0.80% decline to $92.63 as the DeFi lending protocol consolidates recent gains. Market analysts remain optimistic about long-term prospects.",
+      "title": "CHIP Token Explodes 83.91% as Gaming DeFi Ecosystem Gains Momentum",
+      "excerpt": "CHIP has surged to $0.112668 following major partnerships in the blockchain gaming sector. The token's remarkable rally reflects growing investor confidence in decentralized gaming protocols.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
-      "date": "April 21, 2026",
-      "slug": "/aave-protocol-faces-minor-correction-defi-fundamentals/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
+      "date": "April 22, 2026",
+      "slug": "/chip-token-gaming-defi-surge/",
+      "imageUrl": "/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-450x270.jpg"
     },
     {
-      "title": "Asteroid Shiba Rockets 31% as Meme Coin Sector Shows Renewed Interest",
-      "excerpt": "Asteroid Shiba climbs 31.84% to approximately $0.00042626 amid growing enthusiasm for meme-based cryptocurrencies. The token continues to build its community presence.",
+      "title": "RaveDAO Faces 31.87% Decline Despite Strong Community Support",
+      "excerpt": "RAVE token drops to $1.12 amid broader market corrections affecting DAO governance tokens. Community members remain optimistic about upcoming protocol upgrades scheduled for Q2.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
-      "date": "April 21, 2026",
-      "slug": "/asteroid-shiba-rockets-31-percent-meme-coin-sector/",
-      "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
+      "date": "April 22, 2026",
+      "slug": "/ravedao-decline-community-support/",
+      "imageUrl": "/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-450x300.jpg"
     },
     {
-      "title": "Based Token Surges 34% as Alternative Blockchain Solutions Gain Momentum",
-      "excerpt": "Based token jumps 34.76% to $0.132169 as investors explore innovative blockchain infrastructure projects. The platform's unique approach attracts developer attention.",
+      "title": "Hyperliquid Maintains Stability at $41.37 as DeFi Trading Volume Soars",
+      "excerpt": "HYPE shows resilience with a modest 1.56% gain while decentralized exchange activity reaches new heights. The platform's innovative perpetual trading features continue attracting institutional interest.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
+      "date": "April 22, 2026",
+      "slug": "/hyperliquid-stability-trading-volume/",
+      "imageUrl": "/wp-content/uploads/2026/03/Aave-Rift-Bitcoin-Rebound-and-ETF-Inflows-Dominate-the-Crypto-300x200.jpg"
+    },
+    {
+      "title": "OpenGradient Rockets 74.72% Following AI Blockchain Integration Announcement",
+      "excerpt": "OPG token climbs to $0.398942 after revealing groundbreaking artificial intelligence integration with major blockchain networks. The partnership promises to revolutionize decentralized machine learning applications.",
       "category": "Blockchain",
       "categorySlug": "crypto-news/blockchain",
-      "date": "April 21, 2026",
-      "slug": "/based-token-surges-34-percent-blockchain-solutions/",
+      "date": "April 22, 2026",
+      "slug": "/opengradient-ai-blockchain-integration/",
+      "imageUrl": "/wp-content/uploads/2026/03/Analysts-Eye-Insane-Reversal-in-Markets-as-Bitcoin-Touched-70K-300x180.jpg"
+    },
+    {
+      "title": "Asteroid Shiba Dips 8.81% as Meme Coin Market Experiences Volatility",
+      "excerpt": "ASTEROID falls to $0.00036220 amid shifting sentiment in the meme token sector. Analysts suggest the correction may present buying opportunities for long-term holders.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 22, 2026",
+      "slug": "/asteroid-shiba-meme-coin-volatility/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
+    },
+    {
+      "title": "Pudgy Penguins Gains 12.28% as NFT-to-Token Migration Shows Promise",
+      "excerpt": "PENGU rises to $0.0086586 following successful transition from NFT project to utility token. The migration represents a new trend of established NFT communities expanding into tokenized ecosystems.",
+      "category": "Ethereum",
+      "categorySlug": "crypto-news/ethereum",
+      "date": "April 22, 2026",
+      "slug": "/pudgy-penguins-nft-token-migration/",
+      "imageUrl": "/wp-content/uploads/2026/03/BTC-Leads-Recovery-While-Altcoin-Indicators-Hit-Cycle-Lows-300x200.jpg"
     }
   ]
 }

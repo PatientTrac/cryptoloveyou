@@ -4,5 +4,6 @@ User-agent: *
 Disallow:
 
 Sitemap: https://cryptoloveyou.com/sitemap_index.xml
+Sitemap: https://cryptoloveyou.com/seo-sitemap.xml
 # ---------------------------
 # END YOAST BLOCK

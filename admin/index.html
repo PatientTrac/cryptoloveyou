@@ -1,14 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-VPZDTV2332"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-  gtag('config', 'G-VPZDTV2332');
-</script>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="robots" content="noindex, nofollow">
@@ -824,11 +816,12 @@
           </div>
           <select id="aff-filter-status" onchange="filterAffiliates()" style="width:auto">
             <option value="">All Status</option>
-            <option value="active">Active</option>
-            <option value="inactive">Inactive</option>
+            <option value="active">✅ Active (approved)</option>
+            <option value="no_link">⚡ No Link (fix now)</option>
+            <option value="pursue">📧 Pursue (apply)</option>
           </select>
         </div>
-        <button class="btn btn-primary" onclick="openAffiliateModal()">+ Add Affiliate</button>
+        <button class="btn btn-primary" onclick="openCatalogueModal()">+ Add Affiliate</button>
       </div>
 
       <div class="card">
@@ -840,10 +833,10 @@
           <table>
             <thead>
               <tr>
-                <th>Platform</th>
+                <th>Platform / Source</th>
                 <th>Affiliate URL</th>
                 <th>Label / Notes</th>
-                <th>Payout Info</th>
+                <th>Commission</th>
                 <th>Status</th>
                 <th>Clicks</th>
                 <th>Actions</th>
@@ -1217,6 +1210,35 @@
   </div><!-- /content -->
 </main>
 
+<!-- ══ AFFILIATE CATALOGUE MODAL ══════════════════════════════════ -->
+<div class="modal-overlay" id="catalogue-modal" style="z-index:10001">
+  <div class="modal" style="max-width:720px;width:95vw">
+    <div class="modal-header">
+      <div class="modal-title">Add Affiliate Partner</div>
+      <button class="btn btn-ghost btn-icon" onclick="closeModal('catalogue-modal')">✕</button>
+    </div>
+    <div class="modal-body" style="padding:0">
+      <!-- Tab bar -->
+      <div style="display:flex;border-bottom:1px solid var(--border);padding:0 24px">
+        <button id="tab-catalogue" onclick="switchCatalogueTab('catalogue')" style="padding:12px 16px;background:none;border:none;border-bottom:2px solid var(--gold);color:var(--gold);font-weight:600;font-size:0.85rem;cursor:pointer">📋 From Registry (22)</button>
+        <button id="tab-custom" onclick="switchCatalogueTab('custom')" style="padding:12px 16px;background:none;border:none;border-bottom:2px solid transparent;color:var(--dim);font-size:0.85rem;cursor:pointer">✏️ Custom / New</button>
+      </div>
+
+      <!-- CATALOGUE TAB -->
+      <div id="catalogue-tab-content" style="padding:16px 24px">
+        <p style="font-size:0.8rem;color:var(--dim);margin-bottom:12px">All affiliates from your registry. Click one to pre-fill the form, then add your referral URL and activate.</p>
+        <div style="display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:8px;max-height:420px;overflow-y:auto" id="catalogue-grid"></div>
+      </div>
+
+      <!-- CUSTOM TAB -->
+      <div id="custom-tab-content" style="display:none;padding:16px 24px">
+        <p style="font-size:0.8rem;color:var(--dim);margin-bottom:12px">Add a brand new affiliate not in the registry.</p>
+        <button class="btn btn-primary" onclick="closeModal('catalogue-modal');openAffiliateModal('custom')" style="width:100%">Open Blank Form →</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ══ AFFILIATE MODAL ══════════════════════════════════ -->
 <div class="modal-overlay" id="aff-modal">
   <div class="modal">
@@ -1226,9 +1248,23 @@
     </div>
     <div class="modal-body">
       <input type="hidden" id="aff-edit-id">
+      <input type="hidden" id="aff-source" value="partners">
+      <!-- aff-source: 'partners' = affiliate_partners table, 'custom' = custom_affiliates table -->
       <div class="form-group">
         <label>Platform Key *</label>
-        <input type="text" id="aff-platform-key" placeholder="e.g. binance, coinbase, bybit">
+        <input type="text" id="aff-platform-key" placeholder="e.g. binance, payset, safelynx">
+      </div>
+      <div class="form-group">
+        <label>Category</label>
+        <select id="aff-category">
+          <option value="exchange">Exchange</option>
+          <option value="wallet">Wallet</option>
+          <option value="fintech">Banking / Fintech</option>
+          <option value="tax">Tax Software</option>
+          <option value="ai_tool">AI Tool / Bot</option>
+          <option value="other">Other</option>
+        </select>
+      </div>
       </div>
       <div class="form-group">
         <label>Display Label</label>
@@ -1546,18 +1582,25 @@ let allPartners = []
 async function fetchPartners() {
   try {
     const headers = { Authorization: `Bearer ${token()}` }
+
+    // Fetch both tables in parallel
     const [r1, r2] = await Promise.all([
       fetch(`${API}/admin-affiliate?resource=partners`, { headers }),
       fetch(`${API}/admin-affiliate?resource=custom`,   { headers })
     ])
+
     const d1 = r1.ok ? await r1.json() : {}
     const d2 = r2.ok ? await r2.json() : {}
+
     const core   = (d1.partners         || []).map(p => ({ ...p, _source: 'partners' }))
     const custom = (d2.custom_affiliates || []).map(p => ({ ...p, _source: 'custom'   }))
+
+    // Merge, deduplicate by platform_key (custom wins if duplicate)
     const map = new Map()
     core.forEach(p   => map.set(p.platform_key, p))
-    custom.forEach(p => map.set(p.platform_key, p))
+    custom.forEach(p => map.set(p.platform_key, p))   // overwrite if same key
     return [...map.values()]
+
   } catch (e) {
     console.warn('Failed to fetch partners from API, using mock data:', e)
   }
@@ -1574,54 +1617,125 @@ async function loadAffiliates() {
 function renderAffiliateTable(partners) {
   const tbody = document.getElementById('aff-table-body')
   if (!partners.length) {
-    tbody.innerHTML = `<tr><td colspan="7"><div class="empty-state"><div class="big">🤝</div><p>No affiliates yet. Add your first partner!</p></div></td></tr>`
+    tbody.innerHTML = `<tr><td colspan="8"><div class="empty-state"><div class="big">🤝</div><p>No affiliates yet. Add your first partner!</p></div></td></tr>`
     return
   }
-  tbody.innerHTML = partners.map(p => `
-    <tr>
-      <td><strong>${p.platform_key}</strong></td>
-      <td><a href="${p.affiliate_url}" target="_blank" style="color:var(--blue);font-size:0.78rem;word-break:break-all">${p.affiliate_url?.slice(0,45)}…</a></td>
-      <td class="muted">${p.label || '—'}<br><span style="font-size:0.72rem;color:var(--dim)">${p.notes || ''}</span></td>
-      <td class="muted">${p.payment_method ? `<span class="badge badge-blue">${p.payment_method}</span> ${p.threshold||''}` : '—'}</td>
-      <td>${p.active ? '<span class="badge badge-green">● Active</span>' : '<span class="badge badge-muted">● Inactive</span>'}</td>
+  tbody.innerHTML = partners.map(p => {
+    const sourceBadge = p._source === 'custom'
+      ? `<span class="badge badge-purple" style="font-size:0.65rem">custom</span>`
+      : `<span class="badge badge-muted"  style="font-size:0.65rem">core</span>`
+
+    const hasPendingUrl = !p.active
+
+    // Use audit_status from DB if available, else derive from active flag
+    const auditStatus = p.audit_status || (p.active ? 'ACTIVE' : 'PURSUE')
+
+    const statusBadge =
+      auditStatus === 'ACTIVE'   ? `<span class="badge badge-green">● Active</span>` :
+      auditStatus === 'NO_LINK'  ? `<span class="badge" style="background:rgba(234,179,8,0.15);color:#f59e0b;font-size:0.72rem">⚡ No Link</span>` :
+                                   `<span class="badge badge-muted" style="font-size:0.72rem">○ Pursue</span>`
+
+    const priorityBadge = p.priority_tier
+      ? p.priority_tier === 'P1' ? `<span style="color:#ef4444;font-size:0.65rem;font-weight:700">🔴 P1</span>`
+      : p.priority_tier === 'P2' ? `<span style="color:#f59e0b;font-size:0.65rem;font-weight:700">🟡 P2</span>`
+      :                            `<span style="color:#22c55e;font-size:0.65rem;font-weight:700">🟢 P3</span>`
+      : ''
+
+    const pagesTag = p.pages_on_site > 0
+      ? `<span style="font-size:0.65rem;color:var(--dim)">${p.pages_on_site} pages</span>`
+      : ''
+
+    const activateBtn = auditStatus === 'NO_LINK'
+      ? `<button class="btn btn-secondary btn-sm" style="color:#f59e0b;font-size:0.7rem" onclick="quickActivate('${p.id}','${p.platform_key}','${p._source}')">⚡ Fix Now</button>`
+      : auditStatus === 'ACTIVE' ? ''
+      : `<button class="btn btn-secondary btn-sm" style="font-size:0.7rem" onclick="applyAffiliate('${p.affiliate_url}','${p.label}')">📧 Apply</button>`
+
+    return `<tr style="${auditStatus === 'NO_LINK' ? 'background:rgba(234,179,8,0.04)' : auditStatus === 'PURSUE' ? '' : ''}">
+      <td><strong>${p.platform_key}</strong><br>${sourceBadge} ${priorityBadge}</td>
+      <td><a href="${p.affiliate_url}" target="_blank" style="color:var(--blue);font-size:0.78rem;word-break:break-all">${(p.affiliate_url||'').slice(0,40)}${p.affiliate_url?.length>40?'…':''}</a>${p.tracking_url ? `<br><span style="font-size:0.65rem;color:var(--green)">✓ tracking URL</span>` : ''}</td>
+      <td class="muted">${p.label || '—'}<br>${pagesTag} <span style="font-size:0.72rem;color:var(--dim)">${(p.notes||'').slice(0,50)}${(p.notes||'').length>50?'…':''}</span></td>
+      <td class="muted">${p.commission_model ? `<span class="badge badge-gold">${p.commission_model.toUpperCase()}</span><br>` : ''}${p.rate ? `<span style="font-size:0.75rem">${p.rate}</span>` : '—'}</td>
+      <td>${statusBadge}</td>
       <td class="monospace">${(p.clicks||0).toLocaleString()}</td>
       <td>
-        <div class="flex-gap">
-          <button class="btn btn-secondary btn-sm" onclick="editAffiliate('${p.id}')">Edit</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteAffiliate('${p.id}','${p.platform_key}')">Remove</button>
+        <div class="flex-gap" style="flex-wrap:wrap;gap:4px">
+          ${activateBtn}
+          <button class="btn btn-secondary btn-sm" onclick="editAffiliate('${p.id}','${p._source}')">Edit</button>
         </div>
       </td>
-    </tr>`).join('')
+    </tr>`
+  }).join('')
+}
+
+// ── Quick-activate: flip active=true directly, no modal needed ──
+async function quickActivate(id, key, source) {
+  if (!confirm(`Activate "${key}"?\n\nThis will set it live immediately.`)) return
+  try {
+    const resource = source === 'custom' ? 'custom' : 'partners'
+    const r = await fetch(`${API}/admin-affiliate?resource=${resource}&id=${id}`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token()}` },
+      body: JSON.stringify({ active: true })
+    })
+    if (r.ok) {
+      toast(`${key} is now LIVE ✓`, 'success')
+      const p = allPartners.find(x => x.id === id)
+      if (p) p.active = true
+      renderAffiliateTable(allPartners)
+      document.getElementById('affiliate-count').textContent = allPartners.filter(p=>p.active).length
+    } else {
+      toast('Activate failed — check API', 'error')
+    }
+  } catch {
+    toast('Activate failed — check connection', 'error')
+  }
+}
+
+function applyAffiliate(url, label) {
+  if (confirm(`Open ${label} affiliate application page?\n\n${url}`)) {
+    window.open(url, '_blank')
+  }
 }
 
 function filterAffiliates() {
   const q = document.getElementById('aff-search').value.toLowerCase()
   const s = document.getElementById('aff-filter-status').value
   const filtered = allPartners.filter(p => {
-    const matchQ = !q || p.platform_key.includes(q) || (p.label||'').toLowerCase().includes(q)
-    const matchS = !s || (s==='active' ? p.active : !p.active)
+    const matchQ = !q || p.platform_key.includes(q) || (p.label||'').toLowerCase().includes(q) || (p.category||'').includes(q)
+    const status = p.audit_status || (p.active ? 'ACTIVE' : 'PURSUE')
+    const matchS = !s
+      || (s === 'active'   && status === 'ACTIVE')
+      || (s === 'no_link'  && status === 'NO_LINK')
+      || (s === 'pursue'   && status === 'PURSUE')
     return matchQ && matchS
   })
   renderAffiliateTable(filtered)
   document.getElementById('aff-count-label').textContent = `${filtered.length} of ${allPartners.length} partners`
 }
 
-function openAffiliateModal(id) {
+function openAffiliateModal(source) {
+  // source defaults to 'custom' for new entries (goes to custom_affiliates)
+  const src = source || 'custom'
   document.getElementById('aff-modal-title').textContent = 'Add Affiliate Partner'
   document.getElementById('aff-edit-id').value = ''
-  ;['aff-platform-key','aff-label','aff-url','aff-commission-model','aff-rate','aff-payment-method','aff-threshold','aff-payment-contact','aff-contact-name','aff-notes'].forEach(id => {
-    const el = document.getElementById(id)
-    if (el) el.value = el.tagName === 'SELECT' ? '' : ''
+  document.getElementById('aff-source').value = src
+  ;['aff-platform-key','aff-label','aff-url','aff-commission-model','aff-rate',
+    'aff-payment-method','aff-threshold','aff-payment-contact','aff-contact-name','aff-notes'].forEach(fid => {
+    const el = document.getElementById(fid)
+    if (el) el.value = ''
   })
-  document.getElementById('aff-active').checked = true
+  const cat = document.getElementById('aff-category')
+  if (cat) cat.value = 'exchange'
+  document.getElementById('aff-active').checked = false  // start inactive until URL confirmed
   document.getElementById('aff-modal').classList.add('open')
 }
 
-function editAffiliate(id) {
+function editAffiliate(id, source) {
   const p = allPartners.find(x => x.id === id)
   if (!p) return
   document.getElementById('aff-modal-title').textContent = 'Edit Affiliate Partner'
   document.getElementById('aff-edit-id').value = p.id
+  document.getElementById('aff-source').value = source || p._source || 'custom'
   document.getElementById('aff-platform-key').value = p.platform_key || ''
   document.getElementById('aff-label').value = p.label || ''
   document.getElementById('aff-url').value = p.affiliate_url || ''
@@ -1633,61 +1747,170 @@ function editAffiliate(id) {
   document.getElementById('aff-contact-name').value = p.contact_name || ''
   document.getElementById('aff-notes').value = p.notes || ''
   document.getElementById('aff-active').checked = p.active !== false
+  const cat = document.getElementById('aff-category')
+  if (cat) cat.value = p.category || 'exchange'
   document.getElementById('aff-modal').classList.add('open')
 }
 
 async function saveAffiliate() {
-  const id = document.getElementById('aff-edit-id').value
+  const id     = document.getElementById('aff-edit-id').value
+  const source = document.getElementById('aff-source').value || 'custom'
   const body = {
-    platform_key: document.getElementById('aff-platform-key').value.trim(),
-    affiliate_url: document.getElementById('aff-url').value.trim(),
-    label: document.getElementById('aff-label').value.trim(),
+    platform_key:     document.getElementById('aff-platform-key').value.trim(),
+    affiliate_url:    document.getElementById('aff-url').value.trim(),
+    label:            document.getElementById('aff-label').value.trim(),
+    category:         document.getElementById('aff-category')?.value || 'exchange',
     commission_model: document.getElementById('aff-commission-model').value,
-    rate: document.getElementById('aff-rate').value.trim(),
-    payment_method: document.getElementById('aff-payment-method').value,
-    threshold: document.getElementById('aff-threshold').value.trim(),
-    payment_contact: document.getElementById('aff-payment-contact').value.trim(),
-    contact_name: document.getElementById('aff-contact-name').value.trim(),
-    notes: document.getElementById('aff-notes').value.trim(),
-    active: document.getElementById('aff-active').checked,
+    rate:             document.getElementById('aff-rate').value.trim(),
+    payment_method:   document.getElementById('aff-payment-method').value,
+    threshold:        document.getElementById('aff-threshold').value.trim(),
+    payment_contact:  document.getElementById('aff-payment-contact').value.trim(),
+    contact_name:     document.getElementById('aff-contact-name').value.trim(),
+    notes:            document.getElementById('aff-notes').value.trim(),
+    active:           document.getElementById('aff-active').checked,
   }
-  if (!body.platform_key || !body.affiliate_url) { toast('Platform key and URL are required', 'error'); return }
+
+  if (!body.platform_key || !body.affiliate_url) {
+    toast('Platform key and URL are required', 'error')
+    return
+  }
+
+  // Route to the correct table
+  const resource = source === 'custom' ? 'custom' : 'partners'
+  const method   = id ? 'PATCH' : 'POST'
+  const url      = `${API}/admin-affiliate?resource=${resource}${id ? `&id=${id}` : ''}`
 
   try {
-    const method = id ? 'PATCH' : 'POST'
-    const url = `${API}/admin-affiliate?resource=partners${id ? `&id=${id}` : ''}`
     const r = await fetch(url, {
       method,
-      headers: { 'Content-Type':'application/json', Authorization:`Bearer ${token()}` },
+      headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token()}` },
       body: JSON.stringify(body)
     })
     if (r.ok) {
-      toast(id ? 'Affiliate updated!' : 'Affiliate added!', 'success')
+      toast(id ? `${body.label || body.platform_key} updated ✓` : `${body.label || body.platform_key} added ✓`, 'success')
     } else {
-      toast('Saved locally (API unavailable)', 'info')
+      const err = await r.json().catch(() => ({}))
+      toast(err.error || 'Save failed — check API logs', 'error')
+      return
     }
   } catch {
-    toast('Saved locally (demo mode)', 'info')
+    toast('Save failed — check connection', 'error')
+    return
   }
 
-  // Update local state
+  // Update local state for instant UI refresh (no reload needed)
   if (id) {
     const idx = allPartners.findIndex(p => p.id === id)
-    if (idx >= 0) allPartners[idx] = { ...allPartners[idx], ...body }
+    if (idx >= 0) allPartners[idx] = { ...allPartners[idx], ...body, _source: source }
   } else {
-    allPartners.push({ ...body, id: Date.now().toString(), clicks: 0 })
+    allPartners.push({ ...body, id: Date.now().toString(), clicks: 0, _source: source })
   }
+
   closeModal('aff-modal')
   renderAffiliateTable(allPartners)
+  document.getElementById('aff-count-label').textContent = `${allPartners.length} partners`
+  document.getElementById('affiliate-count').textContent = allPartners.filter(p=>p.active).length
 }
 
-function deleteAffiliate(id, key) {
+function deleteAffiliate(id, key, source) {
   confirmAction(`Remove affiliate "${key}"? This cannot be undone.`, async () => {
+    // For custom_affiliates we can PATCH active=false or DELETE — using PATCH for safety
+    const resource = (source || 'custom') === 'custom' ? 'custom' : 'partners'
+    try {
+      await fetch(`${API}/admin-affiliate?resource=${resource}&id=${id}`, {
+        method: 'PATCH',
+        headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${token()}` },
+        body: JSON.stringify({ active: false })
+      })
+    } catch { /* local remove still happens */ }
     allPartners = allPartners.filter(p => p.id !== id)
     renderAffiliateTable(allPartners)
+    document.getElementById('affiliate-count').textContent = allPartners.filter(p=>p.active).length
     toast(`Removed ${key}`, 'success')
     closeModal('confirm-modal')
   })
+}
+
+// ── AFFILIATE CATALOGUE ───────────────────────────────────────
+const REGISTRY = [
+  {key:'binance',    label:'Binance',        cat:'Exchange',   rate:'Up to 50% revshare',          url:'https://www.binance.com/en/activity/referral-entry/CPA', note:'Largest exchange · Most AI tokens'},
+  {key:'coinbase',   label:'Coinbase',       cat:'Exchange',   rate:'$10 CPA per signup',           url:'https://www.coinbase.com/partners',                       note:'Best for US/UK · NASDAQ listed'},
+  {key:'bybit',      label:'Bybit',          cat:'Exchange',   rate:'30% revshare',                 url:'https://partner.bybit.com/',                              note:'Best AI token selection'},
+  {key:'okx',        label:'OKX',            cat:'Exchange',   rate:'Up to 60% revshare',           url:'https://www.okx.com/affiliate',                           note:'Best DeFi/Web3 exchange'},
+  {key:'kraken',     label:'Kraken',         cat:'Exchange',   rate:'20% revshare',                 url:'https://www.kraken.com/affiliate',                        note:'Best security record'},
+  {key:'ledger',     label:'Ledger',         cat:'Wallet',     rate:'10% CPA per sale',             url:'https://affiliate.ledger.com/',                           note:'Most popular hardware wallet'},
+  {key:'trezor',     label:'Trezor',         cat:'Wallet',     rate:'12–15% CPA per sale',          url:'https://trezor.io/resellers',                             note:'Fully open source'},
+  {key:'tangem',     label:'Tangem',         cat:'Wallet',     rate:'20–25% CPA ⭐ Best rate',      url:'https://tangem.com/en/referral/',                         note:'Card form factor · Converts well'},
+  {key:'safepal',    label:'SafePal',        cat:'Wallet',     rate:'20% CPA per sale',             url:'https://www.safepal.com/en/affiliate',                    note:'Budget pick · $49 · Binance backed'},
+  {key:'exodus',     label:'Exodus',         cat:'Wallet',     rate:'30% lifetime revshare ⭐',     url:'https://www.exodus.com/referral/',                        note:'Earns on every swap forever'},
+  {key:'coldcard',   label:'Coldcard',       cat:'Wallet',     rate:'15% CPA per sale',             url:'https://coinkite.com/affiliates',                         note:'Bitcoin-maxi audience'},
+  {key:'koinly',     label:'Koinly',         cat:'Tax',        rate:'30% lifetime recurring ⭐',    url:'https://koinly.io/affiliates/',                           note:'Best tax software · Already in content'},
+  {key:'cointracker',label:'CoinTracker',    cat:'Tax',        rate:'25% recurring',                url:'https://www.cointracker.io/affiliates',                   note:'TurboTax integration'},
+  {key:'zenledger',  label:'ZenLedger',      cat:'Tax',        rate:'30% recurring',                url:'https://www.zenledger.io/affiliate',                      note:'$999/yr plan = $299/conversion'},
+  {key:'tradingview',label:'TradingView',    cat:'AI Tool',    rate:'30% recurring 12mo ⭐',        url:'https://www.tradingview.com/gopro/',                      note:'50M users · Highest volume'},
+  {key:'3commas',    label:'3Commas',        cat:'AI Tool',    rate:'30% recurring',                url:'https://3commas.io/affiliate-program',                    note:'AI trading bots · $29–99/mo'},
+  {key:'pionex',     label:'Pionex',         cat:'AI Tool',    rate:'30–40% lifetime revshare',     url:'https://www.pionex.com/en/sign-up?affiliate',             note:'Free bots · Zero friction signup'},
+  {key:'token_metrics',label:'Token Metrics',cat:'AI Tool',   rate:'30% recurring',                url:'https://tokenmetrics.com/affiliate',                      note:'AI crypto research platform'},
+  {key:'coinstats',  label:'CoinStats',      cat:'AI Tool',    rate:'25% recurring',                url:'https://coinstats.app/affiliate',                         note:'Portfolio tracker · 1M+ users'},
+  {key:'nordvpn',    label:'NordVPN',        cat:'Other',      rate:'40% new + 30% renewals ⭐',    url:'https://affiliate.nordvpn.com/',                          note:'Crypto audience converts high'},
+  {key:'payset',     label:'Payset',         cat:'Fintech',    rate:'TBC · Fee waived (negotiated)',url:'https://signup.payset.io/sign-up?utm=Sl_vFlp',           note:'✅ LIVE · FCA regulated IBAN'},
+  {key:'safelynx',   label:'Safelynx',       cat:'Exchange',   rate:'0.75% rate (negotiated)',      url:'https://signup.payset.io/sign-up?utm=Sl_vFlp',           note:'✅ LIVE · Danish FSA VASP'},
+]
+
+const CAT_COLORS = {Exchange:'badge-blue',Wallet:'badge-green','AI Tool':'badge-purple',Tax:'badge-gold',Fintech:'badge-purple',Other:'badge-muted'}
+
+function openCatalogueModal() {
+  // Build catalogue grid
+  const grid = document.getElementById('catalogue-grid')
+  grid.innerHTML = REGISTRY.map(p => {
+    const alreadyAdded = allPartners.some(x => x.platform_key === p.key)
+    const badgeClass = CAT_COLORS[p.cat] || 'badge-muted'
+    const liveTag = p.note.startsWith('✅') ? '<span style="color:#4ade80;font-size:0.7rem;font-weight:700">✅ LIVE</span>' : ''
+    return `<div onclick="${alreadyAdded ? '' : `pickFromCatalogue('${p.key}')`}"
+      style="background:var(--card-bg);border:1px solid ${alreadyAdded ? 'var(--border)' : 'var(--border-hover)'};border-radius:10px;padding:12px;cursor:${alreadyAdded ? 'default' : 'pointer'};opacity:${alreadyAdded ? '0.5' : '1'};transition:border-color 0.15s"
+      onmouseover="if(!${alreadyAdded})this.style.borderColor='var(--gold)'" onmouseout="this.style.borderColor='${alreadyAdded ? 'var(--border)' : 'var(--border-hover)'}'">
+      <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:6px">
+        <span style="font-weight:700;font-size:0.85rem">${p.label}</span>
+        ${alreadyAdded ? '<span style="font-size:0.65rem;color:var(--dim)">added</span>' : liveTag}
+      </div>
+      <div style="font-size:0.7rem;color:var(--gold);margin-bottom:4px">${p.rate}</div>
+      <div style="font-size:0.68rem;color:var(--dim)">${p.note.replace('✅ LIVE · ','')}</div>
+    </div>`
+  }).join('')
+  document.getElementById('catalogue-modal').classList.add('open')
+}
+
+function switchCatalogueTab(tab) {
+  document.getElementById('catalogue-tab-content').style.display = tab === 'catalogue' ? '' : 'none'
+  document.getElementById('custom-tab-content').style.display   = tab === 'custom'    ? '' : 'none'
+  document.getElementById('tab-catalogue').style.borderBottomColor = tab === 'catalogue' ? 'var(--gold)' : 'transparent'
+  document.getElementById('tab-catalogue').style.color             = tab === 'catalogue' ? 'var(--gold)' : 'var(--dim)'
+  document.getElementById('tab-custom').style.borderBottomColor    = tab === 'custom'    ? 'var(--gold)' : 'transparent'
+  document.getElementById('tab-custom').style.color                = tab === 'custom'    ? 'var(--gold)' : 'var(--dim)'
+}
+
+function pickFromCatalogue(key) {
+  const p = REGISTRY.find(x => x.key === key)
+  if (!p) return
+  closeModal('catalogue-modal')
+  // Pre-fill the affiliate modal
+  document.getElementById('aff-modal-title').textContent = `Add ${p.label}`
+  document.getElementById('aff-edit-id').value = ''
+  document.getElementById('aff-source').value = 'custom'
+  document.getElementById('aff-platform-key').value = p.key
+  document.getElementById('aff-label').value = p.label
+  document.getElementById('aff-url').value = p.url
+  document.getElementById('aff-commission-model').value =
+    p.rate.includes('CPA') ? 'cpa' :
+    p.rate.includes('revshare') || p.rate.includes('revshare') ? 'revshare' :
+    p.rate.includes('recurring') ? 'recurring' : 'hybrid'
+  document.getElementById('aff-rate').value = p.rate.replace(' ⭐ Best rate','').replace(' ⭐','')
+  const catMap = {Exchange:'exchange',Wallet:'wallet',Fintech:'fintech',Tax:'tax','AI Tool':'ai_tool',Other:'other'}
+  const catEl = document.getElementById('aff-category')
+  if (catEl) catEl.value = catMap[p.cat] || 'other'
+  document.getElementById('aff-notes').value = p.note.replace('✅ LIVE · ','')
+  document.getElementById('aff-active').checked = p.note.startsWith('✅')
+  document.getElementById('aff-modal').classList.add('open')
 }
 
 // ── PAYMENTS ──────────────────────────────────────────────
@@ -2153,7 +2376,5 @@ function refreshData() {
   loadDashboard()
 })()
 </script>
-<script src="/js/clv-toggle.js" defer></script>
-
 </body>
 </html>

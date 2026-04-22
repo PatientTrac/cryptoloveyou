@@ -1,63 +1,390 @@
 {
-  "version": 1,
-  "updated_at": "2026-03-25",
+  "version": 2,
+  "updated_at": "2026-04-14",
   "platforms": {
     "binance": {
       "category": "exchange",
-      "tags": ["exchange", "trading", "staking"],
+      "tags": [
+        "exchange",
+        "trading",
+        "staking",
+        "ai-tokens"
+      ],
       "priority": 1,
       "env_key": "BINANCE_AFFILIATE_URL",
       "default_cta": "Get started on Binance",
+      "commission_model": "revshare",
+      "rate": "Up to 50%",
       "risk_level": "medium"
     },
     "coinbase": {
       "category": "exchange",
-      "tags": ["exchange", "beginner", "staking"],
+      "tags": [
+        "exchange",
+        "beginner",
+        "staking",
+        "regulated"
+      ],
       "priority": 2,
       "env_key": "COINBASE_AFFILIATE_URL",
       "default_cta": "Get started on Coinbase",
-      "risk_level": "medium"
+      "commission_model": "cpa",
+      "rate": "$10 per verified signup",
+      "risk_level": "low"
     },
     "bybit": {
       "category": "exchange",
-      "tags": ["exchange", "trading", "earn"],
+      "tags": [
+        "exchange",
+        "trading",
+        "earn",
+        "ai-tokens",
+        "derivatives"
+      ],
       "priority": 3,
       "env_key": "BYBIT_AFFILIATE_URL",
       "default_cta": "Explore Bybit Earn",
+      "commission_model": "revshare",
+      "rate": "30%",
       "risk_level": "high"
     },
     "okx": {
       "category": "exchange",
-      "tags": ["exchange", "trading", "earn"],
+      "tags": [
+        "exchange",
+        "trading",
+        "earn",
+        "defi",
+        "web3"
+      ],
       "priority": 4,
       "env_key": "OKX_AFFILIATE_URL",
       "default_cta": "Explore OKX",
+      "commission_model": "revshare",
+      "rate": "Up to 60%",
       "risk_level": "high"
     },
     "kraken": {
       "category": "exchange",
-      "tags": ["exchange", "security", "staking"],
+      "tags": [
+        "exchange",
+        "security",
+        "staking",
+        "regulated"
+      ],
       "priority": 5,
       "env_key": "KRAKEN_AFFILIATE_URL",
       "default_cta": "Get started on Kraken",
-      "risk_level": "medium"
+      "commission_model": "revshare",
+      "rate": "20%",
+      "risk_level": "low"
     },
     "ledger": {
       "category": "wallet",
-      "tags": ["wallet", "hardware", "security"],
+      "tags": [
+        "wallet",
+        "hardware",
+        "security",
+        "cold-storage"
+      ],
       "priority": 1,
       "env_key": "LEDGER_AFFILIATE_URL",
       "default_cta": "Buy a Ledger wallet",
+      "commission_model": "cpa",
+      "rate": "10% per sale",
       "risk_level": "low"
     },
     "trezor": {
       "category": "wallet",
-      "tags": ["wallet", "hardware", "security"],
+      "tags": [
+        "wallet",
+        "hardware",
+        "security",
+        "open-source"
+      ],
       "priority": 2,
       "env_key": "TREZOR_AFFILIATE_URL",
       "default_cta": "Buy a Trezor wallet",
+      "commission_model": "cpa",
+      "rate": "12-15% per sale",
       "risk_level": "low"
+    },
+    "tangem": {
+      "category": "wallet",
+      "tags": [
+        "wallet",
+        "hardware",
+        "beginner",
+        "nfc",
+        "no-seed-phrase"
+      ],
+      "priority": 3,
+      "env_key": "TANGEM_AFFILIATE_URL",
+      "default_cta": "Get Tangem — Tap to Secure",
+      "commission_model": "cpa",
+      "rate": "20-25% per sale",
+      "risk_level": "low"
+    },
+    "safepal": {
+      "category": "wallet",
+      "tags": [
+        "wallet",
+        "hardware",
+        "budget",
+        "air-gapped"
+      ],
+      "priority": 4,
+      "env_key": "SAFEPAL_AFFILIATE_URL",
+      "default_cta": "Get SafePal S1 Pro",
+      "commission_model": "cpa",
+      "rate": "20% per sale",
+      "risk_level": "low"
+    },
+    "exodus": {
+      "category": "wallet",
+      "tags": [
+        "wallet",
+        "software",
+        "desktop",
+        "staking",
+        "multi-chain"
+      ],
+      "priority": 5,
+      "env_key": "EXODUS_AFFILIATE_URL",
+      "default_cta": "Download Exodus Free",
+      "commission_model": "revshare",
+      "rate": "30% of swap fees (lifetime recurring)",
+      "risk_level": "low"
+    },
+    "coldcard": {
+      "category": "wallet",
+      "tags": [
+        "wallet",
+        "hardware",
+        "bitcoin",
+        "air-gapped",
+        "open-source"
+      ],
+      "priority": 6,
+      "env_key": "COLDCARD_AFFILIATE_URL",
+      "default_cta": "Buy Coldcard",
+      "commission_model": "cpa",
+      "rate": "15% per sale",
+      "risk_level": "low"
+    },
+    "koinly": {
+      "category": "tax",
+      "tags": [
+        "tax",
+        "reporting",
+        "portfolio",
+        "us",
+        "uk",
+        "eu",
+        "au"
+      ],
+      "priority": 1,
+      "env_key": "KOINLY_AFFILIATE_URL",
+      "default_cta": "Try Koinly Free — 20% Off",
+      "commission_model": "recurring",
+      "rate": "30% lifetime recurring",
+      "risk_level": "low"
+    },
+    "tradingview": {
+      "category": "ai_tool",
+      "tags": [
+        "charting",
+        "analysis",
+        "trading",
+        "alerts",
+        "ai"
+      ],
+      "priority": 1,
+      "env_key": "TRADINGVIEW_AFFILIATE_URL",
+      "default_cta": "Get TradingView Pro",
+      "commission_model": "recurring",
+      "rate": "30% recurring 12 months",
+      "risk_level": "low"
+    },
+    "3commas": {
+      "category": "ai_tool",
+      "tags": [
+        "trading-bot",
+        "dca",
+        "grid",
+        "ai",
+        "automation"
+      ],
+      "priority": 2,
+      "env_key": "THREECOMMAS_AFFILIATE_URL",
+      "default_cta": "Try 3Commas Bots",
+      "commission_model": "recurring",
+      "rate": "30% recurring",
+      "risk_level": "medium"
+    },
+    "pionex": {
+      "category": "ai_tool",
+      "tags": [
+        "trading-bot",
+        "free",
+        "exchange",
+        "grid",
+        "dca",
+        "ai"
+      ],
+      "priority": 3,
+      "env_key": "PIONEX_AFFILIATE_URL",
+      "default_cta": "Start Pionex Bots Free",
+      "commission_model": "revshare",
+      "rate": "30-40% trading fee revenue lifetime",
+      "risk_level": "medium"
+    },
+    "token_metrics": {
+      "category": "ai_tool",
+      "tags": [
+        "ai",
+        "research",
+        "analysis",
+        "predictions",
+        "portfolio"
+      ],
+      "priority": 4,
+      "env_key": "TOKEN_METRICS_AFFILIATE_URL",
+      "default_cta": "Try Token Metrics",
+      "commission_model": "recurring",
+      "rate": "30% recurring",
+      "risk_level": "low"
+    },
+    "cointracker": {
+      "category": "tax",
+      "tags": [
+        "tax",
+        "reporting",
+        "turbotax",
+        "defi",
+        "us"
+      ],
+      "priority": 2,
+      "env_key": "COINTRACKER_AFFILIATE_URL",
+      "default_cta": "Try CoinTracker",
+      "commission_model": "recurring",
+      "rate": "25% recurring",
+      "risk_level": "low"
+    },
+    "zenledger": {
+      "category": "tax",
+      "tags": [
+        "tax",
+        "reporting",
+        "cpa",
+        "defi",
+        "us",
+        "high-volume"
+      ],
+      "priority": 3,
+      "env_key": "ZENLEDGER_AFFILIATE_URL",
+      "default_cta": "Try ZenLedger",
+      "commission_model": "recurring",
+      "rate": "30% recurring",
+      "risk_level": "low"
+    },
+    "nordvpn": {
+      "category": "other",
+      "tags": [
+        "vpn",
+        "privacy",
+        "security"
+      ],
+      "priority": 1,
+      "env_key": "NORDVPN_AFFILIATE_URL",
+      "default_cta": "Get NordVPN — Stay Private",
+      "commission_model": "hybrid",
+      "rate": "40% new + 30% recurring renewals",
+      "risk_level": "low"
+    },
+    "coinstats": {
+      "category": "ai_tool",
+      "tags": [
+        "portfolio",
+        "tracker",
+        "defi",
+        "nft",
+        "ai"
+      ],
+      "priority": 5,
+      "env_key": "COINSTATS_AFFILIATE_URL",
+      "default_cta": "Track Portfolio on CoinStats",
+      "commission_model": "recurring",
+      "rate": "25% recurring",
+      "risk_level": "low"
+    },
+    "payset": {
+      "category": "fintech",
+      "tags": [
+        "banking",
+        "iban",
+        "multi-currency",
+        "fca",
+        "swift",
+        "sepa",
+        "crypto-friendly"
+      ],
+      "priority": 1,
+      "env_key": "PAYSET_AFFILIATE_URL",
+      "default_cta": "Open a Payset Account — Monthly Fee Waived",
+      "commission_model": "cpa",
+      "rate": "TBC — monthly fee waived for referrals (negotiated)",
+      "risk_level": "low",
+      "note": "LIVE. NEGOTIATED: monthly fee waived for referrals. Commission TBC with Payset.",
+      "affiliate_url": "https://signup.payset.io/sign-up?utm=Sl_vFlp",
+      "active": true
+    },
+    "safelynx": {
+      "category": "exchange",
+      "tags": [
+        "otc",
+        "crypto",
+        "regulated",
+        "denmark",
+        "fsa",
+        "sepa",
+        "swift"
+      ],
+      "priority": 6,
+      "env_key": "SAFELYNX_AFFILIATE_URL",
+      "default_cta": "Buy Crypto via Safelynx — Lower Fees",
+      "commission_model": "revshare",
+      "rate": "0.75% for referred clients vs standard 1% (negotiated)",
+      "risk_level": "low",
+      "note": "LIVE (shared link with Payset). NEGOTIATED: 0.75% vs standard 1% for €0-€100k. Rev-share % TBC with Safelynx.",
+      "affiliate_url": "https://signup.payset.io/sign-up?utm=Sl_vFlp",
+      "active": true
+    }
+  },
+  "categories": {
+    "exchange": {
+      "label": "Exchanges",
+      "display_order": 1
+    },
+    "wallet": {
+      "label": "Wallets",
+      "display_order": 2
+    },
+    "fintech": {
+      "label": "Banking & Fintech",
+      "display_order": 3
+    },
+    "tax": {
+      "label": "Tax Software",
+      "display_order": 4
+    },
+    "ai_tool": {
+      "label": "AI Trading Tools",
+      "display_order": 5
+    },
+    "other": {
+      "label": "Other",
+      "display_order": 6
     }
   }
 }
-
