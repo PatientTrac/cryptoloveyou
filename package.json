@@ -27,6 +27,7 @@
     "jsonwebtoken": "^9.0.3",
     "marked": "^11.1.1",
     "node-fetch": "^3.3.2",
+    "otplib": "^13.4.0",
     "resend": "^4.8.0",
     "simple-git": "^3.22.0"
   },
