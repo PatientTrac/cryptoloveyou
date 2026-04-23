@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Surges Past $78K as Bulls Return to Market",
-      "excerpt": "Bitcoin rallied 4% in 24 hours to reach $78,790, signaling renewed investor confidence. The price surge comes amid growing institutional adoption and positive market sentiment.",
+      "title": "Bitcoin Surges Past $78K as Institutional Adoption Accelerates",
+      "excerpt": "Bitcoin continues its bullish momentum with a 1.96% daily gain, reaching $78,284 amid growing institutional interest. The leading cryptocurrency shows strong support levels as major corporations increase their BTC treasury allocations.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
-      "date": "April 22, 2026",
-      "slug": "/bitcoin-surges-past-78k-bulls-return/",
+      "date": "April 23, 2026",
+      "slug": "/bitcoin-surges-past-78k-institutional-adoption/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Prepares for Major Protocol Upgrade",
-      "excerpt": "Ethereum developers announce upcoming network enhancements focused on scalability and gas fee optimization. The upgrade is expected to improve transaction throughput significantly.",
+      "title": "Ethereum Network Upgrades Drive Developer Activity to New Heights",
+      "excerpt": "Ethereum's latest protocol improvements are attracting unprecedented developer engagement across DeFi and NFT sectors. The network continues to solidify its position as the leading smart contract platform despite market volatility.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
-      "date": "April 22, 2026",
-      "slug": "/ethereum-major-protocol-upgrade-announced/",
+      "date": "April 23, 2026",
+      "slug": "/ethereum-network-upgrades-developer-activity/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "CHIP Token Explodes 94% in Massive Rally",
-      "excerpt": "CHIP cryptocurrency skyrocketed 94.26% to $0.114098 following major partnership announcements. Trading volume increased dramatically as investors rushed to capitalize on the momentum.",
+      "title": "CHIP Token Explodes 130% as Gaming Platform Launches Beta",
+      "excerpt": "CHIP token skyrockets to $0.132357 following the successful launch of its blockchain gaming platform beta. The massive 130% surge reflects strong community support and early adoption metrics.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
-      "date": "April 22, 2026",
-      "slug": "/chip-token-explodes-94-percent-rally/",
+      "date": "April 23, 2026",
+      "slug": "/chip-token-explodes-130-gaming-platform-beta/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Pudgy Penguins NFT Collection Gains 10.69% Amid Market Recovery",
-      "excerpt": "PENGU token associated with the popular Pudgy Penguins NFT collection rose 10.69% to $0.0085197. The gain reflects renewed interest in utility-backed NFT projects.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 22, 2026",
-      "slug": "/pudgy-penguins-gains-amid-market-recovery/",
+      "title": "Spark Protocol Gains 23% on DeFi Yield Farming Innovation",
+      "excerpt": "SPK token rises to $0.037565 with a 23.43% increase as the protocol introduces revolutionary yield farming mechanisms. The new features promise higher returns and improved capital efficiency for DeFi participants.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
+      "date": "April 23, 2026",
+      "slug": "/spark-protocol-gains-23-defi-yield-farming/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "RaveDAO Faces 16.64% Decline Despite DeFi Sector Growth",
-      "excerpt": "RAVE token dropped 16.64% to $1.13 as investors took profits from recent gains. The decline contrasts with broader DeFi market trends showing positive momentum.",
-      "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
-      "date": "April 22, 2026",
-      "slug": "/ravedao-faces-decline-despite-defi-growth/",
+      "title": "Asteroid Shiba Community Drives 16% Rally Through Meme Culture",
+      "excerpt": "ASTEROID token climbs 16.15% to $0.00042933 as the community-driven project gains traction on social media. The meme coin continues to build momentum through grassroots marketing and viral content campaigns.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 23, 2026",
+      "slug": "/asteroid-shiba-community-drives-16-rally/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "Asteroid Shiba Shows Modest 1.53% Growth in Meme Coin Sector",
-      "excerpt": "ASTEROID token gained 1.53% to $0.00040181 as meme coins continue attracting retail investors. The modest increase reflects steady community support for the Shiba-themed project.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 22, 2026",
-      "slug": "/asteroid-shiba-modest-growth-meme-sector/",
+      "title": "OpenGradient Faces 22% Decline Amid Blockchain Scaling Concerns",
+      "excerpt": "OPG token drops to $0.32583 with a 22.68% decrease as investors question the project's scaling solutions timeline. Technical challenges in implementing promised blockchain infrastructure updates contribute to the selloff.",
+      "category": "Blockchain",
+      "categorySlug": "crypto-news/blockchain",
+      "date": "April 23, 2026",
+      "slug": "/opengradient-faces-22-decline-scaling-concerns/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
