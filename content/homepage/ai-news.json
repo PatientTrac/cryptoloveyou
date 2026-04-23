@@ -23,17 +23,17 @@
       "imageUrl": "/wp-content/uploads/2026/03/5-Hacks-To-Use-ChatGPT-So-Well-Its-Almost-Unfair-450x253.jpg"
     },
     {
-      "title": "Salesforce rolls out new Slackbot AI agent as it battles Microsoft and Google in workplace AI",
-      "category": "AI News",
-      "categorySlug": "ai-news",
-      "slug": "/salesforce-rolls-out-slackbot-ai-agent-battles-microsoft-google/",
-      "imageUrl": "/wp-content/uploads/2026/03/100-Free-AI-Course-by-Anthropic-Learn-AI-in-450x253.jpg"
-    },
-    {
       "title": "Anthropic launches Cowork, a Claude Desktop agent that works in your files — no coding required",
       "category": "AI News",
       "categorySlug": "ai-news",
-      "slug": "/anthropic-launches-cowork-claude-desktop-agent-no-coding/",
+      "slug": "/anthropic-launches-cowork-claude-desktop-agent-files/",
+      "imageUrl": "/wp-content/uploads/2026/03/100-Free-AI-Course-by-Anthropic-Learn-AI-in-450x253.jpg"
+    },
+    {
+      "title": "Teaching AI models to say \"I'm not sure\"",
+      "category": "AI News",
+      "categorySlug": "ai-news",
+      "slug": "/teaching-ai-models-say-im-not-sure/",
       "imageUrl": "/wp-content/uploads/2026/03/10-Best-FREE-AI-Courses-for-Beginners-450x253.jpg"
     }
   ]
