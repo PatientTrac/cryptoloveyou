@@ -1156,6 +1156,37 @@
 
     <!-- ── SETTINGS ───────────────────────────────────── -->
     <div class="panel" id="panel-settings">
+      <!-- TOTP Security Card -->
+      <div class="card mb-20">
+        <div class="card-header">
+          <div class="card-title"><span class="icon">🔐</span> Two-Factor Authentication (Google Authenticator)</div>
+          <span id="totp-status-badge" class="badge badge-muted">Not enabled</span>
+        </div>
+        <div class="card-body">
+          <div id="totp-setup-area">
+            <p class="text-muted" style="font-size:0.85rem;margin-bottom:16px">Add Google Authenticator as a second layer of security. After enabling, you will need your phone to log in.</p>
+            <button class="btn btn-primary" onclick="startTotpSetup()">Enable Google Authenticator</button>
+          </div>
+          <div id="totp-qr-area" style="display:none">
+            <p class="text-muted" style="font-size:0.85rem;margin-bottom:12px">1. Install <strong>Google Authenticator</strong> on your phone<br>2. Tap <strong>+</strong> then <strong>Scan a QR code</strong><br>3. Scan the code below</p>
+            <div style="text-align:center;margin:16px 0"><img id="totp-qr-img" src="" alt="QR Code" style="width:200px;height:200px;border:4px solid #fff;border-radius:8px"></div>
+            <p class="text-muted" style="font-size:0.75rem;text-align:center;margin-bottom:16px">Manual key: <code id="totp-secret-text" style="font-size:0.8rem;background:var(--card-bg);padding:2px 6px;border-radius:4px"></code></p>
+            <div class="form-group">
+              <label>Enter the 6-digit code from the app to confirm</label>
+              <input type="text" id="totp-verify-input" placeholder="000000" maxlength="6" inputmode="numeric" style="letter-spacing:0.3em;font-size:1.4rem;text-align:center;width:160px">
+            </div>
+            <div style="display:flex;gap:10px;margin-top:12px">
+              <button class="btn btn-primary" onclick="verifyTotpSetup()">Activate</button>
+              <button class="btn btn-ghost" onclick="cancelTotpSetup()">Cancel</button>
+            </div>
+          </div>
+          <div id="totp-disable-area" style="display:none">
+            <p style="color:var(--green);font-size:0.85rem;margin-bottom:16px">✅ Google Authenticator is active. Your account requires a 6-digit code to log in.</p>
+            <button class="btn btn-danger btn-sm" onclick="disableTotp()">Disable Google Authenticator</button>
+          </div>
+        </div>
+      </div>
+
       <div class="grid-2">
         <div class="card mb-20">
           <div class="card-header"><div class="card-title"><span class="icon">🔑</span> API Keys Status</div></div>
@@ -1911,6 +1942,39 @@ function pickFromCatalogue(key) {
   document.getElementById('aff-notes').value = p.note.replace('✅ LIVE · ','')
   document.getElementById('aff-active').checked = p.note.startsWith('✅')
   document.getElementById('aff-modal').classList.add('open')
+}
+
+
+async function startTotpSetup() {
+  const res = await fetch('/api/auth/totp/setup', { headers: { Authorization: `Bearer ${token()}` } })
+  const data = await res.json()
+  document.getElementById('totp-qr-img').src = data.qr_url
+  document.getElementById('totp-secret-text').textContent = data.secret
+  document.getElementById('totp-setup-area').style.display = 'none'
+  document.getElementById('totp-qr-area').style.display = 'block'
+}
+async function verifyTotpSetup() {
+  const code = document.getElementById('totp-verify-input').value.trim()
+  if (code.length !== 6) return alert('Enter the 6-digit code')
+  const res = await fetch('/api/auth/totp/verify', { method:'POST', headers:{'Content-Type':'application/json',Authorization:`Bearer ${token()}`}, body:JSON.stringify({code}) })
+  const data = await res.json()
+  document.getElementById('totp-qr-area').style.display = 'none'
+  document.getElementById('totp-disable-area').style.display = 'block'
+  document.getElementById('totp-status-badge').textContent = 'Enabled'
+  document.getElementById('totp-status-badge').className = 'badge badge-green'
+  alert('Google Authenticator enabled! You will need your phone on next login.')
+}
+function cancelTotpSetup() {
+  document.getElementById('totp-qr-area').style.display = 'none'
+  document.getElementById('totp-setup-area').style.display = 'block'
+}
+async function disableTotp() {
+  const res = await fetch('/api/auth/totp/disable', { method:'POST', headers:{Authorization:`Bearer ${token()}`} })
+  const data = await res.json()
+  document.getElementById('totp-disable-area').style.display = 'none'
+  document.getElementById('totp-setup-area').style.display = 'block'
+  document.getElementById('totp-status-badge').textContent = 'Not enabled'
+  document.getElementById('totp-status-badge').className = 'badge badge-muted'
 }
 
 // ── PAYMENTS ──────────────────────────────────────────────
