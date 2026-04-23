@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Holds Strong Above $77K Despite Minor Correction",
-      "excerpt": "Bitcoin trades at $77,678 with a modest 0.93% decline in the past 24 hours. Market analysts view the minimal pullback as healthy consolidation after recent gains.",
+      "title": "Bitcoin Consolidates Near $77,674 as Market Shows Minor Correction",
+      "excerpt": "Bitcoin experiences a modest 1.45% decline in the past 24 hours, trading around $77,674 as investors assess market conditions. The relatively small pullback suggests continued strength in the flagship cryptocurrency.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 23, 2026",
-      "slug": "/bitcoin-holds-strong-above-77k-despite-minor-correction/",
+      "slug": "/bitcoin-consolidates-near-77674-market-correction/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Sees Increased Development Activity Despite Price Volatility",
-      "excerpt": "Ethereum continues to attract developers and institutional interest as network upgrades progress. The blockchain maintains its position as the leading smart contract platform.",
+      "title": "Ethereum Faces 3.67% Decline as Price Drops to $2,304",
+      "excerpt": "Ethereum sees increased selling pressure with a 3.67% decrease over 24 hours, bringing the price down to $2,304.2. Market analysts are watching key support levels as the second-largest cryptocurrency adjusts.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 23, 2026",
-      "slug": "/ethereum-network-sees-increased-development-activity/",
+      "slug": "/ethereum-faces-decline-price-drops-2304/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "Spark Token Surges 68% in Major Altcoin Rally",
-      "excerpt": "SPK token explodes to $0.055228 with an impressive 68.80% gain in 24 hours. The surge positions Spark among today's top performing altcoins.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 23, 2026",
-      "slug": "/spark-token-surges-68-percent-major-altcoin-rally/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
-    },
-    {
-      "title": "CHIP Token Faces Selling Pressure with 6.65% Decline",
-      "excerpt": "CHIP drops to $0.105244 amid broader altcoin market volatility. Trading volume remains elevated as investors reassess positions.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 23, 2026",
-      "slug": "/chip-token-faces-selling-pressure-decline/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
-    },
-    {
-      "title": "Meme Coin Sector Shows Mixed Signals as ASTEROID Drops Nearly 10%",
-      "excerpt": "Asteroid Shiba falls 9.84% to $0.00032734 as meme coin enthusiasm cools. Market participants shift focus to utility-driven projects.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
-      "date": "April 23, 2026",
-      "slug": "/meme-coin-sector-mixed-signals-asteroid-drops/",
-      "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
-    },
-    {
-      "title": "DeFi Governance Tokens Under Pressure as RaveDAO Slides 4%",
-      "excerpt": "RAVE token trades at $1.08 following a 4% decline in decentralized finance sector rotation. DAO governance participation remains active despite price weakness.",
+      "title": "Moonriver Explodes 57% in Massive Rally to $2.72",
+      "excerpt": "Moonriver delivers spectacular gains with a 57.09% surge in 24 hours, reaching $2.72 per token. The Kusama-based parachain sees unprecedented trading volume as investors rush into the DeFi ecosystem.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 23, 2026",
-      "slug": "/defi-governance-tokens-pressure-ravedao-slides/",
+      "slug": "/moonriver-explodes-57-percent-rally-272/",
+      "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
+    },
+    {
+      "title": "Spark Token Surges 28.68% as Utility Adoption Accelerates",
+      "excerpt": "Spark (SPK) demonstrates strong momentum with a 28.68% increase, trading at $0.049095. The blockchain project gains traction as developers integrate its utility features across multiple platforms.",
+      "category": "Blockchain",
+      "categorySlug": "crypto-news/blockchain",
+      "date": "April 23, 2026",
+      "slug": "/spark-token-surges-28-percent-utility-adoption/",
+      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
+    },
+    {
+      "title": "Pudgy Penguins NFT Token Dips 2.31% Amid Market Volatility",
+      "excerpt": "PENGU token experiences a 2.31% decline to $0.0083626 as the NFT gaming sector faces mixed sentiment. Despite the pullback, the Pudgy Penguins ecosystem continues expanding its metaverse initiatives.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 23, 2026",
+      "slug": "/pudgy-penguins-nft-token-dips-market-volatility/",
+      "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
+    },
+    {
+      "title": "CHIP Token Plummets 15.72% in Sharp Correction",
+      "excerpt": "CHIP faces significant selling pressure with a 15.72% drop to $0.095191 over the past day. The altcoin's steep decline highlights ongoing volatility in smaller-cap cryptocurrency markets.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 23, 2026",
+      "slug": "/chip-token-plummets-15-percent-sharp-correction/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
