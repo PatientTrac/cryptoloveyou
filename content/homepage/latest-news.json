@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Surges Past $78K as Institutional Adoption Accelerates",
-      "excerpt": "Bitcoin continues its bullish momentum with a 1.96% daily gain, reaching $78,284 amid growing institutional interest. The leading cryptocurrency shows strong support levels as major corporations increase their BTC treasury allocations.",
+      "title": "Bitcoin Holds Steady Above $78K as Market Consolidates",
+      "excerpt": "Bitcoin maintains its position above $78,000 with minimal movement of 0.09% in 24 hours. The stability suggests strong support levels as investors await the next major price catalyst.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 23, 2026",
-      "slug": "/bitcoin-surges-past-78k-institutional-adoption/",
+      "slug": "/bitcoin-holds-steady-above-78k-market-consolidates/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Network Upgrades Drive Developer Activity to New Heights",
-      "excerpt": "Ethereum's latest protocol improvements are attracting unprecedented developer engagement across DeFi and NFT sectors. The network continues to solidify its position as the leading smart contract platform despite market volatility.",
+      "title": "Ethereum Trading Data Temporarily Unavailable Amid Network Upgrades",
+      "excerpt": "Ethereum price data is currently unavailable as the network undergoes scheduled maintenance and infrastructure improvements. Trading platforms expect full data restoration within hours.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 23, 2026",
-      "slug": "/ethereum-network-upgrades-developer-activity/",
+      "slug": "/ethereum-trading-data-unavailable-network-upgrades/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "CHIP Token Explodes 130% as Gaming Platform Launches Beta",
-      "excerpt": "CHIP token skyrockets to $0.132357 following the successful launch of its blockchain gaming platform beta. The massive 130% surge reflects strong community support and early adoption metrics.",
+      "title": "Spark Token Explodes 80% as DeFi Protocol Gains Momentum",
+      "excerpt": "Spark (SPK) surges over 80% to $0.054733 following major partnership announcements and increased adoption. The dramatic price movement positions SPK among today's top performing altcoins.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 23, 2026",
-      "slug": "/chip-token-explodes-130-gaming-platform-beta/",
+      "slug": "/spark-token-explodes-80-percent-defi-protocol-gains/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Spark Protocol Gains 23% on DeFi Yield Farming Innovation",
-      "excerpt": "SPK token rises to $0.037565 with a 23.43% increase as the protocol introduces revolutionary yield farming mechanisms. The new features promise higher returns and improved capital efficiency for DeFi participants.",
-      "category": "DeFi",
-      "categorySlug": "crypto-news/defi",
-      "date": "April 23, 2026",
-      "slug": "/spark-protocol-gains-23-defi-yield-farming/",
-      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
-    },
-    {
-      "title": "Asteroid Shiba Community Drives 16% Rally Through Meme Culture",
-      "excerpt": "ASTEROID token climbs 16.15% to $0.00042933 as the community-driven project gains traction on social media. The meme coin continues to build momentum through grassroots marketing and viral content campaigns.",
+      "title": "CHIP Token Rallies 37% on Gaming Platform Integration News",
+      "excerpt": "CHIP climbs to $0.108578 with a 37.86% daily gain after announcing integration with major gaming platforms. The blockchain gaming sector continues to attract significant investor interest.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 23, 2026",
-      "slug": "/asteroid-shiba-community-drives-16-rally/",
+      "slug": "/chip-token-rallies-37-percent-gaming-platform-integration/",
+      "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
+    },
+    {
+      "title": "Pudgy Penguins NFT Token Rises 7% on Community Expansion",
+      "excerpt": "PENGU token gains 7.22% to approximately $0.0087 as the Pudgy Penguins ecosystem expands its utility features. The NFT-backed token continues building momentum in the digital collectibles space.",
+      "category": "Altcoins",
+      "categorySlug": "crypto-news/altcoins",
+      "date": "April 23, 2026",
+      "slug": "/pudgy-penguins-nft-token-rises-community-expansion/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "OpenGradient Faces 22% Decline Amid Blockchain Scaling Concerns",
-      "excerpt": "OPG token drops to $0.32583 with a 22.68% decrease as investors question the project's scaling solutions timeline. Technical challenges in implementing promised blockchain infrastructure updates contribute to the selloff.",
-      "category": "Blockchain",
-      "categorySlug": "crypto-news/blockchain",
+      "title": "RaveDAO Faces 12% Decline Despite Strong DeFi Fundamentals",
+      "excerpt": "RAVE drops 12.27% to $1.17 amid broader market correction affecting governance tokens. Despite the pullback, the decentralized autonomous organization maintains solid underlying metrics.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
       "date": "April 23, 2026",
-      "slug": "/opengradient-faces-22-decline-scaling-concerns/",
+      "slug": "/ravedao-faces-12-percent-decline-strong-defi-fundamentals/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
