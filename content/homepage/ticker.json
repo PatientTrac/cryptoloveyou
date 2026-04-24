@@ -4,23 +4,23 @@
       "id": "bitcoin",
       "name": "Bitcoin",
       "symbol": "BTC",
-      "price_eur": "66978.99",
-      "price_usd": "78338.00",
-      "change_24h": "0.11",
+      "price_eur": "66365.10",
+      "price_usd": "77620.00",
+      "change_24h": "-0.53",
       "image": "https://coin-images.coingecko.com/coins/images/1/large/bitcoin.png?1696501400",
-      "market_cap_usd": 1569798729497,
-      "volume_24h_usd": 40202964546
+      "market_cap_usd": 1554904816766,
+      "volume_24h_usd": 38063191429
     },
     {
       "id": "ethereum",
       "name": "Ethereum",
       "symbol": "ETH",
-      "price_eur": "1991.10",
-      "price_usd": "2328.77",
-      "change_24h": "-1.45",
+      "price_eur": "1976.03",
+      "price_usd": "2311.15",
+      "change_24h": "-1.40",
       "image": "https://coin-images.coingecko.com/coins/images/279/large/ethereum.png?1696501628",
-      "market_cap_usd": 281458120182,
-      "volume_24h_usd": 17501360731
+      "market_cap_usd": 279010947823,
+      "volume_24h_usd": 17451020119
     },
     {
       "id": "tether",
@@ -28,32 +28,32 @@
       "symbol": "USDT",
       "price_eur": "0.85",
       "price_usd": "1.00",
-      "change_24h": "-0.00",
+      "change_24h": "0.00",
       "image": "https://coin-images.coingecko.com/coins/images/325/large/Tether.png?1696501661",
-      "market_cap_usd": 189707680191,
-      "volume_24h_usd": 67623354278
+      "market_cap_usd": 189706916298,
+      "volume_24h_usd": 64431255434
     },
     {
       "id": "ripple",
       "name": "XRP",
       "symbol": "XRP",
-      "price_eur": "1.23",
-      "price_usd": "1.44",
-      "change_24h": "1.23",
+      "price_eur": "1.22",
+      "price_usd": "1.43",
+      "change_24h": "0.71",
       "image": "https://coin-images.coingecko.com/coins/images/44/large/xrp-symbol-white-128.png?1696501442",
-      "market_cap_usd": 88888693284,
-      "volume_24h_usd": 2577963907
+      "market_cap_usd": 88116064036,
+      "volume_24h_usd": 2285779092
     },
     {
       "id": "binancecoin",
       "name": "BNB",
       "symbol": "BNB",
-      "price_eur": "545.80",
-      "price_usd": "638.36",
-      "change_24h": "0.12",
+      "price_eur": "542.87",
+      "price_usd": "634.94",
+      "change_24h": "-0.15",
       "image": "https://coin-images.coingecko.com/coins/images/825/large/bnb-icon2_2x.png?1696501970",
-      "market_cap_usd": 86196709489,
-      "volume_24h_usd": 1007344324
+      "market_cap_usd": 85613459457,
+      "volume_24h_usd": 993826155
     },
     {
       "id": "usd-coin",
@@ -61,21 +61,21 @@
       "symbol": "USDC",
       "price_eur": "0.85",
       "price_usd": "1.00",
-      "change_24h": "0.01",
+      "change_24h": "0.00",
       "image": "https://coin-images.coingecko.com/coins/images/6319/large/USDC.png?1769615602",
-      "market_cap_usd": 78045760535,
-      "volume_24h_usd": 15855874391
+      "market_cap_usd": 77957555465,
+      "volume_24h_usd": 15174215332
     },
     {
       "id": "solana",
       "name": "Solana",
       "symbol": "SOL",
-      "price_eur": "73.69",
-      "price_usd": "86.19",
-      "change_24h": "-0.15",
+      "price_eur": "73.06",
+      "price_usd": "85.45",
+      "change_24h": "-0.55",
       "image": "https://coin-images.coingecko.com/coins/images/4128/large/solana.png?1718769756",
-      "market_cap_usd": 49650249445,
-      "volume_24h_usd": 3769765851
+      "market_cap_usd": 49194810053,
+      "volume_24h_usd": 3611385807
     },
     {
       "id": "tron",
@@ -83,10 +83,10 @@
       "symbol": "TRX",
       "price_eur": "0.28",
       "price_usd": "0.33",
-      "change_24h": "-0.45",
+      "change_24h": "-0.07",
       "image": "https://coin-images.coingecko.com/coins/images/1094/large/photo_2026-04-13_09-59-16.png?1776048311",
-      "market_cap_usd": 31115139793,
-      "volume_24h_usd": 515905766
+      "market_cap_usd": 31079223130,
+      "volume_24h_usd": 495187797
     },
     {
       "id": "figure-heloc",
@@ -105,10 +105,10 @@
       "symbol": "DOGE",
       "price_eur": "0.08",
       "price_usd": "0.10",
-      "change_24h": "1.82",
+      "change_24h": "1.85",
       "image": "https://coin-images.coingecko.com/coins/images/5/large/dogecoin.png?1696501409",
-      "market_cap_usd": 15067314396,
-      "volume_24h_usd": 1412455267
+      "market_cap_usd": 15037139476,
+      "volume_24h_usd": 1436104282
     }
   ]
 }
