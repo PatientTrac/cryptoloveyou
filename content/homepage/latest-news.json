@@ -1,57 +1,57 @@
 {
   "items": [
     {
-      "title": "Bitcoin Trading Halted Across Major Exchanges Amid Technical Issues",
-      "excerpt": "Several cryptocurrency exchanges have temporarily suspended Bitcoin trading due to widespread technical difficulties. The halt comes as traders await clarity on market conditions and exchange stability.",
+      "title": "Bitcoin Market Data Temporarily Unavailable Amid Exchange Connectivity Issues",
+      "excerpt": "Major cryptocurrency exchanges are experiencing technical difficulties displaying Bitcoin price data. The temporary outage has raised questions about market infrastructure reliability.",
       "category": "Bitcoin",
       "categorySlug": "crypto-news/bitcoin",
       "date": "April 24, 2026",
-      "slug": "/bitcoin-trading-halted-exchanges-technical-issues/",
+      "slug": "/bitcoin-market-data-temporarily-unavailable/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Rally-Stalls-Near-70K-Will-Altcoins-Keep-Going-450x300.jpg"
     },
     {
-      "title": "Ethereum Maintains Stability with Modest 0.21% Gain at $2,328",
-      "excerpt": "Ethereum shows resilient performance with a slight uptick, trading at $2,328.85 as institutional interest continues to grow. The steady movement suggests consolidation ahead of potential network upgrades.",
+      "title": "Ethereum Maintains Stability with Modest 0.14% Daily Gain at $2,317",
+      "excerpt": "ETH demonstrates resilience trading at $2,317.71 with minimal volatility. The steady performance comes as institutional investors continue accumulating ahead of upcoming network upgrades.",
       "category": "Ethereum",
       "categorySlug": "crypto-news/ethereum",
       "date": "April 24, 2026",
-      "slug": "/ethereum-stability-modest-gain-2328/",
+      "slug": "/ethereum-maintains-stability-modest-gain/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Trend-Reversal-Possible-If-74K-Holds-Will-Altcoins-Follow-450x300.jpg"
     },
     {
-      "title": "Katana Token Explodes 88% in Massive Rally to $0.022",
-      "excerpt": "KAT token delivers spectacular gains of 88.61% in 24 hours, reaching $0.022577 as traders pile into the gaming-focused cryptocurrency. The surge marks one of the day's biggest winners in the altcoin market.",
+      "title": "ApeCoin Explodes 58.74% as Gaming Partnerships Drive Massive Rally",
+      "excerpt": "APE token surges to $0.1598 following announcements of major gaming integrations. The dramatic price movement reflects renewed interest in NFT and metaverse ecosystems.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 24, 2026",
-      "slug": "/katana-token-explodes-88-percent-rally/",
+      "slug": "/apecoin-explodes-gaming-partnerships-rally/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitcoin-Surges-to-Six-Week-High-as-Bulls-Eye-80K-450x270.jpg"
     },
     {
-      "title": "Grass Protocol Gains 4% as DeFi Adoption Accelerates",
-      "excerpt": "GRASS token climbs 4.03% to $0.423837 amid growing interest in decentralized finance protocols. The project's unique approach to data monetization continues to attract new participants.",
+      "title": "Katana Token Skyrockets 71.83% Following DeFi Protocol Launch",
+      "excerpt": "KAT experiences explosive growth reaching $0.0227 after successful mainnet deployment. The decentralized trading protocol has attracted significant liquidity within hours of launch.",
       "category": "DeFi",
       "categorySlug": "crypto-news/defi",
       "date": "April 24, 2026",
-      "slug": "/grass-protocol-gains-defi-adoption-accelerates/",
+      "slug": "/katana-token-skyrockets-defi-protocol-launch/",
       "imageUrl": "/wp-content/uploads/2026/03/Bitmines-Ether-Holdings-Reach-46M-ETH-About-38-of-Supply-450x300.jpg"
     },
     {
-      "title": "Pudgy Penguins NFT Token Rises 3.28% Following Community Updates",
-      "excerpt": "PENGU token advances to approximately $0.0087657 with a 3.28% daily increase. The popular NFT project continues building momentum through strategic community initiatives and partnership announcements.",
-      "category": "Altcoins",
-      "categorySlug": "crypto-news/altcoins",
+      "title": "RaveDAO Faces 9% Decline as Governance Proposal Creates Uncertainty",
+      "excerpt": "RAVE token drops to $0.933 amid community debates over treasury allocation. The decentralized autonomous organization is navigating internal disagreements about future funding strategies.",
+      "category": "DeFi",
+      "categorySlug": "crypto-news/defi",
       "date": "April 24, 2026",
-      "slug": "/pudgy-penguins-nft-token-rises-community-updates/",
+      "slug": "/ravedao-faces-decline-governance-uncertainty/",
       "imageUrl": "/wp-content/uploads/2026/03/Crypto-Exchanges-Emerge-as-TradFi-Venues-amid-Tokenized-Commodities-Boom-450x300.jpg"
     },
     {
-      "title": "CHIP Token Faces 11.67% Decline Amid Market Correction",
-      "excerpt": "CHIP experiences significant selling pressure, dropping 11.67% to $0.092627 as broader altcoin markets show mixed signals. Analysts point to profit-taking and reduced trading volume as contributing factors.",
+      "title": "USD.AI Token Drops 9.25% as AI Crypto Sector Experiences Correction",
+      "excerpt": "CHIP falls to $0.0874 following broader artificial intelligence token selloff. Market analysts suggest profit-taking after recent AI cryptocurrency sector gains.",
       "category": "Altcoins",
       "categorySlug": "crypto-news/altcoins",
       "date": "April 24, 2026",
-      "slug": "/chip-token-faces-decline-market-correction/",
+      "slug": "/usd-ai-token-drops-ai-crypto-correction/",
       "imageUrl": "/wp-content/uploads/2026/03/1inch-and-Ondo-RWA-Volumes-Top-25B-as-RWAs-Climb-450x300.jpg"
     }
   ]
