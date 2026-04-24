@@ -58,3 +58,16 @@ __pycache__/
 .local/
 wp-content/
 wp-includes/
+
+# WordPress folders - not needed on Netlify
+wp-content/
+wp-includes/
+
+# Language homepages - static, never touched by automation
+en/index.html
+fr/index.html
+de/index.html
+es/index.html
+pt/index.html
+zh/index.html
+ru/index.html
