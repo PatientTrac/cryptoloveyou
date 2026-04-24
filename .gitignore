@@ -56,3 +56,5 @@ __pycache__/
 
 # Local development
 .local/
+wp-content/
+wp-includes/
